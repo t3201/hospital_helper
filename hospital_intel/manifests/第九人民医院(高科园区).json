@@ -1,0 +1,972 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-040",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:39",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=57; geo=amap(relevance,review=suspect); !低置信待核; dept=suishenban#yuyue_guahao(2026-09-26, l1=28/l2u=75)"
+  },
+  "institution": {
+    "name": "第九人民医院(高科园区)",
+    "aliases": [],
+    "level": "三级甲等",
+    "type": "综合医院",
+    "ownership": "公立",
+    "affiliation": "上海交通大学",
+    "official_site": "",
+    "tel": "021-56691101",
+    "official_name": "上海交通大学医学院附属第九人民医院",
+    "official_name_source": "roster",
+    "official_name_evidence": "医保名单 seq=239 上海市黄浦区制造局路639号、瞿溪路500号、漠河路280号、浦东新区高科西路1908号、浦东新区云亭路99号"
+  },
+  "campuses": [
+    {
+      "id": "SH-040-M",
+      "name": "本部",
+      "district": "黄浦区",
+      "address": "中山南路852号",
+      "geo": {
+        "lng": 121.487496,
+        "lat": 31.201603,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:relevance"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "三级甲等",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "西藏南路(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 200,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 2,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": 7.5,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 2,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 104,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "中山南一路西藏南路(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-26T23:15:06Z",
+        "l1": [
+          {
+            "name": "普外科",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "普外二科(高科)",
+                "dept_id": "D05433",
+                "canonical": "普外二科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "普外一科(高科)",
+                "dept_id": "D05431",
+                "canonical": "普外一科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              }
+            ]
+          },
+          {
+            "name": "中医科",
+            "tab_index": 1,
+            "depts": [
+              {
+                "raw": "四季膏方门诊(高科)",
+                "dept_id": "D03574",
+                "canonical": "四季膏方门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "中医科特需(高科)",
+                "dept_id": "D01316",
+                "canonical": "中医科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "中医科(高科)",
+                "dept_id": "D01316",
+                "canonical": "中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              }
+            ]
+          },
+          {
+            "name": "口腔颅颌面科",
+            "tab_index": 2,
+            "depts": [
+              {
+                "raw": "正颌正畸特需(高科)",
+                "dept_id": "D05695",
+                "canonical": "正颌正畸",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "口腔颅颌面科特需(高科)",
+                "dept_id": "D03305",
+                "canonical": "口腔颅颌面科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "院区:高科"
+              }
+            ]
+          },
+          {
+            "name": "牙体牙髓科",
+            "tab_index": 3,
+            "depts": [
+              {
+                "raw": "牙体牙髓科特需(高科)",
+                "dept_id": "D06073",
+                "canonical": "牙体牙髓科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "院区:高科"
+              }
+            ]
+          },
+          {
+            "name": "牙周种植创新中心",
+            "tab_index": 4,
+            "depts": [
+              {
+                "raw": "牙周种植综合诊疗门诊(高科)",
+                "dept_id": "D06087",
+                "canonical": "牙周种植综合诊疗门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              }
+            ]
+          },
+          {
+            "name": "口腔黏膜病科",
+            "tab_index": 5,
+            "depts": [
+              {
+                "raw": "口腔黏膜病科特需(高科)",
+                "dept_id": "D03325",
+                "canonical": "口腔黏膜病科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "院区:高科"
+              }
+            ]
+          },
+          {
+            "name": "口腔颌面头颈肿瘤科",
+            "tab_index": 6,
+            "depts": [
+              {
+                "raw": "口腔颌面头颈肿瘤科特需(高科)",
+                "dept_id": "D03314",
+                "canonical": "口腔颌面头颈肿瘤科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "院区:高科"
+              }
+            ]
+          },
+          {
+            "name": "耳鼻咽喉头颈外科",
+            "tab_index": 7,
+            "depts": [
+              {
+                "raw": "耳聋遗传专病(高科)",
+                "dept_id": "D07494",
+                "canonical": "耳聋遗传",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "中西医结合耳鸣专病门诊(高科)",
+                "dept_id": "D01544",
+                "canonical": "中西医结合耳鸣门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "新生儿听力筛查转诊专病门诊（高科）",
+                "dept_id": "D05315",
+                "canonical": "新生儿听力筛查转诊门诊",
+                "kind": "screening",
+                "visit_type": "专病",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "助听器专病(高科)",
+                "dept_id": "D02839",
+                "canonical": "助听器",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "耳科、听力及眩晕门诊(高科)",
+                "dept_id": "D07488",
+                "canonical": "耳科、听力及眩晕门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "耳科门诊(高科)",
+                "dept_id": "D07487",
+                "canonical": "耳科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科;形态:门诊"
+              },
+              {
+                "raw": "耳鼻喉特需(高科)",
+                "dept_id": "D07533",
+                "canonical": "耳鼻喉科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "听觉植入专病(高科)",
+                "dept_id": "D03398",
+                "canonical": "听觉植入",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "耳鼻咽喉头颈外科(高科)",
+                "dept_id": "D07506",
+                "canonical": "耳鼻咽喉头颈外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              }
+            ]
+          },
+          {
+            "name": "心血管内科",
+            "tab_index": 8,
+            "depts": [
+              {
+                "raw": "心血管内科(高科)",
+                "dept_id": "D04780",
+                "canonical": "心血管内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              }
+            ]
+          },
+          {
+            "name": "内分泌科",
+            "tab_index": 9,
+            "depts": [
+              {
+                "raw": "内分泌科(高科)",
+                "dept_id": "D02588",
+                "canonical": "内分泌科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "内分泌科特需(高科)",
+                "dept_id": "D02588",
+                "canonical": "内分泌科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "院区:高科"
+              }
+            ]
+          },
+          {
+            "name": "儿童口腔科",
+            "tab_index": 10,
+            "depts": [
+              {
+                "raw": "儿童口腔科特需(高科)",
+                "dept_id": "D02100",
+                "canonical": "儿童口腔科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "儿童口腔科(高科)",
+                "dept_id": "D02100",
+                "canonical": "儿童口腔科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              }
+            ]
+          },
+          {
+            "name": "皮肤科",
+            "tab_index": 11,
+            "depts": [
+              {
+                "raw": "皮肤科特需(高科)",
+                "dept_id": "D06702",
+                "canonical": "皮肤科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "院区:高科"
+              }
+            ]
+          },
+          {
+            "name": "口腔修复科",
+            "tab_index": 12,
+            "depts": [
+              {
+                "raw": "口腔修复科特需(高科)",
+                "dept_id": "D03187",
+                "canonical": "口腔修复科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "院区:高科"
+              }
+            ]
+          },
+          {
+            "name": "国际医疗部-口腔",
+            "tab_index": 13,
+            "depts": [
+              {
+                "raw": "口腔健康门诊(GJ)",
+                "dept_id": "D03188",
+                "canonical": "口腔健康门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:GJ"
+              }
+            ]
+          },
+          {
+            "name": "骨科",
+            "tab_index": 14,
+            "depts": [
+              {
+                "raw": "骨科(高科)",
+                "dept_id": "D10069",
+                "canonical": "骨科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              }
+            ]
+          },
+          {
+            "name": "口腔种植科",
+            "tab_index": 15,
+            "depts": [
+              {
+                "raw": "牙周病种植专科(高科)",
+                "dept_id": "D06085",
+                "canonical": "牙周病种植",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "微创拔牙及种植专科(高科)",
+                "dept_id": "D04622",
+                "canonical": "微创拔牙及种植",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "微创即刻种植(高科)",
+                "dept_id": "D04616",
+                "canonical": "微创即刻种植",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "口腔种植科特需(高科)",
+                "dept_id": "D03243",
+                "canonical": "口腔种植科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "口腔种植科(高科)",
+                "dept_id": "D03243",
+                "canonical": "口腔种植科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              }
+            ]
+          },
+          {
+            "name": "牙周病科",
+            "tab_index": 16,
+            "depts": [
+              {
+                "raw": "牙周病科特需(高科)",
+                "dept_id": "D06086",
+                "canonical": "牙周病科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "院区:高科"
+              }
+            ]
+          },
+          {
+            "name": "呼吸与危重症医学科",
+            "tab_index": 17,
+            "depts": [
+              {
+                "raw": "呼吸与危重症医学科(高科)",
+                "dept_id": "D03432",
+                "canonical": "呼吸与危重症医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "高科专科门诊",
+                "dept_id": "D10200",
+                "canonical": "高科门诊",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "口腔外科",
+            "tab_index": 18,
+            "depts": [
+              {
+                "raw": "口腔外科特需(高科)",
+                "dept_id": "D03200",
+                "canonical": "口腔外科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "口腔外科(高科)",
+                "dept_id": "D03200",
+                "canonical": "口腔外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              }
+            ]
+          },
+          {
+            "name": "眼科",
+            "tab_index": 19,
+            "depts": [
+              {
+                "raw": "眼科特需(高科)",
+                "dept_id": "D06839",
+                "canonical": "眼科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "近视眼防控与接触镜(高科)",
+                "dept_id": "D09313",
+                "canonical": "近视眼防控与接触镜",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "眼科(高科)",
+                "dept_id": "D06839",
+                "canonical": "眼科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              }
+            ]
+          },
+          {
+            "name": "超声医学科",
+            "tab_index": 20,
+            "depts": [
+              {
+                "raw": "超声诊断特需(高科)",
+                "dept_id": "D09194",
+                "canonical": "超声诊断",
+                "kind": "ancillary",
+                "visit_type": "特需",
+                "qualifiers": "院区:高科"
+              }
+            ]
+          },
+          {
+            "name": "口腔预防科",
+            "tab_index": 21,
+            "depts": [
+              {
+                "raw": "口腔预防科特需(高科)",
+                "dept_id": "D03304",
+                "canonical": "口腔预防科",
+                "kind": "screening",
+                "visit_type": "特需",
+                "qualifiers": "院区:高科"
+              }
+            ]
+          },
+          {
+            "name": "口腔正畸科",
+            "tab_index": 22,
+            "depts": [
+              {
+                "raw": "口腔正畸科(高科)",
+                "dept_id": "D03215",
+                "canonical": "口腔正畸科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "儿童早期矫正(高科)",
+                "dept_id": "D02175",
+                "canonical": "儿童早期矫正",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "口腔正畸科特需(高科)",
+                "dept_id": "D03215",
+                "canonical": "口腔正畸科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "院区:高科"
+              }
+            ]
+          },
+          {
+            "name": "泌尿外科",
+            "tab_index": 23,
+            "depts": [
+              {
+                "raw": "泌尿外科特需(高科)",
+                "dept_id": "D05785",
+                "canonical": "泌尿外科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "泌尿外科(高科)",
+                "dept_id": "D05785",
+                "canonical": "泌尿外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              }
+            ]
+          },
+          {
+            "name": "肾脏内科",
+            "tab_index": 24,
+            "depts": [
+              {
+                "raw": "肾脏内科(高科)",
+                "dept_id": "D07989",
+                "canonical": "肾脏内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              }
+            ]
+          },
+          {
+            "name": "口腔综合科",
+            "tab_index": 25,
+            "depts": [
+              {
+                "raw": "口腔综合科特需(高科)",
+                "dept_id": "D03285",
+                "canonical": "口腔综合科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "口腔综合科(高科)",
+                "dept_id": "D03285",
+                "canonical": "口腔综合科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              }
+            ]
+          },
+          {
+            "name": "国际医疗部-内科",
+            "tab_index": 26,
+            "depts": [
+              {
+                "raw": "内科门诊(GJ)",
+                "dept_id": "D02633",
+                "canonical": "内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:GJ;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "整复外科",
+            "tab_index": 27,
+            "depts": [
+              {
+                "raw": "整形激光(高科)",
+                "dept_id": "D05241",
+                "canonical": "整形激光",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "鼻整形(高科)",
+                "dept_id": "D10280",
+                "canonical": "鼻整形",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "整外耳再造(高科)",
+                "dept_id": "D05221",
+                "canonical": "整外耳再造",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "淋巴水肿(高科)",
+                "dept_id": "D05985",
+                "canonical": "淋巴水肿",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "腹壁整形(高科)",
+                "dept_id": "D08579",
+                "canonical": "腹壁整形",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "瘢痕综合治疗专科(高科)",
+                "dept_id": "D06616",
+                "canonical": "瘢痕综合治疗",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "整外上睑下垂(高科)",
+                "dept_id": "D05216",
+                "canonical": "整外上睑下垂",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "腋臭整形(高科)",
+                "dept_id": "D08547",
+                "canonical": "腋臭整形",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "眼睑整形(高科)",
+                "dept_id": "D06838",
+                "canonical": "眼睑整形",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "唇腭裂鼻畸形(高科)",
+                "dept_id": "D03545",
+                "canonical": "唇腭裂鼻畸形",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "乳房整形(高科)",
+                "dept_id": "D01622",
+                "canonical": "乳房整形",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "注射并发症整形(高科)",
+                "dept_id": "D05863",
+                "canonical": "注射并发症整形",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "整外唇腭裂(高科)",
+                "dept_id": "D05218",
+                "canonical": "整外唇腭裂",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "巨乳整形(高科)",
+                "dept_id": "D04400",
+                "canonical": "巨乳整形",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "面部轮廓整形(高科)",
+                "dept_id": "D09786",
+                "canonical": "面部轮廓整形",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "疤痕专科(高科)",
+                "dept_id": "D06485",
+                "canonical": "疤痕",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "神经纤维瘤病(高科)",
+                "dept_id": "D07076",
+                "canonical": "神经纤维瘤病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "黑痣巨痣专科门诊(高科)",
+                "dept_id": "D10273",
+                "canonical": "黑痣巨痣门诊",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "面部提升(高科)",
+                "dept_id": "D09780",
+                "canonical": "面部提升",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "整复外科特需(高科)",
+                "dept_id": "D05213",
+                "canonical": "整复外科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "整外手外(高科)",
+                "dept_id": "D05220",
+                "canonical": "整外手外",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              },
+              {
+                "raw": "唇部整形(高科)",
+                "dept_id": "D03547",
+                "canonical": "唇部整形",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:高科"
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 28,
+          "entry_count": 75,
+          "unique_count": 75,
+          "canonical_count": 66
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T23:15:06Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 28,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T23:15:06Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 75,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T23:15:06Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

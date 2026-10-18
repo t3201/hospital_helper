@@ -1,0 +1,673 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-153",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:39",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=153; geo=amap(name_in_poi); dept=suishenban#yuyue_guahao(2026-09-26, l1=12/l2u=50)"
+  },
+  "institution": {
+    "name": "第二康复医院",
+    "aliases": [],
+    "level": "二级甲等",
+    "type": "专科疾病防治院",
+    "ownership": "公立",
+    "affiliation": "",
+    "official_site": "",
+    "tel": ""
+  },
+  "campuses": [
+    {
+      "id": "SH-153-M",
+      "name": "本部",
+      "district": "宝山区",
+      "address": "淞良路与长江路780弄通道交叉口南220米",
+      "geo": {
+        "lng": 121.486125,
+        "lat": 31.344175,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:name_in_poi"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "二级甲等",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "通南路(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 950,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 1,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": 17.2,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 1,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 243,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "淞发路淞良路(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-27T18:59:41Z",
+        "l1": [
+          {
+            "name": "门诊内科",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "心血管内科专家门诊",
+                "dept_id": "D04780",
+                "canonical": "心血管内科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "老年医学科门诊",
+                "dept_id": "D07351",
+                "canonical": "老年医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "医用氧舱科",
+            "tab_index": 1,
+            "depts": [
+              {
+                "raw": "医用氧舱科",
+                "dept_id": "D02967",
+                "canonical": "医用氧舱科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "营养科",
+            "tab_index": 2,
+            "depts": [
+              {
+                "raw": "营养科",
+                "dept_id": "D08749",
+                "canonical": "营养科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "疼痛门诊",
+            "tab_index": 3,
+            "depts": [
+              {
+                "raw": "疼痛专家门诊",
+                "dept_id": "D06514",
+                "canonical": "疼痛",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "疼痛门诊",
+                "dept_id": "D06514",
+                "canonical": "疼痛",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "儿童康复科",
+            "tab_index": 4,
+            "depts": [
+              {
+                "raw": "儿童康复科门诊",
+                "dept_id": "D02132",
+                "canonical": "儿童康复科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "精神科",
+            "tab_index": 5,
+            "depts": [
+              {
+                "raw": "睡眠障碍专病门诊",
+                "dept_id": "D06920",
+                "canonical": "睡眠障碍",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "康复科",
+            "tab_index": 6,
+            "depts": [
+              {
+                "raw": "老年康复专家门诊",
+                "dept_id": "D07367",
+                "canonical": "老年康复门诊",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "呼吸与危重病康复门诊",
+                "dept_id": "D03430",
+                "canonical": "呼吸与危重病康复门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "心脏康复专家门诊",
+                "dept_id": "D04749",
+                "canonical": "心脏康复",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "老年护理专家门诊",
+                "dept_id": "D07380",
+                "canonical": "老年护理门诊",
+                "kind": "other",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "老年护理专科门诊",
+                "dept_id": "D07380",
+                "canonical": "老年护理门诊",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": ""
+              },
+              {
+                "raw": "呼吸与危重病康复专家门诊",
+                "dept_id": "D03430",
+                "canonical": "呼吸与危重病康复门诊",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "药学门诊",
+                "dept_id": "D08706",
+                "canonical": "药学门诊",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "慢性阻塞性肺疾病专病门诊",
+                "dept_id": "D05008",
+                "canonical": "慢性阻塞性肺疾病门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "疼痛康复专科门诊",
+                "dept_id": "D06520",
+                "canonical": "疼痛康复",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "脑卒中康复专病门诊",
+                "dept_id": "D08438",
+                "canonical": "脑卒中康复",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "骨质疏松症专病门诊",
+                "dept_id": "D10141",
+                "canonical": "骨质疏松症",
+                "kind": "specialty_clinic",
+                "visit_type": "专病",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "神经康复专家门诊",
+                "dept_id": "D07057",
+                "canonical": "神经康复",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "帕金森病康复专病门诊",
+                "dept_id": "D04425",
+                "canonical": "帕金森病康复门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "老年科门诊",
+                "dept_id": "D07351",
+                "canonical": "老年医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "神经康复门诊",
+                "dept_id": "D07057",
+                "canonical": "神经康复",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "老年康复门诊",
+                "dept_id": "D07367",
+                "canonical": "老年康复门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "骨关节康复门诊",
+                "dept_id": "D10022",
+                "canonical": "骨关节康复门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "心脏康复门诊",
+                "dept_id": "D04749",
+                "canonical": "心脏康复",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "骨关节康复专科门诊",
+                "dept_id": "D10022",
+                "canonical": "骨关节康复门诊",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": ""
+              },
+              {
+                "raw": "疼痛康复门诊",
+                "dept_id": "D06520",
+                "canonical": "疼痛康复",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "疼痛康复专家门诊",
+                "dept_id": "D06520",
+                "canonical": "疼痛康复",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "骨关节康复专家门诊",
+                "dept_id": "D10022",
+                "canonical": "骨关节康复门诊",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "神经康复专科门诊",
+                "dept_id": "D07057",
+                "canonical": "神经康复",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "老年康复专科门诊",
+                "dept_id": "D07367",
+                "canonical": "老年康复门诊",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": ""
+              },
+              {
+                "raw": "心脏康复专科门诊",
+                "dept_id": "D04749",
+                "canonical": "心脏康复",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "多学科综合康复专科门诊",
+                "dept_id": "D03825",
+                "canonical": "多学科综合康复门诊",
+                "kind": "specialty_clinic",
+                "visit_type": "专科",
+                "qualifiers": ""
+              },
+              {
+                "raw": "骨关节病康复专病门诊",
+                "dept_id": "D10035",
+                "canonical": "骨关节病康复门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "血管认知障碍康复专病门诊",
+                "dept_id": "D08872",
+                "canonical": "血管认知障碍康复门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "呼吸康复专科门诊",
+                "dept_id": "D03480",
+                "canonical": "呼吸康复门诊",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "护理门诊",
+            "tab_index": 7,
+            "depts": [
+              {
+                "raw": "静疗护理门诊",
+                "dept_id": "D09744",
+                "canonical": "静疗护理",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "伤口护理门诊",
+                "dept_id": "D01835",
+                "canonical": "伤口护理",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "骨外科",
+            "tab_index": 8,
+            "depts": [
+              {
+                "raw": "骨科专家门诊",
+                "dept_id": "D10069",
+                "canonical": "骨科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "中医骨伤科专家门诊",
+                "dept_id": "D01471",
+                "canonical": "中医骨伤科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": "形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "针灸科",
+            "tab_index": 9,
+            "depts": [
+              {
+                "raw": "中医科",
+                "dept_id": "D01316",
+                "canonical": "中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "中医科",
+            "tab_index": 10,
+            "depts": [
+              {
+                "raw": "中医内科专家门诊",
+                "dept_id": "D01178",
+                "canonical": "中医内科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "中医康复专家门诊",
+                "dept_id": "D01238",
+                "canonical": "中医康复",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "老年医学专家门诊",
+                "dept_id": "D07351",
+                "canonical": "老年医学科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "头痛、头晕专病门诊",
+                "dept_id": "D03897",
+                "canonical": "头痛、头晕门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "失眠专病门诊",
+                "dept_id": "D03858",
+                "canonical": "失眠",
+                "kind": "specialty_clinic",
+                "visit_type": "专病",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "治未病专病门诊",
+                "dept_id": "D05765",
+                "canonical": "治未病",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "中医鼻炎专病门诊",
+                "dept_id": "D01477",
+                "canonical": "中医鼻炎门诊",
+                "kind": "specialty_clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "小儿推拿科",
+            "tab_index": 11,
+            "depts": [
+              {
+                "raw": "小儿推拿科门诊",
+                "dept_id": "D04296",
+                "canonical": "小儿推拿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "形态:门诊"
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 12,
+          "entry_count": 50,
+          "unique_count": 50,
+          "canonical_count": 35
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-27T18:59:41Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 12,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-27T18:59:41Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 50,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-27T18:59:41Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

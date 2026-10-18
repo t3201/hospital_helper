@@ -1,0 +1,105 @@
+【1 位置】121.442988, 31.252108（GCJ-02）— 高德 amap_place 命中「中远两湾城」普陀区中远两湾城（缓存命中）
+【2 病情】(--spec-file 结构化字段, 与交互解析同一 schema)
+   症状: 右下颌骨增生，或者是咬肌肥大，脸型不对称
+   患者=adult(age=48, 性别=男) 代挂=False 就诊=new 等待≤14天 费用上限=50 水平预期=balanced
+   · 病例来源: 显式结构化字段 (web/表单), 非自由文本解析
+   · 年龄=48 → adult
+   · 性别=male
+   · 时效 → max_wait_days=14
+   · 地铁优先
+   · 费用预期 → price_cap_cny=50
+[stage1] 已复用 ranking/scripts/score_hospitals.py（import 模式）: 450 manifests / 10334 科室 / 1822 症状词
+   [LLM] agentsvc model_id=default @ http://127.0.0.1:7989 耗时=33688.0ms 首字节=0.0ms 结构重试=1 思维链=6654字(仅长度) prompt=14418字符(含基础数据上下文) session_id=None(仅记录)
+   权重向量(绝对, 行和=1.0): {"match": 0.3, "level": 0.12, "breadth": 0.07, "distance": 0.22, "metro": 0.12, "bus": 0.03, "key_specialty": 0.02, "price": 0.12}
+   目标科室(LLM 直选, 归一化词表校验, how=llm): 口腔颌面外科, 整形外科, 口腔科
+   基础数据上下文: 363 科室(归一化 canonical, 覆盖≥5 家医院) / 438 家医院(等级/区县) — 只读
+【3 权重推理】scenario=community_first（社区首诊/轻症）来源=agentsvc(model_id=default; 直出权重向量+目标科室, 含基础数据上下文)
+   · 非急症、非慢病、非儿童，按普通初诊处理，急诊/慢病相关权重为0，重点看科室匹配与到院便利。
+   · 主诉为右下颌骨增生或咬肌肥大导致脸型不对称，需先口腔颌面外科鉴别骨性/肌性，备选整形外科评估外观改善。
+   · 用户水平预期为balanced且地铁偏好、费用上限50元，因此距离/地铁/价格权重上调，医院等级保持中等而非高权三甲。
+   · triage_term='脸型不对称' 症状词表无命中（不影响: 科室以 LLM 直选为准）
+   患者层科室过滤: 剔除患者不匹配的专科机构医院 24 家: 上海市妇幼保健中心, 儿童医学中心, 儿童医院泸定路院区, 第一妇婴保健院东院...
+【4 候选集】主词="脸型不对称"(llm) 目标科室=3 K=60 硬过滤: 召回=216 通过=85 砍=131
+   应用权重: {"match": 0.3409, "level": 0.1364, "breadth": 0.0795, "distance": 0.25, "metro": 0.1364, "bus": 0.0341, "key_specialty": 0.0227}
+    1 SH-084 第十人民医院           三级甲等     静安区      static=0.9454
+    2 SH-071 同济医院             三级甲等     普陀区      static=0.9352
+    3 SH-030 仁济医院西院           三级甲等     黄浦区      static=0.9245
+    4 SH-003 华山医院             三级甲等     静安区      static=0.9069
+    5 SH-095 第一人民医院           三级甲等     虹口区      static=0.9034
+    6 SH-015 同济口腔医院           三级甲等     普陀区      static=0.8959
+    7 SH-053 长征医院             三级甲等     黄浦区      static=0.8894
+    8 SH-064 市中西医结合医院         三级甲等     虹口区      static=0.8873
+    9 SH-007 华东医院             三级甲等     静安区      static=0.8851
+   10 SH-075 曙光医院西院           三级甲等     黄浦区      static=0.8837
+   医院级剔除: 儿童医学中心[成人/老年患者不适用于儿科机构(名称含"儿童医学中心")]; 儿童医院泸定路院区[成人/老年患者不适用于儿科机构(名称含"儿童医院")]; 儿童医院北京西路院区[成人/老年患者不适用于儿科机构(名称含"儿童医院")]; 国际和平妇幼保健院[成年男性患者不适用于妇儿机构(名称含"妇幼保健")]
+[slots] manifest 索引: 450 家
+[slots] ⚠ live 预算预警: 18 条件组 × 约540秒/组 ≈ 162分钟 > 超时上限 60分钟; 到点后后续组不跑（v2 逐组增量落盘, 已完成组保留; 未跑组降级档位）。建议: --live-slot-type expert(最快档) / --live-timeout 调大 / 离线跑 fetch_slots.py 批量积累
+[slots] 触发 v2 批量 live 抓取: 18 个条件组, 顺序=静态分序(第1名先跑), 超时上限=60 分钟
+    1) SH-084 / tab=外科 / dept=整形外科门诊
+    2) SH-071 / tab=口腔科 / dept=口腔科
+    3) SH-030 / tab=口腔科 / dept=口腔科
+    4) SH-030 / tab=外科 / dept=整形外科
+    5) SH-003 / tab=口腔科 / dept=口腔科
+    6) SH-003 / tab=外科 / dept=整形外科
+    7) SH-095 / tab=口腔科 / dept=口腔科
+    8) SH-095 / tab=外科 / dept=整形外科
+    9) SH-015 / tab=口腔科 / dept=口腔颌面外科
+   10) SH-053 / tab=口腔科 / dept=口腔科门诊
+   11) SH-064 / tab=口腔科 / dept=口腔科
+   12) SH-007 / tab=口腔科 / dept=口腔科（市民）
+   13) SH-007 / tab=整形外科 / dept=整形外科（市民）
+   14) SH-075 / tab=眼、耳鼻喉、口腔科 / dept=口腔科
+   15) SH-045 / tab=口腔科 / dept=口腔科
+   16) SH-019 / tab=口腔科 / dept=口腔科
+   17) SH-019 / tab=其他 / dept=口腔颌面外科
+   18) SH-019 / tab=外科 / dept=整形外科
+[slots] 条件文件: app\out\live_conds_20261005T230339.json（UTF-8 免损坏通道, CJK 不经 argv）
+[slots] v2 --deadline=2026-10-06T00:03:39: 到点优雅停止(不跑后续组); v2 逐组增量落盘, 已完成组不丢失
+[slots] v2 批量 live 抓取结束（3617s）, 解析 condition_runs 输出…
+[slots] live 未匹配到条件组 SH-045/口腔科（condition_errors=[]）
+[slots] live 未匹配到条件组 SH-019/口腔科（condition_errors=[]）
+[slots] live 未匹配到条件组 SH-019/口腔颌面外科（condition_errors=[]）
+[slots] live 未匹配到条件组 SH-019/整形外科（condition_errors=[]）
+[slots] live 结果: 14 组解析 → ok=6 / no_slot=8 / unknown=0（run=run_20261005T230344.json）
+[slots] 回写快照: SH-003 口腔科/口腔科 → slots\out\SH-003-sh003.json
+[slots] 回写快照: SH-003 外科/整形外科 → slots\out\SH-003-sh003.json
+[slots] 回写快照: SH-007 口腔科/口腔科（市民） → slots\out\SH-007-sh007.json
+[slots] 回写快照: SH-007 整形外科/整形外科（市民） → slots\out\SH-007-sh007.json
+[slots] 回写快照: SH-015 口腔科/口腔颌面外科 → slots\out\SH-015-sh015.json
+[slots] 回写快照: SH-030 口腔科/口腔科 → slots\out\SH-030-sh030.json
+[slots] 回写快照: SH-030 外科/整形外科 → slots\out\SH-030-sh030.json
+[slots] 回写快照: SH-053 口腔科/口腔科门诊 → slots\out\SH-053-sh053.json
+[slots] 回写快照: SH-064 口腔科/口腔科 → slots\out\SH-064-sh064.json
+[slots] 回写快照: SH-071 口腔科/口腔科 → slots\out\SH-071-sh071.json
+[slots] 回写快照: SH-075 眼、耳鼻喉、口腔科/口腔科 → slots\out\SH-075-sh075.json
+[slots] 回写快照: SH-084 外科/整形外科门诊 → slots\out\SH-084-sh084.json
+[slots] 回写快照: SH-095 口腔科/口腔科 → slots\out\SH-095-sh095.json
+[slots] 回写快照: SH-095 外科/整形外科 → slots\out\SH-095-sh095.json
+[slots] live→静态回写完成: 14 条 (下次运行 TTL 内走 cache/observed 已核实, 迭代逼近真实)
+[slots] 已读 slot_profile.json: 7614 条 (dept,hosp)
+   [slots] 早停: 已核实有号 SlotResult 累计 3 条 → 停止后续抓取（RANKING_SPEC §4.5）
+【5 号源】处理 5 家（预算≤12）: 已核实 3 / 未核实 2（来源标注见报告 §5/§7）
+【6 推荐】终排=静态分×号源效用; 已核实 5/60
+   1) 仁济医院西院 [三级甲等/黄浦区] 终排=0.9245（静态 0.9245 × 号源 1.0）
+      why: 仁济医院西院（三级甲等/黄浦区）: 科室命中=命中: 口腔科,整形外科 [p1/high]（+0.3409, match），距离就近=4.4km（+0.2059, distance）。号源已核实: 最早可约 2026-10-06（来源 cache/observed(已核实)）。
+      挂号入口: 「口腔科」tab → 点「口腔科」行（院页面 raw 名, 同 tab 可能有相似名科室）
+   2) 同济医院 [三级甲等/普陀区] 终排=0.9071（静态 0.9352 × 号源 0.97）
+      why: 同济医院（三级甲等/普陀区）: 科室命中=命中: 口腔科 [p1/high]（+0.3409, match），距离就近=1.9km（+0.2307, distance）。号源已核实: 最早可约 2026-10-07（来源 cache/observed(已核实)）。
+      挂号入口: 「口腔科」tab → 点「口腔科」行（院页面 raw 名, 同 tab 可能有相似名科室）
+   3) 第一人民医院 [三级甲等/虹口区] 终排=0.9034（静态 0.9034 × 号源 1.0）
+      why: 第一人民医院（三级甲等/虹口区）: 科室命中=命中: 口腔科,整形外科 [p1/high]（+0.3409, match），距离就近=4.4km（+0.2065, distance）。号源已核实: 最早可约 2026-10-06（来源 cache/observed(已核实)）。
+      挂号入口: 「外科」tab → 点「整形外科」行（院页面 raw 名, 同 tab 可能有相似名科室）
+【7 模拟挂号】dry-run（默认开）: 不真发、不提交、不支付
+   1. 打开「随申办」App（包名 mobi.w3studio.apps.android.shsmy.phone）
+   2. 首页 →「预约挂号」→「全部医院 (444)」
+   3. 检索并选择医院: 仁济医院西院（黄浦区, 主院区）
+   4. L1 选科室页找到「口腔科」tab, 点「口腔科」行进入科室页（注意: 同 tab 下可能有多个含相似字样的科室, 以该行为准; L2 页自带日期条）
+   5. 选择日期: 2026-10-06（最早可约; 日期条若显示无号则换日期/医生）
+   6. 选择医生与时段 →「去预约」（医生列表来自 SlotResult.doctors, is_target 标记目标医生）
+   7. 填写实名信息 + 短信验证码（用户手动完成, 脚本不触碰凭据）
+   8. 确认预约 → 支付（用户手动完成）
+【8 断言】FAIL 已查询预算内前 12 家（candidates_static[:12]）⊆ final.top_list | 缺失=['SH-003', 'SH-084']
+【8 断言】FAIL max(静态分) 保留: top_list 内最大静态分 == 候选集最大静态分（0.9454） | top_list 最大静态分=0.9352
+【8 断言】PASS slot_queries 的每家医院 ∈ final.top_list ∪ final.excluded（显式排除+原因, 不得静默消失）
+【9 落盘】app\out\web_1005T230305_0d64\result.json / app\out\web_1005T230305_0d64\report.md
+【回归断言失败】见上方 FAIL 行; 完整结果已落盘 app\out\web_1005T230305_0d64\result.json

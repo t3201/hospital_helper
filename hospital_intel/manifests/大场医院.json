@@ -1,0 +1,1595 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-120",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:39",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=79; geo=amap(name_in_poi); dept=suishenban#yuyue_guahao(2026-09-26, l1=39/l2u=111)"
+  },
+  "institution": {
+    "name": "大场医院",
+    "aliases": [],
+    "level": "二级甲等",
+    "type": "综合医院",
+    "ownership": "公立",
+    "affiliation": "",
+    "official_site": "",
+    "tel": ""
+  },
+  "campuses": [
+    {
+      "id": "SH-120-M",
+      "name": "本部",
+      "district": "宝山区",
+      "address": "上海环镇北路1058号",
+      "geo": {
+        "lng": 121.392525,
+        "lat": 31.306775,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:name_in_poi"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "二级甲等",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "丰翔路(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 1119,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 0,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": null,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 3,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 109,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "环镇北路文海路(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-27T13:13:08Z",
+        "l1": [
+          {
+            "name": "儿科",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "儿科专家",
+                "dept_id": "D02013",
+                "canonical": "儿科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "儿科",
+                "dept_id": "D02013",
+                "canonical": "儿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "儿童健康管理专病门诊",
+                "dept_id": "D02079",
+                "canonical": "儿童健康管理门诊",
+                "kind": "screening",
+                "visit_type": "专病",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "内分泌科",
+            "tab_index": 1,
+            "depts": [
+              {
+                "raw": "内分泌科",
+                "dept_id": "D02588",
+                "canonical": "内分泌科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "骨质疏松门诊",
+                "dept_id": "D10129",
+                "canonical": "骨质疏松",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "护理门诊",
+            "tab_index": 2,
+            "depts": [
+              {
+                "raw": "腹透护理门诊",
+                "dept_id": "D08601",
+                "canonical": "腹透护理",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "心血管健康咨询门诊",
+                "dept_id": "D04779",
+                "canonical": "心血管健康咨询门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "血管通路门诊",
+                "dept_id": "D08873",
+                "canonical": "血管通路",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "伤口造口门诊",
+                "dept_id": "D01841",
+                "canonical": "伤口造口",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "肾内科专家",
+            "tab_index": 3,
+            "depts": [
+              {
+                "raw": "肾脏内科专家",
+                "dept_id": "D07989",
+                "canonical": "肾脏内科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "心内科",
+            "tab_index": 4,
+            "depts": [
+              {
+                "raw": "心内科专家",
+                "dept_id": "D04780",
+                "canonical": "心血管内科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "房颤及心律失常专病门诊",
+                "dept_id": "D05055",
+                "canonical": "房颤及心律失常门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "胸闷专病门诊",
+                "dept_id": "D08348",
+                "canonical": "胸闷门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "心内科",
+                "dept_id": "D04780",
+                "canonical": "心血管内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "起搏器随访门诊",
+                "dept_id": "D09168",
+                "canonical": "起搏器随访门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "高血压专病门诊",
+                "dept_id": "D10206",
+                "canonical": "高血压",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "五官科",
+            "tab_index": 5,
+            "depts": [
+              {
+                "raw": "耳鼻咽喉科专家",
+                "dept_id": "D07513",
+                "canonical": "耳鼻咽喉科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "耳、鼻、咽喉科",
+                "dept_id": "D07478",
+                "canonical": "耳、鼻、咽喉科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "呼吸内科专家",
+            "tab_index": 6,
+            "depts": [
+              {
+                "raw": "呼吸内科专家",
+                "dept_id": "D03443",
+                "canonical": "呼吸内科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "骨科",
+            "tab_index": 7,
+            "depts": [
+              {
+                "raw": "骨科",
+                "dept_id": "D10069",
+                "canonical": "骨科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "肩关节专病门诊",
+                "dept_id": "D07794",
+                "canonical": "肩关节门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "运动医学专家门诊",
+                "dept_id": "D09286",
+                "canonical": "运动医学",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "关节损伤门诊",
+                "dept_id": "D02536",
+                "canonical": "关节损伤",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "脊柱微创门诊",
+                "dept_id": "D08396",
+                "canonical": "脊柱微创",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "腰椎间盘突出专病门诊",
+                "dept_id": "D08561",
+                "canonical": "腰椎间盘突出门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "骨科专家",
+                "dept_id": "D10069",
+                "canonical": "骨科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "骨关节外科专病门诊",
+                "dept_id": "D10017",
+                "canonical": "骨关节外科",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "骨脊柱外科专家",
+                "dept_id": "D10128",
+                "canonical": "骨脊柱外科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "骨科疼痛门诊",
+                "dept_id": "D10102",
+                "canonical": "骨科疼痛门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "骨关节外科专家",
+                "dept_id": "D10017",
+                "canonical": "骨关节外科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "内科",
+            "tab_index": 8,
+            "depts": [
+              {
+                "raw": "糖尿病综合管理门诊",
+                "dept_id": "D07206",
+                "canonical": "糖尿病综合管理门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "风湿免疫专病门诊",
+                "dept_id": "D09888",
+                "canonical": "风湿免疫",
+                "kind": "screening",
+                "visit_type": "专病",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "神经内科/内科",
+                "dept_id": "D06977",
+                "canonical": "神经内科/内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "痛风糖尿病肾病门诊",
+                "dept_id": "D06588",
+                "canonical": "痛风糖尿病肾病门诊",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "风湿免疫特需门诊",
+                "dept_id": "D09888",
+                "canonical": "风湿免疫",
+                "kind": "screening",
+                "visit_type": "特需",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "腹透门诊",
+                "dept_id": "D08600",
+                "canonical": "腹透",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "肾内科",
+                "dept_id": "D07936",
+                "canonical": "肾内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "中医内科特需",
+            "tab_index": 9,
+            "depts": [
+              {
+                "raw": "中医特需门诊",
+                "dept_id": "D01115",
+                "canonical": "中医",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "麻醉科",
+            "tab_index": 10,
+            "depts": [
+              {
+                "raw": "疼痛麻醉评估门诊",
+                "dept_id": "D06537",
+                "canonical": "疼痛麻醉评估门诊",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "疼痛专家门诊",
+                "dept_id": "D06514",
+                "canonical": "疼痛",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": "形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "口腔科",
+            "tab_index": 11,
+            "depts": [
+              {
+                "raw": "口腔科",
+                "dept_id": "D03244",
+                "canonical": "口腔科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "口腔科专家",
+                "dept_id": "D03244",
+                "canonical": "口腔科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "肿瘤科",
+            "tab_index": 12,
+            "depts": [
+              {
+                "raw": "肿瘤科专家",
+                "dept_id": "D08110",
+                "canonical": "肿瘤科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "肿瘤科",
+                "dept_id": "D08110",
+                "canonical": "肿瘤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "皮肤科专家",
+            "tab_index": 13,
+            "depts": [
+              {
+                "raw": "皮肤科专家",
+                "dept_id": "D06702",
+                "canonical": "皮肤科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "中医科",
+            "tab_index": 14,
+            "depts": [
+              {
+                "raw": "针伤科",
+                "dept_id": "D09474",
+                "canonical": "针伤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "中医内科专家",
+                "dept_id": "D01178",
+                "canonical": "中医内科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "中医脾胃病专病门诊",
+                "dept_id": "D01423",
+                "canonical": "中医脾胃病",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "肩周炎专病门诊",
+                "dept_id": "D07798",
+                "canonical": "肩周炎门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "中医外科",
+                "dept_id": "D01215",
+                "canonical": "中医外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "中医内科",
+                "dept_id": "D01178",
+                "canonical": "中医内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "中医特需门诊",
+                "dept_id": "D01115",
+                "canonical": "中医",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "神经内科",
+            "tab_index": 15,
+            "depts": [
+              {
+                "raw": "神经内科特需门诊",
+                "dept_id": "D06976",
+                "canonical": "神经内科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "脑卒中门诊",
+                "dept_id": "D08434",
+                "canonical": "脑卒中",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "脑卒中(头晕头痛)门诊",
+                "dept_id": "D08434",
+                "canonical": "脑卒中",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:头晕头痛;形态:门诊"
+              },
+              {
+                "raw": "神经内科/内科",
+                "dept_id": "D06977",
+                "canonical": "神经内科/内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "神经内科专家",
+                "dept_id": "D06976",
+                "canonical": "神经内科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "头晕头痛专科",
+                "dept_id": "D03886",
+                "canonical": "头晕头痛",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "眼科",
+            "tab_index": 16,
+            "depts": [
+              {
+                "raw": "眼科",
+                "dept_id": "D06839",
+                "canonical": "眼科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "干眼病专病门诊",
+                "dept_id": "D04449",
+                "canonical": "干眼病",
+                "kind": "specialty_clinic",
+                "visit_type": "专病",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "眼底病专病门诊",
+                "dept_id": "D06820",
+                "canonical": "眼底病",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "泪道病眼整形门诊",
+                "dept_id": "D05879",
+                "canonical": "泪道病眼整形门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "屈光门诊",
+                "dept_id": "D04385",
+                "canonical": "屈光门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "康复医学科",
+            "tab_index": 17,
+            "depts": [
+              {
+                "raw": "脊柱侧弯专病门诊",
+                "dept_id": "D08376",
+                "canonical": "脊柱侧弯",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "康复科",
+                "dept_id": "D04496",
+                "canonical": "康复医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "康复医学科专家",
+                "dept_id": "D04496",
+                "canonical": "康复医学科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "针伤科专家",
+            "tab_index": 18,
+            "depts": [
+              {
+                "raw": "针灸科专家",
+                "dept_id": "D09528",
+                "canonical": "针灸科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "肿瘤科",
+            "tab_index": 19,
+            "depts": [
+              {
+                "raw": "肿瘤预防门诊",
+                "dept_id": "D08158",
+                "canonical": "肿瘤预防门诊",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "外科专家",
+            "tab_index": 20,
+            "depts": [
+              {
+                "raw": "血管外科专家",
+                "dept_id": "D08846",
+                "canonical": "血管外科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "普外科专家",
+                "dept_id": "D05441",
+                "canonical": "普外科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "康复科专家",
+            "tab_index": 21,
+            "depts": [
+              {
+                "raw": "康复医学科专家",
+                "dept_id": "D04496",
+                "canonical": "康复医学科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "放射科",
+            "tab_index": 22,
+            "depts": [
+              {
+                "raw": "肺结节阅片专家",
+                "dept_id": "D07904",
+                "canonical": "肺结节阅片",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "门诊综合科",
+            "tab_index": 23,
+            "depts": [
+              {
+                "raw": "干眼病专病门诊",
+                "dept_id": "D04449",
+                "canonical": "干眼病",
+                "kind": "specialty_clinic",
+                "visit_type": "专病",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "眼科专家",
+                "dept_id": "D06839",
+                "canonical": "眼科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "耳鼻咽喉科专家",
+                "dept_id": "D07513",
+                "canonical": "耳鼻咽喉科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "屈光门诊",
+                "dept_id": "D04385",
+                "canonical": "屈光门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "耳、鼻、咽喉科",
+                "dept_id": "D07478",
+                "canonical": "耳、鼻、咽喉科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "口腔科",
+                "dept_id": "D03244",
+                "canonical": "口腔科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "眼科",
+                "dept_id": "D06839",
+                "canonical": "眼科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "内分泌专家",
+            "tab_index": 24,
+            "depts": [
+              {
+                "raw": "内分泌科专家",
+                "dept_id": "D02588",
+                "canonical": "内分泌科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "妇产科专家",
+            "tab_index": 25,
+            "depts": [
+              {
+                "raw": "产科专家",
+                "dept_id": "D01730",
+                "canonical": "产科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "妇产科专家",
+                "dept_id": "D03965",
+                "canonical": "妇产科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "妇产科",
+            "tab_index": 26,
+            "depts": [
+              {
+                "raw": "妇科微创门诊",
+                "dept_id": "D04023",
+                "canonical": "妇科微创",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "多囊卵巢综合症MDT门诊",
+                "dept_id": "D03818",
+                "canonical": "多囊卵巢综合症MDT门诊",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "阴道镜门诊",
+                "dept_id": "D09648",
+                "canonical": "阴道镜门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "妇产科特需门诊",
+                "dept_id": "D03965",
+                "canonical": "妇产科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "宫颈专病门诊",
+                "dept_id": "D04207",
+                "canonical": "宫颈",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "妇科",
+                "dept_id": "D03984",
+                "canonical": "妇科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "产科",
+                "dept_id": "D01730",
+                "canonical": "产科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "更年期MDT门诊",
+                "dept_id": "D05532",
+                "canonical": "更年期MDT门诊",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "妇产科专家",
+                "dept_id": "D03965",
+                "canonical": "妇产科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "孕期营养门诊",
+                "dept_id": "D04148",
+                "canonical": "孕期营养门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "早孕关爱门诊",
+                "dept_id": "D05402",
+                "canonical": "早孕关爱",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "妇科专家",
+                "dept_id": "D03984",
+                "canonical": "妇科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "产科专家",
+                "dept_id": "D01730",
+                "canonical": "产科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "计划生育",
+                "dept_id": "D09083",
+                "canonical": "计划生育",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "泌尿外科专家",
+            "tab_index": 27,
+            "depts": [
+              {
+                "raw": "泌尿外科专家",
+                "dept_id": "D05785",
+                "canonical": "泌尿外科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "肾内科",
+            "tab_index": 28,
+            "depts": [
+              {
+                "raw": "痛风糖尿病肾病门诊",
+                "dept_id": "D06588",
+                "canonical": "痛风糖尿病肾病门诊",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "肾内科",
+                "dept_id": "D07936",
+                "canonical": "肾内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "腹透门诊",
+                "dept_id": "D08600",
+                "canonical": "腹透",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "呼吸内科",
+            "tab_index": 29,
+            "depts": [
+              {
+                "raw": "咳喘专科门诊",
+                "dept_id": "D03514",
+                "canonical": "咳喘门诊",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": ""
+              },
+              {
+                "raw": "戒烟专科门诊",
+                "dept_id": "D05045",
+                "canonical": "戒烟",
+                "kind": "specialty_clinic",
+                "visit_type": "专科",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "呼吸内科专家",
+                "dept_id": "D03443",
+                "canonical": "呼吸内科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "睡眠呼吸监测专科门诊",
+                "dept_id": "D06913",
+                "canonical": "睡眠呼吸监测门诊",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": ""
+              },
+              {
+                "raw": "呼吸内科",
+                "dept_id": "D03443",
+                "canonical": "呼吸内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "泌尿外科",
+            "tab_index": 30,
+            "depts": [
+              {
+                "raw": "泌尿专科",
+                "dept_id": "D05785",
+                "canonical": "泌尿外科",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "外科",
+            "tab_index": 31,
+            "depts": [
+              {
+                "raw": "肝脏外科专家",
+                "dept_id": "D07711",
+                "canonical": "肝脏外科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "泌尿专科",
+                "dept_id": "D05785",
+                "canonical": "泌尿外科",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": ""
+              },
+              {
+                "raw": "血管外科专家",
+                "dept_id": "D08846",
+                "canonical": "血管外科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "普外科专家",
+                "dept_id": "D05441",
+                "canonical": "普外科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "胆胰外科专家",
+                "dept_id": "D08255",
+                "canonical": "胆胰外科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "外科专家",
+                "dept_id": "D03765",
+                "canonical": "外科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "乳腺外科专家",
+                "dept_id": "D01637",
+                "canonical": "乳腺外科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "胆石疝微创专病门诊",
+                "dept_id": "D08239",
+                "canonical": "胆石疝微创门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "甲状腺专病门诊",
+                "dept_id": "D06326",
+                "canonical": "甲状腺",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "外科",
+                "dept_id": "D03765",
+                "canonical": "外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "头颈外科",
+                "dept_id": "D03908",
+                "canonical": "头颈外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "肛肠专科门诊",
+                "dept_id": "D07600",
+                "canonical": "肛肠",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "整形外科专家",
+                "dept_id": "D05229",
+                "canonical": "整形外科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "甲乳专科门诊",
+                "dept_id": "D06315",
+                "canonical": "甲乳门诊",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": ""
+              },
+              {
+                "raw": "乳腺专病门诊",
+                "dept_id": "D01637",
+                "canonical": "乳腺外科",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "泌尿外科专家",
+                "dept_id": "D05785",
+                "canonical": "泌尿外科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "口腔科专家",
+            "tab_index": 32,
+            "depts": [
+              {
+                "raw": "口腔科专家",
+                "dept_id": "D03244",
+                "canonical": "口腔科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "消化内科",
+            "tab_index": 33,
+            "depts": [
+              {
+                "raw": "消化道肿瘤专病门诊",
+                "dept_id": "D05973",
+                "canonical": "消化道肿瘤",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "消化内科",
+                "dept_id": "D05920",
+                "canonical": "消化内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "胃肠道疾病专病门诊",
+                "dept_id": "D08211",
+                "canonical": "胃肠道疾病门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "消化内科专家",
+                "dept_id": "D05920",
+                "canonical": "消化内科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "皮肤科",
+            "tab_index": 34,
+            "depts": [
+              {
+                "raw": "皮肤科",
+                "dept_id": "D06702",
+                "canonical": "皮肤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "皮肤科专家",
+                "dept_id": "D06702",
+                "canonical": "皮肤科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "神经内科专家",
+            "tab_index": 35,
+            "depts": [
+              {
+                "raw": "神经内科专家",
+                "dept_id": "D06976",
+                "canonical": "神经内科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "骨科专家",
+            "tab_index": 36,
+            "depts": [
+              {
+                "raw": "运动医学专家门诊",
+                "dept_id": "D09286",
+                "canonical": "运动医学",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "骨脊柱外科专家",
+                "dept_id": "D10128",
+                "canonical": "骨脊柱外科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "骨关节外科专家",
+                "dept_id": "D10017",
+                "canonical": "骨关节外科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "总院专家",
+            "tab_index": 37,
+            "depts": [
+              {
+                "raw": "乳腺外科专家",
+                "dept_id": "D01637",
+                "canonical": "乳腺外科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "肝脏外科专家",
+                "dept_id": "D07711",
+                "canonical": "肝脏外科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "内科综合",
+                "dept_id": "D02658",
+                "canonical": "内科综合",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "胆胰外科专家",
+                "dept_id": "D08255",
+                "canonical": "胆胰外科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "整形外科专家",
+                "dept_id": "D05229",
+                "canonical": "整形外科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "风湿免疫专病门诊",
+                "dept_id": "D09888",
+                "canonical": "风湿免疫",
+                "kind": "screening",
+                "visit_type": "专病",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "妇产科特需门诊",
+                "dept_id": "D03965",
+                "canonical": "妇产科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "风湿免疫内科专家",
+                "dept_id": "D09889",
+                "canonical": "风湿免疫内科",
+                "kind": "screening",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "肾内科特需门诊",
+                "dept_id": "D07936",
+                "canonical": "肾内科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "风湿免疫特需门诊",
+                "dept_id": "D09888",
+                "canonical": "风湿免疫",
+                "kind": "screening",
+                "visit_type": "特需",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "神经内科特需门诊",
+                "dept_id": "D06976",
+                "canonical": "神经内科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "眼科专家",
+            "tab_index": 38,
+            "depts": [
+              {
+                "raw": "眼科专家",
+                "dept_id": "D06839",
+                "canonical": "眼科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 39,
+          "entry_count": 145,
+          "unique_count": 111,
+          "canonical_count": 88
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-27T13:13:08Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 39,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-27T13:13:08Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 111,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-27T13:13:08Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

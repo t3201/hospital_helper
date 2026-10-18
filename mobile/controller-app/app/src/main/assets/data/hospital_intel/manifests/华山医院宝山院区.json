@@ -1,0 +1,854 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-009",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:39",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=9; geo=amap(name_in_poi); dept=suishenban#yuyue_guahao(2026-09-26, l1=15/l2u=70)"
+  },
+  "institution": {
+    "name": "华山医院宝山院区",
+    "aliases": [],
+    "level": "三级甲等",
+    "type": "综合医院",
+    "ownership": "公立",
+    "affiliation": "",
+    "official_site": "",
+    "tel": ""
+  },
+  "campuses": [
+    {
+      "id": "SH-009-M",
+      "name": "本部",
+      "district": "宝山区",
+      "address": "镜泊湖路518号住院部2楼",
+      "geo": {
+        "lng": 121.373417,
+        "lat": 31.346717,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:name_in_poi"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "三级甲等",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "顾村公园(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 239,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 1,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": 7.3,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 2,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 180,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "陆翔路镜泊湖路(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "computed",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html",
+        "basis": "parent_institution",
+        "parent": "华山医院",
+        "note": "推定：母院为医保定点，该院区未在名单单列（母院=华山医院）"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-26T15:44:00Z",
+        "l1": [
+          {
+            "name": "中西医结合科",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "北院中西医结合科",
+                "dept_id": "D02865",
+                "canonical": "北院中西医结合科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "儿科",
+            "tab_index": 1,
+            "depts": [
+              {
+                "raw": "北院儿童正畸专科门诊",
+                "dept_id": "D02872",
+                "canonical": "北院儿童正畸门诊",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院儿科",
+                "dept_id": "D02870",
+                "canonical": "北院儿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "肿瘤科",
+            "tab_index": 2,
+            "depts": [
+              {
+                "raw": "北院肿瘤科",
+                "dept_id": "D02931",
+                "canonical": "北院肿瘤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院肾脏肿瘤专病",
+                "dept_id": "D02929",
+                "canonical": "北院肾脏肿瘤",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院肿瘤介入微创专病",
+                "dept_id": "D02930",
+                "canonical": "北院肿瘤介入微创",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "口腔科",
+            "tab_index": 3,
+            "depts": [
+              {
+                "raw": "北院口腔科",
+                "dept_id": "D02879",
+                "canonical": "北院口腔科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "康复医学科",
+            "tab_index": 4,
+            "depts": [
+              {
+                "raw": "北院康复医学科",
+                "dept_id": "D02887",
+                "canonical": "北院康复医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "其他",
+            "tab_index": 5,
+            "depts": [
+              {
+                "raw": "北院风湿免疫科",
+                "dept_id": "D02943",
+                "canonical": "北院风湿免疫科",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院血管通路门诊",
+                "dept_id": "D02939",
+                "canonical": "北院血管通路门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院运动医学科",
+                "dept_id": "D02941",
+                "canonical": "北院运动医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院妊娠糖尿病专病",
+                "dept_id": "D02884",
+                "canonical": "北院妊娠糖尿病",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院核医学科",
+                "dept_id": "D02905",
+                "canonical": "北院核医学科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院宫颈疾病及阴道镜专病",
+                "dept_id": "D02885",
+                "canonical": "北院宫颈疾病及阴道镜",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院肝硬化门脉高压专病门诊",
+                "dept_id": "D02921",
+                "canonical": "北院肝硬化门脉高压门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院心律失常专病门诊",
+                "dept_id": "D02891",
+                "canonical": "北院心律失常门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院早孕及孕前检查专病",
+                "dept_id": "D02899",
+                "canonical": "北院早孕及孕前检查",
+                "kind": "specialty_clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院介入科门诊",
+                "dept_id": "D02868",
+                "canonical": "北院介入科门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院放射科",
+                "dept_id": "D02897",
+                "canonical": "北院放射科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院老年医学科",
+                "dept_id": "D02919",
+                "canonical": "北院老年医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院麻醉和疼痛门诊",
+                "dept_id": "D02947",
+                "canonical": "北院麻醉和疼痛门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院风湿免疫科痛风/高尿酸症专病",
+                "dept_id": "D02944",
+                "canonical": "北院风湿免疫科痛风/高尿酸症",
+                "kind": "screening",
+                "visit_type": "专病",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "外科",
+            "tab_index": 6,
+            "depts": [
+              {
+                "raw": "北院骨质疏松专病",
+                "dept_id": "D02946",
+                "canonical": "北院骨质疏松",
+                "kind": "specialty_clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院胰腺外科",
+                "dept_id": "D02932",
+                "canonical": "北院胰腺外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院普外科",
+                "dept_id": "D02900",
+                "canonical": "北院普外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院神经外科脑血管专病",
+                "dept_id": "D02917",
+                "canonical": "北院神经外科脑血管",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院骨科",
+                "dept_id": "D02945",
+                "canonical": "北院骨科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院神经外科",
+                "dept_id": "D02916",
+                "canonical": "北院神经外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院小儿神经外科专病",
+                "dept_id": "D02886",
+                "canonical": "北院小儿神经外科",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院手外科",
+                "dept_id": "D02896",
+                "canonical": "北院手外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院普外科血管外科专病",
+                "dept_id": "D02904",
+                "canonical": "北院普外科血管外科",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院普外科甲状腺乳腺专病",
+                "dept_id": "D02901",
+                "canonical": "北院普外科甲状腺乳腺",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院普外科肠胃道肿瘤专病",
+                "dept_id": "D02903",
+                "canonical": "北院普外科肠胃道肿瘤",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院胸心外科",
+                "dept_id": "D02934",
+                "canonical": "北院胸心外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院耳鼻咽喉头颈外科",
+                "dept_id": "D02920",
+                "canonical": "北院耳鼻咽喉头颈外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院普外科结直肠及肛门专病",
+                "dept_id": "D02902",
+                "canonical": "北院普外科结直肠及肛门",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院胸外科肺部小结节专病",
+                "dept_id": "D02933",
+                "canonical": "北院胸外科肺部小结节",
+                "kind": "specialty_clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院泌尿外科",
+                "dept_id": "D02906",
+                "canonical": "北院泌尿外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "中医科",
+            "tab_index": 7,
+            "depts": [
+              {
+                "raw": "北院中医科埋线专病",
+                "dept_id": "D02861",
+                "canonical": "北院中医科埋线",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院中医针灸门诊",
+                "dept_id": "D02863",
+                "canonical": "北院中医针灸门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院中医推拿门诊",
+                "dept_id": "D02860",
+                "canonical": "北院中医推拿门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "妇产科",
+            "tab_index": 8,
+            "depts": [
+              {
+                "raw": "北院产科",
+                "dept_id": "D02867",
+                "canonical": "北院产科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院妇科",
+                "dept_id": "D02882",
+                "canonical": "北院妇科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "医学影像科",
+            "tab_index": 9,
+            "depts": [
+              {
+                "raw": "北院超声医学科",
+                "dept_id": "D02940",
+                "canonical": "北院超声医学科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院心超",
+                "dept_id": "D02893",
+                "canonical": "北院心超",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "传染科",
+            "tab_index": 10,
+            "depts": [
+              {
+                "raw": "北院感染科",
+                "dept_id": "D02894",
+                "canonical": "北院感染科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院感染门诊",
+                "dept_id": "D02895",
+                "canonical": "北院感染门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "皮肤科",
+            "tab_index": 11,
+            "depts": [
+              {
+                "raw": "北院皮肤科",
+                "dept_id": "D02910",
+                "canonical": "北院皮肤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "精神科",
+            "tab_index": 12,
+            "depts": [
+              {
+                "raw": "北院心理咨询抑郁、焦虑、强迫症专病",
+                "dept_id": "D02892",
+                "canonical": "北院心理咨询抑郁、焦虑、强迫症",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "眼科",
+            "tab_index": 13,
+            "depts": [
+              {
+                "raw": "北院眼科",
+                "dept_id": "D02912",
+                "canonical": "北院眼科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院眼科小儿眼科专病",
+                "dept_id": "D02913",
+                "canonical": "北院眼科小儿眼科",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院眼睑和眼表专病",
+                "dept_id": "D02911",
+                "canonical": "北院眼睑和眼表",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "内科",
+            "tab_index": 14,
+            "depts": [
+              {
+                "raw": "北院血液科",
+                "dept_id": "D02938",
+                "canonical": "北院血液科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院肾内科",
+                "dept_id": "D02923",
+                "canonical": "北院肾内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院心内科心超造影专病",
+                "dept_id": "D02890",
+                "canonical": "北院心内科心超造影",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院消化科",
+                "dept_id": "D02907",
+                "canonical": "北院消化科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院心内科",
+                "dept_id": "D02888",
+                "canonical": "北院心内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院神经内科",
+                "dept_id": "D02914",
+                "canonical": "北院神经内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院肾病科糖尿病肾病专病",
+                "dept_id": "D02928",
+                "canonical": "北院肾病科糖尿病肾病",
+                "kind": "specialty_clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院心内科心肌功能心超评估专病",
+                "dept_id": "D02889",
+                "canonical": "北院心内科心肌功能心超评估",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院肾病科慢性肾脏病营养门诊专病",
+                "dept_id": "D02927",
+                "canonical": "北院肾病科慢性肾脏病营养门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院内分泌垂体病专病",
+                "dept_id": "D02873",
+                "canonical": "北院内分泌垂体病",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院肾内科IgA肾病/紫癜性肾炎专病",
+                "dept_id": "D02924",
+                "canonical": "北院肾内科IgA肾病/紫癜性肾炎",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院肾病科微小病变局灶节段性肾小球硬化专病",
+                "dept_id": "D02926",
+                "canonical": "北院肾病科微小病变局灶节段性肾小球硬化",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院内科",
+                "dept_id": "D02877",
+                "canonical": "北院内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院内分泌科",
+                "dept_id": "D02875",
+                "canonical": "北院内分泌科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院神经内科卒中专病（付建辉组）",
+                "dept_id": "D02915",
+                "canonical": "北院神经内科卒中",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "医师:付建辉组"
+              },
+              {
+                "raw": "北院呼吸与危重症医学科",
+                "dept_id": "D02881",
+                "canonical": "北院呼吸与危重症医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院营养门诊",
+                "dept_id": "D02937",
+                "canonical": "北院营养门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "北院肾内科腹透专病",
+                "dept_id": "D02925",
+                "canonical": "北院肾内科腹透",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 15,
+          "entry_count": 70,
+          "unique_count": 70,
+          "canonical_count": 70
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T15:44:00Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 15,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T15:44:00Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 70,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T15:44:00Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

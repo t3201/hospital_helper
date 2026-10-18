@@ -1,0 +1,343 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-338",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:40",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=338; geo=amap(name_in_poi); dept=suishenban#yuyue_guahao(2026-09-26, l1=5/l2u=14)"
+  },
+  "institution": {
+    "name": "柘林镇社区卫生服务中心",
+    "aliases": [],
+    "level": "一级甲等",
+    "type": "综合医院",
+    "ownership": "公立",
+    "affiliation": "",
+    "official_site": "",
+    "tel": ""
+  },
+  "campuses": [
+    {
+      "id": "SH-338-M",
+      "name": "本部",
+      "district": "奉贤区",
+      "address": "钦林北路70号上海市奉贤区柘林镇社区卫生服务中心",
+      "geo": {
+        "lng": 121.474025,
+        "lat": 30.831825,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:name_in_poi"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "一级甲等",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "奉贤新城(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 9382,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 0,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": null,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 3,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 241,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "柘林(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-28T16:46:16Z",
+        "l1": [
+          {
+            "name": "柘林总院",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "心内科专家陈华工作室",
+                "dept_id": "D04664",
+                "canonical": "心内科陈华工作室",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "呼吸科专家龚益工作室",
+                "dept_id": "D03496",
+                "canonical": "呼吸科龚益工作室",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "小儿科",
+                "dept_id": "D04308",
+                "canonical": "小儿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "内分泌专家工作室",
+                "dept_id": "D02575",
+                "canonical": "内分泌工作室",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "肾病科中医专家李波工作室",
+                "dept_id": "D07972",
+                "canonical": "肾病科中医李波工作室",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "新寺分中心",
+            "tab_index": 1,
+            "depts": [
+              {
+                "raw": "新寺内分泌专家谢玉华",
+                "dept_id": "D05297",
+                "canonical": "新寺内分泌谢玉华",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "新寺护理综合门诊",
+                "dept_id": "D05298",
+                "canonical": "新寺护理综合门诊",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "胡桥分中心",
+            "tab_index": 2,
+            "depts": [
+              {
+                "raw": "胡桥戴彦成中医工作室",
+                "dept_id": "D08292",
+                "canonical": "胡桥戴彦成中医工作室",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "胡桥护理综合门诊",
+                "dept_id": "D08293",
+                "canonical": "胡桥护理综合门诊",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "如意卫生站",
+            "tab_index": 3,
+            "depts": [
+              {
+                "raw": "如意于得水专家工作室",
+                "dept_id": "D03960",
+                "canonical": "如意于得水工作室",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "如意中医专家",
+                "dept_id": "D03959",
+                "canonical": "如意中医",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "如意膏方门诊",
+                "dept_id": "D03961",
+                "canonical": "如意膏方门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "内科",
+            "tab_index": 4,
+            "depts": [
+              {
+                "raw": "胡桥全科3（三桥村、胡桥村居委）",
+                "dept_id": "D08291",
+                "canonical": "胡桥全科3",
+                "kind": "site",
+                "visit_type": "普通",
+                "qualifiers": "其他:三桥村、胡桥村居委"
+              },
+              {
+                "raw": "全科",
+                "dept_id": "D02450",
+                "canonical": "全科医疗科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 5,
+          "entry_count": 14,
+          "unique_count": 14,
+          "canonical_count": 14
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-28T16:46:16Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 5,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-28T16:46:16Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 14,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-28T16:46:16Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

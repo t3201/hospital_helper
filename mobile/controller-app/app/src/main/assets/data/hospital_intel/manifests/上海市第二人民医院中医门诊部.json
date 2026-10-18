@@ -1,0 +1,462 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-136",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:39",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=97; geo=amap(relevance,review=suspect); !低置信待核; dept=suishenban#yuyue_guahao(2026-09-26, l1=3/l2u=29)"
+  },
+  "institution": {
+    "name": "上海市第二人民医院中医门诊部",
+    "aliases": [],
+    "level": "二级甲等",
+    "type": "综合医院",
+    "ownership": "公立",
+    "affiliation": "",
+    "official_site": "",
+    "tel": "021-23308990"
+  },
+  "campuses": [
+    {
+      "id": "SH-136-M",
+      "name": "本部",
+      "district": "黄浦区",
+      "address": "普育东路58号(南浦大桥地铁站2号口步行310米)",
+      "geo": {
+        "lng": 121.494904,
+        "lat": 31.20946,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:relevance"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "二级甲等",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "南浦大桥(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 471,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 4,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": 8.3,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 2,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 50,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "国货路海潮路(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "computed",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html",
+        "basis": "parent_institution",
+        "parent": "上海市第二人民医院",
+        "note": "推定：母院为医保定点，该院区未在名单单列（母院=上海市第二人民医院）"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-27T09:45:49Z",
+        "l1": [
+          {
+            "name": "内科(中门)",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "心血管内科(中门)",
+                "dept_id": "D04780",
+                "canonical": "心血管内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门"
+              },
+              {
+                "raw": "慢性咳嗽门诊(中门)",
+                "dept_id": "D04956",
+                "canonical": "慢性咳嗽门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门"
+              },
+              {
+                "raw": "支气管哮喘门诊(中门)",
+                "dept_id": "D05167",
+                "canonical": "支气管哮喘",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门;形态:门诊"
+              },
+              {
+                "raw": "肾脏内科(中门)",
+                "dept_id": "D07989",
+                "canonical": "肾脏内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门"
+              },
+              {
+                "raw": "慢性阻塞性肺疾病门诊(中门)",
+                "dept_id": "D05008",
+                "canonical": "慢性阻塞性肺疾病门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门"
+              },
+              {
+                "raw": "神经内科(中门)",
+                "dept_id": "D06976",
+                "canonical": "神经内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门"
+              },
+              {
+                "raw": "内分泌科(中门)",
+                "dept_id": "D02588",
+                "canonical": "内分泌科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门"
+              },
+              {
+                "raw": "老年科(中门)",
+                "dept_id": "D07351",
+                "canonical": "老年医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门"
+              },
+              {
+                "raw": "老年病二科(中门)",
+                "dept_id": "D07397",
+                "canonical": "老年病二科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门"
+              },
+              {
+                "raw": "呼吸与危重症医学科(呼吸内科中门)",
+                "dept_id": "D03432",
+                "canonical": "呼吸与危重症医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:呼吸内科中门"
+              },
+              {
+                "raw": "消化内科(中门)",
+                "dept_id": "D05920",
+                "canonical": "消化内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门"
+              }
+            ]
+          },
+          {
+            "name": "外科(中门)",
+            "tab_index": 1,
+            "depts": [
+              {
+                "raw": "外科(中门)",
+                "dept_id": "D03765",
+                "canonical": "外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门"
+              },
+              {
+                "raw": "泌尿外科(中门)",
+                "dept_id": "D05785",
+                "canonical": "泌尿外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门"
+              },
+              {
+                "raw": "外科(中门)",
+                "dept_id": "D03765",
+                "canonical": "外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门"
+              },
+              {
+                "raw": "西医外科(中门)",
+                "dept_id": "D08908",
+                "canonical": "西医外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门"
+              },
+              {
+                "raw": "胆道疾病专科门诊(中门)",
+                "dept_id": "D08264",
+                "canonical": "胆道疾病门诊",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:中门"
+              }
+            ]
+          },
+          {
+            "name": "中医科(中门)",
+            "tab_index": 2,
+            "depts": [
+              {
+                "raw": "中医脊柱病(中门)",
+                "dept_id": "D01417",
+                "canonical": "中医脊柱病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门"
+              },
+              {
+                "raw": "中医关节病(中门)",
+                "dept_id": "D01175",
+                "canonical": "中医关节病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门"
+              },
+              {
+                "raw": "中医伤筋病(中门)",
+                "dept_id": "D01148",
+                "canonical": "中医伤筋病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门"
+              },
+              {
+                "raw": "中医骨伤科(中门)",
+                "dept_id": "D01471",
+                "canonical": "中医骨伤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门"
+              },
+              {
+                "raw": "中医内科(中门)",
+                "dept_id": "D01178",
+                "canonical": "中医内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门"
+              },
+              {
+                "raw": "中医外科(中门)",
+                "dept_id": "D01215",
+                "canonical": "中医外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门"
+              },
+              {
+                "raw": "中医皮肤科(中门)",
+                "dept_id": "D01303",
+                "canonical": "中医皮肤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门"
+              },
+              {
+                "raw": "中医妇科(中门)",
+                "dept_id": "D01225",
+                "canonical": "中医妇科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门"
+              },
+              {
+                "raw": "中医针灸科(中门)",
+                "dept_id": "D01455",
+                "canonical": "中医针灸科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门"
+              },
+              {
+                "raw": "中医推拿科(中门)",
+                "dept_id": "D01262",
+                "canonical": "中医推拿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门"
+              },
+              {
+                "raw": "中医肛肠科(中门)",
+                "dept_id": "D01387",
+                "canonical": "中医肛肠科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门"
+              },
+              {
+                "raw": "中医耳鼻咽喉科(中门)",
+                "dept_id": "D01382",
+                "canonical": "中医耳鼻咽喉科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门"
+              },
+              {
+                "raw": "中医眼科(中门)",
+                "dept_id": "D01308",
+                "canonical": "中医眼科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门"
+              },
+              {
+                "raw": "中医儿科(中门)",
+                "dept_id": "D01154",
+                "canonical": "中医儿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中门"
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 3,
+          "entry_count": 30,
+          "unique_count": 29,
+          "canonical_count": 29
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-27T09:45:49Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 3,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-27T09:45:49Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 29,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-27T09:45:49Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

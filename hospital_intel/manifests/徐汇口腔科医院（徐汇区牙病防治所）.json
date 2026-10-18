@@ -1,0 +1,314 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-115",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:39",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=74; geo=amap(relevance,review=wrong); level_raw=二级医院; !低置信待核; dept=suishenban#yuyue_guahao(2026-09-26, l1=1/l2u=13)"
+  },
+  "institution": {
+    "name": "徐汇口腔科医院（徐汇区牙病防治所）",
+    "aliases": [],
+    "level": "二级",
+    "type": "专科疾病防治院",
+    "ownership": "公立",
+    "affiliation": "",
+    "official_site": "",
+    "tel": "13331830061",
+    "official_name": "上海市徐汇区口腔医院",
+    "official_name_source": "roster",
+    "official_name_evidence": "医保名单 seq=402 上海市徐汇区枫林路500号、钦州南路780号"
+  },
+  "campuses": [
+    {
+      "id": "SH-115-M",
+      "name": "本部",
+      "district": "徐汇区",
+      "address": "罗秀路606号一楼-5、606号201室(星秀苑东2门旁)",
+      "geo": {
+        "lng": 121.437502,
+        "lat": 31.132232,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:relevance"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "二级",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "罗秀路(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 178,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 2,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": 3.3,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 3,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 56,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "罗秀路老沪闵路(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-28T00:58:57Z",
+        "l1": [
+          {
+            "name": "口腔科",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "口腔综合科",
+                "dept_id": "D03285",
+                "canonical": "口腔综合科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "康健分所",
+                "dept_id": "D04486",
+                "canonical": "康健分所",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "牙周科",
+                "dept_id": "D06089",
+                "canonical": "牙周科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "口腔修复科",
+                "dept_id": "D03187",
+                "canonical": "口腔修复科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "口外病房手术",
+                "dept_id": "D03172",
+                "canonical": "口外病房手术",
+                "kind": "site",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "儿童口腔科",
+                "dept_id": "D02100",
+                "canonical": "儿童口腔科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "特需",
+                "dept_id": "D06194",
+                "canonical": "特需",
+                "kind": "specialty_clinic",
+                "visit_type": "特需",
+                "qualifiers": ""
+              },
+              {
+                "raw": "口腔黏膜科",
+                "dept_id": "D03327",
+                "canonical": "口腔黏膜科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "口腔预防科",
+                "dept_id": "D03304",
+                "canonical": "口腔预防科",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "牙体牙髓科",
+                "dept_id": "D06073",
+                "canonical": "牙体牙髓科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "口腔正畸科",
+                "dept_id": "D03215",
+                "canonical": "口腔正畸科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "口腔颌面外科",
+                "dept_id": "D03308",
+                "canonical": "口腔颌面外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "口腔种植科",
+                "dept_id": "D03243",
+                "canonical": "口腔种植科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 1,
+          "entry_count": 13,
+          "unique_count": 13,
+          "canonical_count": 13
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-28T00:58:57Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 1,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-28T00:58:57Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 13,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-28T00:58:57Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

@@ -1,0 +1,1628 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-038",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:39",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=55; geo=amap(name_in_poi); dept=suishenban#yuyue_guahao(2026-09-26, l1=8/l2u=172)"
+  },
+  "institution": {
+    "name": "上海儿童医学中心(张江院区）",
+    "aliases": [],
+    "level": "三级甲等",
+    "type": "专科医院",
+    "ownership": "公立",
+    "affiliation": "上海交通大学",
+    "official_site": "http://www.scmc.com.cn",
+    "tel": "021-38626161"
+  },
+  "campuses": [
+    {
+      "id": "SH-038-M",
+      "name": "本部",
+      "district": "浦东新区",
+      "address": "天牛路与红曲路交叉口东南120米",
+      "geo": {
+        "lng": 121.614684,
+        "lat": 31.113533,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:name_in_poi"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "三级甲等",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "周浦东(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 838,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 1,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": 13.6,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 1,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 236,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "红曲路天牛路(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "computed",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html",
+        "basis": "parent_institution",
+        "parent": "儿童医学中心",
+        "note": "推定：母院为医保定点，该院区未在名单单列（母院=儿童医学中心）"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-26T10:19:06Z",
+        "l1": [
+          {
+            "name": "口腔科",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "口腔综合门诊（张江）",
+                "dept_id": "D03281",
+                "canonical": "口腔综合",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "眼科",
+            "tab_index": 1,
+            "depts": [
+              {
+                "raw": "眼科高年资团队(张江）",
+                "dept_id": "D06880",
+                "canonical": "眼科高年资团队",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "眼科（张江）",
+                "dept_id": "D06839",
+                "canonical": "眼科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              }
+            ]
+          },
+          {
+            "name": "内科",
+            "tab_index": 2,
+            "depts": [
+              {
+                "raw": "鞘内化疗(张江)",
+                "dept_id": "D09790",
+                "canonical": "鞘内化疗",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "内分泌遗传代谢（张江）",
+                "dept_id": "D02622",
+                "canonical": "内分泌遗传代谢",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "内分泌方便（张江）",
+                "dept_id": "D02577",
+                "canonical": "内分泌方便",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "儿内科(张江)",
+                "dept_id": "D01986",
+                "canonical": "儿内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "血液(张江)",
+                "dept_id": "D08806",
+                "canonical": "血液内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "实体肿瘤内科（张江）",
+                "dept_id": "D04196",
+                "canonical": "实体肿瘤内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "综合儿内科（张江）",
+                "dept_id": "D07292",
+                "canonical": "综合儿内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "儿内科照顾门诊（张江）",
+                "dept_id": "D01989",
+                "canonical": "儿内科照顾门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              }
+            ]
+          },
+          {
+            "name": "其他",
+            "tab_index": 3,
+            "depts": [
+              {
+                "raw": "肿瘤(张江)",
+                "dept_id": "D08110",
+                "canonical": "肿瘤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "综合儿科团队（张江）",
+                "dept_id": "D07296",
+                "canonical": "综合儿科团队",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "细胞免疫治疗(张江)",
+                "dept_id": "D07246",
+                "canonical": "细胞免疫治疗",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊放射科(张江)",
+                "dept_id": "D00153",
+                "canonical": "一站式特色门诊放射科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "呼吸综合/过敏脱敏（张江）",
+                "dept_id": "D03497",
+                "canonical": "呼吸综合/过敏脱敏",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "神经外科及癫痫、脊髓拴系、蛛网膜囊肿（张江）",
+                "dept_id": "D07042",
+                "canonical": "神经外科及癫痫、脊髓拴系、蛛网膜囊肿",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "细胞治疗随访(张江)",
+                "dept_id": "D07250",
+                "canonical": "细胞治疗随访",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "舒适化针灸（张江）",
+                "dept_id": "D08660",
+                "canonical": "舒适化针灸",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "神经外科及脑血管病（张江）",
+                "dept_id": "D07046",
+                "canonical": "神经外科及脑血管病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "细胞免疫治疗特色团队（张江）",
+                "dept_id": "D07247",
+                "canonical": "细胞免疫治疗特色团队",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "骨髓会诊(张江)",
+                "dept_id": "D10155",
+                "canonical": "骨髓会诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "国际部团队专家特需预约（张江）",
+                "dept_id": "D03617",
+                "canonical": "国际部团队专家预约",
+                "kind": "specialty_clinic",
+                "visit_type": "特需",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "放射科读片（张江）",
+                "dept_id": "D05190",
+                "canonical": "放射科读片",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "放疗（张江）",
+                "dept_id": "D05195",
+                "canonical": "放疗",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "中医生长贴（张江）",
+                "dept_id": "D01288",
+                "canonical": "中医生长贴",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "呼吸专科/呼吸过敏（张江）",
+                "dept_id": "D03426",
+                "canonical": "呼吸/呼吸过敏",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "外科/肿瘤团队（张江）",
+                "dept_id": "D03768",
+                "canonical": "外科/肿瘤团队",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "反复呼吸道感染/哮喘（张江）",
+                "dept_id": "D03111",
+                "canonical": "反复呼吸道感染/哮喘",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "移植宣教医护联合门诊(张江)",
+                "dept_id": "D07113",
+                "canonical": "移植宣教医护联合门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "舒适化皮肤手术/激光联合团队（张江）",
+                "dept_id": "D08659",
+                "canonical": "舒适化皮肤手术/激光联合团队",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊造血干细胞移植科(张江)",
+                "dept_id": "D00176",
+                "canonical": "一站式特色门诊造血干细胞移植科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "肿瘤专病门诊(脑肿瘤、视网膜母细胞瘤)(张江)",
+                "dept_id": "D08110",
+                "canonical": "肿瘤科",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "其他:脑肿瘤、视网膜母细胞瘤;院区:张江;形态:门诊"
+              },
+              {
+                "raw": "神经外科团队（张江）",
+                "dept_id": "D07047",
+                "canonical": "神经外科团队",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊儿保科（张江）",
+                "dept_id": "D00139",
+                "canonical": "一站式特色门诊儿保科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "骨科团队（张江）",
+                "dept_id": "D10087",
+                "canonical": "骨科团队",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "神经外科及头颅畸形、智力障碍（张江）",
+                "dept_id": "D07041",
+                "canonical": "神经外科及头颅畸形、智力障碍",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊血液肿瘤普通科(张江)",
+                "dept_id": "D00175",
+                "canonical": "一站式特色门诊血液肿瘤普通科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "国际部护理专科（张江）",
+                "dept_id": "D03622",
+                "canonical": "国际部护理",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "血液肿瘤方便(张江)",
+                "dept_id": "D08829",
+                "canonical": "血液肿瘤方便",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "综合儿科呼吸感染（张江）",
+                "dept_id": "D07295",
+                "canonical": "综合儿科呼吸感染",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "检验门诊（张江）",
+                "dept_id": "D02958",
+                "canonical": "医学检验科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江;形态:门诊"
+              },
+              {
+                "raw": "国际部全科教学门诊（张江）",
+                "dept_id": "D03616",
+                "canonical": "国际部全科教学门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "发育行为（张江）",
+                "dept_id": "D03138",
+                "canonical": "发育行为",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊口腔综合科(牙齿矫正及舒适化诊治中心)(张江)",
+                "dept_id": "D00146",
+                "canonical": "一站式特色门诊口腔综合科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:牙齿矫正及舒适化诊治中心;院区:张江"
+              },
+              {
+                "raw": "儿童心理卫生（张江）",
+                "dept_id": "D02137",
+                "canonical": "儿童心理卫生",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊烧伤整复科(张江)",
+                "dept_id": "D00159",
+                "canonical": "一站式特色门诊烧伤整复科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "精准治疗门诊(张江）",
+                "dept_id": "D07148",
+                "canonical": "精准治疗门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "国际部脱敏治疗团队（张江）",
+                "dept_id": "D03630",
+                "canonical": "国际部脱敏治疗团队",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "胎记咖啡斑（张江）",
+                "dept_id": "D08283",
+                "canonical": "胎记咖啡斑",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "三伏贴（张江）",
+                "dept_id": "D00215",
+                "canonical": "三伏贴",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "血液补液(张江)",
+                "dept_id": "D08838",
+                "canonical": "血液补液",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "心血管专科团队（张江）",
+                "dept_id": "D04795",
+                "canonical": "心血管团队",
+                "kind": "specialty_clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "口腔综合团队（张江）",
+                "dept_id": "D03282",
+                "canonical": "口腔综合团队",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "在线基因检测（血液）(张江)",
+                "dept_id": "D03688",
+                "canonical": "在线基因检测",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": "其他:血液;院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊眼科(张江)",
+                "dept_id": "D00163",
+                "canonical": "一站式特色门诊眼科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "麻醉镇静团队（张江）",
+                "dept_id": "D10260",
+                "canonical": "麻醉镇静团队",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "血液肿瘤预防接种（张江）",
+                "dept_id": "D08836",
+                "canonical": "血液肿瘤预防接种",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "牙体牙髓（补牙）团队（张江）",
+                "dept_id": "D06065",
+                "canonical": "牙体牙髓团队",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:补牙;院区:张江"
+              },
+              {
+                "raw": "牙体牙髓（补牙）（张江)",
+                "dept_id": "D06063",
+                "canonical": "牙体牙髓",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:补牙;院区:张江"
+              },
+              {
+                "raw": "焦宇团队耳鼻咽喉（张江）",
+                "dept_id": "D06055",
+                "canonical": "焦宇团队耳鼻咽喉",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊骨科（张江）",
+                "dept_id": "D00179",
+                "canonical": "一站式特色门诊骨科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "鼻炎精准治疗联合（张江）",
+                "dept_id": "D10287",
+                "canonical": "鼻炎精准治疗联合",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊健康管理中心（精神心理科、健康管理科）(张江)",
+                "dept_id": "D00138",
+                "canonical": "一站式特色门诊健康管理中心",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": "其他:精神心理科、健康管理科;院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊综合儿科（儿内科）(张江)",
+                "dept_id": "D00167",
+                "canonical": "一站式特色门诊综合儿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:儿内科;院区:张江"
+              },
+              {
+                "raw": "病理（张江）",
+                "dept_id": "D06546",
+                "canonical": "病理科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "骨骼肌肉软组织肿瘤门诊（张江）",
+                "dept_id": "D10154",
+                "canonical": "骨骼肌肉软组织肿瘤门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "肿瘤精准治疗联合（张江）",
+                "dept_id": "D08132",
+                "canonical": "肿瘤精准治疗联合",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "发育行为心理评估(张江)",
+                "dept_id": "D03145",
+                "canonical": "发育行为心理评估",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊心血管专科（张江）",
+                "dept_id": "D00151",
+                "canonical": "一站式特色门诊心血管",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "反复咳嗽中西医结合团队（张江）",
+                "dept_id": "D03112",
+                "canonical": "反复咳嗽中西医结合团队",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "PICC护理门诊(张江)",
+                "dept_id": "D00100",
+                "canonical": "PICC护理",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江;形态:门诊"
+              },
+              {
+                "raw": "口呼吸/腺样体肥大（张江）",
+                "dept_id": "D03160",
+                "canonical": "口呼吸/腺样体肥大",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "儿童肿瘤护理门诊（张江）",
+                "dept_id": "D02240",
+                "canonical": "儿童肿瘤护理门诊",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "药物不良反应门诊(张江）",
+                "dept_id": "D08709",
+                "canonical": "药物不良反应门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "儿童肿瘤康复者免疫指导（张江）",
+                "dept_id": "D02239",
+                "canonical": "儿童肿瘤康复者免疫指导",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "血液症状管理与舒缓(张江)",
+                "dept_id": "D08817",
+                "canonical": "血液症状管理与舒缓",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "神经外科及脑肿瘤（张江）",
+                "dept_id": "D07044",
+                "canonical": "神经外科及脑肿瘤",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "血液肿瘤照顾（张江）",
+                "dept_id": "D08831",
+                "canonical": "血液肿瘤照顾",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊中医科(张江)",
+                "dept_id": "D00137",
+                "canonical": "一站式特色门诊中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "呼吸肺功能（张江）",
+                "dept_id": "D03500",
+                "canonical": "呼吸肺功能",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "放疗方便门诊（张江）",
+                "dept_id": "D05196",
+                "canonical": "放疗方便门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "儿童便秘失禁护理门诊（张江）",
+                "dept_id": "D02073",
+                "canonical": "儿童便秘失禁护理门诊",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "血管瘤淋巴管瘤外科（张江）",
+                "dept_id": "D08869",
+                "canonical": "血管瘤淋巴管瘤外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "细胞治疗联合(张江)",
+                "dept_id": "D07249",
+                "canonical": "细胞治疗联合",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "儿童肿瘤遗传(张江)",
+                "dept_id": "D02243",
+                "canonical": "儿童肿瘤遗传",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊消化科（张江）",
+                "dept_id": "D00158",
+                "canonical": "一站式特色门诊消化科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "儿童肿瘤GCP门诊(张江)",
+                "dept_id": "D02235",
+                "canonical": "儿童肿瘤GCP门诊",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊麻醉镇静疼痛(张江)",
+                "dept_id": "D00180",
+                "canonical": "一站式特色门诊麻醉镇静疼痛",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "造口伤口护理门诊（张江）",
+                "dept_id": "D09368",
+                "canonical": "造口伤口护理",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江;形态:门诊"
+              },
+              {
+                "raw": "超声造影团队（张江）",
+                "dept_id": "D09199",
+                "canonical": "超声造影团队",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "过敏免疫联合（张江）",
+                "dept_id": "D09258",
+                "canonical": "过敏免疫联合",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "消化专科（张江）",
+                "dept_id": "D05920",
+                "canonical": "消化内科",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "听力障碍/耳畸形（张江）",
+                "dept_id": "D03395",
+                "canonical": "听力障碍/耳畸形",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊肿瘤科(内/外科融合)科(张江)",
+                "dept_id": "D00171",
+                "canonical": "一站式特色门诊肿瘤科科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:内/外科融合;院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊血液科(张江)",
+                "dept_id": "D00174",
+                "canonical": "一站式特色门诊血液科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "手足畸形（张江）",
+                "dept_id": "D05082",
+                "canonical": "手足畸形",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "儿童全科检查（张江）",
+                "dept_id": "D02082",
+                "canonical": "儿童全科检查",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "神经外科（张江）",
+                "dept_id": "D07035",
+                "canonical": "神经外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊病理科（张江）",
+                "dept_id": "D00161",
+                "canonical": "一站式特色门诊病理科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "儿童肿瘤疑难门诊（张江）",
+                "dept_id": "D02241",
+                "canonical": "儿童肿瘤疑难门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊药剂科(张江)",
+                "dept_id": "D00172",
+                "canonical": "一站式特色门诊药剂科",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "脉管畸形外科（张江）",
+                "dept_id": "D08368",
+                "canonical": "脉管畸形外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "呼吸综合团队（张江）",
+                "dept_id": "D03498",
+                "canonical": "呼吸综合团队",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊营养科（张江）",
+                "dept_id": "D00173",
+                "canonical": "一站式特色门诊营养科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "肝脏肿块外科（张江）",
+                "dept_id": "D07716",
+                "canonical": "肝脏肿块外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊肿瘤科(张江)",
+                "dept_id": "D00170",
+                "canonical": "一站式特色门诊肿瘤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "三九贴（张江）",
+                "dept_id": "D00214",
+                "canonical": "三九贴",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "国际部预约（张江）",
+                "dept_id": "D03684",
+                "canonical": "国际部预约",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "口腔青少年矫正/正畸（张江）",
+                "dept_id": "D03299",
+                "canonical": "口腔青少年矫正/正畸",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "心血管读片（张江）",
+                "dept_id": "D04808",
+                "canonical": "心血管读片",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "神经母细胞瘤及软组织肿瘤多学科联合（张江）",
+                "dept_id": "D07066",
+                "canonical": "神经母细胞瘤及软组织肿瘤多学科联合",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "打鼾/口呼吸焦宇团队（张江）",
+                "dept_id": "D05090",
+                "canonical": "打鼾/口呼吸焦宇团队",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "国际部专家预约（张江）",
+                "dept_id": "D03684",
+                "canonical": "国际部预约",
+                "kind": "other",
+                "visit_type": "专家",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "神经外科及脑瘫、脑积水、智力障碍（张江）",
+                "dept_id": "D07043",
+                "canonical": "神经外科及脑瘫、脑积水、智力障碍",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "耳鼻咽喉科（张江）",
+                "dept_id": "D07513",
+                "canonical": "耳鼻咽喉科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "李志玲团队药学门诊（张江）",
+                "dept_id": "D05592",
+                "canonical": "李志玲团队药学门诊",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊儿内科(张江)",
+                "dept_id": "D00140",
+                "canonical": "一站式特色门诊儿内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "精神卫生门诊（张江）",
+                "dept_id": "D07156",
+                "canonical": "精神卫生门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "呼吸哮喘（张江）",
+                "dept_id": "D03467",
+                "canonical": "呼吸哮喘",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "血液特色团队（张江）",
+                "dept_id": "D08814",
+                "canonical": "血液特色团队",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "耳鼻咽喉团队（张江）",
+                "dept_id": "D07505",
+                "canonical": "耳鼻咽喉团队",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "营养不良（张江）",
+                "dept_id": "D08738",
+                "canonical": "营养不良",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "呼吸专科（张江）",
+                "dept_id": "D03443",
+                "canonical": "呼吸内科",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "内分泌遗传代谢特色专科团队（张江）",
+                "dept_id": "D02623",
+                "canonical": "内分泌遗传代谢特色团队",
+                "kind": "specialty_clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "儿童康复（张江）",
+                "dept_id": "D02130",
+                "canonical": "儿童康复",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "细胞治疗及血液遗传病(张江)",
+                "dept_id": "D07248",
+                "canonical": "细胞治疗及血液遗传病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "血液肿瘤普通(张江)",
+                "dept_id": "D08830",
+                "canonical": "血液肿瘤普通",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "儿童肿瘤康复（张江）",
+                "dept_id": "D02238",
+                "canonical": "儿童肿瘤康复",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊呼吸科（张江）",
+                "dept_id": "D00148",
+                "canonical": "一站式特色门诊呼吸科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "呼吸/过敏/肺功能（张江）",
+                "dept_id": "D03427",
+                "canonical": "呼吸/过敏/肺功能",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "食物过敏/喂养发育（张江）",
+                "dept_id": "D09945",
+                "canonical": "食物过敏/喂养发育",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "感染/发热性疾病团队（张江）",
+                "dept_id": "D04919",
+                "canonical": "感染/发热性疾病团队",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "王雪峰名中医推拿团队（张江）",
+                "dept_id": "D06230",
+                "canonical": "王雪峰名中医推拿团队",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "心血管专科（张江）",
+                "dept_id": "D04780",
+                "canonical": "心血管内科",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "造血干细胞移植(张江)",
+                "dept_id": "D09372",
+                "canonical": "造血干细胞移植",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊内分泌遗传代谢科(张江)",
+                "dept_id": "D00144",
+                "canonical": "一站式特色门诊内分泌遗传代谢科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "造血干细胞移植准备门诊(张江)",
+                "dept_id": "D09374",
+                "canonical": "造血干细胞移植准备门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "精准用药不良反应及毒性多学科联合（张江）",
+                "dept_id": "D07149",
+                "canonical": "精准用药不良反应及毒性多学科联合",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "放射读片(非血液肿瘤)(张江)",
+                "dept_id": "D05194",
+                "canonical": "放射读片",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": "其他:非血液肿瘤;院区:张江"
+              },
+              {
+                "raw": "肿瘤放射读片（张江）",
+                "dept_id": "D08094",
+                "canonical": "肿瘤放射读片",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊检验二科(张江)",
+                "dept_id": "D00156",
+                "canonical": "一站式特色门诊检验二科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "淋巴瘤门诊（张江）",
+                "dept_id": "D05993",
+                "canonical": "淋巴瘤",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江;形态:门诊"
+              },
+              {
+                "raw": "一站式特色门诊放疗科（张江）",
+                "dept_id": "D00154",
+                "canonical": "一站式特色门诊放疗科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊康复医学科（张江）",
+                "dept_id": "D00149",
+                "canonical": "一站式特色门诊康复医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "儿童青少年妇科疾病手术（张江）",
+                "dept_id": "D02295",
+                "canonical": "儿童青少年妇科疾病手术",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊耳鼻咽喉科(张江)",
+                "dept_id": "D00168",
+                "canonical": "一站式特色门诊耳鼻咽喉科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "血管/淋巴管疾病脉管畸形多学科联合门诊（张江）",
+                "dept_id": "D08842",
+                "canonical": "血管/淋巴管疾病脉管畸形多学科联合门诊",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊神经外科（张江）",
+                "dept_id": "D00165",
+                "canonical": "一站式特色门诊神经外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "儿童髋关节疾病（张江）",
+                "dept_id": "D02308",
+                "canonical": "儿童髋关节疾病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "肿瘤特色团队（张江）",
+                "dept_id": "D08105",
+                "canonical": "肿瘤特色团队",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "肿瘤营养团队（张江）",
+                "dept_id": "D08151",
+                "canonical": "肿瘤营养团队",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊皮肤科(张江)",
+                "dept_id": "D00162",
+                "canonical": "一站式特色门诊皮肤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "血液肿瘤精准营养团队（张江）",
+                "dept_id": "D08833",
+                "canonical": "血液肿瘤精准营养团队",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "感染/发热性疾病（张江）",
+                "dept_id": "D04918",
+                "canonical": "感染/发热性疾病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "血液/肿瘤远期随访（张江）",
+                "dept_id": "D08802",
+                "canonical": "血液/肿瘤远期随访",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "一站式特色门诊细胞免疫治疗科(张江)",
+                "dept_id": "D00166",
+                "canonical": "一站式特色门诊细胞免疫治疗科",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              }
+            ]
+          },
+          {
+            "name": "医学影像科",
+            "tab_index": 4,
+            "depts": [
+              {
+                "raw": "放射科（张江）",
+                "dept_id": "D05186",
+                "canonical": "放射科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              }
+            ]
+          },
+          {
+            "name": "中医科",
+            "tab_index": 5,
+            "depts": [
+              {
+                "raw": "中医推拿外治团队（张江）",
+                "dept_id": "D01261",
+                "canonical": "中医推拿外治团队",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "中医护理（张江）",
+                "dept_id": "D01258",
+                "canonical": "中医护理",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "中医科（张江）",
+                "dept_id": "D01316",
+                "canonical": "中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "中医针灸（张江）",
+                "dept_id": "D01452",
+                "canonical": "中医针灸",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              }
+            ]
+          },
+          {
+            "name": "皮肤科",
+            "tab_index": 6,
+            "depts": [
+              {
+                "raw": "皮肤激光（张江）",
+                "dept_id": "D06684",
+                "canonical": "皮肤激光",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "皮肤科（张江）",
+                "dept_id": "D06702",
+                "canonical": "皮肤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "皮肤科特色专科团队（张江）",
+                "dept_id": "D06735",
+                "canonical": "皮肤科特色团队",
+                "kind": "specialty_clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:张江"
+              }
+            ]
+          },
+          {
+            "name": "外科",
+            "tab_index": 7,
+            "depts": [
+              {
+                "raw": "甲状腺肿物外科（张江）",
+                "dept_id": "D06374",
+                "canonical": "甲状腺肿物外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "综合儿外科（骨肿瘤）（张江）",
+                "dept_id": "D07293",
+                "canonical": "综合儿外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:骨肿瘤;院区:张江"
+              },
+              {
+                "raw": "神经纤维瘤病外科（张江）",
+                "dept_id": "D07078",
+                "canonical": "神经纤维瘤病外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "烧伤整复外科（张江）",
+                "dept_id": "D06043",
+                "canonical": "烧伤整复外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "骨科（张江）",
+                "dept_id": "D10069",
+                "canonical": "骨科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "外科/肿瘤淋巴结体表肿块(张江)",
+                "dept_id": "D03769",
+                "canonical": "外科/肿瘤淋巴结体表肿块",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              },
+              {
+                "raw": "外科/肿瘤（张江）",
+                "dept_id": "D03767",
+                "canonical": "外科/肿瘤",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:张江"
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 8,
+          "entry_count": 172,
+          "unique_count": 172,
+          "canonical_count": 170
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T10:19:06Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 8,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T10:19:06Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 172,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T10:19:06Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

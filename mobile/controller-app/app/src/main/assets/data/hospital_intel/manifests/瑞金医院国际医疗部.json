@@ -1,0 +1,942 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-048",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:39",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=65; geo=amap(relevance,review=suspect); !低置信待核; dept=suishenban#yuyue_guahao(2026-09-26, l1=15/l2u=81)"
+  },
+  "institution": {
+    "name": "瑞金医院国际医疗部",
+    "aliases": [],
+    "level": "三级甲等",
+    "type": "综合医院",
+    "ownership": "公立",
+    "affiliation": "",
+    "official_site": "",
+    "tel": "021-67888999",
+    "official_name": "上海交通大学医学院附属瑞金医院",
+    "official_name_source": "roster",
+    "official_name_evidence": "医保名单 seq=237 上海市黄浦区瑞金二路197号、徐家汇路573号、嘉定区双丁路789号、889号、嘉定区希望路999号、淮海中路1174号"
+  },
+  "campuses": [
+    {
+      "id": "SH-048-M",
+      "name": "本部",
+      "district": "嘉定区",
+      "address": "上海交通大学医学院附属瑞金医院(北部院区)2期",
+      "geo": {
+        "lng": 121.259225,
+        "lat": 31.335075,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:relevance"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "三级甲等",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "嘉定新城(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 728,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 1,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": 18.4,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 4,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 109,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "双丁路永盛路(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-26T20:51:42Z",
+        "l1": [
+          {
+            "name": "外科",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "国际部门诊烧伤整形科",
+                "dept_id": "D03664",
+                "canonical": "国际部门诊烧伤整形科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊心外科(嘉定)",
+                "dept_id": "D03651",
+                "canonical": "国际部门诊心外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              },
+              {
+                "raw": "国际部门诊乳腺整形科",
+                "dept_id": "D03638",
+                "canonical": "国际部门诊乳腺整形科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊神经外科(嘉定)",
+                "dept_id": "D03672",
+                "canonical": "国际部门诊神经外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              },
+              {
+                "raw": "国际部门诊胸外科",
+                "dept_id": "D03676",
+                "canonical": "国际部门诊胸外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊骨科",
+                "dept_id": "D03682",
+                "canonical": "国际部门诊骨科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊乳腺外科",
+                "dept_id": "D03637",
+                "canonical": "国际部门诊乳腺外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊普外科(嘉定)",
+                "dept_id": "D03660",
+                "canonical": "国际部门诊普外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              },
+              {
+                "raw": "国际部门诊泌尿外科",
+                "dept_id": "D03662",
+                "canonical": "国际部门诊泌尿外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊神经外科",
+                "dept_id": "D03672",
+                "canonical": "国际部门诊神经外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊骨科(嘉定)",
+                "dept_id": "D03682",
+                "canonical": "国际部门诊骨科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              },
+              {
+                "raw": "国际部门诊普外科",
+                "dept_id": "D03660",
+                "canonical": "国际部门诊普外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊功能神外",
+                "dept_id": "D03643",
+                "canonical": "国际部门诊功能神外",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊泌尿外科(嘉定)",
+                "dept_id": "D03662",
+                "canonical": "国际部门诊泌尿外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              }
+            ]
+          },
+          {
+            "name": "全科医疗科",
+            "tab_index": 1,
+            "depts": [
+              {
+                "raw": "全科医学科国际部",
+                "dept_id": "D02438",
+                "canonical": "全科医学科国际部",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "中医科",
+            "tab_index": 2,
+            "depts": [
+              {
+                "raw": "国际部门诊中医内科",
+                "dept_id": "D03635",
+                "canonical": "国际部门诊中医内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊中医内科(嘉定)",
+                "dept_id": "D03635",
+                "canonical": "国际部门诊中医内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              },
+              {
+                "raw": "国际部门诊针灸科",
+                "dept_id": "D03680",
+                "canonical": "国际部门诊针灸科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "病理科",
+            "tab_index": 3,
+            "depts": [
+              {
+                "raw": "国际部门诊病理科",
+                "dept_id": "D03668",
+                "canonical": "国际部门诊病理科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "眼科",
+            "tab_index": 4,
+            "depts": [
+              {
+                "raw": "国际部门诊眼科",
+                "dept_id": "D03670",
+                "canonical": "国际部门诊眼科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊眼科(嘉定)",
+                "dept_id": "D03670",
+                "canonical": "国际部门诊眼科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              }
+            ]
+          },
+          {
+            "name": "耳鼻咽喉科",
+            "tab_index": 5,
+            "depts": [
+              {
+                "raw": "国际部门诊耳鼻咽喉科",
+                "dept_id": "D03673",
+                "canonical": "国际部门诊耳鼻咽喉科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊耳鼻咽喉科(嘉定)",
+                "dept_id": "D03673",
+                "canonical": "国际部门诊耳鼻咽喉科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              }
+            ]
+          },
+          {
+            "name": "康复医学科",
+            "tab_index": 6,
+            "depts": [
+              {
+                "raw": "国际部门诊康复科",
+                "dept_id": "D03649",
+                "canonical": "国际部门诊康复科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊康复科(嘉定)",
+                "dept_id": "D03649",
+                "canonical": "国际部门诊康复科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              }
+            ]
+          },
+          {
+            "name": "其他",
+            "tab_index": 7,
+            "depts": [
+              {
+                "raw": "国际部临床营养科",
+                "dept_id": "D03613",
+                "canonical": "国际部临床营养科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊临床营养科(嘉定)",
+                "dept_id": "D03636",
+                "canonical": "国际部门诊临床营养科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              },
+              {
+                "raw": "国际部门诊腹部器官移植中心",
+                "dept_id": "D03677",
+                "canonical": "国际部门诊腹部器官移植中心",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊眼科（嘉定）",
+                "dept_id": "D03670",
+                "canonical": "国际部门诊眼科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              },
+              {
+                "raw": "国际部门诊生殖医学科",
+                "dept_id": "D03665",
+                "canonical": "国际部门诊生殖医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊心理科",
+                "dept_id": "D03653",
+                "canonical": "国际部门诊心理科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊甲状腺穿刺",
+                "dept_id": "D03666",
+                "canonical": "国际部门诊甲状腺穿刺",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊介入治疗科",
+                "dept_id": "D03639",
+                "canonical": "国际部门诊介入治疗科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊介入治疗科(嘉定)",
+                "dept_id": "D03639",
+                "canonical": "国际部门诊介入治疗科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              },
+              {
+                "raw": "国际部门诊实体瘤细胞治疗中心",
+                "dept_id": "D03648",
+                "canonical": "国际部门诊实体瘤细胞治疗中心",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊伤科(嘉定)",
+                "dept_id": "D03640",
+                "canonical": "国际部门诊伤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              },
+              {
+                "raw": "国际部门诊心理医学科(嘉定)",
+                "dept_id": "D03652",
+                "canonical": "国际部门诊心理医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              },
+              {
+                "raw": "国际部门诊伤科",
+                "dept_id": "D03640",
+                "canonical": "国际部门诊伤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊耳鼻咽喉科（嘉定）",
+                "dept_id": "D03673",
+                "canonical": "国际部门诊耳鼻咽喉科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              }
+            ]
+          },
+          {
+            "name": "儿科",
+            "tab_index": 8,
+            "depts": [
+              {
+                "raw": "国际部门诊儿内科",
+                "dept_id": "D03641",
+                "canonical": "国际部门诊儿内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "妇产科",
+            "tab_index": 9,
+            "depts": [
+              {
+                "raw": "国际部门诊妇科(嘉定)",
+                "dept_id": "D03646",
+                "canonical": "国际部门诊妇科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              },
+              {
+                "raw": "国际部门诊妇科",
+                "dept_id": "D03646",
+                "canonical": "国际部门诊妇科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "内科",
+            "tab_index": 10,
+            "depts": [
+              {
+                "raw": "国际部门诊普内科(嘉定)",
+                "dept_id": "D03659",
+                "canonical": "国际部门诊普内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              },
+              {
+                "raw": "国际部门诊高血压科",
+                "dept_id": "D03683",
+                "canonical": "国际部门诊高血压科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊神经内科(嘉定)",
+                "dept_id": "D03671",
+                "canonical": "国际部门诊神经内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              },
+              {
+                "raw": "国际部门诊血液科",
+                "dept_id": "D03678",
+                "canonical": "国际部门诊血液科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊心内科",
+                "dept_id": "D03650",
+                "canonical": "国际部门诊心内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊普内科",
+                "dept_id": "D03659",
+                "canonical": "国际部门诊普内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊内分泌科(嘉定)",
+                "dept_id": "D03642",
+                "canonical": "国际部门诊内分泌科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              },
+              {
+                "raw": "国际部门诊呼吸内科",
+                "dept_id": "D03644",
+                "canonical": "国际部门诊呼吸内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊神经内科",
+                "dept_id": "D03671",
+                "canonical": "国际部门诊神经内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊消化内科(嘉定)",
+                "dept_id": "D03663",
+                "canonical": "国际部门诊消化内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              },
+              {
+                "raw": "国际部门诊高血压科(嘉定)",
+                "dept_id": "D03683",
+                "canonical": "国际部门诊高血压科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              },
+              {
+                "raw": "特需门诊心脏",
+                "dept_id": "D09608",
+                "canonical": "门诊心脏",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊肿瘤科(嘉定)",
+                "dept_id": "D03675",
+                "canonical": "国际部门诊肿瘤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              },
+              {
+                "raw": "国际部门诊呼吸科(嘉定)",
+                "dept_id": "D03645",
+                "canonical": "国际部门诊呼吸科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              },
+              {
+                "raw": "国际部门诊血液科(嘉定)",
+                "dept_id": "D03678",
+                "canonical": "国际部门诊血液科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              },
+              {
+                "raw": "国际部门诊肿瘤科",
+                "dept_id": "D03675",
+                "canonical": "国际部门诊肿瘤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊消化内科",
+                "dept_id": "D03663",
+                "canonical": "国际部门诊消化内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊心内科(嘉定)",
+                "dept_id": "D03650",
+                "canonical": "国际部门诊心内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              },
+              {
+                "raw": "国际部门诊内分泌科",
+                "dept_id": "D03642",
+                "canonical": "国际部门诊内分泌科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊风湿免疫科(嘉定)",
+                "dept_id": "D03681",
+                "canonical": "国际部门诊风湿免疫科",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              },
+              {
+                "raw": "国际部门诊肾内科(嘉定)",
+                "dept_id": "D03674",
+                "canonical": "国际部门诊肾内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              },
+              {
+                "raw": "国际部门诊风湿免疫科",
+                "dept_id": "D03681",
+                "canonical": "国际部门诊风湿免疫科",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊肾内科",
+                "dept_id": "D03674",
+                "canonical": "国际部门诊肾内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "皮肤科",
+            "tab_index": 11,
+            "depts": [
+              {
+                "raw": "国际部门诊皮肤科",
+                "dept_id": "D03669",
+                "canonical": "国际部门诊皮肤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊皮肤科(嘉定)",
+                "dept_id": "D03669",
+                "canonical": "国际部门诊皮肤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              }
+            ]
+          },
+          {
+            "name": "医学影像科",
+            "tab_index": 12,
+            "depts": [
+              {
+                "raw": "国际部门诊放疗诊断科",
+                "dept_id": "D03658",
+                "canonical": "国际部门诊放疗诊断科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊放疗诊断科(嘉定)",
+                "dept_id": "D03658",
+                "canonical": "国际部门诊放疗诊断科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              },
+              {
+                "raw": "国际部门诊放射诊疗科(嘉定)",
+                "dept_id": "D03657",
+                "canonical": "国际部门诊放射诊疗科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              },
+              {
+                "raw": "国际部门诊核医学科",
+                "dept_id": "D03661",
+                "canonical": "国际部门诊核医学科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊放射治疗科",
+                "dept_id": "D03655",
+                "canonical": "国际部门诊放射治疗科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊超声诊断科(嘉定)",
+                "dept_id": "D03679",
+                "canonical": "国际部门诊超声诊断科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              },
+              {
+                "raw": "国际部门诊妇科超声科",
+                "dept_id": "D03647",
+                "canonical": "国际部门诊妇科超声科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊核医学科(嘉定)",
+                "dept_id": "D03661",
+                "canonical": "国际部门诊核医学科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              },
+              {
+                "raw": "国际部心脏超声科",
+                "dept_id": "D03621",
+                "canonical": "国际部心脏超声科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊超声诊断科",
+                "dept_id": "D03679",
+                "canonical": "国际部门诊超声诊断科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "国际部门诊放射诊断科",
+                "dept_id": "D03656",
+                "canonical": "国际部门诊放射诊断科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "传染科",
+            "tab_index": 13,
+            "depts": [
+              {
+                "raw": "国际部门诊感染病科",
+                "dept_id": "D03654",
+                "canonical": "国际部门诊感染病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "麻醉疼痛科",
+            "tab_index": 14,
+            "depts": [
+              {
+                "raw": "国际部门诊疼痛治疗科(嘉定)",
+                "dept_id": "D03667",
+                "canonical": "国际部门诊疼痛治疗科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉定"
+              },
+              {
+                "raw": "国际部疼痛治疗科",
+                "dept_id": "D03628",
+                "canonical": "国际部疼痛治疗科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 15,
+          "entry_count": 81,
+          "unique_count": 81,
+          "canonical_count": 54
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T20:51:42Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 15,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T20:51:42Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 81,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T20:51:42Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

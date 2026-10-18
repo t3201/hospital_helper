@@ -1,0 +1,8814 @@
+{
+ "meta": {
+  "mode": "interactive",
+  "llm": "agentsvc(model_id=default)",
+  "app": "挂号推荐运行期原型 v0.2（PC 原型, 目标手机端）",
+  "started_at": "2026-10-06T17:51:45",
+  "generated_at": "2026-10-06T17:52:21"
+ },
+ "loc": {
+  "lng": 121.432932,
+  "lat": 31.254204,
+  "crs": "GCJ-02",
+  "method": "user_specified",
+  "note": "人为指定坐标（代挂号主场景/固定演示点），假定 GCJ-02"
+ },
+ "spec": {
+  "symptom_text": "孩子咽喉不适，吞咽时觉得痛，说话有点声音嘶哑，没发烧。倾向去儿童专属医院",
+  "patient": {
+   "age": null,
+   "age_band": "child",
+   "is_child": true,
+   "proxy": false,
+   "gender": null
+  },
+  "urgency_days": 7,
+  "visit_type": "unknown",
+  "prefs": {
+   "metro_priority": false,
+   "price_cap_cny": null,
+   "level_expectation": "balanced"
+  },
+  "notes": [
+   "病例来源: 显式结构化字段 (web/表单), 非自由文本解析",
+   "年龄未提, 症状文本推断: 儿童关键词 → child",
+   "年龄=未提 → child",
+   "时效 → max_wait_days=7"
+  ],
+  "_raw": [
+   "孩子咽喉不适，吞咽时觉得痛，说话有点声音嘶哑，没发烧。倾向去儿童专属医院",
+   "",
+   ""
+  ]
+ },
+ "inference": {
+  "scenario": "peds",
+  "scenario_zh": "儿科",
+  "weights": {
+   "match": 0.36,
+   "level": 0.06,
+   "breadth": 0.08,
+   "distance": 0.18,
+   "metro": 0.03,
+   "bus": 0.03,
+   "key_specialty": 0.04,
+   "age_fit": 0.22
+  },
+  "weight_overrides": {},
+  "max_wait_days": 7,
+  "price_cap_cny": null,
+  "triage_term": "咽喉不适",
+  "triage_hits": [],
+  "llm_depts": [
+   "耳鼻喉科",
+   "儿科"
+  ],
+  "llm_dept_tiers": {
+   "耳鼻喉科": 1,
+   "儿科": 2
+  },
+  "llm_dept_kinds": {
+   "耳鼻喉科": "clinic",
+   "儿科": "clinic"
+  },
+  "dept_how": "llm",
+  "reasoning": [
+   "儿童咽喉不适、吞咽痛、声音嘶哑且无发热，暂不按急症处理，主诉直接指向耳鼻喉科，儿科作为儿童就诊相关科室。",
+   "患者明确倾向儿童专属医院，因此 age_fit 提升为一级权重；水平预期为 balanced，医院等级仅保留适度权重，不追求最高等级。",
+   "无费用上限且地铁偏好低，price 与 metro/bus 权重降低，distance 保留中等权重以兼顾可及性与等待预期。",
+   "triage_term='咽喉不适' 症状词表无命中（不影响: 科室以 LLM 直选为准）"
+  ],
+  "llm_mode": "agentsvc(model_id=default; 直出权重向量+目标科室, 含基础数据上下文)",
+  "llm_meta": {
+   "provider": "agentsvc",
+   "model_id": "default",
+   "base": "http://127.0.0.1:7989",
+   "elapsed_ms": 34954.0,
+   "first_byte_ms": 0.0,
+   "attempts": 1,
+   "thinking_chars": 6546,
+   "session_id": null,
+   "n_data": 3420,
+   "prompt_chars": 15072
+  },
+  "fallback": false,
+  "context": {
+   "n_depts": 363,
+   "n_hospitals": 438,
+   "dept_hc_min": 5
+  }
+ },
+ "stage1": {
+  "symptom": "咽喉不适",
+  "scenario": "peds",
+  "triage": {
+   "term": "咽喉不适",
+   "how": "llm",
+   "targets": [
+    {
+     "dept_id": "D07503",
+     "canonical": "耳鼻咽喉",
+     "kind": "clinic",
+     "priority": 1,
+     "confidence": "high",
+     "hosp": 3,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07506",
+     "canonical": "耳鼻咽喉头颈外科",
+     "kind": "clinic",
+     "priority": 1,
+     "confidence": "high",
+     "hosp": 13,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07513",
+     "canonical": "耳鼻咽喉科",
+     "kind": "clinic",
+     "priority": 1,
+     "confidence": "high",
+     "hosp": 59,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07533",
+     "canonical": "耳鼻喉科",
+     "kind": "clinic",
+     "priority": 1,
+     "confidence": "high",
+     "hosp": 60,
+     "family_of": null
+    },
+    {
+     "dept_id": "D01138",
+     "canonical": "中医五官科",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D01693",
+     "canonical": "五官科",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 16,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D02013",
+     "canonical": "儿科",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 140,
+     "family_of": null
+    },
+    {
+     "dept_id": "D04281",
+     "canonical": "小儿外科",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04308",
+     "canonical": "小儿科",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 7,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05306",
+     "canonical": "新生儿",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 9,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05316",
+     "canonical": "新生儿外科",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05325",
+     "canonical": "新生儿科",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 13,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05354",
+     "canonical": "方泰五官科",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07505",
+     "canonical": "耳鼻咽喉团队",
+     "kind": "specialty_clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07507",
+     "canonical": "耳鼻咽喉头颈外科副主任门诊",
+     "kind": "specialty_clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07508",
+     "canonical": "耳鼻咽喉室",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07509",
+     "canonical": "耳鼻咽喉手术",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07510",
+     "canonical": "耳鼻咽喉新冠康复门诊",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07511",
+     "canonical": "耳鼻咽喉照顾",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07512",
+     "canonical": "耳鼻咽喉睡眠呼吸障碍门诊",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07514",
+     "canonical": "耳鼻咽喉科Z",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07515",
+     "canonical": "耳鼻咽喉科体检",
+     "kind": "screening",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07516",
+     "canonical": "耳鼻咽喉科刘侃",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07517",
+     "canonical": "耳鼻咽喉科副",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07518",
+     "canonical": "耳鼻咽喉科声带疾病门诊",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07519",
+     "canonical": "耳鼻咽喉科头颈肿瘤",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07520",
+     "canonical": "耳鼻咽喉科寻满湘",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07521",
+     "canonical": "耳鼻咽喉科普通",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07522",
+     "canonical": "耳鼻咽喉科杨栋",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07523",
+     "canonical": "耳鼻咽喉科特约门诊",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07524",
+     "canonical": "耳鼻咽喉科臧江红",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07525",
+     "canonical": "耳鼻咽喉科高年资特色团队",
+     "kind": "specialty_clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07526",
+     "canonical": "耳鼻咽喉科鼻窦炎",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07527",
+     "canonical": "耳鼻咽喉科鼾症及扁桃体",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07528",
+     "canonical": "耳鼻咽喉联合门诊",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07529",
+     "canonical": "耳鼻咽喉鼾症",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07530",
+     "canonical": "耳鼻喉保健",
+     "kind": "screening",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07531",
+     "canonical": "耳鼻喉头颈外科",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07532",
+     "canonical": "耳鼻喉睡眠",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07535",
+     "canonical": "耳鼻喉科专",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07536",
+     "canonical": "耳鼻喉科军诊门诊",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07537",
+     "canonical": "耳鼻喉科冬病夏治",
+     "kind": "screening",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07538",
+     "canonical": "耳鼻喉科副",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07539",
+     "canonical": "耳鼻喉科副主任门诊",
+     "kind": "specialty_clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07540",
+     "canonical": "耳鼻喉科小儿腺样体肥大",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07541",
+     "canonical": "耳鼻喉科小膏方",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07542",
+     "canonical": "耳鼻喉科敷贴门诊",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07543",
+     "canonical": "耳鼻喉科普通门诊",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07544",
+     "canonical": "耳鼻喉科正",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07545",
+     "canonical": "耳鼻喉科汾阳普通门诊",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07546",
+     "canonical": "耳鼻喉科浦东普通门诊",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07547",
+     "canonical": "耳鼻喉科浦江普通门诊",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07548",
+     "canonical": "耳鼻喉科眩晕",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07549",
+     "canonical": "耳鼻喉科过敏性鼻炎门诊",
+     "kind": "specialty_clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D07550",
+     "canonical": "耳鼻喉科高级",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D09436",
+     "canonical": "金桥五官科",
+     "kind": "clinic",
+     "priority": 2,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "耳鼻喉科"
+    },
+    {
+     "dept_id": "D00139",
+     "canonical": "一站式特色门诊儿保科",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D01977",
+     "canonical": "儿保42天体检",
+     "kind": "screening",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D01978",
+     "canonical": "儿保发育行为门诊",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D01979",
+     "canonical": "儿保康复",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D01981",
+     "canonical": "儿保筛查门诊",
+     "kind": "screening",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02015",
+     "canonical": "儿科M",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02016",
+     "canonical": "儿科一",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02017",
+     "canonical": "儿科专家门诊",
+     "kind": "specialty_clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02018",
+     "canonical": "儿科中医",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02019",
+     "canonical": "儿科中心",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02020",
+     "canonical": "儿科主任门诊",
+     "kind": "specialty_clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02021",
+     "canonical": "儿科二",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02022",
+     "canonical": "儿科便秘专科",
+     "kind": "specialty_clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02023",
+     "canonical": "儿科保健",
+     "kind": "screening",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02024",
+     "canonical": "儿科儿童过敏风湿免疫",
+     "kind": "screening",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02025",
+     "canonical": "儿科内分泌",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02026",
+     "canonical": "儿科冬病夏治",
+     "kind": "screening",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02027",
+     "canonical": "儿科减重门诊",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02028",
+     "canonical": "儿科副",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02029",
+     "canonical": "儿科副主任门诊",
+     "kind": "specialty_clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02030",
+     "canonical": "儿科发热",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02031",
+     "canonical": "儿科口腔",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02032",
+     "canonical": "儿科呼吸",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02034",
+     "canonical": "儿科哮喘",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 3,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02035",
+     "canonical": "儿科夏季敷贴门诊",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02036",
+     "canonical": "儿科小膏方",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 3,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02037",
+     "canonical": "儿科急诊",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02038",
+     "canonical": "儿科推拿",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02039",
+     "canonical": "儿科教学门诊",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 3,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02040",
+     "canonical": "儿科普通",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02041",
+     "canonical": "儿科正",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02042",
+     "canonical": "儿科特约门诊",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02043",
+     "canonical": "儿科王婷婷",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02044",
+     "canonical": "儿科王春荣",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02045",
+     "canonical": "儿科生长发育",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02046",
+     "canonical": "儿科疑难MDT",
+     "kind": "specialty_clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02047",
+     "canonical": "儿科疾病推拿防治门诊",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02048",
+     "canonical": "儿科联合门诊",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02049",
+     "canonical": "儿科肾脏",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02050",
+     "canonical": "儿科苏保宁",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02051",
+     "canonical": "儿科过敏脱敏专科",
+     "kind": "specialty_clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02052",
+     "canonical": "儿科远程",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02053",
+     "canonical": "儿科门诊陶红",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D02054",
+     "canonical": "儿科陶红",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04261",
+     "canonical": "小儿保健门诊",
+     "kind": "screening",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04262",
+     "canonical": "小儿内分泌",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 3,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04263",
+     "canonical": "小儿内分泌科",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04264",
+     "canonical": "小儿内科",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 3,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04265",
+     "canonical": "小儿再障贫血",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04266",
+     "canonical": "小儿冬病冬治",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04267",
+     "canonical": "小儿冬病夏治",
+     "kind": "screening",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04268",
+     "canonical": "小儿包茎门诊",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04269",
+     "canonical": "小儿厌食",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04270",
+     "canonical": "小儿厌食病",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04271",
+     "canonical": "小儿反复呼吸道感染",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04272",
+     "canonical": "小儿反复呼吸道感染联合门诊",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04273",
+     "canonical": "小儿听力门诊",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04274",
+     "canonical": "小儿呼吸",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04275",
+     "canonical": "小儿呼吸道",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04276",
+     "canonical": "小儿咳喘",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04277",
+     "canonical": "小儿咳嗽病",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04278",
+     "canonical": "小儿咳嗽门诊",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04279",
+     "canonical": "小儿哮喘",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 6,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04280",
+     "canonical": "小儿喉源性咳嗽",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04282",
+     "canonical": "小儿多动抽动及学习困难门诊",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04283",
+     "canonical": "小儿夜门诊",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04286",
+     "canonical": "小儿实体肿瘤MDT",
+     "kind": "specialty_clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04287",
+     "canonical": "小儿心外科专题门诊",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04288",
+     "canonical": "小儿心理",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04290",
+     "canonical": "小儿感冒",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04291",
+     "canonical": "小儿慢性咳嗽",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 4,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04292",
+     "canonical": "小儿抽动中医",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04293",
+     "canonical": "小儿抽动多动",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04294",
+     "canonical": "小儿捏脊",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04295",
+     "canonical": "小儿推拿",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 9,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04296",
+     "canonical": "小儿推拿科",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 3,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04297",
+     "canonical": "小儿敷贴门诊",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04298",
+     "canonical": "小儿斜颈门诊",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04299",
+     "canonical": "小儿新冠康复",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04300",
+     "canonical": "小儿消化",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04301",
+     "canonical": "小儿消化胃肠",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04302",
+     "canonical": "小儿消化营养",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04303",
+     "canonical": "小儿消化道",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04304",
+     "canonical": "小儿疝外科门诊",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04305",
+     "canonical": "小儿癫痫外科",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04306",
+     "canonical": "小儿神经外科",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04307",
+     "canonical": "小儿神经纤维瘤病",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04309",
+     "canonical": "小儿耳鼻咽喉",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04310",
+     "canonical": "小儿肠衰竭",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04311",
+     "canonical": "小儿肥胖",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04312",
+     "canonical": "小儿脊柱外科",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04313",
+     "canonical": "小儿脾胃病",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04314",
+     "canonical": "小儿腺样体",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 3,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04315",
+     "canonical": "小儿腺样体肥大",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04318",
+     "canonical": "小儿过敏性疾病",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04319",
+     "canonical": "小儿运动损伤",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04320",
+     "canonical": "小儿针推",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04321",
+     "canonical": "小儿针灸门诊",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04322",
+     "canonical": "小儿食欲不好",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04323",
+     "canonical": "小儿骨病和遗传门诊",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04324",
+     "canonical": "小儿骨科",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04325",
+     "canonical": "小儿骨科脊柱侧弯",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04326",
+     "canonical": "小儿鼻炎哮喘与脱敏",
+     "kind": "specialty_clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D04395",
+     "canonical": "川沙儿保",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05307",
+     "canonical": "新生儿/婴幼儿",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05308",
+     "canonical": "新生儿与儿童视网膜病",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05309",
+     "canonical": "新生儿中枢感染随访",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05310",
+     "canonical": "新生儿保健",
+     "kind": "screening",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05311",
+     "canonical": "新生儿先心",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05312",
+     "canonical": "新生儿先心筛后门诊",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05313",
+     "canonical": "新生儿化脑MDT",
+     "kind": "specialty_clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05314",
+     "canonical": "新生儿及儿内",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05315",
+     "canonical": "新生儿听力筛查转诊门诊",
+     "kind": "screening",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05319",
+     "canonical": "新生儿早产儿随访",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05320",
+     "canonical": "新生儿智护门诊",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05321",
+     "canonical": "新生儿母源性疾病",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05322",
+     "canonical": "新生儿照护",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05323",
+     "canonical": "新生儿疫苗评估",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05324",
+     "canonical": "新生儿皮肤",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05328",
+     "canonical": "新生儿科正",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05330",
+     "canonical": "新生儿筛查随访",
+     "kind": "screening",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05331",
+     "canonical": "新生儿糖尿病",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05332",
+     "canonical": "新生儿脑病MDT",
+     "kind": "specialty_clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05333",
+     "canonical": "新生儿脑瘫GMs筛查",
+     "kind": "screening",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05334",
+     "canonical": "新生儿转运",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05335",
+     "canonical": "新生儿随访",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05336",
+     "canonical": "新生儿预防接种评估",
+     "kind": "screening",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05337",
+     "canonical": "新生儿高胆红素血症",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05338",
+     "canonical": "新生儿黄疸",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 2,
+     "family_of": "儿科"
+    },
+    {
+     "dept_id": "D05626",
+     "canonical": "枫林儿保科",
+     "kind": "clinic",
+     "priority": 3,
+     "confidence": "high",
+     "hosp": 1,
+     "family_of": "儿科"
+    }
+   ]
+  },
+  "applied_weights": {
+   "match": 0.36,
+   "level": 0.06,
+   "breadth": 0.08,
+   "distance": 0.18,
+   "metro": 0.03,
+   "bus": 0.03,
+   "key_specialty": 0.04,
+   "age_fit": 0.22
+  },
+  "hard_filter": {
+   "radius_km": 20.0,
+   "require_insurance": true,
+   "recall": 212,
+   "passed": 126,
+   "dropped": 86,
+   "drop_reasons": {
+    "超出半径20km": 67,
+    "BLOCKED": 19
+   },
+   "dropped_ids": [
+    "SH-005",
+    "SH-010",
+    "SH-011",
+    "SH-014",
+    "SH-021",
+    "SH-022",
+    "SH-033",
+    "SH-034",
+    "SH-035",
+    "SH-037",
+    "SH-038",
+    "SH-043",
+    "SH-046",
+    "SH-050",
+    "SH-051",
+    "SH-057",
+    "SH-066",
+    "SH-067",
+    "SH-068",
+    "SH-073",
+    "SH-079",
+    "SH-088",
+    "SH-090",
+    "SH-094",
+    "SH-096",
+    "SH-100",
+    "SH-116",
+    "SH-117",
+    "SH-146",
+    "SH-148",
+    "SH-155",
+    "SH-156",
+    "SH-170",
+    "SH-174",
+    "SH-180",
+    "SH-184",
+    "SH-185",
+    "SH-194",
+    "SH-195",
+    "SH-199",
+    "SH-205",
+    "SH-206",
+    "SH-211",
+    "SH-213",
+    "SH-214",
+    "SH-215",
+    "SH-216",
+    "SH-217",
+    "SH-219",
+    "SH-220",
+    "SH-225",
+    "SH-228",
+    "SH-229",
+    "SH-233",
+    "SH-238",
+    "SH-251",
+    "SH-253",
+    "SH-257",
+    "SH-264",
+    "SH-266",
+    "SH-278",
+    "SH-280",
+    "SH-281",
+    "SH-282",
+    "SH-289",
+    "SH-296",
+    "SH-301",
+    "SH-316",
+    "SH-323",
+    "SH-330",
+    "SH-338",
+    "SH-340",
+    "SH-351",
+    "SH-352",
+    "SH-358",
+    "SH-372",
+    "SH-382",
+    "SH-397",
+    "SH-411",
+    "SH-423",
+    "SH-429",
+    "SH-430",
+    "SH-432",
+    "SH-438",
+    "SH-440",
+    "SH-442"
+   ]
+  },
+  "K": 60,
+  "K_rule": {
+   "n": 126,
+   "s0": 0.9195,
+   "floor": 0.6995,
+   "gap_thr": 0.068,
+   "i_floor": 84,
+   "i_gap": 126
+  },
+  "patient_filter": {
+   "band": "child",
+   "dropped_targets": [
+    {
+     "dept_id": "D01743",
+     "canonical": "产科儿保陈雪莲",
+     "priority": 3,
+     "confidence": "high",
+     "reason": "儿童患者不适用于成人科（canonical 含\"产科\"）"
+    },
+    {
+     "dept_id": "D01758",
+     "canonical": "产科新生儿保健",
+     "priority": 3,
+     "confidence": "high",
+     "reason": "儿童患者不适用于成人科（canonical 含\"产科\"）"
+    },
+    {
+     "dept_id": "D04284",
+     "canonical": "小儿妇科内分泌",
+     "priority": 3,
+     "confidence": "high",
+     "reason": "儿童患者不适用于成人科（canonical 含\"妇科\"）"
+    },
+    {
+     "dept_id": "D04285",
+     "canonical": "小儿妇科内分泌特色团队",
+     "priority": 3,
+     "confidence": "high",
+     "reason": "儿童患者不适用于成人科（canonical 含\"妇科\"）"
+    }
+   ],
+   "kept_n": 186,
+   "note": "儿童患者剔除目标科室 4 个: 产科儿保陈雪莲[儿童患者不适用于成人科（canonical 含\"产科\"）], 产科新生儿保健[儿童患者不适用于成人科（canonical 含\"产科\"）], 小儿妇科内分泌[儿童患者不适用于成人科（canonical 含\"妇科\"）], 小儿妇科内分泌特色团队[儿童患者不适用于成人科（canonical 含\"妇科\"）]（剩余 186 个, 已按过滤后目标同构重算召回/打分/K/抓取计划; 词表与字典只读不改）"
+  }
+ },
+ "slot_queries": [
+  {
+   "query_id": "q-309b64ac6224",
+   "hospital_id": "SH-018",
+   "dept_id": "D07513",
+   "dept_ids": [
+    "D07513",
+    "D05306",
+    "D07509",
+    "D07525",
+    "D00139"
+   ],
+   "scenario": "peds",
+   "user_loc": {
+    "lng": 121.432932,
+    "lat": 31.254204,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 7,
+   "price_cap_cny": null,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 1,
+   "budget_left": 12,
+   "static_score": 0.9195
+  },
+  {
+   "query_id": "q-f6696a595ffe",
+   "hospital_id": "SH-084",
+   "dept_id": "D07533",
+   "dept_ids": [
+    "D07533",
+    "D02013"
+   ],
+   "scenario": "peds",
+   "user_loc": {
+    "lng": 121.432932,
+    "lat": 31.254204,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 7,
+   "price_cap_cny": null,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 2,
+   "budget_left": 11,
+   "static_score": 0.9126
+  },
+  {
+   "query_id": "q-5549741c7005",
+   "hospital_id": "SH-026",
+   "dept_id": "D07506",
+   "dept_ids": [
+    "D07506",
+    "D05325"
+   ],
+   "scenario": "peds",
+   "user_loc": {
+    "lng": 121.432932,
+    "lat": 31.254204,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 7,
+   "price_cap_cny": null,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 3,
+   "budget_left": 10,
+   "static_score": 0.9057
+  },
+  {
+   "query_id": "q-47f359483989",
+   "hospital_id": "SH-030",
+   "dept_id": "D07513",
+   "dept_ids": [
+    "D07513",
+    "D02013",
+    "D07526",
+    "D07527",
+    "D02024"
+   ],
+   "scenario": "peds",
+   "user_loc": {
+    "lng": 121.432932,
+    "lat": 31.254204,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 7,
+   "price_cap_cny": null,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 4,
+   "budget_left": 9,
+   "static_score": 0.8994
+  },
+  {
+   "query_id": "q-a3fae2d7ee9a",
+   "hospital_id": "SH-003",
+   "dept_id": "D07533",
+   "dept_ids": [
+    "D07533",
+    "D07518",
+    "D07519",
+    "D07548"
+   ],
+   "scenario": "peds",
+   "user_loc": {
+    "lng": 121.432932,
+    "lat": 31.254204,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 7,
+   "price_cap_cny": null,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 5,
+   "budget_left": 8,
+   "static_score": 0.8965
+  },
+  {
+   "query_id": "q-1e9ac7bd3dfe",
+   "hospital_id": "SH-071",
+   "dept_id": "D07506",
+   "dept_ids": [
+    "D07506",
+    "D02013",
+    "D07508"
+   ],
+   "scenario": "peds",
+   "user_loc": {
+    "lng": 121.432932,
+    "lat": 31.254204,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 7,
+   "price_cap_cny": null,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 6,
+   "budget_left": 7,
+   "static_score": 0.8904
+  },
+  {
+   "query_id": "q-5a8c3023b129",
+   "hospital_id": "SH-074",
+   "dept_id": "D07506",
+   "dept_ids": [
+    "D07506",
+    "D05316",
+    "D05325",
+    "D01978",
+    "D04286"
+   ],
+   "scenario": "peds",
+   "user_loc": {
+    "lng": 121.432932,
+    "lat": 31.254204,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 7,
+   "price_cap_cny": null,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 7,
+   "budget_left": 6,
+   "static_score": 0.8902
+  },
+  {
+   "query_id": "q-07368dfd9b31",
+   "hospital_id": "SH-053",
+   "dept_id": "D07533",
+   "dept_ids": [
+    "D07533",
+    "D02013"
+   ],
+   "scenario": "peds",
+   "user_loc": {
+    "lng": 121.432932,
+    "lat": 31.254204,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 7,
+   "price_cap_cny": null,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 8,
+   "budget_left": 5,
+   "static_score": 0.8825
+  },
+  {
+   "query_id": "q-a288ef4a3f92",
+   "hospital_id": "SH-095",
+   "dept_id": "D07533",
+   "dept_ids": [
+    "D07533",
+    "D05325"
+   ],
+   "scenario": "peds",
+   "user_loc": {
+    "lng": 121.432932,
+    "lat": 31.254204,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 7,
+   "price_cap_cny": null,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 9,
+   "budget_left": 4,
+   "static_score": 0.8783
+  },
+  {
+   "query_id": "q-999af5ba8e72",
+   "hospital_id": "SH-020",
+   "dept_id": "D07506",
+   "dept_ids": [
+    "D07506",
+    "D05325"
+   ],
+   "scenario": "peds",
+   "user_loc": {
+    "lng": 121.432932,
+    "lat": 31.254204,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 7,
+   "price_cap_cny": null,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 10,
+   "budget_left": 3,
+   "static_score": 0.8759
+  },
+  {
+   "query_id": "q-00967c1796c2",
+   "hospital_id": "SH-019",
+   "dept_id": "D07506",
+   "dept_ids": [
+    "D07506",
+    "D02019"
+   ],
+   "scenario": "peds",
+   "user_loc": {
+    "lng": 121.432932,
+    "lat": 31.254204,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 7,
+   "price_cap_cny": null,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 11,
+   "budget_left": 2,
+   "static_score": 0.8675
+  },
+  {
+   "query_id": "q-2e302eb9b39e",
+   "hospital_id": "SH-045",
+   "dept_id": "D07533",
+   "dept_ids": [
+    "D07533",
+    "D02013",
+    "D07541",
+    "D02036",
+    "D04265"
+   ],
+   "scenario": "peds",
+   "user_loc": {
+    "lng": 121.432932,
+    "lat": 31.254204,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 7,
+   "price_cap_cny": null,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 12,
+   "budget_left": 1,
+   "static_score": 0.8546
+  }
+ ],
+ "slots": {
+  "SH-018": {
+   "hospital_id": "SH-018",
+   "dept_id": "D07513",
+   "slot_source": "cache",
+   "detail": "level_default",
+   "status": "unknown",
+   "verified": false,
+   "earliest_date": null,
+   "earliest_days": 6.0,
+   "fee_tier": "100+",
+   "fee_tiers": {
+    "15": 0.0,
+    "25": 0.0,
+    "50": 0.018,
+    "100+": 0.054
+   },
+   "fee_min_tier": "50",
+   "tension": null,
+   "perennial_no_slot": false,
+   "perennial_no_slot_rate": null,
+   "has_slot_rate": 0.661,
+   "confidence": "mid",
+   "provenance": {
+    "file": "slots/profiles/level_defaults.json",
+    "stratum_key": "三级甲等|专科疾病防治院",
+    "captured_at": null,
+    "age_min": null,
+    "ttl_min": null,
+    "ttl_ok": false
+   },
+   "note": "档位估算（stratum=三级甲等|专科疾病防治院, n_units=56, confidence=mid; 非实时, 不可当号源事实）",
+   "stale_reference": {
+    "hospital_id": "SH-018",
+    "dept_id": "D07513",
+    "slot_source": "cache",
+    "detail": "observed",
+    "status": "unknown",
+    "verified": false,
+    "earliest_date": null,
+    "earliest_days": null,
+    "fee_tier": "unknown",
+    "fee_tiers": {},
+    "fee_min_tier": null,
+    "tension": null,
+    "perennial_no_slot": false,
+    "lead_days": 6,
+    "release_cycle": "unknown",
+    "obs_count": 0,
+    "provenance": {
+     "file": "slots/profiles/slot_profile.json",
+     "captured_at": null,
+     "age_min": null,
+     "ttl_min": 90,
+     "ttl_ok": false
+    },
+    "note": "观察过期（age_min>TTL）, 按未核实处理; 可约提前6天"
+   },
+   "dept_name": "耳鼻咽喉科"
+  },
+  "SH-084": {
+   "hospital_id": "SH-084",
+   "dept_id": "D07533",
+   "slot_source": "cache",
+   "detail": "level_default",
+   "status": "unknown",
+   "verified": false,
+   "earliest_date": null,
+   "earliest_days": 5.0,
+   "fee_tier": "50",
+   "fee_tiers": {
+    "15": 0.0,
+    "25": 0.0,
+    "50": 0.003,
+    "100+": 0.0
+   },
+   "fee_min_tier": "50",
+   "tension": null,
+   "perennial_no_slot": false,
+   "perennial_no_slot_rate": null,
+   "has_slot_rate": 0.65,
+   "confidence": "high",
+   "provenance": {
+    "file": "slots/profiles/level_defaults.json",
+    "stratum_key": "三级甲等|综合医院",
+    "captured_at": null,
+    "age_min": null,
+    "ttl_min": null,
+    "ttl_ok": false
+   },
+   "note": "档位估算（stratum=三级甲等|综合医院, n_units=383, confidence=high; 非实时, 不可当号源事实）",
+   "stale_reference": {
+    "hospital_id": "SH-084",
+    "dept_id": "D07533",
+    "slot_source": "cache",
+    "detail": "observed",
+    "status": "unknown",
+    "verified": false,
+    "earliest_date": null,
+    "earliest_days": null,
+    "fee_tier": "unknown",
+    "fee_tiers": {},
+    "fee_min_tier": null,
+    "tension": null,
+    "perennial_no_slot": false,
+    "lead_days": 5,
+    "release_cycle": "unknown",
+    "obs_count": 0,
+    "provenance": {
+     "file": "slots/profiles/slot_profile.json",
+     "captured_at": null,
+     "age_min": null,
+     "ttl_min": 90,
+     "ttl_ok": false
+    },
+    "note": "观察过期（age_min>TTL）, 按未核实处理; 可约提前5天"
+   },
+   "dept_name": "耳鼻喉科"
+  },
+  "SH-026": {
+   "hospital_id": "SH-026",
+   "dept_id": "D07506",
+   "slot_source": "cache",
+   "detail": "level_default",
+   "status": "unknown",
+   "verified": false,
+   "earliest_date": null,
+   "earliest_days": 6.0,
+   "fee_tier": "100+",
+   "fee_tiers": {
+    "15": 0.0,
+    "25": 0.0,
+    "50": 0.018,
+    "100+": 0.054
+   },
+   "fee_min_tier": "50",
+   "tension": null,
+   "perennial_no_slot": false,
+   "perennial_no_slot_rate": null,
+   "has_slot_rate": 0.661,
+   "confidence": "mid",
+   "provenance": {
+    "file": "slots/profiles/level_defaults.json",
+    "stratum_key": "三级甲等|专科疾病防治院",
+    "captured_at": null,
+    "age_min": null,
+    "ttl_min": null,
+    "ttl_ok": false
+   },
+   "note": "档位估算（stratum=三级甲等|专科疾病防治院, n_units=56, confidence=mid; 非实时, 不可当号源事实）",
+   "stale_reference": null,
+   "dept_name": "耳鼻咽喉头颈外科"
+  },
+  "SH-030": {
+   "hospital_id": "SH-030",
+   "dept_id": "D07513",
+   "slot_source": "cache",
+   "detail": "level_default",
+   "status": "unknown",
+   "verified": false,
+   "earliest_date": null,
+   "earliest_days": 5.0,
+   "fee_tier": "50",
+   "fee_tiers": {
+    "15": 0.0,
+    "25": 0.0,
+    "50": 0.003,
+    "100+": 0.0
+   },
+   "fee_min_tier": "50",
+   "tension": null,
+   "perennial_no_slot": false,
+   "perennial_no_slot_rate": null,
+   "has_slot_rate": 0.65,
+   "confidence": "high",
+   "provenance": {
+    "file": "slots/profiles/level_defaults.json",
+    "stratum_key": "三级甲等|综合医院",
+    "captured_at": null,
+    "age_min": null,
+    "ttl_min": null,
+    "ttl_ok": false
+   },
+   "note": "档位估算（stratum=三级甲等|综合医院, n_units=383, confidence=high; 非实时, 不可当号源事实）",
+   "stale_reference": {
+    "hospital_id": "SH-030",
+    "dept_id": "D07513",
+    "slot_source": "cache",
+    "detail": "observed",
+    "status": "unknown",
+    "verified": false,
+    "earliest_date": null,
+    "earliest_days": null,
+    "fee_tier": "unknown",
+    "fee_tiers": {},
+    "fee_min_tier": null,
+    "tension": null,
+    "perennial_no_slot": false,
+    "lead_days": 5,
+    "release_cycle": "unknown",
+    "obs_count": 0,
+    "provenance": {
+     "file": "slots/profiles/slot_profile.json",
+     "captured_at": null,
+     "age_min": null,
+     "ttl_min": 90,
+     "ttl_ok": false
+    },
+    "note": "观察过期（age_min>TTL）, 按未核实处理; 可约提前5天"
+   },
+   "dept_name": "耳鼻咽喉科"
+  },
+  "SH-003": {
+   "hospital_id": "SH-003",
+   "dept_id": "D07533",
+   "slot_source": "cache",
+   "detail": "level_default",
+   "status": "unknown",
+   "verified": false,
+   "earliest_date": null,
+   "earliest_days": 5.0,
+   "fee_tier": "50",
+   "fee_tiers": {
+    "15": 0.0,
+    "25": 0.0,
+    "50": 0.003,
+    "100+": 0.0
+   },
+   "fee_min_tier": "50",
+   "tension": null,
+   "perennial_no_slot": false,
+   "perennial_no_slot_rate": null,
+   "has_slot_rate": 0.65,
+   "confidence": "high",
+   "provenance": {
+    "file": "slots/profiles/level_defaults.json",
+    "stratum_key": "三级甲等|综合医院",
+    "captured_at": null,
+    "age_min": null,
+    "ttl_min": null,
+    "ttl_ok": false
+   },
+   "note": "档位估算（stratum=三级甲等|综合医院, n_units=383, confidence=high; 非实时, 不可当号源事实）",
+   "stale_reference": {
+    "hospital_id": "SH-003",
+    "dept_id": "D07533",
+    "slot_source": "cache",
+    "detail": "observed",
+    "status": "unknown",
+    "verified": false,
+    "earliest_date": null,
+    "earliest_days": null,
+    "fee_tier": "unknown",
+    "fee_tiers": {},
+    "fee_min_tier": null,
+    "tension": null,
+    "perennial_no_slot": false,
+    "lead_days": 5,
+    "release_cycle": "unknown",
+    "obs_count": 0,
+    "provenance": {
+     "file": "slots/profiles/slot_profile.json",
+     "captured_at": null,
+     "age_min": null,
+     "ttl_min": 90,
+     "ttl_ok": false
+    },
+    "note": "观察过期（age_min>TTL）, 按未核实处理; 可约提前5天"
+   },
+   "dept_name": "耳鼻喉科"
+  },
+  "SH-071": {
+   "hospital_id": "SH-071",
+   "dept_id": "D07506",
+   "slot_source": "cache",
+   "detail": "level_default",
+   "status": "unknown",
+   "verified": false,
+   "earliest_date": null,
+   "earliest_days": 5.0,
+   "fee_tier": "50",
+   "fee_tiers": {
+    "15": 0.0,
+    "25": 0.0,
+    "50": 0.003,
+    "100+": 0.0
+   },
+   "fee_min_tier": "50",
+   "tension": null,
+   "perennial_no_slot": false,
+   "perennial_no_slot_rate": null,
+   "has_slot_rate": 0.65,
+   "confidence": "high",
+   "provenance": {
+    "file": "slots/profiles/level_defaults.json",
+    "stratum_key": "三级甲等|综合医院",
+    "captured_at": null,
+    "age_min": null,
+    "ttl_min": null,
+    "ttl_ok": false
+   },
+   "note": "档位估算（stratum=三级甲等|综合医院, n_units=383, confidence=high; 非实时, 不可当号源事实）",
+   "stale_reference": null,
+   "dept_name": "耳鼻咽喉头颈外科"
+  },
+  "SH-074": {
+   "hospital_id": "SH-074",
+   "dept_id": "D07506",
+   "slot_source": "cache",
+   "detail": "level_default",
+   "status": "unknown",
+   "verified": false,
+   "earliest_date": null,
+   "earliest_days": 6.0,
+   "fee_tier": "100+",
+   "fee_tiers": {
+    "15": 0.0,
+    "25": 0.0,
+    "50": 0.018,
+    "100+": 0.054
+   },
+   "fee_min_tier": "50",
+   "tension": null,
+   "perennial_no_slot": false,
+   "perennial_no_slot_rate": null,
+   "has_slot_rate": 0.661,
+   "confidence": "mid",
+   "provenance": {
+    "file": "slots/profiles/level_defaults.json",
+    "stratum_key": "三级甲等|专科疾病防治院",
+    "captured_at": null,
+    "age_min": null,
+    "ttl_min": null,
+    "ttl_ok": false
+   },
+   "note": "档位估算（stratum=三级甲等|专科疾病防治院, n_units=56, confidence=mid; 非实时, 不可当号源事实）",
+   "stale_reference": null,
+   "dept_name": "耳鼻咽喉头颈外科"
+  },
+  "SH-053": {
+   "hospital_id": "SH-053",
+   "dept_id": "D07533",
+   "slot_source": "cache",
+   "detail": "level_default",
+   "status": "unknown",
+   "verified": false,
+   "earliest_date": null,
+   "earliest_days": 5.0,
+   "fee_tier": "50",
+   "fee_tiers": {
+    "15": 0.0,
+    "25": 0.0,
+    "50": 0.003,
+    "100+": 0.0
+   },
+   "fee_min_tier": "50",
+   "tension": null,
+   "perennial_no_slot": false,
+   "perennial_no_slot_rate": null,
+   "has_slot_rate": 0.65,
+   "confidence": "high",
+   "provenance": {
+    "file": "slots/profiles/level_defaults.json",
+    "stratum_key": "三级甲等|综合医院",
+    "captured_at": null,
+    "age_min": null,
+    "ttl_min": null,
+    "ttl_ok": false
+   },
+   "note": "档位估算（stratum=三级甲等|综合医院, n_units=383, confidence=high; 非实时, 不可当号源事实）",
+   "stale_reference": {
+    "hospital_id": "SH-053",
+    "dept_id": "D07533",
+    "slot_source": "cache",
+    "detail": "observed",
+    "status": "unknown",
+    "verified": false,
+    "earliest_date": null,
+    "earliest_days": null,
+    "fee_tier": "unknown",
+    "fee_tiers": {},
+    "fee_min_tier": null,
+    "tension": null,
+    "perennial_no_slot": false,
+    "lead_days": 5,
+    "release_cycle": "unknown",
+    "obs_count": 0,
+    "provenance": {
+     "file": "slots/profiles/slot_profile.json",
+     "captured_at": null,
+     "age_min": null,
+     "ttl_min": 90,
+     "ttl_ok": false
+    },
+    "note": "观察过期（age_min>TTL）, 按未核实处理; 可约提前5天"
+   },
+   "dept_name": "耳鼻喉科"
+  },
+  "SH-095": {
+   "hospital_id": "SH-095",
+   "dept_id": "D07533",
+   "slot_source": "cache",
+   "detail": "level_default",
+   "status": "unknown",
+   "verified": false,
+   "earliest_date": null,
+   "earliest_days": 5.0,
+   "fee_tier": "50",
+   "fee_tiers": {
+    "15": 0.0,
+    "25": 0.0,
+    "50": 0.003,
+    "100+": 0.0
+   },
+   "fee_min_tier": "50",
+   "tension": null,
+   "perennial_no_slot": false,
+   "perennial_no_slot_rate": null,
+   "has_slot_rate": 0.65,
+   "confidence": "high",
+   "provenance": {
+    "file": "slots/profiles/level_defaults.json",
+    "stratum_key": "三级甲等|综合医院",
+    "captured_at": null,
+    "age_min": null,
+    "ttl_min": null,
+    "ttl_ok": false
+   },
+   "note": "档位估算（stratum=三级甲等|综合医院, n_units=383, confidence=high; 非实时, 不可当号源事实）",
+   "stale_reference": {
+    "hospital_id": "SH-095",
+    "dept_id": "D07533",
+    "slot_source": "cache",
+    "detail": "observed",
+    "status": "unknown",
+    "verified": false,
+    "earliest_date": null,
+    "earliest_days": null,
+    "fee_tier": "unknown",
+    "fee_tiers": {},
+    "fee_min_tier": null,
+    "tension": null,
+    "perennial_no_slot": false,
+    "lead_days": 5,
+    "release_cycle": "unknown",
+    "obs_count": 0,
+    "provenance": {
+     "file": "slots/profiles/slot_profile.json",
+     "captured_at": null,
+     "age_min": null,
+     "ttl_min": 90,
+     "ttl_ok": false
+    },
+    "note": "观察过期（age_min>TTL）, 按未核实处理; 可约提前5天"
+   },
+   "dept_name": "耳鼻喉科"
+  },
+  "SH-020": {
+   "hospital_id": "SH-020",
+   "dept_id": "D07506",
+   "slot_source": "cache",
+   "detail": "level_default",
+   "status": "unknown",
+   "verified": false,
+   "earliest_date": null,
+   "earliest_days": 6.0,
+   "fee_tier": "100+",
+   "fee_tiers": {
+    "15": 0.0,
+    "25": 0.0,
+    "50": 0.018,
+    "100+": 0.054
+   },
+   "fee_min_tier": "50",
+   "tension": null,
+   "perennial_no_slot": false,
+   "perennial_no_slot_rate": null,
+   "has_slot_rate": 0.661,
+   "confidence": "mid",
+   "provenance": {
+    "file": "slots/profiles/level_defaults.json",
+    "stratum_key": "三级甲等|专科疾病防治院",
+    "captured_at": null,
+    "age_min": null,
+    "ttl_min": null,
+    "ttl_ok": false
+   },
+   "note": "档位估算（stratum=三级甲等|专科疾病防治院, n_units=56, confidence=mid; 非实时, 不可当号源事实）",
+   "stale_reference": null,
+   "dept_name": "耳鼻咽喉头颈外科"
+  },
+  "SH-019": {
+   "hospital_id": "SH-019",
+   "dept_id": "D07506",
+   "slot_source": "cache",
+   "detail": "level_default",
+   "status": "unknown",
+   "verified": false,
+   "earliest_date": null,
+   "earliest_days": 5.0,
+   "fee_tier": "50",
+   "fee_tiers": {
+    "15": 0.0,
+    "25": 0.0,
+    "50": 0.003,
+    "100+": 0.0
+   },
+   "fee_min_tier": "50",
+   "tension": null,
+   "perennial_no_slot": false,
+   "perennial_no_slot_rate": null,
+   "has_slot_rate": 0.65,
+   "confidence": "high",
+   "provenance": {
+    "file": "slots/profiles/level_defaults.json",
+    "stratum_key": "三级甲等|综合医院",
+    "captured_at": null,
+    "age_min": null,
+    "ttl_min": null,
+    "ttl_ok": false
+   },
+   "note": "档位估算（stratum=三级甲等|综合医院, n_units=383, confidence=high; 非实时, 不可当号源事实）",
+   "stale_reference": {
+    "hospital_id": "SH-019",
+    "dept_id": "D07506",
+    "slot_source": "cache",
+    "detail": "observed",
+    "status": "unknown",
+    "verified": false,
+    "earliest_date": null,
+    "earliest_days": null,
+    "fee_tier": "unknown",
+    "fee_tiers": {},
+    "fee_min_tier": null,
+    "tension": null,
+    "perennial_no_slot": false,
+    "lead_days": 4,
+    "release_cycle": "unknown",
+    "obs_count": 1,
+    "provenance": {
+     "file": "slots/profiles/slot_profile.json",
+     "captured_at": "2026-10-02T19:57:45",
+     "age_min": 5634.6,
+     "ttl_min": 90,
+     "ttl_ok": false
+    },
+    "note": "观察过期（age_min>TTL）, 按未核实处理; 可约提前4天"
+   },
+   "dept_name": "耳鼻咽喉头颈外科"
+  },
+  "SH-045": {
+   "hospital_id": "SH-045",
+   "dept_id": "D07533",
+   "slot_source": "cache",
+   "detail": "level_default",
+   "status": "unknown",
+   "verified": false,
+   "earliest_date": null,
+   "earliest_days": 6.0,
+   "fee_tier": "100+",
+   "fee_tiers": {
+    "15": 0.0,
+    "25": 0.0,
+    "50": 0.018,
+    "100+": 0.054
+   },
+   "fee_min_tier": "50",
+   "tension": null,
+   "perennial_no_slot": false,
+   "perennial_no_slot_rate": null,
+   "has_slot_rate": 0.661,
+   "confidence": "mid",
+   "provenance": {
+    "file": "slots/profiles/level_defaults.json",
+    "stratum_key": "三级甲等|专科医院",
+    "captured_at": null,
+    "age_min": null,
+    "ttl_min": null,
+    "ttl_ok": false
+   },
+   "note": "档位估算（stratum=三级甲等|专科医院, n_units=56, confidence=mid; 非实时, 不可当号源事实）",
+   "stale_reference": {
+    "hospital_id": "SH-045",
+    "dept_id": "D07533",
+    "slot_source": "cache",
+    "detail": "observed",
+    "status": "unknown",
+    "verified": false,
+    "earliest_date": null,
+    "earliest_days": null,
+    "fee_tier": "unknown",
+    "fee_tiers": {},
+    "fee_min_tier": null,
+    "tension": null,
+    "perennial_no_slot": false,
+    "lead_days": null,
+    "release_cycle": "unknown",
+    "obs_count": 0,
+    "provenance": {
+     "file": "slots/profiles/slot_profile.json",
+     "captured_at": null,
+     "age_min": null,
+     "ttl_min": 90,
+     "ttl_ok": false
+    },
+    "note": "观察过期（age_min>TTL）, 按未核实处理"
+   },
+   "dept_name": "耳鼻喉科"
+  }
+ },
+ "final": {
+  "recommendations": [
+   {
+    "rank": 1,
+    "hospital_id": "SH-018",
+    "name": "儿童医学中心",
+    "level": "三级甲等",
+    "type": "专科疾病防治院",
+    "district": "浦东新区",
+    "insurance": "yes",
+    "static_score": 0.9195,
+    "slot_utility": 1.0,
+    "final_score": 0.9195,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 1,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "100+",
+    "fee_tiers": {
+     "15": 0.0,
+     "25": 0.0,
+     "50": 0.018,
+     "100+": 0.054
+    },
+    "fee_min_tier": "50",
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": "D07513",
+    "dept": "耳鼻咽喉科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|专科疾病防治院, confidence=mid, 非实时, 不当作号源事实）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.36,
+      "v": 1.0,
+      "contrib": 0.36,
+      "note": "命中: 一站式特色门诊儿保科,新生儿,新生儿/婴幼儿,新生儿与儿童视网膜病 [p1/high]"
+     },
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 1.0,
+      "contrib": 0.22,
+      "note": "儿童专属机构"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.5964,
+      "contrib": 0.1073,
+      "note": "10.1km"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.5964,
+      "lost": 0.0726,
+      "note": "10.1km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.03,
+      "v": 0.74,
+      "lost": 0.0078,
+      "note": "步行7.8m"
+     }
+    ],
+    "final_rank": 1,
+    "why": "儿童医学中心（三级甲等/浦东新区）: 科室命中=命中: 一站式特色门诊儿保科,新生儿,新生儿/婴幼儿,新生儿（+0.36, match），人群适配(儿科能力)=儿童专属机构（+0.22, age_fit）。号源未核实（cache/level_default(档位先验,未核实)）, 仅按静态分排序, 不得当实时事实。",
+    "evidence": {
+     "static_score": 0.9195,
+     "slot_utility": 1.0,
+     "final_score": 0.9195,
+     "top3_contrib": [
+      {
+       "feature": "match",
+       "w": 0.36,
+       "v": 1.0,
+       "contrib": 0.36,
+       "note": "命中: 一站式特色门诊儿保科,新生儿,新生儿/婴幼儿,新生儿与儿童视网膜病 [p1/high]"
+      },
+      {
+       "feature": "age_fit",
+       "w": 0.22,
+       "v": 1.0,
+       "contrib": 0.22,
+       "note": "儿童专属机构"
+      },
+      {
+       "feature": "distance",
+       "w": 0.18,
+       "v": 0.5964,
+       "contrib": 0.1073,
+       "note": "10.1km"
+      }
+     ],
+     "deductions": [
+      {
+       "feature": "distance",
+       "w": 0.18,
+       "v": 0.5964,
+       "lost": 0.0726,
+       "note": "10.1km"
+      },
+      {
+       "feature": "metro",
+       "w": 0.03,
+       "v": 0.74,
+       "lost": 0.0078,
+       "note": "步行7.8m"
+      }
+     ],
+     "slot_info": {
+      "slot_source": "cache",
+      "detail": "level_default",
+      "status": "unknown",
+      "verified": false,
+      "earliest_date": null,
+      "earliest_days": 6.0,
+      "fee_tier": "100+",
+      "fee_tiers": {
+       "15": 0.0,
+       "25": 0.0,
+       "50": 0.018,
+       "100+": 0.054
+      },
+      "fee_min_tier": "50",
+      "tension": null,
+      "perennial_no_slot": false,
+      "days14_has": null,
+      "days14_total": null,
+      "provenance": {
+       "file": "slots/profiles/level_defaults.json",
+       "stratum_key": "三级甲等|专科疾病防治院",
+       "captured_at": null,
+       "age_min": null,
+       "ttl_min": null,
+       "ttl_ok": false
+      },
+      "note": "档位估算（stratum=三级甲等|专科疾病防治院, n_units=56, confidence=mid; 非实时, 不可当号源事实）"
+     },
+     "constraints": {
+      "max_wait_days": 7,
+      "price_cap_cny": null
+     },
+     "violations": []
+    },
+    "dept_tab": "耳鼻咽喉科",
+    "dept_raw": "耳鼻咽喉科",
+    "lng": 121.522575,
+    "lat": 31.205625,
+    "distance_km": 10.1
+   },
+   {
+    "rank": 2,
+    "hospital_id": "SH-084",
+    "name": "第十人民医院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "静安区",
+    "insurance": "yes",
+    "static_score": 0.9126,
+    "slot_utility": 1.0,
+    "final_score": 0.9126,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 2,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "50",
+    "fee_tiers": {
+     "15": 0.0,
+     "25": 0.0,
+     "50": 0.003,
+     "100+": 0.0
+    },
+    "fee_min_tier": "50",
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": "D07533",
+    "dept": "耳鼻喉科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|综合医院, confidence=high, 非实时, 不当作号源事实）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.36,
+      "v": 1.0,
+      "contrib": 0.36,
+      "note": "命中: 儿科,耳鼻喉科 [p1/high]"
+     },
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "contrib": 0.165,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.8839,
+      "contrib": 0.1591,
+      "note": "2.9km"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "lost": 0.055,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.8839,
+      "lost": 0.0209,
+      "note": "2.9km"
+     },
+     {
+      "feature": "bus",
+      "w": 0.03,
+      "v": 0.7737,
+      "lost": 0.0068,
+      "note": "3站"
+     }
+    ],
+    "final_rank": 2,
+    "why": "第十人民医院（三级甲等/静安区）: 科室命中=命中: 儿科,耳鼻喉科 [p1/high]（+0.36, match），人群适配(儿科能力)=有可约儿科类科室(非儿童专属机构)（+0.165, age_fit）。号源未核实（cache/level_default(档位先验,未核实)）, 仅按静态分排序, 不得当实时事实。",
+    "evidence": {
+     "static_score": 0.9126,
+     "slot_utility": 1.0,
+     "final_score": 0.9126,
+     "top3_contrib": [
+      {
+       "feature": "match",
+       "w": 0.36,
+       "v": 1.0,
+       "contrib": 0.36,
+       "note": "命中: 儿科,耳鼻喉科 [p1/high]"
+      },
+      {
+       "feature": "age_fit",
+       "w": 0.22,
+       "v": 0.75,
+       "contrib": 0.165,
+       "note": "有可约儿科类科室(非儿童专属机构)"
+      },
+      {
+       "feature": "distance",
+       "w": 0.18,
+       "v": 0.8839,
+       "contrib": 0.1591,
+       "note": "2.9km"
+      }
+     ],
+     "deductions": [
+      {
+       "feature": "age_fit",
+       "w": 0.22,
+       "v": 0.75,
+       "lost": 0.055,
+       "note": "有可约儿科类科室(非儿童专属机构)"
+      },
+      {
+       "feature": "distance",
+       "w": 0.18,
+       "v": 0.8839,
+       "lost": 0.0209,
+       "note": "2.9km"
+      },
+      {
+       "feature": "bus",
+       "w": 0.03,
+       "v": 0.7737,
+       "lost": 0.0068,
+       "note": "3站"
+      }
+     ],
+     "slot_info": {
+      "slot_source": "cache",
+      "detail": "level_default",
+      "status": "unknown",
+      "verified": false,
+      "earliest_date": null,
+      "earliest_days": 5.0,
+      "fee_tier": "50",
+      "fee_tiers": {
+       "15": 0.0,
+       "25": 0.0,
+       "50": 0.003,
+       "100+": 0.0
+      },
+      "fee_min_tier": "50",
+      "tension": null,
+      "perennial_no_slot": false,
+      "days14_has": null,
+      "days14_total": null,
+      "provenance": {
+       "file": "slots/profiles/level_defaults.json",
+       "stratum_key": "三级甲等|综合医院",
+       "captured_at": null,
+       "age_min": null,
+       "ttl_min": null,
+       "ttl_ok": false
+      },
+      "note": "档位估算（stratum=三级甲等|综合医院, n_units=383, confidence=high; 非实时, 不可当号源事实）"
+     },
+     "constraints": {
+      "max_wait_days": 7,
+      "price_cap_cny": null
+     },
+     "violations": []
+    },
+    "dept_tab": "耳鼻咽喉科",
+    "dept_raw": "耳鼻喉科门诊",
+    "lng": 121.454276,
+    "lat": 31.272886,
+    "distance_km": 2.9
+   },
+   {
+    "rank": 3,
+    "hospital_id": "SH-026",
+    "name": "儿童医院北京西路院区",
+    "level": "三级甲等",
+    "type": "专科疾病防治院",
+    "district": "静安区",
+    "insurance": "yes",
+    "static_score": 0.9057,
+    "slot_utility": 1.0,
+    "final_score": 0.9057,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 3,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "100+",
+    "fee_tiers": {
+     "15": 0.0,
+     "25": 0.0,
+     "50": 0.018,
+     "100+": 0.054
+    },
+    "fee_min_tier": "50",
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": "D07506",
+    "dept": "耳鼻咽喉头颈外科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|专科疾病防治院, confidence=mid, 非实时, 不当作号源事实）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.36,
+      "v": 1.0,
+      "contrib": 0.36,
+      "note": "命中: 新生儿科,耳鼻咽喉头颈外科 [p1/high]"
+     },
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 1.0,
+      "contrib": 0.22,
+      "note": "儿童专属机构"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.8783,
+      "contrib": 0.1581,
+      "note": "3.0km"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "key_specialty",
+      "w": 0.04,
+      "v": 0.0,
+      "lost": 0.04,
+      "note": "空（覆盖4.4%）"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.08,
+      "v": 0.7221,
+      "lost": 0.0222,
+      "note": "l2=35"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.8783,
+      "lost": 0.0219,
+      "note": "3.0km"
+     }
+    ],
+    "final_rank": 3,
+    "why": "儿童医院北京西路院区（三级甲等/静安区）: 科室命中=命中: 新生儿科,耳鼻咽喉头颈外科 [p1/high]（+0.36, match），人群适配(儿科能力)=儿童专属机构（+0.22, age_fit）。号源未核实（cache/level_default(档位先验,未核实)）, 仅按静态分排序, 不得当实时事实。",
+    "evidence": {
+     "static_score": 0.9057,
+     "slot_utility": 1.0,
+     "final_score": 0.9057,
+     "top3_contrib": [
+      {
+       "feature": "match",
+       "w": 0.36,
+       "v": 1.0,
+       "contrib": 0.36,
+       "note": "命中: 新生儿科,耳鼻咽喉头颈外科 [p1/high]"
+      },
+      {
+       "feature": "age_fit",
+       "w": 0.22,
+       "v": 1.0,
+       "contrib": 0.22,
+       "note": "儿童专属机构"
+      },
+      {
+       "feature": "distance",
+       "w": 0.18,
+       "v": 0.8783,
+       "contrib": 0.1581,
+       "note": "3.0km"
+      }
+     ],
+     "deductions": [
+      {
+       "feature": "key_specialty",
+       "w": 0.04,
+       "v": 0.0,
+       "lost": 0.04,
+       "note": "空（覆盖4.4%）"
+      },
+      {
+       "feature": "breadth",
+       "w": 0.08,
+       "v": 0.7221,
+       "lost": 0.0222,
+       "note": "l2=35"
+      },
+      {
+       "feature": "distance",
+       "w": 0.18,
+       "v": 0.8783,
+       "lost": 0.0219,
+       "note": "3.0km"
+      }
+     ],
+     "slot_info": {
+      "slot_source": "cache",
+      "detail": "level_default",
+      "status": "unknown",
+      "verified": false,
+      "earliest_date": null,
+      "earliest_days": 6.0,
+      "fee_tier": "100+",
+      "fee_tiers": {
+       "15": 0.0,
+       "25": 0.0,
+       "50": 0.018,
+       "100+": 0.054
+      },
+      "fee_min_tier": "50",
+      "tension": null,
+      "perennial_no_slot": false,
+      "days14_has": null,
+      "days14_total": null,
+      "provenance": {
+       "file": "slots/profiles/level_defaults.json",
+       "stratum_key": "三级甲等|专科疾病防治院",
+       "captured_at": null,
+       "age_min": null,
+       "ttl_min": null,
+       "ttl_ok": false
+      },
+      "note": "档位估算（stratum=三级甲等|专科疾病防治院, n_units=56, confidence=mid; 非实时, 不可当号源事实）"
+     },
+     "constraints": {
+      "max_wait_days": 7,
+      "price_cap_cny": null
+     },
+     "violations": []
+    },
+    "dept_tab": "儿科",
+    "dept_raw": "耳鼻咽喉头颈外科（北京西路）",
+    "lng": 121.447809,
+    "lat": 31.229987,
+    "distance_km": 3.0
+   }
+  ],
+  "top_list": [
+   {
+    "rank": 1,
+    "hospital_id": "SH-018",
+    "name": "儿童医学中心",
+    "level": "三级甲等",
+    "type": "专科疾病防治院",
+    "district": "浦东新区",
+    "insurance": "yes",
+    "static_score": 0.9195,
+    "slot_utility": 1.0,
+    "final_score": 0.9195,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 1,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "100+",
+    "fee_tiers": {
+     "15": 0.0,
+     "25": 0.0,
+     "50": 0.018,
+     "100+": 0.054
+    },
+    "fee_min_tier": "50",
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": "D07513",
+    "dept": "耳鼻咽喉科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|专科疾病防治院, confidence=mid, 非实时, 不当作号源事实）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.36,
+      "v": 1.0,
+      "contrib": 0.36,
+      "note": "命中: 一站式特色门诊儿保科,新生儿,新生儿/婴幼儿,新生儿与儿童视网膜病 [p1/high]"
+     },
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 1.0,
+      "contrib": 0.22,
+      "note": "儿童专属机构"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.5964,
+      "contrib": 0.1073,
+      "note": "10.1km"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.5964,
+      "lost": 0.0726,
+      "note": "10.1km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.03,
+      "v": 0.74,
+      "lost": 0.0078,
+      "note": "步行7.8m"
+     }
+    ],
+    "final_rank": 1,
+    "why": "儿童医学中心（三级甲等/浦东新区）: 科室命中=命中: 一站式特色门诊儿保科,新生儿,新生儿/婴幼儿,新生儿（+0.36, match），人群适配(儿科能力)=儿童专属机构（+0.22, age_fit）。号源未核实（cache/level_default(档位先验,未核实)）, 仅按静态分排序, 不得当实时事实。",
+    "evidence": {
+     "static_score": 0.9195,
+     "slot_utility": 1.0,
+     "final_score": 0.9195,
+     "top3_contrib": [
+      {
+       "feature": "match",
+       "w": 0.36,
+       "v": 1.0,
+       "contrib": 0.36,
+       "note": "命中: 一站式特色门诊儿保科,新生儿,新生儿/婴幼儿,新生儿与儿童视网膜病 [p1/high]"
+      },
+      {
+       "feature": "age_fit",
+       "w": 0.22,
+       "v": 1.0,
+       "contrib": 0.22,
+       "note": "儿童专属机构"
+      },
+      {
+       "feature": "distance",
+       "w": 0.18,
+       "v": 0.5964,
+       "contrib": 0.1073,
+       "note": "10.1km"
+      }
+     ],
+     "deductions": [
+      {
+       "feature": "distance",
+       "w": 0.18,
+       "v": 0.5964,
+       "lost": 0.0726,
+       "note": "10.1km"
+      },
+      {
+       "feature": "metro",
+       "w": 0.03,
+       "v": 0.74,
+       "lost": 0.0078,
+       "note": "步行7.8m"
+      }
+     ],
+     "slot_info": {
+      "slot_source": "cache",
+      "detail": "level_default",
+      "status": "unknown",
+      "verified": false,
+      "earliest_date": null,
+      "earliest_days": 6.0,
+      "fee_tier": "100+",
+      "fee_tiers": {
+       "15": 0.0,
+       "25": 0.0,
+       "50": 0.018,
+       "100+": 0.054
+      },
+      "fee_min_tier": "50",
+      "tension": null,
+      "perennial_no_slot": false,
+      "days14_has": null,
+      "days14_total": null,
+      "provenance": {
+       "file": "slots/profiles/level_defaults.json",
+       "stratum_key": "三级甲等|专科疾病防治院",
+       "captured_at": null,
+       "age_min": null,
+       "ttl_min": null,
+       "ttl_ok": false
+      },
+      "note": "档位估算（stratum=三级甲等|专科疾病防治院, n_units=56, confidence=mid; 非实时, 不可当号源事实）"
+     },
+     "constraints": {
+      "max_wait_days": 7,
+      "price_cap_cny": null
+     },
+     "violations": []
+    },
+    "dept_tab": "耳鼻咽喉科",
+    "dept_raw": "耳鼻咽喉科",
+    "lng": 121.522575,
+    "lat": 31.205625,
+    "distance_km": 10.1
+   },
+   {
+    "rank": 2,
+    "hospital_id": "SH-084",
+    "name": "第十人民医院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "静安区",
+    "insurance": "yes",
+    "static_score": 0.9126,
+    "slot_utility": 1.0,
+    "final_score": 0.9126,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 2,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "50",
+    "fee_tiers": {
+     "15": 0.0,
+     "25": 0.0,
+     "50": 0.003,
+     "100+": 0.0
+    },
+    "fee_min_tier": "50",
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": "D07533",
+    "dept": "耳鼻喉科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|综合医院, confidence=high, 非实时, 不当作号源事实）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.36,
+      "v": 1.0,
+      "contrib": 0.36,
+      "note": "命中: 儿科,耳鼻喉科 [p1/high]"
+     },
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "contrib": 0.165,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.8839,
+      "contrib": 0.1591,
+      "note": "2.9km"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "lost": 0.055,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.8839,
+      "lost": 0.0209,
+      "note": "2.9km"
+     },
+     {
+      "feature": "bus",
+      "w": 0.03,
+      "v": 0.7737,
+      "lost": 0.0068,
+      "note": "3站"
+     }
+    ],
+    "final_rank": 2,
+    "why": "第十人民医院（三级甲等/静安区）: 科室命中=命中: 儿科,耳鼻喉科 [p1/high]（+0.36, match），人群适配(儿科能力)=有可约儿科类科室(非儿童专属机构)（+0.165, age_fit）。号源未核实（cache/level_default(档位先验,未核实)）, 仅按静态分排序, 不得当实时事实。",
+    "evidence": {
+     "static_score": 0.9126,
+     "slot_utility": 1.0,
+     "final_score": 0.9126,
+     "top3_contrib": [
+      {
+       "feature": "match",
+       "w": 0.36,
+       "v": 1.0,
+       "contrib": 0.36,
+       "note": "命中: 儿科,耳鼻喉科 [p1/high]"
+      },
+      {
+       "feature": "age_fit",
+       "w": 0.22,
+       "v": 0.75,
+       "contrib": 0.165,
+       "note": "有可约儿科类科室(非儿童专属机构)"
+      },
+      {
+       "feature": "distance",
+       "w": 0.18,
+       "v": 0.8839,
+       "contrib": 0.1591,
+       "note": "2.9km"
+      }
+     ],
+     "deductions": [
+      {
+       "feature": "age_fit",
+       "w": 0.22,
+       "v": 0.75,
+       "lost": 0.055,
+       "note": "有可约儿科类科室(非儿童专属机构)"
+      },
+      {
+       "feature": "distance",
+       "w": 0.18,
+       "v": 0.8839,
+       "lost": 0.0209,
+       "note": "2.9km"
+      },
+      {
+       "feature": "bus",
+       "w": 0.03,
+       "v": 0.7737,
+       "lost": 0.0068,
+       "note": "3站"
+      }
+     ],
+     "slot_info": {
+      "slot_source": "cache",
+      "detail": "level_default",
+      "status": "unknown",
+      "verified": false,
+      "earliest_date": null,
+      "earliest_days": 5.0,
+      "fee_tier": "50",
+      "fee_tiers": {
+       "15": 0.0,
+       "25": 0.0,
+       "50": 0.003,
+       "100+": 0.0
+      },
+      "fee_min_tier": "50",
+      "tension": null,
+      "perennial_no_slot": false,
+      "days14_has": null,
+      "days14_total": null,
+      "provenance": {
+       "file": "slots/profiles/level_defaults.json",
+       "stratum_key": "三级甲等|综合医院",
+       "captured_at": null,
+       "age_min": null,
+       "ttl_min": null,
+       "ttl_ok": false
+      },
+      "note": "档位估算（stratum=三级甲等|综合医院, n_units=383, confidence=high; 非实时, 不可当号源事实）"
+     },
+     "constraints": {
+      "max_wait_days": 7,
+      "price_cap_cny": null
+     },
+     "violations": []
+    },
+    "dept_tab": "耳鼻咽喉科",
+    "dept_raw": "耳鼻喉科门诊",
+    "lng": 121.454276,
+    "lat": 31.272886,
+    "distance_km": 2.9
+   },
+   {
+    "rank": 3,
+    "hospital_id": "SH-026",
+    "name": "儿童医院北京西路院区",
+    "level": "三级甲等",
+    "type": "专科疾病防治院",
+    "district": "静安区",
+    "insurance": "yes",
+    "static_score": 0.9057,
+    "slot_utility": 1.0,
+    "final_score": 0.9057,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 3,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "100+",
+    "fee_tiers": {
+     "15": 0.0,
+     "25": 0.0,
+     "50": 0.018,
+     "100+": 0.054
+    },
+    "fee_min_tier": "50",
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": "D07506",
+    "dept": "耳鼻咽喉头颈外科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|专科疾病防治院, confidence=mid, 非实时, 不当作号源事实）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.36,
+      "v": 1.0,
+      "contrib": 0.36,
+      "note": "命中: 新生儿科,耳鼻咽喉头颈外科 [p1/high]"
+     },
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 1.0,
+      "contrib": 0.22,
+      "note": "儿童专属机构"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.8783,
+      "contrib": 0.1581,
+      "note": "3.0km"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "key_specialty",
+      "w": 0.04,
+      "v": 0.0,
+      "lost": 0.04,
+      "note": "空（覆盖4.4%）"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.08,
+      "v": 0.7221,
+      "lost": 0.0222,
+      "note": "l2=35"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.8783,
+      "lost": 0.0219,
+      "note": "3.0km"
+     }
+    ],
+    "final_rank": 3,
+    "why": "儿童医院北京西路院区（三级甲等/静安区）: 科室命中=命中: 新生儿科,耳鼻咽喉头颈外科 [p1/high]（+0.36, match），人群适配(儿科能力)=儿童专属机构（+0.22, age_fit）。号源未核实（cache/level_default(档位先验,未核实)）, 仅按静态分排序, 不得当实时事实。",
+    "evidence": {
+     "static_score": 0.9057,
+     "slot_utility": 1.0,
+     "final_score": 0.9057,
+     "top3_contrib": [
+      {
+       "feature": "match",
+       "w": 0.36,
+       "v": 1.0,
+       "contrib": 0.36,
+       "note": "命中: 新生儿科,耳鼻咽喉头颈外科 [p1/high]"
+      },
+      {
+       "feature": "age_fit",
+       "w": 0.22,
+       "v": 1.0,
+       "contrib": 0.22,
+       "note": "儿童专属机构"
+      },
+      {
+       "feature": "distance",
+       "w": 0.18,
+       "v": 0.8783,
+       "contrib": 0.1581,
+       "note": "3.0km"
+      }
+     ],
+     "deductions": [
+      {
+       "feature": "key_specialty",
+       "w": 0.04,
+       "v": 0.0,
+       "lost": 0.04,
+       "note": "空（覆盖4.4%）"
+      },
+      {
+       "feature": "breadth",
+       "w": 0.08,
+       "v": 0.7221,
+       "lost": 0.0222,
+       "note": "l2=35"
+      },
+      {
+       "feature": "distance",
+       "w": 0.18,
+       "v": 0.8783,
+       "lost": 0.0219,
+       "note": "3.0km"
+      }
+     ],
+     "slot_info": {
+      "slot_source": "cache",
+      "detail": "level_default",
+      "status": "unknown",
+      "verified": false,
+      "earliest_date": null,
+      "earliest_days": 6.0,
+      "fee_tier": "100+",
+      "fee_tiers": {
+       "15": 0.0,
+       "25": 0.0,
+       "50": 0.018,
+       "100+": 0.054
+      },
+      "fee_min_tier": "50",
+      "tension": null,
+      "perennial_no_slot": false,
+      "days14_has": null,
+      "days14_total": null,
+      "provenance": {
+       "file": "slots/profiles/level_defaults.json",
+       "stratum_key": "三级甲等|专科疾病防治院",
+       "captured_at": null,
+       "age_min": null,
+       "ttl_min": null,
+       "ttl_ok": false
+      },
+      "note": "档位估算（stratum=三级甲等|专科疾病防治院, n_units=56, confidence=mid; 非实时, 不可当号源事实）"
+     },
+     "constraints": {
+      "max_wait_days": 7,
+      "price_cap_cny": null
+     },
+     "violations": []
+    },
+    "dept_tab": "儿科",
+    "dept_raw": "耳鼻咽喉头颈外科（北京西路）",
+    "lng": 121.447809,
+    "lat": 31.229987,
+    "distance_km": 3.0
+   },
+   {
+    "rank": 4,
+    "hospital_id": "SH-030",
+    "name": "仁济医院西院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "黄浦区",
+    "insurance": "yes",
+    "static_score": 0.8994,
+    "slot_utility": 1.0,
+    "final_score": 0.8994,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 4,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "50",
+    "fee_tiers": {
+     "15": 0.0,
+     "25": 0.0,
+     "50": 0.003,
+     "100+": 0.0
+    },
+    "fee_min_tier": "50",
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": "D07513",
+    "dept": "耳鼻咽喉科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|综合医院, confidence=high, 非实时, 不当作号源事实）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.36,
+      "v": 1.0,
+      "contrib": 0.36,
+      "note": "命中: 儿科,儿科儿童过敏风湿免疫,耳鼻咽喉科,耳鼻咽喉科鼻窦炎 [p1/high]"
+     },
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "contrib": 0.165,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.7851,
+      "contrib": 0.1413,
+      "note": "5.4km"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "lost": 0.055,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.7851,
+      "lost": 0.0387,
+      "note": "5.4km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.03,
+      "v": 0.77,
+      "lost": 0.0069,
+      "note": "步行6.9m"
+     }
+    ],
+    "final_rank": 4,
+    "dept_tab": "耳鼻咽喉科",
+    "dept_raw": "耳鼻咽喉科",
+    "lng": 121.484342,
+    "lat": 31.23413,
+    "distance_km": 5.4
+   },
+   {
+    "rank": 5,
+    "hospital_id": "SH-003",
+    "name": "华山医院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "静安区",
+    "insurance": "yes",
+    "static_score": 0.8965,
+    "slot_utility": 1.0,
+    "final_score": 0.8965,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 5,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "50",
+    "fee_tiers": {
+     "15": 0.0,
+     "25": 0.0,
+     "50": 0.003,
+     "100+": 0.0
+    },
+    "fee_min_tier": "50",
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": "D07533",
+    "dept": "耳鼻喉科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|综合医院, confidence=high, 非实时, 不当作号源事实）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.36,
+      "v": 1.0,
+      "contrib": 0.36,
+      "note": "命中: 耳鼻咽喉科声带疾病门诊,耳鼻咽喉科头颈肿瘤,耳鼻喉科,耳鼻喉科眩晕 [p1/high]"
+     },
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "contrib": 0.165,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.823,
+      "contrib": 0.1481,
+      "note": "4.4km"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "lost": 0.055,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.823,
+      "lost": 0.0319,
+      "note": "4.4km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.03,
+      "v": 0.6733,
+      "lost": 0.0098,
+      "note": "步行9.8m"
+     }
+    ],
+    "final_rank": 5,
+    "dept_tab": "耳鼻咽喉科",
+    "dept_raw": "耳鼻喉科",
+    "lng": 121.443589,
+    "lat": 31.215463,
+    "distance_km": 4.4
+   },
+   {
+    "rank": 6,
+    "hospital_id": "SH-071",
+    "name": "同济医院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "普陀区",
+    "insurance": "yes",
+    "static_score": 0.8904,
+    "slot_utility": 1.0,
+    "final_score": 0.8904,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 6,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "50",
+    "fee_tiers": {
+     "15": 0.0,
+     "25": 0.0,
+     "50": 0.003,
+     "100+": 0.0
+    },
+    "fee_min_tier": "50",
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": "D07506",
+    "dept": "耳鼻咽喉头颈外科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|综合医院, confidence=high, 非实时, 不当作号源事实）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.36,
+      "v": 1.0,
+      "contrib": 0.36,
+      "note": "命中: 儿科,耳鼻咽喉头颈外科,耳鼻咽喉室 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.9466,
+      "contrib": 0.1704,
+      "note": "1.3km"
+     },
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "contrib": 0.165,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "lost": 0.055,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "key_specialty",
+      "w": 0.04,
+      "v": 0.0,
+      "lost": 0.04,
+      "note": "空（覆盖4.4%）"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.9466,
+      "lost": 0.0096,
+      "note": "1.3km"
+     }
+    ],
+    "final_rank": 6,
+    "dept_tab": "耳鼻咽喉科",
+    "dept_raw": "耳鼻咽喉头颈外科",
+    "lng": 121.430922,
+    "lat": 31.266087,
+    "distance_km": 1.3
+   },
+   {
+    "rank": 7,
+    "hospital_id": "SH-074",
+    "name": "儿科医院",
+    "level": "三级甲等",
+    "type": "专科疾病防治院",
+    "district": "闵行区",
+    "insurance": "yes",
+    "static_score": 0.8902,
+    "slot_utility": 1.0,
+    "final_score": 0.8902,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 7,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "100+",
+    "fee_tiers": {
+     "15": 0.0,
+     "25": 0.0,
+     "50": 0.018,
+     "100+": 0.054
+    },
+    "fee_min_tier": "50",
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": "D07506",
+    "dept": "耳鼻咽喉头颈外科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|专科疾病防治院, confidence=mid, 非实时, 不当作号源事实）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.36,
+      "v": 1.0,
+      "contrib": 0.36,
+      "note": "命中: 儿保发育行为门诊,小儿实体肿瘤MDT,小儿疝外科门诊,新生儿中枢感染随访 [p1/high]"
+     },
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 1.0,
+      "contrib": 0.22,
+      "note": "儿童专属机构"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.4746,
+      "contrib": 0.0854,
+      "note": "13.1km"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.4746,
+      "lost": 0.0946,
+      "note": "13.1km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.03,
+      "v": 0.72,
+      "lost": 0.0084,
+      "note": "步行8.4m"
+     },
+     {
+      "feature": "bus",
+      "w": 0.03,
+      "v": 0.7737,
+      "lost": 0.0068,
+      "note": "3站"
+     }
+    ],
+    "final_rank": 7,
+    "dept_tab": "耳鼻咽喉科",
+    "dept_raw": "耳鼻咽喉头颈外科",
+    "lng": 121.395463,
+    "lat": 31.140514,
+    "distance_km": 13.1
+   },
+   {
+    "rank": 8,
+    "hospital_id": "SH-053",
+    "name": "长征医院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "黄浦区",
+    "insurance": "yes",
+    "static_score": 0.8825,
+    "slot_utility": 1.0,
+    "final_score": 0.8825,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 8,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "50",
+    "fee_tiers": {
+     "15": 0.0,
+     "25": 0.0,
+     "50": 0.003,
+     "100+": 0.0
+    },
+    "fee_min_tier": "50",
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": "D07533",
+    "dept": "耳鼻喉科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|综合医院, confidence=high, 非实时, 不当作号源事实）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.36,
+      "v": 1.0,
+      "contrib": 0.36,
+      "note": "命中: 儿科,耳鼻喉科 [p1/high]"
+     },
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "contrib": 0.165,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.8374,
+      "contrib": 0.1507,
+      "note": "4.1km"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "lost": 0.055,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.8374,
+      "lost": 0.0293,
+      "note": "4.1km"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.08,
+      "v": 0.7842,
+      "lost": 0.0173,
+      "note": "l2=48"
+     }
+    ],
+    "final_rank": 8,
+    "dept_tab": "耳鼻喉科",
+    "dept_raw": "耳鼻喉科门诊",
+    "lng": 121.467456,
+    "lat": 31.23263,
+    "distance_km": 4.1
+   },
+   {
+    "rank": 9,
+    "hospital_id": "SH-095",
+    "name": "第一人民医院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "虹口区",
+    "insurance": "yes",
+    "static_score": 0.8783,
+    "slot_utility": 1.0,
+    "final_score": 0.8783,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 9,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "50",
+    "fee_tiers": {
+     "15": 0.0,
+     "25": 0.0,
+     "50": 0.003,
+     "100+": 0.0
+    },
+    "fee_min_tier": "50",
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": "D07533",
+    "dept": "耳鼻喉科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|综合医院, confidence=high, 非实时, 不当作号源事实）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.36,
+      "v": 1.0,
+      "contrib": 0.36,
+      "note": "命中: 新生儿科,耳鼻喉科 [p1/high]"
+     },
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "contrib": 0.165,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.7876,
+      "contrib": 0.1418,
+      "note": "5.3km"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "lost": 0.055,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.7876,
+      "lost": 0.0382,
+      "note": "5.3km"
+     },
+     {
+      "feature": "bus",
+      "w": 0.03,
+      "v": 0.6131,
+      "lost": 0.0116,
+      "note": "2站"
+     }
+    ],
+    "final_rank": 9,
+    "dept_tab": "耳鼻咽喉科",
+    "dept_raw": "耳鼻喉科",
+    "lng": 121.488777,
+    "lat": 31.253207,
+    "distance_km": 5.3
+   },
+   {
+    "rank": 10,
+    "hospital_id": "SH-020",
+    "name": "儿童医院泸定路院区",
+    "level": "三级甲等",
+    "type": "专科疾病防治院",
+    "district": "普陀区",
+    "insurance": "yes",
+    "static_score": 0.8759,
+    "slot_utility": 1.0,
+    "final_score": 0.8759,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 10,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "100+",
+    "fee_tiers": {
+     "15": 0.0,
+     "25": 0.0,
+     "50": 0.018,
+     "100+": 0.054
+    },
+    "fee_min_tier": "50",
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": "D07506",
+    "dept": "耳鼻咽喉头颈外科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|专科疾病防治院, confidence=mid, 非实时, 不当作号源事实）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.36,
+      "v": 1.0,
+      "contrib": 0.36,
+      "note": "命中: 新生儿科,耳鼻咽喉头颈外科 [p1/high]"
+     },
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 1.0,
+      "contrib": 0.22,
+      "note": "儿童专属机构"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.7867,
+      "contrib": 0.1416,
+      "note": "5.3km"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "key_specialty",
+      "w": 0.04,
+      "v": 0.0,
+      "lost": 0.04,
+      "note": "空（覆盖4.4%）"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.7867,
+      "lost": 0.0384,
+      "note": "5.3km"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.08,
+      "v": 0.7579,
+      "lost": 0.0194,
+      "note": "l2=42"
+     }
+    ],
+    "final_rank": 10,
+    "dept_tab": "儿科",
+    "dept_raw": "耳鼻咽喉头颈外科",
+    "lng": 121.386582,
+    "lat": 31.227178,
+    "distance_km": 5.3
+   },
+   {
+    "rank": 11,
+    "hospital_id": "SH-019",
+    "name": "中山医院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "徐汇区",
+    "insurance": "yes",
+    "static_score": 0.8675,
+    "slot_utility": 1.0,
+    "final_score": 0.8675,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 11,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "50",
+    "fee_tiers": {
+     "15": 0.0,
+     "25": 0.0,
+     "50": 0.003,
+     "100+": 0.0
+    },
+    "fee_min_tier": "50",
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": "D07506",
+    "dept": "耳鼻咽喉头颈外科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|综合医院, confidence=high, 非实时, 不当作号源事实）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.36,
+      "v": 1.0,
+      "contrib": 0.36,
+      "note": "命中: 儿科中心,耳鼻咽喉头颈外科 [p1/high]"
+     },
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "contrib": 0.165,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.7278,
+      "contrib": 0.131,
+      "note": "6.8km"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "lost": 0.055,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.7278,
+      "lost": 0.049,
+      "note": "6.8km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.03,
+      "v": 0.5967,
+      "lost": 0.0121,
+      "note": "步行12.1m"
+     }
+    ],
+    "final_rank": 11,
+    "dept_tab": "耳鼻咽喉科",
+    "dept_raw": "耳鼻咽喉头颈外科",
+    "lng": 121.456796,
+    "lat": 31.196518,
+    "distance_km": 6.8
+   },
+   {
+    "rank": 12,
+    "hospital_id": "SH-045",
+    "name": "上海市中医医院（芷江院区）",
+    "level": "三级甲等",
+    "type": "专科医院",
+    "district": "静安区",
+    "insurance": "yes",
+    "static_score": 0.8546,
+    "slot_utility": 1.0,
+    "final_score": 0.8546,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 12,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "100+",
+    "fee_tiers": {
+     "15": 0.0,
+     "25": 0.0,
+     "50": 0.018,
+     "100+": 0.054
+    },
+    "fee_min_tier": "50",
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": "D07533",
+    "dept": "耳鼻喉科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|专科医院, confidence=mid, 非实时, 不当作号源事实）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.36,
+      "v": 1.0,
+      "contrib": 0.36,
+      "note": "命中: 儿科,儿科小膏方,小儿再障贫血,小儿厌食 [p1/high]"
+     },
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "contrib": 0.165,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.8517,
+      "contrib": 0.1533,
+      "note": "3.7km"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "lost": 0.055,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "key_specialty",
+      "w": 0.04,
+      "v": 0.0,
+      "lost": 0.04,
+      "note": "空（覆盖4.4%）"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.8517,
+      "lost": 0.0267,
+      "note": "3.7km"
+     }
+    ],
+    "final_rank": 12,
+    "dept_tab": "中医科",
+    "dept_raw": "耳鼻喉科",
+    "lng": 121.471463,
+    "lat": 31.259376,
+    "distance_km": 3.7
+   },
+   {
+    "rank": 13,
+    "hospital_id": "SH-087",
+    "name": "第六人民医院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "徐汇区",
+    "insurance": "yes",
+    "static_score": 0.8546,
+    "slot_utility": 1.0,
+    "final_score": 0.8546,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 13,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "fee_tiers": null,
+    "fee_min_tier": null,
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.36,
+      "v": 1.0,
+      "contrib": 0.36,
+      "note": "命中: 儿科,小儿运动损伤,小儿骨病和遗传门诊,小儿骨科 [p1/high]"
+     },
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "contrib": 0.165,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.665,
+      "contrib": 0.1197,
+      "note": "8.4km"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.665,
+      "lost": 0.0603,
+      "note": "8.4km"
+     },
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "lost": 0.055,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "bus",
+      "w": 0.03,
+      "v": 0.3869,
+      "lost": 0.0184,
+      "note": "1站"
+     }
+    ],
+    "final_rank": 13,
+    "lng": 121.423925,
+    "lat": 31.179283,
+    "distance_km": 8.4
+   },
+   {
+    "rank": 14,
+    "hospital_id": "SH-075",
+    "name": "曙光医院西院",
+    "level": "三级甲等",
+    "type": "专科医院",
+    "district": "黄浦区",
+    "insurance": "yes",
+    "static_score": 0.853,
+    "slot_utility": 1.0,
+    "final_score": 0.853,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 14,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "fee_tiers": null,
+    "fee_min_tier": null,
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.36,
+      "v": 1.0,
+      "contrib": 0.36,
+      "note": "命中: 儿科,小儿哮喘,小儿抽动多动,小儿腺样体 [p1/high]"
+     },
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "contrib": 0.165,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.7776,
+      "contrib": 0.14,
+      "note": "5.6km"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "lost": 0.055,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.7776,
+      "lost": 0.04,
+      "note": "5.6km"
+     },
+     {
+      "feature": "key_specialty",
+      "w": 0.04,
+      "v": 0.0,
+      "lost": 0.04,
+      "note": "空（覆盖4.4%）"
+     }
+    ],
+    "final_rank": 14,
+    "lng": 121.478483,
+    "lat": 31.222836,
+    "distance_km": 5.6
+   },
+   {
+    "rank": 15,
+    "hospital_id": "SH-207",
+    "name": "普陀区人民医院",
+    "level": "二级甲等",
+    "type": "综合医院",
+    "district": "普陀区",
+    "insurance": "yes",
+    "static_score": 0.8485,
+    "slot_utility": 1.0,
+    "final_score": 0.8485,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 15,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "fee_tiers": null,
+    "fee_min_tier": null,
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.36,
+      "v": 1.0,
+      "contrib": 0.36,
+      "note": "命中: 儿科,耳鼻咽喉科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.9512,
+      "contrib": 0.1712,
+      "note": "1.2km"
+     },
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "contrib": 0.165,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "lost": 0.055,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "key_specialty",
+      "w": 0.04,
+      "v": 0.0,
+      "lost": 0.04,
+      "note": "空（覆盖4.4%）"
+     },
+     {
+      "feature": "level",
+      "w": 0.06,
+      "v": 0.5,
+      "lost": 0.03,
+      "note": "二级甲等"
+     }
+    ],
+    "final_rank": 15,
+    "lng": 121.441528,
+    "lat": 31.246059,
+    "distance_km": 1.2
+   },
+   {
+    "rank": 16,
+    "hospital_id": "SH-077",
+    "name": "静安区中心医院",
+    "level": "三级乙等",
+    "type": "综合医院",
+    "district": "静安区",
+    "insurance": "yes",
+    "static_score": 0.8463,
+    "slot_utility": 1.0,
+    "final_score": 0.8463,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 16,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "fee_tiers": null,
+    "fee_min_tier": null,
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.36,
+      "v": 1.0,
+      "contrib": 0.36,
+      "note": "命中: 耳鼻喉科 [p1/high]"
+     },
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "contrib": 0.165,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.8773,
+      "contrib": 0.1579,
+      "note": "3.1km"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "lost": 0.055,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "key_specialty",
+      "w": 0.04,
+      "v": 0.0,
+      "lost": 0.04,
+      "note": "空（覆盖4.4%）"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.8773,
+      "lost": 0.0221,
+      "note": "3.1km"
+     }
+    ],
+    "final_rank": 16,
+    "lng": 121.449798,
+    "lat": 31.230684,
+    "distance_km": 3.1
+   },
+   {
+    "rank": 17,
+    "hospital_id": "SH-083",
+    "name": "普陀区中心医院",
+    "level": "三级乙等",
+    "type": "综合医院",
+    "district": "普陀区",
+    "insurance": "yes",
+    "static_score": 0.8412,
+    "slot_utility": 1.0,
+    "final_score": 0.8412,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 17,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "fee_tiers": null,
+    "fee_min_tier": null,
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.36,
+      "v": 1.0,
+      "contrib": 0.36,
+      "note": "命中: 儿科,耳鼻咽喉科 [p1/high]"
+     },
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "contrib": 0.165,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.8766,
+      "contrib": 0.1578,
+      "note": "3.1km"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "lost": 0.055,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "key_specialty",
+      "w": 0.04,
+      "v": 0.0,
+      "lost": 0.04,
+      "note": "空（覆盖4.4%）"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.8766,
+      "lost": 0.0222,
+      "note": "3.1km"
+     }
+    ],
+    "final_rank": 17,
+    "lng": 121.404033,
+    "lat": 31.241605,
+    "distance_km": 3.1
+   },
+   {
+    "rank": 18,
+    "hospital_id": "SH-064",
+    "name": "市中西医结合医院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "虹口区",
+    "insurance": "yes",
+    "static_score": 0.8406,
+    "slot_utility": 1.0,
+    "final_score": 0.8406,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 18,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "fee_tiers": null,
+    "fee_min_tier": null,
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.36,
+      "v": 1.0,
+      "contrib": 0.36,
+      "note": "命中: 儿科,小儿咳喘,小儿推拿,耳鼻咽喉科 [p1/high]"
+     },
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "contrib": 0.165,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.7008,
+      "contrib": 0.1261,
+      "note": "7.5km"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "lost": 0.055,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.7008,
+      "lost": 0.0539,
+      "note": "7.5km"
+     },
+     {
+      "feature": "key_specialty",
+      "w": 0.04,
+      "v": 0.0,
+      "lost": 0.04,
+      "note": "空（覆盖4.4%）"
+     }
+    ],
+    "final_rank": 18,
+    "lng": 121.511548,
+    "lat": 31.257178,
+    "distance_km": 7.5
+   },
+   {
+    "rank": 19,
+    "hospital_id": "SH-062",
+    "name": "岳阳中西医结合医院",
+    "level": "三级甲等",
+    "type": "专科医院",
+    "district": "虹口区",
+    "insurance": "yes",
+    "static_score": 0.8399,
+    "slot_utility": 1.0,
+    "final_score": 0.8399,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 19,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "fee_tiers": null,
+    "fee_min_tier": null,
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.36,
+      "v": 1.0,
+      "contrib": 0.36,
+      "note": "命中: 儿科,耳鼻咽喉科 [p1/high]"
+     },
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "contrib": 0.165,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.7398,
+      "contrib": 0.1332,
+      "note": "6.5km"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "lost": 0.055,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.7398,
+      "lost": 0.0468,
+      "note": "6.5km"
+     },
+     {
+      "feature": "key_specialty",
+      "w": 0.04,
+      "v": 0.0,
+      "lost": 0.04,
+      "note": "空（覆盖4.4%）"
+     }
+    ],
+    "final_rank": 19,
+    "lng": 121.487719,
+    "lat": 31.289276,
+    "distance_km": 6.5
+   },
+   {
+    "rank": 20,
+    "hospital_id": "SH-092",
+    "name": "岳阳中西医结合医院青海路门诊部",
+    "level": "三级甲等",
+    "type": "专科医院",
+    "district": "静安区",
+    "insurance": "yes",
+    "static_score": 0.8385,
+    "slot_utility": 1.0,
+    "final_score": 0.8385,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 20,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "fee_tiers": null,
+    "fee_min_tier": null,
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.36,
+      "v": 1.0,
+      "contrib": 0.36,
+      "note": "命中: 儿科,耳鼻咽喉科 [p1/high]"
+     },
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "contrib": 0.165,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.8408,
+      "contrib": 0.1513,
+      "note": "4.0km"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "age_fit",
+      "w": 0.22,
+      "v": 0.75,
+      "lost": 0.055,
+      "note": "有可约儿科类科室(非儿童专属机构)"
+     },
+     {
+      "feature": "key_specialty",
+      "w": 0.04,
+      "v": 0.0,
+      "lost": 0.04,
+      "note": "空（覆盖4.4%）"
+     },
+     {
+      "feature": "distance",
+      "w": 0.18,
+      "v": 0.8408,
+      "lost": 0.0287,
+      "note": "4.0km"
+     }
+    ],
+    "final_rank": 20,
+    "lng": 121.463923,
+    "lat": 31.230142,
+    "distance_km": 4.0
+   }
+  ],
+  "excluded": [],
+  "fallback_all_unverified": true,
+  "n_verified": 0,
+  "n_total": 60,
+  "top_n": 20
+ },
+ "booking": {
+  "dry_run": true,
+  "executed": false,
+  "steps": [
+   "1. 打开「随申办」App（包名 mobi.w3studio.apps.android.shsmy.phone）",
+   "2. 首页 →「预约挂号」→「全部医院 (444)」",
+   "3. 检索并选择医院: 儿童医学中心（浦东新区, 主院区）",
+   "4. L1 选科室页找到「耳鼻咽喉科」tab, 点「耳鼻咽喉科」行进入科室页（注意: 同 tab 下可能有多个含相似字样的科室, 以该行为准; L2 页自带日期条）",
+   "5. 选择日期: 待定（最早号源未核实, 到院/到页后再选）（最早可约; 日期条若显示无号则换日期/医生）",
+   "6. 选择医生与时段 →「去预约」（医生列表来自 SlotResult.doctors, is_target 标记目标医生）",
+   "7. 填写实名信息 + 短信验证码（用户手动完成, 脚本不触碰凭据）",
+   "8. 确认预约 → 支付（用户手动完成）"
+  ],
+  "note": "dry-run（默认开）: 仅打印将执行的步骤序列; 不真发、不提交、不支付。"
+ },
+ "candidates_static": [
+  {
+   "rank": 1,
+   "hospital_id": "SH-018",
+   "name": "儿童医学中心",
+   "level": "三级甲等",
+   "type": "专科疾病防治院",
+   "district": "浦东新区",
+   "insurance": "yes",
+   "score": 0.9195,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 一站式特色门诊儿保科,新生儿,新生儿/婴幼儿,新生儿与儿童视网膜病 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 1.0,
+     "contrib": 0.22,
+     "note": "儿童专属机构"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.5964,
+     "contrib": 0.1073,
+     "note": "10.1km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.5964,
+     "lost": 0.0726,
+     "note": "10.1km"
+    },
+    {
+     "feature": "metro",
+     "w": 0.03,
+     "v": 0.74,
+     "lost": 0.0078,
+     "note": "步行7.8m"
+    }
+   ],
+   "lng": 121.522575,
+   "lat": 31.205625
+  },
+  {
+   "rank": 2,
+   "hospital_id": "SH-084",
+   "name": "第十人民医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.9126,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,耳鼻喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.8839,
+     "contrib": 0.1591,
+     "note": "2.9km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.8839,
+     "lost": 0.0209,
+     "note": "2.9km"
+    },
+    {
+     "feature": "bus",
+     "w": 0.03,
+     "v": 0.7737,
+     "lost": 0.0068,
+     "note": "3站"
+    }
+   ],
+   "lng": 121.454276,
+   "lat": 31.272886
+  },
+  {
+   "rank": 3,
+   "hospital_id": "SH-026",
+   "name": "儿童医院北京西路院区",
+   "level": "三级甲等",
+   "type": "专科疾病防治院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.9057,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 新生儿科,耳鼻咽喉头颈外科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 1.0,
+     "contrib": 0.22,
+     "note": "儿童专属机构"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.8783,
+     "contrib": 0.1581,
+     "note": "3.0km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.08,
+     "v": 0.7221,
+     "lost": 0.0222,
+     "note": "l2=35"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.8783,
+     "lost": 0.0219,
+     "note": "3.0km"
+    }
+   ],
+   "lng": 121.447809,
+   "lat": 31.229987
+  },
+  {
+   "rank": 4,
+   "hospital_id": "SH-030",
+   "name": "仁济医院西院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "黄浦区",
+   "insurance": "yes",
+   "score": 0.8994,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,儿科儿童过敏风湿免疫,耳鼻咽喉科,耳鼻咽喉科鼻窦炎 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7851,
+     "contrib": 0.1413,
+     "note": "5.4km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7851,
+     "lost": 0.0387,
+     "note": "5.4km"
+    },
+    {
+     "feature": "metro",
+     "w": 0.03,
+     "v": 0.77,
+     "lost": 0.0069,
+     "note": "步行6.9m"
+    }
+   ],
+   "lng": 121.484342,
+   "lat": 31.23413
+  },
+  {
+   "rank": 5,
+   "hospital_id": "SH-003",
+   "name": "华山医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.8965,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 耳鼻咽喉科声带疾病门诊,耳鼻咽喉科头颈肿瘤,耳鼻喉科,耳鼻喉科眩晕 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.823,
+     "contrib": 0.1481,
+     "note": "4.4km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.823,
+     "lost": 0.0319,
+     "note": "4.4km"
+    },
+    {
+     "feature": "metro",
+     "w": 0.03,
+     "v": 0.6733,
+     "lost": 0.0098,
+     "note": "步行9.8m"
+    }
+   ],
+   "lng": 121.443589,
+   "lat": 31.215463
+  },
+  {
+   "rank": 6,
+   "hospital_id": "SH-071",
+   "name": "同济医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "普陀区",
+   "insurance": "yes",
+   "score": 0.8904,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,耳鼻咽喉头颈外科,耳鼻咽喉室 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.9466,
+     "contrib": 0.1704,
+     "note": "1.3km"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.9466,
+     "lost": 0.0096,
+     "note": "1.3km"
+    }
+   ],
+   "lng": 121.430922,
+   "lat": 31.266087
+  },
+  {
+   "rank": 7,
+   "hospital_id": "SH-074",
+   "name": "儿科医院",
+   "level": "三级甲等",
+   "type": "专科疾病防治院",
+   "district": "闵行区",
+   "insurance": "yes",
+   "score": 0.8902,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿保发育行为门诊,小儿实体肿瘤MDT,小儿疝外科门诊,新生儿中枢感染随访 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 1.0,
+     "contrib": 0.22,
+     "note": "儿童专属机构"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.4746,
+     "contrib": 0.0854,
+     "note": "13.1km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.4746,
+     "lost": 0.0946,
+     "note": "13.1km"
+    },
+    {
+     "feature": "metro",
+     "w": 0.03,
+     "v": 0.72,
+     "lost": 0.0084,
+     "note": "步行8.4m"
+    },
+    {
+     "feature": "bus",
+     "w": 0.03,
+     "v": 0.7737,
+     "lost": 0.0068,
+     "note": "3站"
+    }
+   ],
+   "lng": 121.395463,
+   "lat": 31.140514
+  },
+  {
+   "rank": 8,
+   "hospital_id": "SH-053",
+   "name": "长征医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "黄浦区",
+   "insurance": "yes",
+   "score": 0.8825,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,耳鼻喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.8374,
+     "contrib": 0.1507,
+     "note": "4.1km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.8374,
+     "lost": 0.0293,
+     "note": "4.1km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.08,
+     "v": 0.7842,
+     "lost": 0.0173,
+     "note": "l2=48"
+    }
+   ],
+   "lng": 121.467456,
+   "lat": 31.23263
+  },
+  {
+   "rank": 9,
+   "hospital_id": "SH-095",
+   "name": "第一人民医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "虹口区",
+   "insurance": "yes",
+   "score": 0.8783,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 新生儿科,耳鼻喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7876,
+     "contrib": 0.1418,
+     "note": "5.3km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7876,
+     "lost": 0.0382,
+     "note": "5.3km"
+    },
+    {
+     "feature": "bus",
+     "w": 0.03,
+     "v": 0.6131,
+     "lost": 0.0116,
+     "note": "2站"
+    }
+   ],
+   "lng": 121.488777,
+   "lat": 31.253207
+  },
+  {
+   "rank": 10,
+   "hospital_id": "SH-020",
+   "name": "儿童医院泸定路院区",
+   "level": "三级甲等",
+   "type": "专科疾病防治院",
+   "district": "普陀区",
+   "insurance": "yes",
+   "score": 0.8759,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 新生儿科,耳鼻咽喉头颈外科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 1.0,
+     "contrib": 0.22,
+     "note": "儿童专属机构"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7867,
+     "contrib": 0.1416,
+     "note": "5.3km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7867,
+     "lost": 0.0384,
+     "note": "5.3km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.08,
+     "v": 0.7579,
+     "lost": 0.0194,
+     "note": "l2=42"
+    }
+   ],
+   "lng": 121.386582,
+   "lat": 31.227178
+  },
+  {
+   "rank": 11,
+   "hospital_id": "SH-019",
+   "name": "中山医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "徐汇区",
+   "insurance": "yes",
+   "score": 0.8675,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科中心,耳鼻咽喉头颈外科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7278,
+     "contrib": 0.131,
+     "note": "6.8km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7278,
+     "lost": 0.049,
+     "note": "6.8km"
+    },
+    {
+     "feature": "metro",
+     "w": 0.03,
+     "v": 0.5967,
+     "lost": 0.0121,
+     "note": "步行12.1m"
+    }
+   ],
+   "lng": 121.456796,
+   "lat": 31.196518
+  },
+  {
+   "rank": 12,
+   "hospital_id": "SH-045",
+   "name": "上海市中医医院（芷江院区）",
+   "level": "三级甲等",
+   "type": "专科医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.8546,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,儿科小膏方,小儿再障贫血,小儿厌食 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.8517,
+     "contrib": 0.1533,
+     "note": "3.7km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.8517,
+     "lost": 0.0267,
+     "note": "3.7km"
+    }
+   ],
+   "lng": 121.471463,
+   "lat": 31.259376
+  },
+  {
+   "rank": 13,
+   "hospital_id": "SH-087",
+   "name": "第六人民医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "徐汇区",
+   "insurance": "yes",
+   "score": 0.8546,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,小儿运动损伤,小儿骨病和遗传门诊,小儿骨科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.665,
+     "contrib": 0.1197,
+     "note": "8.4km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.665,
+     "lost": 0.0603,
+     "note": "8.4km"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "bus",
+     "w": 0.03,
+     "v": 0.3869,
+     "lost": 0.0184,
+     "note": "1站"
+    }
+   ],
+   "lng": 121.423925,
+   "lat": 31.179283
+  },
+  {
+   "rank": 14,
+   "hospital_id": "SH-075",
+   "name": "曙光医院西院",
+   "level": "三级甲等",
+   "type": "专科医院",
+   "district": "黄浦区",
+   "insurance": "yes",
+   "score": 0.853,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,小儿哮喘,小儿抽动多动,小儿腺样体 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7776,
+     "contrib": 0.14,
+     "note": "5.6km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7776,
+     "lost": 0.04,
+     "note": "5.6km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.478483,
+   "lat": 31.222836
+  },
+  {
+   "rank": 15,
+   "hospital_id": "SH-207",
+   "name": "普陀区人民医院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "普陀区",
+   "insurance": "yes",
+   "score": 0.8485,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,耳鼻咽喉科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.9512,
+     "contrib": 0.1712,
+     "note": "1.2km"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.5,
+     "lost": 0.03,
+     "note": "二级甲等"
+    }
+   ],
+   "lng": 121.441528,
+   "lat": 31.246059
+  },
+  {
+   "rank": 16,
+   "hospital_id": "SH-077",
+   "name": "静安区中心医院",
+   "level": "三级乙等",
+   "type": "综合医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.8463,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 耳鼻喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.8773,
+     "contrib": 0.1579,
+     "note": "3.1km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.8773,
+     "lost": 0.0221,
+     "note": "3.1km"
+    }
+   ],
+   "lng": 121.449798,
+   "lat": 31.230684
+  },
+  {
+   "rank": 17,
+   "hospital_id": "SH-083",
+   "name": "普陀区中心医院",
+   "level": "三级乙等",
+   "type": "综合医院",
+   "district": "普陀区",
+   "insurance": "yes",
+   "score": 0.8412,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,耳鼻咽喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.8766,
+     "contrib": 0.1578,
+     "note": "3.1km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.8766,
+     "lost": 0.0222,
+     "note": "3.1km"
+    }
+   ],
+   "lng": 121.404033,
+   "lat": 31.241605
+  },
+  {
+   "rank": 18,
+   "hospital_id": "SH-064",
+   "name": "市中西医结合医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "虹口区",
+   "insurance": "yes",
+   "score": 0.8406,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,小儿咳喘,小儿推拿,耳鼻咽喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7008,
+     "contrib": 0.1261,
+     "note": "7.5km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7008,
+     "lost": 0.0539,
+     "note": "7.5km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.511548,
+   "lat": 31.257178
+  },
+  {
+   "rank": 19,
+   "hospital_id": "SH-062",
+   "name": "岳阳中西医结合医院",
+   "level": "三级甲等",
+   "type": "专科医院",
+   "district": "虹口区",
+   "insurance": "yes",
+   "score": 0.8399,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,耳鼻咽喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7398,
+     "contrib": 0.1332,
+     "note": "6.5km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7398,
+     "lost": 0.0468,
+     "note": "6.5km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.487719,
+   "lat": 31.289276
+  },
+  {
+   "rank": 20,
+   "hospital_id": "SH-092",
+   "name": "岳阳中西医结合医院青海路门诊部",
+   "level": "三级甲等",
+   "type": "专科医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.8385,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,耳鼻咽喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.8408,
+     "contrib": 0.1513,
+     "note": "4.0km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.8408,
+     "lost": 0.0287,
+     "note": "4.0km"
+    }
+   ],
+   "lng": 121.463923,
+   "lat": 31.230142
+  },
+  {
+   "rank": 21,
+   "hospital_id": "SH-171",
+   "name": "闸北中心医院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.8375,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,新生儿保健,耳鼻喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.8909,
+     "contrib": 0.1604,
+     "note": "2.7km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.5,
+     "lost": 0.03,
+     "note": "二级甲等"
+    }
+   ],
+   "lng": 121.461625,
+   "lat": 31.254175
+  },
+  {
+   "rank": 22,
+   "hospital_id": "SH-036",
+   "name": "瑞金医院总院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "黄浦区",
+   "insurance": "yes",
+   "score": 0.835,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 中医五官科,儿科,小儿内科,小儿外科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7736,
+     "contrib": 0.1393,
+     "note": "5.7km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7736,
+     "lost": 0.0408,
+     "note": "5.7km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.466219,
+   "lat": 31.212015
+  },
+  {
+   "rank": 23,
+   "hospital_id": "SH-065",
+   "name": "龙华医院",
+   "level": "三级甲等",
+   "type": "专科医院",
+   "district": "徐汇区",
+   "insurance": "yes",
+   "score": 0.8298,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,儿科疾病推拿防治门诊,小儿喉源性咳嗽,小儿多动抽动及学习困难门诊 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.6987,
+     "contrib": 0.1258,
+     "note": "7.5km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.6987,
+     "lost": 0.0542,
+     "note": "7.5km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.449536,
+   "lat": 31.187968
+  },
+  {
+   "rank": 24,
+   "hospital_id": "SH-121",
+   "name": "大华医院",
+   "level": "二级乙等",
+   "type": "综合医院",
+   "district": "徐汇区",
+   "insurance": "yes",
+   "score": 0.8221,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,耳鼻咽喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.8088,
+     "contrib": 0.1456,
+     "note": "4.8km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.38,
+     "lost": 0.0372,
+     "note": "二级乙等"
+    }
+   ],
+   "lng": 121.458079,
+   "lat": 31.216988
+  },
+  {
+   "rank": 25,
+   "hospital_id": "SH-093",
+   "name": "同仁医院",
+   "level": "三级乙等",
+   "type": "综合医院",
+   "district": "长宁区",
+   "insurance": "yes",
+   "score": 0.8196,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,儿科教学门诊,儿科特约门诊,小儿夜门诊 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7102,
+     "contrib": 0.1278,
+     "note": "7.2km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7102,
+     "lost": 0.0522,
+     "note": "7.2km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.377084,
+   "lat": 31.209892
+  },
+  {
+   "rank": 26,
+   "hospital_id": "SH-002",
+   "name": "新华医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "杨浦区",
+   "insurance": "yes",
+   "score": 0.8193,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿保筛查门诊,儿科教学门诊,儿科疑难MDT,小儿冬病冬治 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.6631,
+     "contrib": 0.1194,
+     "note": "8.4km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.6631,
+     "lost": 0.0606,
+     "note": "8.4km"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.518953,
+   "lat": 31.272411
+  },
+  {
+   "rank": 27,
+   "hospital_id": "SH-060",
+   "name": "同济大学附属上海市第四人民医院",
+   "level": "三级乙等",
+   "type": "综合医院",
+   "district": "虹口区",
+   "insurance": "yes",
+   "score": 0.8191,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,小儿推拿,耳鼻喉科,耳鼻喉科高级 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7102,
+     "contrib": 0.1278,
+     "note": "7.2km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7102,
+     "lost": 0.0522,
+     "note": "7.2km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.469004,
+   "lat": 31.311599
+  },
+  {
+   "rank": 28,
+   "hospital_id": "SH-039",
+   "name": "公利医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "浦东新区",
+   "insurance": "yes",
+   "score": 0.8155,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,耳鼻咽喉科,金桥五官科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.5661,
+     "contrib": 0.1019,
+     "note": "10.8km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.5661,
+     "lost": 0.0781,
+     "note": "10.8km"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.546075,
+   "lat": 31.241575
+  },
+  {
+   "rank": 29,
+   "hospital_id": "SH-179",
+   "name": "瑞金医院卢湾分院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "黄浦区",
+   "insurance": "yes",
+   "score": 0.8155,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,小儿哮喘,小儿推拿,小儿消化 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7807,
+     "contrib": 0.1405,
+     "note": "5.5km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7807,
+     "lost": 0.0395,
+     "note": "5.5km"
+    }
+   ],
+   "lng": 121.47242,
+   "lat": 31.21827
+  },
+  {
+   "rank": 30,
+   "hospital_id": "SH-040",
+   "name": "第九人民医院(高科园区)",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "黄浦区",
+   "insurance": "yes",
+   "score": 0.815,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 新生儿听力筛查转诊门诊,耳鼻咽喉头颈外科,耳鼻喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.6873,
+     "contrib": 0.1237,
+     "note": "7.8km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.6873,
+     "lost": 0.0563,
+     "note": "7.8km"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.487496,
+   "lat": 31.201603
+  },
+  {
+   "rank": 31,
+   "hospital_id": "SH-007",
+   "name": "华东医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.809,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 耳鼻咽喉头颈外科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.8396,
+     "contrib": 0.1511,
+     "note": "4.0km"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.5,
+     "contrib": 0.11,
+     "note": "无显式儿科科室→中性0.5"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.5,
+     "lost": 0.11,
+     "note": "无显式儿科科室→中性0.5"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.8396,
+     "lost": 0.0289,
+     "note": "4.0km"
+    }
+   ],
+   "lng": 121.440315,
+   "lat": 31.2187
+  },
+  {
+   "rank": 32,
+   "hospital_id": "SH-271",
+   "name": "石门二路街道社区卫生服务中心",
+   "level": "一级甲等",
+   "type": "综合医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.8086,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,耳鼻喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.8627,
+     "contrib": 0.1553,
+     "note": "3.4km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.22,
+     "lost": 0.0468,
+     "note": "一级甲等"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.461431,
+   "lat": 31.235256
+  },
+  {
+   "rank": 33,
+   "hospital_id": "SH-198",
+   "name": "利群医院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "普陀区",
+   "insurance": "yes",
+   "score": 0.8021,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,儿科发热,儿科急诊,小儿内分泌科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.8193,
+     "contrib": 0.1475,
+     "note": "4.5km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.8193,
+     "lost": 0.0325,
+     "note": "4.5km"
+    }
+   ],
+   "lng": 121.386038,
+   "lat": 31.260847
+  },
+  {
+   "rank": 34,
+   "hospital_id": "SH-145",
+   "name": "海军第九〇五医院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "长宁区",
+   "insurance": "yes",
+   "score": 0.8018,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,耳鼻喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.8031,
+     "contrib": 0.1445,
+     "note": "4.9km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.8031,
+     "lost": 0.0354,
+     "note": "4.9km"
+    }
+   ],
+   "lng": 121.432346,
+   "lat": 31.209927
+  },
+  {
+   "rank": 35,
+   "hospital_id": "SH-058",
+   "name": "复旦大学附属华东医院（浦东门诊部）",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "浦东新区",
+   "insurance": "yes",
+   "score": 0.8013,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 小儿针灸门诊,耳鼻咽喉头颈外科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.6211,
+     "contrib": 0.1118,
+     "note": "9.5km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.6211,
+     "lost": 0.0682,
+     "note": "9.5km"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.507141,
+   "lat": 31.197368
+  },
+  {
+   "rank": 36,
+   "hospital_id": "SH-120",
+   "name": "大场医院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "宝山区",
+   "insurance": "yes",
+   "score": 0.8005,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,耳鼻咽喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7202,
+     "contrib": 0.1296,
+     "note": "7.0km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7202,
+     "lost": 0.0504,
+     "note": "7.0km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.392525,
+   "lat": 31.306775
+  },
+  {
+   "rank": 37,
+   "hospital_id": "SH-123",
+   "name": "江湾医院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "虹口区",
+   "insurance": "yes",
+   "score": 0.7998,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,耳鼻喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7021,
+     "contrib": 0.1264,
+     "note": "7.4km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7021,
+     "lost": 0.0536,
+     "note": "7.4km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.481025,
+   "lat": 31.307075
+  },
+  {
+   "rank": 38,
+   "hospital_id": "SH-172",
+   "name": "第八人民医院",
+   "level": "二级甲等",
+   "type": "专科疾病防治院",
+   "district": "徐汇区",
+   "insurance": "yes",
+   "score": 0.7978,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,耳鼻咽喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.6149,
+     "contrib": 0.1107,
+     "note": "9.6km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.6149,
+     "lost": 0.0693,
+     "note": "9.6km"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.432775,
+   "lat": 31.167625
+  },
+  {
+   "rank": 39,
+   "hospital_id": "SH-168",
+   "name": "市北医院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.7973,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,儿科M,耳鼻咽喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7291,
+     "contrib": 0.1312,
+     "note": "6.8km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7291,
+     "lost": 0.0488,
+     "note": "6.8km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.448009,
+   "lat": 31.313741
+  },
+  {
+   "rank": 40,
+   "hospital_id": "SH-119",
+   "name": "上海市第二人民医院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "黄浦区",
+   "insurance": "yes",
+   "score": 0.7955,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,儿科生长发育,新生儿科,耳鼻咽喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.689,
+     "contrib": 0.124,
+     "note": "7.8km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.689,
+     "lost": 0.056,
+     "note": "7.8km"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.495475,
+   "lat": 31.209175
+  },
+  {
+   "rank": 41,
+   "hospital_id": "SH-001",
+   "name": "东方医院南院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "浦东新区",
+   "insurance": "yes",
+   "score": 0.7943,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科副,儿科正,小儿内分泌,新生儿科正 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.08,
+     "v": 1.0,
+     "contrib": 0.08,
+     "note": "l2=303"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.4382,
+     "lost": 0.1011,
+     "note": "14.0km"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.512621,
+   "lat": 31.147864
+  },
+  {
+   "rank": 42,
+   "hospital_id": "SH-027",
+   "name": "东方医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "浦东新区",
+   "insurance": "yes",
+   "score": 0.7943,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,耳鼻喉科,耳鼻喉科副,耳鼻喉科正 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.08,
+     "v": 1.0,
+     "contrib": 0.08,
+     "note": "l2=409"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.4382,
+     "lost": 0.1011,
+     "note": "14.0km"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.512621,
+   "lat": 31.147864
+  },
+  {
+   "rank": 43,
+   "hospital_id": "SH-297",
+   "name": "宜川社区卫生服务中心",
+   "level": "一级甲等",
+   "type": "综合医院",
+   "district": "普陀区",
+   "insurance": "yes",
+   "score": 0.7931,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 耳鼻咽喉科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.9492,
+     "contrib": 0.1708,
+     "note": "1.3km"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.22,
+     "lost": 0.0468,
+     "note": "一级甲等"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.444614,
+   "lat": 31.259767
+  },
+  {
+   "rank": 44,
+   "hospital_id": "SH-374",
+   "name": "共和新路街道社区卫生服务中心",
+   "level": "一级甲等",
+   "type": "综合医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.7907,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 耳鼻咽喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.8554,
+     "contrib": 0.154,
+     "note": "3.6km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.22,
+     "lost": 0.0468,
+     "note": "一级甲等"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.464776,
+   "lat": 31.271967
+  },
+  {
+   "rank": 45,
+   "hospital_id": "SH-149",
+   "name": "建工医院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "虹口区",
+   "insurance": "yes",
+   "score": 0.79,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 小儿内科,耳鼻喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7618,
+     "contrib": 0.1371,
+     "note": "6.0km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7618,
+     "lost": 0.0429,
+     "note": "6.0km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.483975,
+   "lat": 31.285275
+  },
+  {
+   "rank": 46,
+   "hospital_id": "SH-248",
+   "name": "南京东路街道社区卫生服务中心",
+   "level": "一级甲等",
+   "type": "综合医院",
+   "district": "黄浦区",
+   "insurance": "yes",
+   "score": 0.7828,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,耳鼻喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.8271,
+     "contrib": 0.1489,
+     "note": "4.3km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.22,
+     "lost": 0.0468,
+     "note": "一级甲等"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.467525,
+   "lat": 31.228975
+  },
+  {
+   "rank": 47,
+   "hospital_id": "SH-103",
+   "name": "浦南医院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "浦东新区",
+   "insurance": "yes",
+   "score": 0.7806,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,耳鼻咽喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.5993,
+     "contrib": 0.1079,
+     "note": "10.0km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.5993,
+     "lost": 0.0721,
+     "note": "10.0km"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.510026,
+   "lat": 31.192817
+  },
+  {
+   "rank": 48,
+   "hospital_id": "SH-080",
+   "name": "长海医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "杨浦区",
+   "insurance": "yes",
+   "score": 0.7795,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 小儿科,耳鼻喉科,耳鼻喉科军诊门诊 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.5641,
+     "contrib": 0.1015,
+     "note": "10.9km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.5641,
+     "lost": 0.0785,
+     "note": "10.9km"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.528983,
+   "lat": 31.307728
+  },
+  {
+   "rank": 49,
+   "hospital_id": "SH-164",
+   "name": "上海市嘉定区江桥医院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "嘉定区",
+   "insurance": "yes",
+   "score": 0.7763,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,儿科专家门诊,儿科特约门诊,耳鼻咽喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.5706,
+     "contrib": 0.1027,
+     "note": "10.7km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.5706,
+     "lost": 0.0773,
+     "note": "10.7km"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.321165,
+   "lat": 31.268051
+  },
+  {
+   "rank": 50,
+   "hospital_id": "SH-147",
+   "name": "天山中医医院",
+   "level": "二级甲等",
+   "type": "专科疾病防治院",
+   "district": "长宁区",
+   "insurance": "yes",
+   "score": 0.7738,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,耳鼻喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7948,
+     "contrib": 0.1431,
+     "note": "5.1km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.7948,
+     "lost": 0.0369,
+     "note": "5.1km"
+    }
+   ],
+   "lng": 121.404877,
+   "lat": 31.214796
+  },
+  {
+   "rank": 51,
+   "hospital_id": "SH-157",
+   "name": "市东医院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "杨浦区",
+   "insurance": "yes",
+   "score": 0.773,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,儿科中医,耳鼻咽喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.5019,
+     "contrib": 0.0903,
+     "note": "12.5km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.5019,
+     "lost": 0.0897,
+     "note": "12.5km"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.537748,
+   "lat": 31.321425
+  },
+  {
+   "rank": 52,
+   "hospital_id": "SH-078",
+   "name": "杨浦区中心医院",
+   "level": "三级乙等",
+   "type": "综合医院",
+   "district": "杨浦区",
+   "insurance": "yes",
+   "score": 0.771,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,耳鼻咽喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.5519,
+     "contrib": 0.0993,
+     "note": "11.2km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.5519,
+     "lost": 0.0807,
+     "note": "11.2km"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.542725,
+   "lat": 31.290875
+  },
+  {
+   "rank": 53,
+   "hospital_id": "SH-158",
+   "name": "控江医院",
+   "level": "二级乙等",
+   "type": "综合医院",
+   "district": "杨浦区",
+   "insurance": "yes",
+   "score": 0.769,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,小儿包茎门诊,小儿慢性咳嗽,小儿科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.6072,
+     "contrib": 0.1093,
+     "note": "9.8km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.6072,
+     "lost": 0.0707,
+     "note": "9.8km"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.530946,
+   "lat": 31.282146
+  },
+  {
+   "rank": 54,
+   "hospital_id": "SH-124",
+   "name": "南翔医院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "嘉定区",
+   "insurance": "yes",
+   "score": 0.7689,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,儿科哮喘,新生儿科,耳鼻咽喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.5461,
+     "contrib": 0.0983,
+     "note": "11.3km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.5461,
+     "lost": 0.0817,
+     "note": "11.3km"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.321893,
+   "lat": 31.291725
+  },
+  {
+   "rank": 55,
+   "hospital_id": "SH-055",
+   "name": "第九人民医院(北部院区)",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "宝山区",
+   "insurance": "yes",
+   "score": 0.7643,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,新生儿科,新生儿随访,耳鼻喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.08,
+     "v": 1.0,
+     "contrib": 0.08,
+     "note": "l2=175"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.2936,
+     "lost": 0.1272,
+     "note": "17.7km"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.477002,
+   "lat": 31.408498
+  },
+  {
+   "rank": 56,
+   "hospital_id": "SH-091",
+   "name": "第七人民医院",
+   "level": "三级甲等",
+   "type": "专科疾病防治院",
+   "district": "浦东新区",
+   "insurance": "yes",
+   "score": 0.7629,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,小儿感冒,耳鼻喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.08,
+     "v": 1.0,
+     "contrib": 0.08,
+     "note": "l2=185"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.32,
+     "lost": 0.1224,
+     "note": "17.0km"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.577849,
+   "lat": 31.343889
+  },
+  {
+   "rank": 57,
+   "hospital_id": "SH-181",
+   "name": "电力医院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "长宁区",
+   "insurance": "yes",
+   "score": 0.7627,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 耳鼻咽喉科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.8221,
+     "contrib": 0.148,
+     "note": "4.4km"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.5,
+     "contrib": 0.11,
+     "note": "无显式儿科科室→中性0.5"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.5,
+     "lost": 0.11,
+     "note": "无显式儿科科室→中性0.5"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.8221,
+     "lost": 0.032,
+     "note": "4.4km"
+    }
+   ],
+   "lng": 121.431821,
+   "lat": 31.214221
+  },
+  {
+   "rank": 58,
+   "hospital_id": "SH-086",
+   "name": "宝山区中西医结合医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "宝山区",
+   "insurance": "yes",
+   "score": 0.7625,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,小儿保健门诊,小儿慢性咳嗽,小儿推拿 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.08,
+     "v": 1.0,
+     "contrib": 0.08,
+     "note": "l2=233"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.2941,
+     "lost": 0.1271,
+     "note": "17.6km"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.484401,
+   "lat": 31.40669
+  },
+  {
+   "rank": 59,
+   "hospital_id": "SH-044",
+   "name": "上海市老年医学中心(复旦大学附属中山医院闵行院区)",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "闵行区",
+   "insurance": "yes",
+   "score": 0.7602,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 耳鼻咽喉头颈外科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.08,
+     "v": 0.9808,
+     "contrib": 0.0785,
+     "note": "l2=129"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.3609,
+     "lost": 0.115,
+     "note": "16.0km"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.413713,
+   "lat": 31.111455
+  },
+  {
+   "rank": 60,
+   "hospital_id": "SH-072",
+   "name": "闵行区中心医院",
+   "level": "三级乙等",
+   "type": "综合医院",
+   "district": "闵行区",
+   "insurance": "yes",
+   "score": 0.7598,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.36,
+     "v": 1.0,
+     "contrib": 0.36,
+     "note": "命中: 儿科,耳鼻咽喉鼾症,耳鼻喉科 [p1/high]"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "contrib": 0.165,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.08,
+     "v": 1.0,
+     "contrib": 0.08,
+     "note": "l2=261"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.18,
+     "v": 0.3168,
+     "lost": 0.123,
+     "note": "17.1km"
+    },
+    {
+     "feature": "age_fit",
+     "w": 0.22,
+     "v": 0.75,
+     "lost": 0.055,
+     "note": "有可约儿科类科室(非儿童专属机构)"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ],
+   "lng": 121.376106,
+   "lat": 31.108501
+  }
+ ],
+ "checks": [
+  {
+   "id": "A",
+   "name": "已解析号源的 12 家医院不得静默消失: ∈ final.top_list ∪ final.excluded(带原因, 含号源状态)",
+   "ok": true,
+   "detail": "缺失=[]"
+  },
+  {
+   "id": "B",
+   "name": "fallback_all_unverified → top_list 前 20 项与静态序同序（§4.5 回落）",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "C",
+   "name": "max(静态分)医院可见: SH-018(0.9195) 在 top_list 或 显式排除(带原因); no_slot 降级属合理结果但必须写明",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "D",
+   "name": "slot_queries 的每家医院 ∈ final.top_list ∪ final.excluded（显式排除+原因, 不得静默消失）",
+   "ok": true,
+   "detail": ""
+  }
+ ]
+}

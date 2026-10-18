@@ -1,0 +1,626 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-058",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:39",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=96; geo=amap(exact); dept=suishenban#yuyue_guahao(2026-09-26, l1=25/l2u=34)"
+  },
+  "institution": {
+    "name": "复旦大学附属华东医院（浦东门诊部）",
+    "aliases": [],
+    "level": "三级甲等",
+    "type": "综合医院",
+    "ownership": "公立",
+    "affiliation": "复旦大学",
+    "official_site": "",
+    "tel": "021-50825066"
+  },
+  "campuses": [
+    {
+      "id": "SH-058-M",
+      "name": "本部",
+      "district": "浦东新区",
+      "address": "世博村路231号",
+      "geo": {
+        "lng": 121.507141,
+        "lat": 31.197368,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:exact"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "三级甲等",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "南码头路(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 237,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 2,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": 6.0,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 3,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 52,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "世博村路沂南路(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "computed",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html",
+        "basis": "parent_institution",
+        "parent": "华东医院",
+        "note": "推定：母院为医保定点，该院区未在名单单列（母院=华东医院）"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-26T17:14:19Z",
+        "l1": [
+          {
+            "name": "眼科",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "眼科(浦东)",
+                "dept_id": "D06839",
+                "canonical": "眼科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              }
+            ]
+          },
+          {
+            "name": "预防保健科",
+            "tab_index": 1,
+            "depts": [
+              {
+                "raw": "压疮伤口护理门诊（浦东）",
+                "dept_id": "D03099",
+                "canonical": "压疮伤口护理门诊",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              }
+            ]
+          },
+          {
+            "name": "内科",
+            "tab_index": 2,
+            "depts": [
+              {
+                "raw": "全科医疗科门诊(浦东)",
+                "dept_id": "D02450",
+                "canonical": "全科医疗科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东;形态:门诊"
+              },
+              {
+                "raw": "乏力专病门诊（浦东）",
+                "dept_id": "D01607",
+                "canonical": "乏力门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "院区:浦东"
+              },
+              {
+                "raw": "肿瘤科(浦东)",
+                "dept_id": "D08110",
+                "canonical": "肿瘤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              }
+            ]
+          },
+          {
+            "name": "神经内科",
+            "tab_index": 3,
+            "depts": [
+              {
+                "raw": "神经内科(浦东)",
+                "dept_id": "D06976",
+                "canonical": "神经内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              }
+            ]
+          },
+          {
+            "name": "针炙科",
+            "tab_index": 4,
+            "depts": [
+              {
+                "raw": "针灸科(浦东)",
+                "dept_id": "D09528",
+                "canonical": "针灸科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              },
+              {
+                "raw": "小儿针灸专病门诊（浦东）",
+                "dept_id": "D04321",
+                "canonical": "小儿针灸门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "院区:浦东"
+              }
+            ]
+          },
+          {
+            "name": "推拿科",
+            "tab_index": 5,
+            "depts": [
+              {
+                "raw": "推拿科(浦东)",
+                "dept_id": "D05155",
+                "canonical": "推拿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              },
+              {
+                "raw": "中医慢病防治/针药结合门诊(浦东)",
+                "dept_id": "D01256",
+                "canonical": "中医慢病防治/针药结合门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              }
+            ]
+          },
+          {
+            "name": "胸外科",
+            "tab_index": 6,
+            "depts": [
+              {
+                "raw": "胸外科(浦东)",
+                "dept_id": "D08309",
+                "canonical": "胸外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              }
+            ]
+          },
+          {
+            "name": "肾病内科",
+            "tab_index": 7,
+            "depts": [
+              {
+                "raw": "痛风与尿酸肾病门诊(浦东)",
+                "dept_id": "D06574",
+                "canonical": "痛风与尿酸肾病门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              },
+              {
+                "raw": "肾内科(浦东)",
+                "dept_id": "D07936",
+                "canonical": "肾内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              },
+              {
+                "raw": "老年风湿专病（浦东）",
+                "dept_id": "D07466",
+                "canonical": "老年风湿",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "院区:浦东"
+              }
+            ]
+          },
+          {
+            "name": "免疫学内科",
+            "tab_index": 8,
+            "depts": [
+              {
+                "raw": "风湿免疫科(浦东)",
+                "dept_id": "D09894",
+                "canonical": "风湿免疫科",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              }
+            ]
+          },
+          {
+            "name": "康复医学科",
+            "tab_index": 9,
+            "depts": [
+              {
+                "raw": "康复科(闵行)",
+                "dept_id": "D04496",
+                "canonical": "康复医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:闵行"
+              }
+            ]
+          },
+          {
+            "name": "呼吸内科",
+            "tab_index": 10,
+            "depts": [
+              {
+                "raw": "呼吸内科(浦东)",
+                "dept_id": "D03443",
+                "canonical": "呼吸内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              }
+            ]
+          },
+          {
+            "name": "妇科",
+            "tab_index": 11,
+            "depts": [
+              {
+                "raw": "妇科(浦东)",
+                "dept_id": "D03984",
+                "canonical": "妇科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              }
+            ]
+          },
+          {
+            "name": "消化内科",
+            "tab_index": 12,
+            "depts": [
+              {
+                "raw": "消化内科(浦东)",
+                "dept_id": "D05920",
+                "canonical": "消化内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              }
+            ]
+          },
+          {
+            "name": "泌尿外科",
+            "tab_index": 13,
+            "depts": [
+              {
+                "raw": "泌尿外科(浦东)",
+                "dept_id": "D05785",
+                "canonical": "泌尿外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              }
+            ]
+          },
+          {
+            "name": "心血管内科",
+            "tab_index": 14,
+            "depts": [
+              {
+                "raw": "心血管科(浦东)",
+                "dept_id": "D04780",
+                "canonical": "心血管内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              }
+            ]
+          },
+          {
+            "name": "传染科",
+            "tab_index": 15,
+            "depts": [
+              {
+                "raw": "肝病科(浦东)",
+                "dept_id": "D07644",
+                "canonical": "肝病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              }
+            ]
+          },
+          {
+            "name": "皮肤科",
+            "tab_index": 16,
+            "depts": [
+              {
+                "raw": "皮肤科(浦东)",
+                "dept_id": "D06702",
+                "canonical": "皮肤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              }
+            ]
+          },
+          {
+            "name": "内分泌内科",
+            "tab_index": 17,
+            "depts": [
+              {
+                "raw": "内分泌科(浦东)",
+                "dept_id": "D02588",
+                "canonical": "内分泌科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              }
+            ]
+          },
+          {
+            "name": "骨伤科",
+            "tab_index": 18,
+            "depts": [
+              {
+                "raw": "伤外科(浦东)",
+                "dept_id": "D01845",
+                "canonical": "伤外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              }
+            ]
+          },
+          {
+            "name": "普通外科",
+            "tab_index": 19,
+            "depts": [
+              {
+                "raw": "心血管外科(浦东)",
+                "dept_id": "D04796",
+                "canonical": "心血管外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              },
+              {
+                "raw": "普外科(浦东)",
+                "dept_id": "D05441",
+                "canonical": "普外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              },
+              {
+                "raw": "血管外科(浦东)",
+                "dept_id": "D08846",
+                "canonical": "血管外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              }
+            ]
+          },
+          {
+            "name": "疼痛科",
+            "tab_index": 20,
+            "depts": [
+              {
+                "raw": "疼痛科(浦东)",
+                "dept_id": "D06526",
+                "canonical": "疼痛科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              }
+            ]
+          },
+          {
+            "name": "中医科",
+            "tab_index": 21,
+            "depts": [
+              {
+                "raw": "中医内科(浦东)",
+                "dept_id": "D01178",
+                "canonical": "中医内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              },
+              {
+                "raw": "膏方门诊（浦东）",
+                "dept_id": "D08619",
+                "canonical": "膏方",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "麻醉科",
+            "tab_index": 22,
+            "depts": [
+              {
+                "raw": "麻醉门诊（浦东）",
+                "dept_id": "D10230",
+                "canonical": "麻醉",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "骨科",
+            "tab_index": 23,
+            "depts": [
+              {
+                "raw": "骨科(浦东)",
+                "dept_id": "D10069",
+                "canonical": "骨科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              }
+            ]
+          },
+          {
+            "name": "耳鼻咽喉科",
+            "tab_index": 24,
+            "depts": [
+              {
+                "raw": "耳鼻咽喉头颈外科（浦东）",
+                "dept_id": "D07506",
+                "canonical": "耳鼻咽喉头颈外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 25,
+          "entry_count": 34,
+          "unique_count": 34,
+          "canonical_count": 34
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T17:14:19Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 25,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T17:14:19Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 34,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T17:14:19Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

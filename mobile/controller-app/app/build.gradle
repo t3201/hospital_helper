@@ -1,0 +1,59 @@
+plugins {
+    id 'com.android.application'
+    id 'com.chaquo.python'
+}
+
+android {
+    namespace 'com.hospitalhelper.controller'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.hospitalhelper.controller"
+        minSdk 24
+        targetSdk 34
+        versionCode 32
+        versionName "0.2.31-chaquopy"
+        // Chaquopy 会带 arm64-v8a / x86_64 两份 libpython；只留设备需要的 ABI，减小体积。
+        // 476cf991 是 arm64，这里保留 arm64-v8a + x86_64 兜底（模拟器也要能跑）。
+        ndk { abiFilters 'arm64-v8a', 'x86_64' }
+    }
+
+    // JDK21 下 javac 默认 source/target=11；这里显式锁 11（AGP 8.2 要求）。
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    // AGP 8.0+ 起 BuildConfig 默认不再生成；自检/调试入口用到 BuildConfig.DEBUG，需显式开启。
+    buildFeatures {
+        buildConfig true
+    }
+
+    buildTypes {
+        debug { minifyEnabled false }
+        release {
+            minifyEnabled false
+        }
+    }
+}
+
+chaquopy {
+    // 内嵌 CPython 版本。
+    // 说明：仓库只发布 3.13.x 的 com.chaquo.python:python 产物（3.8 在可访问镜像上不可用），
+    //       故用 3.13 替代任务里写的 3.8（见反馈记录）。
+    defaultConfig {
+        version "3.13"
+    }
+    sourceSets {
+        main {
+            srcDir "python"
+        }
+    }
+}
+
+dependencies {
+    // Chaquopy 运行期依赖（CPython 运行时 + 启动器）由插件自动注入。
+    // Chaquopy 17 只把 API jar（com.chaquo.python.Python/PyObject）加到运行期，
+    // 未加到编译期 classpath，这里用 compileOnly 补到编译期（不重复打包，避免 duplicate class）。
+    compileOnly 'com.chaquo.python.runtime:chaquopy_java:17.0.0'
+}

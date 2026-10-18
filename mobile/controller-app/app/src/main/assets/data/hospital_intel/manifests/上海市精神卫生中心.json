@@ -1,0 +1,552 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-054",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:39",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=71; geo=amap(name_in_poi); dept=suishenban#yuyue_guahao(2026-09-26, l1=2/l2u=39)"
+  },
+  "institution": {
+    "name": "上海市精神卫生中心",
+    "aliases": [],
+    "level": "三级甲等",
+    "type": "专科疾病防治院",
+    "ownership": "公立",
+    "affiliation": "",
+    "official_site": "",
+    "tel": "021-52219155;021-64387250"
+  },
+  "campuses": [
+    {
+      "id": "SH-054-M",
+      "name": "本部",
+      "district": "闵行区",
+      "address": "闸航路2500号",
+      "geo": {
+        "lng": 121.537117,
+        "lat": 31.020844,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:name_in_poi"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "三级甲等",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [
+        "特需2（精神科）",
+        "老年（精神）"
+      ],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "mid",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "东城一路(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 1165,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 0,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": null,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 2,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 164,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "闸航路卫生中心(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-26T11:17:58Z",
+        "l1": [
+          {
+            "name": "重点科室",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "老年（精神）",
+                "dept_id": "D07351",
+                "canonical": "老年医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:精神"
+              },
+              {
+                "raw": "特需2（精神科）",
+                "dept_id": "D00011",
+                "canonical": "2",
+                "kind": "site",
+                "visit_type": "特需",
+                "qualifiers": "其他:精神科"
+              }
+            ]
+          },
+          {
+            "name": "精神科",
+            "tab_index": 1,
+            "depts": [
+              {
+                "raw": "中医药特色",
+                "dept_id": "D01432",
+                "canonical": "中医药特色",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "焦虑障碍（咨询）",
+                "dept_id": "D06059",
+                "canonical": "焦虑障碍",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:咨询"
+              },
+              {
+                "raw": "老年（咨询）",
+                "dept_id": "D07351",
+                "canonical": "老年医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:咨询"
+              },
+              {
+                "raw": "特需1（儿童）",
+                "dept_id": "D00003",
+                "canonical": "1",
+                "kind": "site",
+                "visit_type": "特需",
+                "qualifiers": "其他:儿童"
+              },
+              {
+                "raw": "儿童（咨询）",
+                "dept_id": "D02055",
+                "canonical": "儿童",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:咨询"
+              },
+              {
+                "raw": "发热门诊",
+                "dept_id": "D03121",
+                "canonical": "发热",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "康复（咨询）",
+                "dept_id": "D04496",
+                "canonical": "康复医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:咨询"
+              },
+              {
+                "raw": "丧劳鉴定",
+                "dept_id": "D01106",
+                "canonical": "丧劳鉴定",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "认知与情绪障碍中西医联合门诊",
+                "dept_id": "D09093",
+                "canonical": "认知与情绪障碍中西医联合门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "云平台",
+                "dept_id": "D01683",
+                "canonical": "云平台",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "女性全周期（咨询）",
+                "dept_id": "D03919",
+                "canonical": "女性全周期",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:咨询"
+              },
+              {
+                "raw": "睡眠障碍（咨询）",
+                "dept_id": "D06920",
+                "canonical": "睡眠障碍",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:咨询"
+              },
+              {
+                "raw": "女性全周期（精神）",
+                "dept_id": "D03919",
+                "canonical": "女性全周期",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:精神"
+              },
+              {
+                "raw": "睡眠管理与情志疾病多学科门诊",
+                "dept_id": "D06918",
+                "canonical": "睡眠管理与情志疾病多学科门诊",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "心境障碍（咨询）",
+                "dept_id": "D04675",
+                "canonical": "心境障碍",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:咨询"
+              },
+              {
+                "raw": "互联网特需副主任",
+                "dept_id": "D01691",
+                "canonical": "互联网副主任",
+                "kind": "specialty_clinic",
+                "visit_type": "特需",
+                "qualifiers": ""
+              },
+              {
+                "raw": "心理咨询",
+                "dept_id": "D04701",
+                "canonical": "心理咨询",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "特需1（精神科）",
+                "dept_id": "D00003",
+                "canonical": "1",
+                "kind": "site",
+                "visit_type": "特需",
+                "qualifiers": "其他:精神科"
+              },
+              {
+                "raw": "精神科",
+                "dept_id": "D07162",
+                "canonical": "精神科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "睡眠障碍（精神）",
+                "dept_id": "D06920",
+                "canonical": "睡眠障碍",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:精神"
+              },
+              {
+                "raw": "体重管理与代谢健康多学科门诊",
+                "dept_id": "D01893",
+                "canonical": "体重管理与代谢健康多学科门诊",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "强迫与焦虑障碍（精神）",
+                "dept_id": "D04577",
+                "canonical": "强迫与焦虑障碍",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:精神"
+              },
+              {
+                "raw": "成人ADHD（咨询）",
+                "dept_id": "D05026",
+                "canonical": "成人ADHD",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:咨询"
+              },
+              {
+                "raw": "老年（精神）",
+                "dept_id": "D07351",
+                "canonical": "老年医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:精神"
+              },
+              {
+                "raw": "特需3（咨询）",
+                "dept_id": "D00014",
+                "canonical": "3",
+                "kind": "site",
+                "visit_type": "特需",
+                "qualifiers": "院区:咨询"
+              },
+              {
+                "raw": "性心理健康",
+                "dept_id": "D04888",
+                "canonical": "性心理健康",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "风险早期（咨询）",
+                "dept_id": "D09942",
+                "canonical": "风险早期",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:咨询"
+              },
+              {
+                "raw": "教学门诊(精神)",
+                "dept_id": "D05202",
+                "canonical": "教学门诊",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "其他:精神"
+              },
+              {
+                "raw": "特需2（咨询）",
+                "dept_id": "D00011",
+                "canonical": "2",
+                "kind": "site",
+                "visit_type": "特需",
+                "qualifiers": "院区:咨询"
+              },
+              {
+                "raw": "营养科",
+                "dept_id": "D08749",
+                "canonical": "营养科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "特需3（精神科）",
+                "dept_id": "D00014",
+                "canonical": "3",
+                "kind": "site",
+                "visit_type": "特需",
+                "qualifiers": "其他:精神科"
+              },
+              {
+                "raw": "特需1（咨询）",
+                "dept_id": "D00003",
+                "canonical": "1",
+                "kind": "site",
+                "visit_type": "特需",
+                "qualifiers": "院区:咨询"
+              },
+              {
+                "raw": "教学门诊(精神)",
+                "dept_id": "D05202",
+                "canonical": "教学门诊",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "其他:精神"
+              },
+              {
+                "raw": "早期精神障碍（含迟发性运动障碍）",
+                "dept_id": "D05406",
+                "canonical": "早期精神障碍",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:含迟发性运动障碍"
+              },
+              {
+                "raw": "心境障碍（精神）",
+                "dept_id": "D04675",
+                "canonical": "心境障碍",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:精神"
+              },
+              {
+                "raw": "互联网特需主任",
+                "dept_id": "D01690",
+                "canonical": "互联网主任",
+                "kind": "specialty_clinic",
+                "visit_type": "特需",
+                "qualifiers": ""
+              },
+              {
+                "raw": "孤独症",
+                "dept_id": "D04155",
+                "canonical": "孤独症",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "发育性学习障碍门诊",
+                "dept_id": "D03137",
+                "canonical": "发育性学习障碍门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "特需2（精神科）",
+                "dept_id": "D00011",
+                "canonical": "2",
+                "kind": "site",
+                "visit_type": "特需",
+                "qualifiers": "其他:精神科"
+              },
+              {
+                "raw": "特需2（儿童）",
+                "dept_id": "D00011",
+                "canonical": "2",
+                "kind": "site",
+                "visit_type": "特需",
+                "qualifiers": "其他:儿童"
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 2,
+          "entry_count": 42,
+          "unique_count": 39,
+          "canonical_count": 30
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T11:17:58Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 2,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T11:17:58Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 39,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T11:17:58Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

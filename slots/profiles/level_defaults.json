@@ -1,0 +1,3248 @@
+{
+ "meta": {
+  "version": "0.1",
+  "generated_at": "content-fingerprint:a08740dc5682ebf9",
+  "scope": "level_defaults",
+  "method": "stratified_sample",
+  "sampled_hospitals": 10,
+  "sampled_units": 702,
+  "notes": [
+   "has_slot_rate/no_slot_rate = ok/no_slot 占 settled 单元比例; 每档报告 n_settled/n_ok/n_no_slot, 分母可审计; 单快照(1 观测), TTL 90min",
+   "obs_count = 观测轮次(distinct 抓取日期, 一次快照会话=一轮); 本次单快照 → 均为 1; 子部门共用同一 dept_id / 同一科室挂多个 L1 tab 是多\"行\"不是多\"轮\", 不计为重复观测",
+   "bar_variant_rate = {days14, short2, long_gt14, nobar, unknown}, 分母=settled 单元, 脚本断言 sum≈1; long_gt14 为 >14 天长窗口条(如 28/31 天)",
+   "by_dept_category 仅含 tab_kind=category 的真科室大类; 社区 site/campus tab(站点/派驻门诊部名)单独出 by_site, 分母口径见 dept_category_meta",
+   "unobservable 显式标注 earliest/price 读不到的原因: L2=l2_nobar 变体(无日期条) / 价格只在明细层(医生主页); 非计算 bug; 补救: 进明细层抓取, 5.8-6.5s/次",
+   "earliest_days 相对各自 captured_at 当天; 社区 l2_nobar 变体 earliest=null 计入 null_rate",
+   "no_slot_rate = 单次观测 no_slot 比例(原 perennial_no_slot_rate 命名有误, 已更名); perennial_no_slot 按 RANKING_SPEC §5(≥3 次观测全失败)独立保留, 样本仅 1 次观测无法判定 → 一律 \"unknown\"",
+   "price_tiers 来自 fee_tier; 态势层无费用 → unknown 为主(明细层抽样后更新)",
+   "置信度规则: low=1 家且 <50 单元; mid=2 家或 50-300 单元; high=≥3 家或 ≥300 单元; 全部档位 n_hospitals=1-3 且单观测 → 均为低样本先验",
+   "用途边界: 档位默认值只能作 tension 排序先验, 不可当作“有号/无号”结论展示给用户(详见 README.md)"
+  ]
+ },
+ "strata": [
+  {
+   "key": "一级甲等|综合医院",
+   "n_hospitals": 3,
+   "n_units": 65,
+   "n_settled": 65,
+   "n_ok": 15,
+   "n_no_slot": 50,
+   "obs_count": 1,
+   "obs_count_dist": {
+    "1": 64
+   },
+   "has_slot_rate": 0.231,
+   "no_slot_rate": 0.769,
+   "perennial_no_slot": "unknown",
+   "perennial_no_slot_note": "RANKING_SPEC §5: perennial=≥3 次观测全 no_slot; 本档每单元 1 次观测(单快照), 无法判定",
+   "earliest_days": {
+    "p10": null,
+    "p50": null,
+    "p90": null,
+    "null_rate": 1.0,
+    "n_with_earliest": 0
+   },
+   "bar_variant_rate": {
+    "days14": 0.0,
+    "short2": 0.677,
+    "long_gt14": 0.0,
+    "nobar": 0.323,
+    "unknown": 0.0
+   },
+   "price_tiers": {
+    "15": 0.015,
+    "25": 0.0,
+    "50": 0.0,
+    "100+": 0.0,
+    "unknown": 0.985
+   },
+   "unobservable": {
+    "earliest": "所有单元均读不到最早可约日(l2_nobar 变体或 no_slot)",
+    "price": "价格只在明细层(医生主页); 本档 0.985 单元无价格观测(明细层抽样未覆盖)",
+    "remediation": "补救: 进明细层(医生主页)抓取, 成本 5.8-6.5s/次 (COST_MODEL.md)"
+   },
+   "sub_tabs_open": {
+    "专家门诊": 1.0,
+    "普通门诊": 1.0,
+    "专病门诊": 1.0
+   },
+   "by_dept_category": {
+    "全科": {
+     "n_units": 18,
+     "n_ok": 14,
+     "n_no_slot": 4,
+     "has_slot_rate": 0.778,
+     "no_slot_rate": 0.222,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "中医科": {
+     "n_units": 2,
+     "n_ok": 0,
+     "n_no_slot": 2,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "玉兰清苑中医科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "精神科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "全科9夜门诊": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "膏方": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "育才中医科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "全科2": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "全科外科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "家庭医生工作室2": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "全科儿科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "全科7眼科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "家庭病床科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "中医科3": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "全科8产科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "蟠龙家医工作室": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "全科5妇科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "蟠龙全科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "口腔科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "针灸推拿科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "全科内科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "康复科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "中医专家门诊": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "育才家医工作室": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "育才全科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "中医科2": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "宅东中医科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "发热哨点": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "全科3": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "肠道科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "小儿捏脊": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "蟠龙中医科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "中医科4": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "舒缓疗护科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "全科医疗科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "针推科2": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "家庭医生工作室": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "全科二": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "全科一": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    }
+   },
+   "by_site": {
+    "徐和村中医科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "金云村中医科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "民主村中医科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "前明村中医科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "二联村中医科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "迮庵村中医科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "徐泾村中医科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "光联村中医科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    }
+   },
+   "dept_category_meta": {
+    "n_category_units": 57,
+    "n_site_units": 8,
+    "n_campus_units": 0,
+    "n_other_units": 0,
+    "denominator": "by_dept_category 只聚合 tab_kind=category (n=57); site/campus tab (n=8) 为站点/派驻门诊部名, 非科室大类, 已剔除并单出 by_site"
+   },
+   "confidence": "high",
+   "confidence_basis": "3 家 / 65 单元 / 每单元 1 次观测 → high (规则: low=1 家且 <50 单元; mid=2 家或 50-300 单元; high=≥3 家或 ≥300 单元)",
+   "provenance": {
+    "hospitals": [
+     "SH-430",
+     "SH-341",
+     "SH-428"
+    ],
+    "observed_at": "2026-10-01T22:27:15 .. 2026-10-02T18:44:39"
+   }
+  },
+  {
+   "key": "三级乙等|综合医院",
+   "n_hospitals": 1,
+   "n_units": 98,
+   "n_settled": 98,
+   "n_ok": 60,
+   "n_no_slot": 38,
+   "obs_count": 1,
+   "obs_count_dist": {
+    "1": 94
+   },
+   "has_slot_rate": 0.612,
+   "no_slot_rate": 0.388,
+   "perennial_no_slot": "unknown",
+   "perennial_no_slot_note": "RANKING_SPEC §5: perennial=≥3 次观测全 no_slot; 本档每单元 1 次观测(单快照), 无法判定",
+   "earliest_days": {
+    "p10": null,
+    "p50": null,
+    "p90": null,
+    "null_rate": 1.0,
+    "n_with_earliest": 0
+   },
+   "bar_variant_rate": {
+    "days14": 0.0,
+    "short2": 0.0,
+    "long_gt14": 0.0,
+    "nobar": 1.0,
+    "unknown": 0.0
+   },
+   "price_tiers": {
+    "15": 0.0,
+    "25": 0.0,
+    "50": 0.01,
+    "100+": 0.0,
+    "unknown": 0.99
+   },
+   "unobservable": {
+    "earliest": "L2 页面均为 l2_nobar 变体(无14天日期条): has_slot 可读, 最早可约日读不到",
+    "price": "价格只在明细层(医生主页); 本档 0.99 单元无价格观测(明细层抽样未覆盖)",
+    "remediation": "补救: 进明细层(医生主页)抓取, 成本 5.8-6.5s/次 (COST_MODEL.md)"
+   },
+   "sub_tabs_open": {
+    "专家门诊": 1.0,
+    "普通门诊": 1.0,
+    "专病门诊": 1.0
+   },
+   "by_dept_category": {
+    "内科": {
+     "n_units": 29,
+     "n_ok": 17,
+     "n_no_slot": 12,
+     "has_slot_rate": 0.586,
+     "no_slot_rate": 0.414,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "中医科": {
+     "n_units": 16,
+     "n_ok": 10,
+     "n_no_slot": 6,
+     "has_slot_rate": 0.625,
+     "no_slot_rate": 0.375,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "外科": {
+     "n_units": 15,
+     "n_ok": 8,
+     "n_no_slot": 7,
+     "has_slot_rate": 0.533,
+     "no_slot_rate": 0.467,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "全科医疗科": {
+     "n_units": 5,
+     "n_ok": 2,
+     "n_no_slot": 3,
+     "has_slot_rate": 0.4,
+     "no_slot_rate": 0.6,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "妇产科": {
+     "n_units": 5,
+     "n_ok": 2,
+     "n_no_slot": 3,
+     "has_slot_rate": 0.4,
+     "no_slot_rate": 0.6,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "皮肤科": {
+     "n_units": 5,
+     "n_ok": 5,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "传染科": {
+     "n_units": 4,
+     "n_ok": 1,
+     "n_no_slot": 3,
+     "has_slot_rate": 0.25,
+     "no_slot_rate": 0.75,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "麻醉科": {
+     "n_units": 4,
+     "n_ok": 4,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "儿科": {
+     "n_units": 3,
+     "n_ok": 0,
+     "n_no_slot": 3,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "医学影像科": {
+     "n_units": 3,
+     "n_ok": 3,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "眼科": {
+     "n_units": 2,
+     "n_ok": 2,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "肿瘤科": {
+     "n_units": 2,
+     "n_ok": 1,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.5,
+     "no_slot_rate": 0.5,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "康复医学科": {
+     "n_units": 2,
+     "n_ok": 2,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "体检科": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "耳鼻咽喉科": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "口腔科": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    }
+   },
+   "by_site": null,
+   "dept_category_meta": {
+    "n_category_units": 98,
+    "n_site_units": 0,
+    "n_campus_units": 0,
+    "n_other_units": 0,
+    "denominator": "by_dept_category 只聚合 tab_kind=category (n=98); site/campus tab (n=0) 为站点/派驻门诊部名, 非科室大类, 已剔除并单出 by_site"
+   },
+   "confidence": "mid",
+   "confidence_basis": "1 家 / 98 单元 / 每单元 1 次观测 → mid (规则: low=1 家且 <50 单元; mid=2 家或 50-300 单元; high=≥3 家或 ≥300 单元)",
+   "provenance": {
+    "hospitals": [
+     "SH-077"
+    ],
+    "observed_at": "2026-10-02T20:03:00 .. 2026-10-02T20:35:32"
+   }
+  },
+  {
+   "key": "三级甲等|专科疾病防治院",
+   "n_hospitals": 2,
+   "n_units": 56,
+   "n_settled": 56,
+   "n_ok": 37,
+   "n_no_slot": 19,
+   "obs_count": 1,
+   "obs_count_dist": {
+    "1": 49
+   },
+   "has_slot_rate": 0.661,
+   "no_slot_rate": 0.339,
+   "perennial_no_slot": "unknown",
+   "perennial_no_slot_note": "RANKING_SPEC §5: perennial=≥3 次观测全 no_slot; 本档每单元 1 次观测(单快照), 无法判定",
+   "earliest_days": {
+    "p10": 6.0,
+    "p50": 6.0,
+    "p90": 10.0,
+    "null_rate": 0.339,
+    "n_with_earliest": 37
+   },
+   "bar_variant_rate": {
+    "days14": 0.768,
+    "short2": 0.0,
+    "long_gt14": 0.232,
+    "nobar": 0.0,
+    "unknown": 0.0
+   },
+   "price_tiers": {
+    "15": 0.0,
+    "25": 0.0,
+    "50": 0.018,
+    "100+": 0.054,
+    "unknown": 0.929
+   },
+   "unobservable": {
+    "earliest": "最早可约日仅 37/56 单元可读(l2_nobar 变体单元及 no_slot 单元读不到); null_rate=0.339 是页面变体原因, 非计算 bug",
+    "price": "价格只在明细层(医生主页); 本档 0.929 单元无价格观测(明细层抽样未覆盖)",
+    "remediation": "补救: 进明细层(医生主页)抓取, 成本 5.8-6.5s/次 (COST_MODEL.md)"
+   },
+   "sub_tabs_open": {
+    "专家门诊": 1.0,
+    "普通门诊": 1.0,
+    "专病门诊": 1.0
+   },
+   "by_dept_category": {
+    "其他": {
+     "n_units": 15,
+     "n_ok": 8,
+     "n_no_slot": 7,
+     "has_slot_rate": 0.533,
+     "no_slot_rate": 0.467,
+     "earliest_days": {
+      "p10": 6.0,
+      "p50": 7.5,
+      "p90": 10.6,
+      "null_rate": 0.467,
+      "n_with_earliest": 8
+     }
+    },
+    "内科": {
+     "n_units": 15,
+     "n_ok": 10,
+     "n_no_slot": 5,
+     "has_slot_rate": 0.667,
+     "no_slot_rate": 0.333,
+     "earliest_days": {
+      "p10": 6.0,
+      "p50": 7.0,
+      "p90": 8.3,
+      "null_rate": 0.333,
+      "n_with_earliest": 10
+     }
+    },
+    "外科": {
+     "n_units": 10,
+     "n_ok": 10,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": 6.0,
+      "p50": 6.0,
+      "p90": 7.1,
+      "null_rate": 0.0,
+      "n_with_earliest": 10
+     }
+    },
+    "胸外科": {
+     "n_units": 5,
+     "n_ok": 3,
+     "n_no_slot": 2,
+     "has_slot_rate": 0.6,
+     "no_slot_rate": 0.4,
+     "earliest_days": {
+      "p10": 6.0,
+      "p50": 10.0,
+      "p90": 10.0,
+      "null_rate": 0.4,
+      "n_with_earliest": 3
+     }
+    },
+    "妇产科": {
+     "n_units": 3,
+     "n_ok": 2,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.667,
+     "no_slot_rate": 0.333,
+     "earliest_days": {
+      "p10": 6.0,
+      "p50": 6.0,
+      "p90": 6.0,
+      "null_rate": 0.333,
+      "n_with_earliest": 2
+     }
+    },
+    "中西医结合科": {
+     "n_units": 3,
+     "n_ok": 1,
+     "n_no_slot": 2,
+     "has_slot_rate": 0.333,
+     "no_slot_rate": 0.667,
+     "earliest_days": {
+      "p10": 8,
+      "p50": 8,
+      "p90": 8,
+      "null_rate": 0.667,
+      "n_with_earliest": 1
+     }
+    },
+    "职业病科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "肿瘤科": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": 10,
+      "p50": 10,
+      "p90": 10,
+      "null_rate": 0.0,
+      "n_with_earliest": 1
+     }
+    },
+    "呼吸科": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": 5,
+      "p50": 5,
+      "p90": 5,
+      "null_rate": 0.0,
+      "n_with_earliest": 1
+     }
+    },
+    "放疗科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "肺内科": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": 5,
+      "p50": 5,
+      "p90": 5,
+      "null_rate": 0.0,
+      "n_with_earliest": 1
+     }
+    }
+   },
+   "by_site": null,
+   "dept_category_meta": {
+    "n_category_units": 56,
+    "n_site_units": 0,
+    "n_campus_units": 0,
+    "n_other_units": 0,
+    "denominator": "by_dept_category 只聚合 tab_kind=category (n=56); site/campus tab (n=0) 为站点/派驻门诊部名, 非科室大类, 已剔除并单出 by_site"
+   },
+   "confidence": "mid",
+   "confidence_basis": "2 家 / 56 单元 / 每单元 1 次观测 → mid (规则: low=1 家且 <50 单元; mid=2 家或 50-300 单元; high=≥3 家或 ≥300 单元)",
+   "provenance": {
+    "hospitals": [
+     "SH-008",
+     "SH-081"
+    ],
+    "observed_at": "2026-10-02T18:47:17 .. 2026-10-02T19:15:53"
+   }
+  },
+  {
+   "key": "三级甲等|综合医院",
+   "n_hospitals": 2,
+   "n_units": 383,
+   "n_settled": 383,
+   "n_ok": 249,
+   "n_no_slot": 134,
+   "obs_count": 1,
+   "obs_count_dist": {
+    "1": 376
+   },
+   "has_slot_rate": 0.65,
+   "no_slot_rate": 0.35,
+   "perennial_no_slot": "unknown",
+   "perennial_no_slot_note": "RANKING_SPEC §5: perennial=≥3 次观测全 no_slot; 本档每单元 1 次观测(单快照), 无法判定",
+   "earliest_days": {
+    "p10": 4.0,
+    "p50": 5.0,
+    "p90": 11.0,
+    "null_rate": 0.35,
+    "n_with_earliest": 249
+   },
+   "bar_variant_rate": {
+    "days14": 0.838,
+    "short2": 0.0,
+    "long_gt14": 0.162,
+    "nobar": 0.0,
+    "unknown": 0.0
+   },
+   "price_tiers": {
+    "15": 0.0,
+    "25": 0.0,
+    "50": 0.003,
+    "100+": 0.0,
+    "unknown": 0.997
+   },
+   "unobservable": {
+    "earliest": "最早可约日仅 249/383 单元可读(l2_nobar 变体单元及 no_slot 单元读不到); null_rate=0.35 是页面变体原因, 非计算 bug",
+    "price": "价格只在明细层(医生主页); 本档 0.997 单元无价格观测(明细层抽样未覆盖)",
+    "remediation": "补救: 进明细层(医生主页)抓取, 成本 5.8-6.5s/次 (COST_MODEL.md)"
+   },
+   "sub_tabs_open": {
+    "专家门诊": 1.0,
+    "普通门诊": 1.0,
+    "专病门诊": 1.0
+   },
+   "by_dept_category": {
+    "整复外科": {
+     "n_units": 38,
+     "n_ok": 23,
+     "n_no_slot": 15,
+     "has_slot_rate": 0.605,
+     "no_slot_rate": 0.395,
+     "earliest_days": {
+      "p10": 3.0,
+      "p50": 7.0,
+      "p90": 9.0,
+      "null_rate": 0.395,
+      "n_with_earliest": 23
+     }
+    },
+    "其他": {
+     "n_units": 31,
+     "n_ok": 21,
+     "n_no_slot": 10,
+     "has_slot_rate": 0.677,
+     "no_slot_rate": 0.323,
+     "earliest_days": {
+      "p10": 4.0,
+      "p50": 4.0,
+      "p90": 4.0,
+      "null_rate": 0.323,
+      "n_with_earliest": 21
+     }
+    },
+    "眼科": {
+     "n_units": 24,
+     "n_ok": 13,
+     "n_no_slot": 11,
+     "has_slot_rate": 0.542,
+     "no_slot_rate": 0.458,
+     "earliest_days": {
+      "p10": 4.0,
+      "p50": 6.0,
+      "p90": 7.8,
+      "null_rate": 0.458,
+      "n_with_earliest": 13
+     }
+    },
+    "耳鼻咽喉头颈外科": {
+     "n_units": 23,
+     "n_ok": 13,
+     "n_no_slot": 10,
+     "has_slot_rate": 0.565,
+     "no_slot_rate": 0.435,
+     "earliest_days": {
+      "p10": 4.0,
+      "p50": 6.0,
+      "p90": 11.0,
+      "null_rate": 0.435,
+      "n_with_earliest": 13
+     }
+    },
+    "中医科": {
+     "n_units": 16,
+     "n_ok": 7,
+     "n_no_slot": 9,
+     "has_slot_rate": 0.438,
+     "no_slot_rate": 0.562,
+     "earliest_days": {
+      "p10": 4.0,
+      "p50": 4.0,
+      "p90": 6.4,
+      "null_rate": 0.562,
+      "n_with_earliest": 7
+     }
+    },
+    "口腔外科": {
+     "n_units": 16,
+     "n_ok": 11,
+     "n_no_slot": 5,
+     "has_slot_rate": 0.688,
+     "no_slot_rate": 0.312,
+     "earliest_days": {
+      "p10": 5.0,
+      "p50": 7.0,
+      "p90": 13.0,
+      "null_rate": 0.312,
+      "n_with_earliest": 11
+     }
+    },
+    "口腔颌面头颈肿瘤科": {
+     "n_units": 15,
+     "n_ok": 10,
+     "n_no_slot": 5,
+     "has_slot_rate": 0.667,
+     "no_slot_rate": 0.333,
+     "earliest_days": {
+      "p10": 4.0,
+      "p50": 5.0,
+      "p90": 7.5,
+      "null_rate": 0.333,
+      "n_with_earliest": 10
+     }
+    },
+    "口腔黏膜病科": {
+     "n_units": 13,
+     "n_ok": 4,
+     "n_no_slot": 9,
+     "has_slot_rate": 0.308,
+     "no_slot_rate": 0.692,
+     "earliest_days": {
+      "p10": 5.3,
+      "p50": 6.5,
+      "p90": 9.8,
+      "null_rate": 0.692,
+      "n_with_earliest": 4
+     }
+    },
+    "内分泌科": {
+     "n_units": 12,
+     "n_ok": 9,
+     "n_no_slot": 3,
+     "has_slot_rate": 0.75,
+     "no_slot_rate": 0.25,
+     "earliest_days": {
+      "p10": 4.8,
+      "p50": 6.0,
+      "p90": 8.6,
+      "null_rate": 0.25,
+      "n_with_earliest": 9
+     }
+    },
+    "神经内科": {
+     "n_units": 12,
+     "n_ok": 7,
+     "n_no_slot": 5,
+     "has_slot_rate": 0.583,
+     "no_slot_rate": 0.417,
+     "earliest_days": {
+      "p10": 4.0,
+      "p50": 6.0,
+      "p90": 9.2,
+      "null_rate": 0.417,
+      "n_with_earliest": 7
+     }
+    },
+    "内科": {
+     "n_units": 12,
+     "n_ok": 10,
+     "n_no_slot": 2,
+     "has_slot_rate": 0.833,
+     "no_slot_rate": 0.167,
+     "earliest_days": {
+      "p10": 4.0,
+      "p50": 4.0,
+      "p90": 4.1,
+      "null_rate": 0.167,
+      "n_with_earliest": 10
+     }
+    },
+    "泌尿外科": {
+     "n_units": 10,
+     "n_ok": 6,
+     "n_no_slot": 4,
+     "has_slot_rate": 0.6,
+     "no_slot_rate": 0.4,
+     "earliest_days": {
+      "p10": 4.5,
+      "p50": 6.5,
+      "p90": 9.5,
+      "null_rate": 0.4,
+      "n_with_earliest": 6
+     }
+    },
+    "辅助生殖科": {
+     "n_units": 10,
+     "n_ok": 9,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.9,
+     "no_slot_rate": 0.1,
+     "earliest_days": {
+      "p10": 1.0,
+      "p50": 1.0,
+      "p90": 2.8,
+      "null_rate": 0.1,
+      "n_with_earliest": 9
+     }
+    },
+    "外科": {
+     "n_units": 9,
+     "n_ok": 8,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.889,
+     "no_slot_rate": 0.111,
+     "earliest_days": {
+      "p10": 4.0,
+      "p50": 4.0,
+      "p90": 4.3,
+      "null_rate": 0.111,
+      "n_with_earliest": 8
+     }
+    },
+    "普外科": {
+     "n_units": 8,
+     "n_ok": 4,
+     "n_no_slot": 4,
+     "has_slot_rate": 0.5,
+     "no_slot_rate": 0.5,
+     "earliest_days": {
+      "p10": 4.3,
+      "p50": 5.5,
+      "p90": 6.7,
+      "null_rate": 0.5,
+      "n_with_earliest": 4
+     }
+    },
+    "口腔正畸科": {
+     "n_units": 8,
+     "n_ok": 7,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.875,
+     "no_slot_rate": 0.125,
+     "earliest_days": {
+      "p10": 4.6,
+      "p50": 7.0,
+      "p90": 11.8,
+      "null_rate": 0.125,
+      "n_with_earliest": 7
+     }
+    },
+    "康复医学科": {
+     "n_units": 8,
+     "n_ok": 5,
+     "n_no_slot": 3,
+     "has_slot_rate": 0.625,
+     "no_slot_rate": 0.375,
+     "earliest_days": {
+      "p10": 4.8,
+      "p50": 7.0,
+      "p90": 11.2,
+      "null_rate": 0.375,
+      "n_with_earliest": 5
+     }
+    },
+    "牙体牙髓科": {
+     "n_units": 7,
+     "n_ok": 1,
+     "n_no_slot": 6,
+     "has_slot_rate": 0.143,
+     "no_slot_rate": 0.857,
+     "earliest_days": {
+      "p10": 8,
+      "p50": 8,
+      "p90": 8,
+      "null_rate": 0.857,
+      "n_with_earliest": 1
+     }
+    },
+    "妇产科": {
+     "n_units": 7,
+     "n_ok": 5,
+     "n_no_slot": 2,
+     "has_slot_rate": 0.714,
+     "no_slot_rate": 0.286,
+     "earliest_days": {
+      "p10": 4.0,
+      "p50": 4.0,
+      "p90": 6.6,
+      "null_rate": 0.286,
+      "n_with_earliest": 5
+     }
+    },
+    "口腔颅颌面科": {
+     "n_units": 7,
+     "n_ok": 4,
+     "n_no_slot": 3,
+     "has_slot_rate": 0.571,
+     "no_slot_rate": 0.429,
+     "earliest_days": {
+      "p10": 5.0,
+      "p50": 5.0,
+      "p90": 5.0,
+      "null_rate": 0.429,
+      "n_with_earliest": 4
+     }
+    },
+    "皮肤科": {
+     "n_units": 6,
+     "n_ok": 4,
+     "n_no_slot": 2,
+     "has_slot_rate": 0.667,
+     "no_slot_rate": 0.333,
+     "earliest_days": {
+      "p10": 6.1,
+      "p50": 11.0,
+      "p90": 12.4,
+      "null_rate": 0.333,
+      "n_with_earliest": 4
+     }
+    },
+    "肾脏内科": {
+     "n_units": 6,
+     "n_ok": 3,
+     "n_no_slot": 3,
+     "has_slot_rate": 0.5,
+     "no_slot_rate": 0.5,
+     "earliest_days": {
+      "p10": 5.2,
+      "p50": 6.0,
+      "p90": 6.8,
+      "null_rate": 0.5,
+      "n_with_earliest": 3
+     }
+    },
+    "儿童口腔科": {
+     "n_units": 6,
+     "n_ok": 4,
+     "n_no_slot": 2,
+     "has_slot_rate": 0.667,
+     "no_slot_rate": 0.333,
+     "earliest_days": {
+      "p10": 7.0,
+      "p50": 9.0,
+      "p90": 11.0,
+      "null_rate": 0.333,
+      "n_with_earliest": 4
+     }
+    },
+    "心血管内科": {
+     "n_units": 6,
+     "n_ok": 5,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.833,
+     "no_slot_rate": 0.167,
+     "earliest_days": {
+      "p10": 5.0,
+      "p50": 5.0,
+      "p90": 6.8,
+      "null_rate": 0.167,
+      "n_with_earliest": 5
+     }
+    },
+    "口腔第二门诊": {
+     "n_units": 5,
+     "n_ok": 3,
+     "n_no_slot": 2,
+     "has_slot_rate": 0.6,
+     "no_slot_rate": 0.4,
+     "earliest_days": {
+      "p10": 4.2,
+      "p50": 5.0,
+      "p90": 5.8,
+      "null_rate": 0.4,
+      "n_with_earliest": 3
+     }
+    },
+    "血管外科": {
+     "n_units": 5,
+     "n_ok": 4,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.8,
+     "no_slot_rate": 0.2,
+     "earliest_days": {
+      "p10": 4.3,
+      "p50": 6.5,
+      "p90": 10.1,
+      "null_rate": 0.2,
+      "n_with_earliest": 4
+     }
+    },
+    "骨科": {
+     "n_units": 5,
+     "n_ok": 3,
+     "n_no_slot": 2,
+     "has_slot_rate": 0.6,
+     "no_slot_rate": 0.4,
+     "earliest_days": {
+      "p10": 5.6,
+      "p50": 8.0,
+      "p90": 8.0,
+      "null_rate": 0.4,
+      "n_with_earliest": 3
+     }
+    },
+    "血液内科": {
+     "n_units": 5,
+     "n_ok": 4,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.8,
+     "no_slot_rate": 0.2,
+     "earliest_days": {
+      "p10": 6.3,
+      "p50": 7.0,
+      "p90": 7.0,
+      "null_rate": 0.2,
+      "n_with_earliest": 4
+     }
+    },
+    "胸外科": {
+     "n_units": 4,
+     "n_ok": 3,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.75,
+     "no_slot_rate": 0.25,
+     "earliest_days": {
+      "p10": 4.2,
+      "p50": 5.0,
+      "p90": 7.4,
+      "null_rate": 0.25,
+      "n_with_earliest": 3
+     }
+    },
+    "口腔种植科": {
+     "n_units": 4,
+     "n_ok": 4,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": 4.6,
+      "p50": 6.5,
+      "p90": 7.7,
+      "null_rate": 0.0,
+      "n_with_earliest": 4
+     }
+    },
+    "神经外科": {
+     "n_units": 4,
+     "n_ok": 3,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.75,
+     "no_slot_rate": 0.25,
+     "earliest_days": {
+      "p10": 4.6,
+      "p50": 7.0,
+      "p90": 10.2,
+      "null_rate": 0.25,
+      "n_with_earliest": 3
+     }
+    },
+    "营养科": {
+     "n_units": 3,
+     "n_ok": 3,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": 5.4,
+      "p50": 7.0,
+      "p90": 7.8,
+      "null_rate": 0.0,
+      "n_with_earliest": 3
+     }
+    },
+    "老年病科": {
+     "n_units": 3,
+     "n_ok": 3,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": 4.2,
+      "p50": 5.0,
+      "p90": 5.8,
+      "null_rate": 0.0,
+      "n_with_earliest": 3
+     }
+    },
+    "疼痛科": {
+     "n_units": 3,
+     "n_ok": 1,
+     "n_no_slot": 2,
+     "has_slot_rate": 0.333,
+     "no_slot_rate": 0.667,
+     "earliest_days": {
+      "p10": 5,
+      "p50": 5,
+      "p90": 5,
+      "null_rate": 0.667,
+      "n_with_earliest": 1
+     }
+    },
+    "儿科": {
+     "n_units": 3,
+     "n_ok": 3,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": 4.2,
+      "p50": 5.0,
+      "p90": 7.4,
+      "null_rate": 0.0,
+      "n_with_earliest": 3
+     }
+    },
+    "口腔修复科": {
+     "n_units": 2,
+     "n_ok": 1,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.5,
+     "no_slot_rate": 0.5,
+     "earliest_days": {
+      "p10": 4,
+      "p50": 4,
+      "p90": 4,
+      "null_rate": 0.5,
+      "n_with_earliest": 1
+     }
+    },
+    "放疗门诊": {
+     "n_units": 2,
+     "n_ok": 1,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.5,
+     "no_slot_rate": 0.5,
+     "earliest_days": {
+      "p10": 5,
+      "p50": 5,
+      "p90": 5,
+      "null_rate": 0.5,
+      "n_with_earliest": 1
+     }
+    },
+    "激光美容": {
+     "n_units": 2,
+     "n_ok": 2,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": 3.4,
+      "p50": 5.0,
+      "p90": 6.6,
+      "null_rate": 0.0,
+      "n_with_earliest": 2
+     }
+    },
+    "呼吸与危重症医学科": {
+     "n_units": 2,
+     "n_ok": 1,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.5,
+     "no_slot_rate": 0.5,
+     "earliest_days": {
+      "p10": 4,
+      "p50": 4,
+      "p90": 4,
+      "null_rate": 0.5,
+      "n_with_earliest": 1
+     }
+    },
+    "口腔预防科": {
+     "n_units": 2,
+     "n_ok": 2,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": 5.2,
+      "p50": 6.0,
+      "p90": 6.8,
+      "null_rate": 0.0,
+      "n_with_earliest": 2
+     }
+    },
+    "感染科": {
+     "n_units": 2,
+     "n_ok": 1,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.5,
+     "no_slot_rate": 0.5,
+     "earliest_days": {
+      "p10": 7,
+      "p50": 7,
+      "p90": 7,
+      "null_rate": 0.5,
+      "n_with_earliest": 1
+     }
+    },
+    "口腔病理科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "口腔综合科": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": 12,
+      "p50": 12,
+      "p90": 12,
+      "null_rate": 0.0,
+      "n_with_earliest": 1
+     }
+    },
+    "普外二科": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": 6,
+      "p50": 6,
+      "p90": 6,
+      "null_rate": 0.0,
+      "n_with_earliest": 1
+     }
+    },
+    "消化内科": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": 4,
+      "p50": 4,
+      "p90": 4,
+      "null_rate": 0.0,
+      "n_with_earliest": 1
+     }
+    },
+    "麻醉科门诊": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "牙周病科": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": 5,
+      "p50": 5,
+      "p90": 5,
+      "null_rate": 0.0,
+      "n_with_earliest": 1
+     }
+    },
+    "创面修复科": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": 6,
+      "p50": 6,
+      "p90": 6,
+      "null_rate": 0.0,
+      "n_with_earliest": 1
+     }
+    },
+    "全科医学科": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": 4,
+      "p50": 4,
+      "p90": 4,
+      "null_rate": 0.0,
+      "n_with_earliest": 1
+     }
+    },
+    "介入科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "肿瘤科": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": 7,
+      "p50": 7,
+      "p90": 7,
+      "null_rate": 0.0,
+      "n_with_earliest": 1
+     }
+    },
+    "急诊科": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": 5,
+      "p50": 5,
+      "p90": 5,
+      "null_rate": 0.0,
+      "n_with_earliest": 1
+     }
+    },
+    "口腔第一门诊": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": 5,
+      "p50": 5,
+      "p90": 5,
+      "null_rate": 0.0,
+      "n_with_earliest": 1
+     }
+    },
+    "心脏外科": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": 8,
+      "p50": 8,
+      "p90": 8,
+      "null_rate": 0.0,
+      "n_with_earliest": 1
+     }
+    },
+    "精神科": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": 14,
+      "p50": 14,
+      "p90": 14,
+      "null_rate": 0.0,
+      "n_with_earliest": 1
+     }
+    },
+    "口腔科": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": 4,
+      "p50": 4,
+      "p90": 4,
+      "null_rate": 0.0,
+      "n_with_earliest": 1
+     }
+    },
+    "耳鼻咽喉科": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": 4,
+      "p50": 4,
+      "p90": 4,
+      "null_rate": 0.0,
+      "n_with_earliest": 1
+     }
+    },
+    "麻醉科": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": 4,
+      "p50": 4,
+      "p90": 4,
+      "null_rate": 0.0,
+      "n_with_earliest": 1
+     }
+    }
+   },
+   "by_site": null,
+   "dept_category_meta": {
+    "n_category_units": 383,
+    "n_site_units": 0,
+    "n_campus_units": 0,
+    "n_other_units": 0,
+    "denominator": "by_dept_category 只聚合 tab_kind=category (n=383); site/campus tab (n=0) 为站点/派驻门诊部名, 非科室大类, 已剔除并单出 by_site"
+   },
+   "confidence": "high",
+   "confidence_basis": "2 家 / 383 单元 / 每单元 1 次观测 → high (规则: low=1 家且 <50 单元; mid=2 家或 50-300 单元; high=≥3 家或 ≥300 单元)",
+   "provenance": {
+    "hospitals": [
+     "SH-010",
+     "SH-019"
+    ],
+    "observed_at": "2026-10-01T19:24:35 .. 2026-10-02T20:01:51"
+   }
+  },
+  {
+   "key": "二级乙等|综合医院",
+   "n_hospitals": 1,
+   "n_units": 43,
+   "n_settled": 43,
+   "n_ok": 31,
+   "n_no_slot": 12,
+   "obs_count": 1,
+   "obs_count_dist": {
+    "1": 30
+   },
+   "has_slot_rate": 0.721,
+   "no_slot_rate": 0.279,
+   "perennial_no_slot": "unknown",
+   "perennial_no_slot_note": "RANKING_SPEC §5: perennial=≥3 次观测全 no_slot; 本档每单元 1 次观测(单快照), 无法判定",
+   "earliest_days": {
+    "p10": null,
+    "p50": null,
+    "p90": null,
+    "null_rate": 1.0,
+    "n_with_earliest": 0
+   },
+   "bar_variant_rate": {
+    "days14": 0.0,
+    "short2": 0.0,
+    "long_gt14": 0.0,
+    "nobar": 1.0,
+    "unknown": 0.0
+   },
+   "price_tiers": {
+    "15": 0.0,
+    "25": 0.0,
+    "50": 0.0,
+    "100+": 0.0,
+    "unknown": 1.0
+   },
+   "unobservable": {
+    "earliest": "L2 页面均为 l2_nobar 变体(无14天日期条): has_slot 可读, 最早可约日读不到",
+    "price": "价格只在明细层(医生主页); 态势层 L2 无价格字段, 本档无价格观测",
+    "remediation": "补救: 进明细层(医生主页)抓取, 成本 5.8-6.5s/次 (COST_MODEL.md)"
+   },
+   "sub_tabs_open": {
+    "专家门诊": 1.0,
+    "普通门诊": 1.0,
+    "专病门诊": 1.0
+   },
+   "by_dept_category": {
+    "专家门诊": {
+     "n_units": 15,
+     "n_ok": 10,
+     "n_no_slot": 5,
+     "has_slot_rate": 0.667,
+     "no_slot_rate": 0.333,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "内科": {
+     "n_units": 7,
+     "n_ok": 6,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.857,
+     "no_slot_rate": 0.143,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "其他门诊": {
+     "n_units": 6,
+     "n_ok": 2,
+     "n_no_slot": 4,
+     "has_slot_rate": 0.333,
+     "no_slot_rate": 0.667,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "中医科": {
+     "n_units": 4,
+     "n_ok": 3,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.75,
+     "no_slot_rate": 0.25,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "外科": {
+     "n_units": 2,
+     "n_ok": 2,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "五官科": {
+     "n_units": 2,
+     "n_ok": 2,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "针灸理疗科": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "口腔科": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "皮肤科": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "骨科": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "专病": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "妇科": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "儿科": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    }
+   },
+   "by_site": null,
+   "dept_category_meta": {
+    "n_category_units": 43,
+    "n_site_units": 0,
+    "n_campus_units": 0,
+    "n_other_units": 0,
+    "denominator": "by_dept_category 只聚合 tab_kind=category (n=43); site/campus tab (n=0) 为站点/派驻门诊部名, 非科室大类, 已剔除并单出 by_site"
+   },
+   "confidence": "low",
+   "confidence_basis": "1 家 / 43 单元 / 每单元 1 次观测 → low (规则: low=1 家且 <50 单元; mid=2 家或 50-300 单元; high=≥3 家或 ≥300 单元)",
+   "provenance": {
+    "hospitals": [
+     "SH-161"
+    ],
+    "observed_at": "2026-10-02T18:51:15 .. 2026-10-02T19:03:23"
+   }
+  },
+  {
+   "key": "二级甲等|综合医院",
+   "n_hospitals": 1,
+   "n_units": 57,
+   "n_settled": 57,
+   "n_ok": 27,
+   "n_no_slot": 30,
+   "obs_count": 1,
+   "obs_count_dist": {
+    "1": 57
+   },
+   "has_slot_rate": 0.474,
+   "no_slot_rate": 0.526,
+   "perennial_no_slot": "unknown",
+   "perennial_no_slot_note": "RANKING_SPEC §5: perennial=≥3 次观测全 no_slot; 本档每单元 1 次观测(单快照), 无法判定",
+   "earliest_days": {
+    "p10": null,
+    "p50": null,
+    "p90": null,
+    "null_rate": 1.0,
+    "n_with_earliest": 0
+   },
+   "bar_variant_rate": {
+    "days14": 0.0,
+    "short2": 0.0,
+    "long_gt14": 0.0,
+    "nobar": 1.0,
+    "unknown": 0.0
+   },
+   "price_tiers": {
+    "15": 0.0,
+    "25": 0.018,
+    "50": 0.018,
+    "100+": 0.0,
+    "unknown": 0.965
+   },
+   "unobservable": {
+    "earliest": "L2 页面均为 l2_nobar 变体(无14天日期条): has_slot 可读, 最早可约日读不到",
+    "price": "价格只在明细层(医生主页); 本档 0.965 单元无价格观测(明细层抽样未覆盖)",
+    "remediation": "补救: 进明细层(医生主页)抓取, 成本 5.8-6.5s/次 (COST_MODEL.md)"
+   },
+   "sub_tabs_open": {
+    "专家门诊": 1.0,
+    "普通门诊": 1.0,
+    "专病门诊": 1.0
+   },
+   "by_dept_category": {
+    "耳鼻喉科门诊": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "急诊耳鼻喉科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "神经外科门诊": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "内分泌门诊": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "眼科门诊": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "老干部门诊": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "麻醉科门诊": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "急诊手足显微外科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "精确放疗科门诊": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "急诊骨科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "军人门诊": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "骨三门诊": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "内科门诊": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "烧伤整形外科门诊": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "肾脏病科门诊": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "肝病门诊": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "康复医学科门诊": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "中医科门诊": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "老年医学科专家门诊": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "急诊口腔科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "放疗科": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "肿瘤血液内科门诊": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "急诊室": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "普通外科门诊": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "急诊外科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "急诊妇产科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "结核病科门诊": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "呼吸内科门诊": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "心胸外科门诊": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "消化内科门诊": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "妇产科门诊": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "急诊眼科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "发热门诊": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "普外二科门诊": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "儿科门诊": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "急诊内科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "骨科门诊": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "皮肤病科门诊": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "骨四门诊": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "军人外科门诊": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "口腔科门诊": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "医学心理科门诊": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "血管外科门诊": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "急诊神经外科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "急诊小儿科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "骨二科门诊": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "神经内科门诊": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "骨创伤救治中心": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "泌尿外科门诊": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "网络门诊": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "心血管内科门诊": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "急诊烧伤整形外科": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    }
+   },
+   "by_site": {
+    "门诊部": {
+     "n_units": 1,
+     "n_ok": 1,
+     "n_no_slot": 0,
+     "has_slot_rate": 1.0,
+     "no_slot_rate": 0.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "第一派驻门诊部": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "第二派驻门诊部": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "第三派驻门诊部": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    },
+    "派驻门诊点": {
+     "n_units": 1,
+     "n_ok": 0,
+     "n_no_slot": 1,
+     "has_slot_rate": 0.0,
+     "no_slot_rate": 1.0,
+     "earliest_days": {
+      "p10": null,
+      "p50": null,
+      "p90": null,
+      "null_rate": 1.0,
+      "n_with_earliest": 0
+     }
+    }
+   },
+   "dept_category_meta": {
+    "n_category_units": 52,
+    "n_site_units": 1,
+    "n_campus_units": 4,
+    "n_other_units": 0,
+    "denominator": "by_dept_category 只聚合 tab_kind=category (n=52); site/campus tab (n=5) 为站点/派驻门诊部名, 非科室大类, 已剔除并单出 by_site"
+   },
+   "confidence": "mid",
+   "confidence_basis": "1 家 / 57 单元 / 每单元 1 次观测 → mid (规则: low=1 家且 <50 单元; mid=2 家或 50-300 单元; high=≥3 家或 ≥300 单元)",
+   "provenance": {
+    "hospitals": [
+     "SH-145"
+    ],
+    "observed_at": "2026-10-02T19:17:03 .. 2026-10-02T19:41:24"
+   }
+  }
+ ]
+}

@@ -1,0 +1,407 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-415",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:40",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=415; geo=amap(name_in_poi); dept=suishenban#yuyue_guahao(2026-09-26, l1=5/l2u=22)"
+  },
+  "institution": {
+    "name": "嘉定工业区社区卫生服务中心",
+    "aliases": [],
+    "level": "一级甲等",
+    "type": "综合医院",
+    "ownership": "公立",
+    "affiliation": "",
+    "official_site": "",
+    "tel": ""
+  },
+  "campuses": [
+    {
+      "id": "SH-415-M",
+      "name": "本部",
+      "district": "嘉定区",
+      "address": "富蕴路与福海路交叉口北40米",
+      "geo": {
+        "lng": 121.248854,
+        "lat": 31.367928,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:name_in_poi"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "一级甲等",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "嘉定西(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 2242,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 0,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": null,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 4,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 61,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "南苑小学(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": null,
+      "provenance": {
+        "source": "ybj_list",
+        "method": "scrape",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": ""
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-28T07:54:44Z",
+        "l1": [
+          {
+            "name": "妇产科",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "全科（妇科）",
+                "dept_id": "D02450",
+                "canonical": "全科医疗科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:妇科"
+              }
+            ]
+          },
+          {
+            "name": "内科",
+            "tab_index": 1,
+            "depts": [
+              {
+                "raw": "内科（南门）",
+                "dept_id": "D02633",
+                "canonical": "内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:南门"
+              }
+            ]
+          },
+          {
+            "name": "中医科",
+            "tab_index": 2,
+            "depts": [
+              {
+                "raw": "中医科（内科一）",
+                "dept_id": "D01316",
+                "canonical": "中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:内科一"
+              },
+              {
+                "raw": "中医科（喜氏专病）南门",
+                "dept_id": "D01338",
+                "canonical": "中医科南门",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "中医科（肛肠专病）南门",
+                "dept_id": "D01338",
+                "canonical": "中医科南门",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "中医科（全科一）南门",
+                "dept_id": "D01338",
+                "canonical": "中医科南门",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:全科一"
+              },
+              {
+                "raw": "中医内科（南门）",
+                "dept_id": "D01178",
+                "canonical": "中医内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:南门"
+              }
+            ]
+          },
+          {
+            "name": "外科",
+            "tab_index": 3,
+            "depts": [
+              {
+                "raw": "西医外科",
+                "dept_id": "D08908",
+                "canonical": "西医外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "全科医疗科",
+            "tab_index": 4,
+            "depts": [
+              {
+                "raw": "内科（高血压科）",
+                "dept_id": "D02633",
+                "canonical": "内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:高血压科"
+              },
+              {
+                "raw": "全科（内分泌科）南门",
+                "dept_id": "D02464",
+                "canonical": "全科南门",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:内分泌科"
+              },
+              {
+                "raw": "中医科（雨化）",
+                "dept_id": "D01316",
+                "canonical": "中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:雨化"
+              },
+              {
+                "raw": "全科（内分泌科）",
+                "dept_id": "D02450",
+                "canonical": "全科医疗科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:内分泌科"
+              },
+              {
+                "raw": "全科（健康服务）南门",
+                "dept_id": "D02464",
+                "canonical": "全科南门",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:健康服务"
+              },
+              {
+                "raw": "全科（心内科）南门",
+                "dept_id": "D02464",
+                "canonical": "全科南门",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:心内科"
+              },
+              {
+                "raw": "全科（健康服务）娄塘",
+                "dept_id": "D02471",
+                "canonical": "全科娄塘",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:健康服务"
+              },
+              {
+                "raw": "全科（健康服务）",
+                "dept_id": "D02450",
+                "canonical": "全科医疗科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:健康服务"
+              },
+              {
+                "raw": "全科（娄塘分中心）",
+                "dept_id": "D02450",
+                "canonical": "全科医疗科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:娄塘分中心"
+              },
+              {
+                "raw": "内科（神经内科）南门",
+                "dept_id": "D02646",
+                "canonical": "内科南门",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:神经内科"
+              },
+              {
+                "raw": "中医科（红石路）",
+                "dept_id": "D01316",
+                "canonical": "中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:红石路"
+              },
+              {
+                "raw": "伤口管理门诊",
+                "dept_id": "D01839",
+                "canonical": "伤口管理门诊",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "全科诊疗科（中心）",
+                "dept_id": "D02490",
+                "canonical": "全科诊疗科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中心"
+              },
+              {
+                "raw": "全科（南门）",
+                "dept_id": "D02450",
+                "canonical": "全科医疗科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:南门"
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 5,
+          "entry_count": 22,
+          "unique_count": 22,
+          "canonical_count": 11
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-28T07:54:44Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 5,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-28T07:54:44Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 22,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-28T07:54:44Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

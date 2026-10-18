@@ -1,0 +1,4584 @@
+{
+ "meta": {
+  "mode": "interactive",
+  "llm": "agentsvc(model_id=default)",
+  "app": "挂号推荐运行期原型 v0.2（PC 原型, 目标手机端）",
+  "started_at": "2026-10-06T09:04:17",
+  "generated_at": "2026-10-06T09:57:06"
+ },
+ "loc": {
+  "lng": 121.442988,
+  "lat": 31.252108,
+  "crs": "GCJ-02",
+  "method": "amap_place_cached",
+  "cached": true,
+  "is_stub": false,
+  "note": "高德 amap_place 命中「中远两湾城」普陀区中远两湾城（缓存命中）",
+  "address": "远景路488号(中潭路地铁站2号口步行350米)",
+  "adname": "普陀区",
+  "adcode": ""
+ },
+ "spec": {
+  "symptom_text": "右下颌骨增生，或者是咬肌肥大，脸型不对称",
+  "patient": {
+   "age": 48,
+   "age_band": "adult",
+   "is_child": false,
+   "proxy": false,
+   "gender": "male"
+  },
+  "urgency_days": 14,
+  "visit_type": "new",
+  "prefs": {
+   "metro_priority": true,
+   "price_cap_cny": 50,
+   "level_expectation": "balanced"
+  },
+  "notes": [
+   "病例来源: 显式结构化字段 (web/表单), 非自由文本解析",
+   "年龄=48 → adult",
+   "性别=male",
+   "时效 → max_wait_days=14",
+   "地铁优先",
+   "费用预期 → price_cap_cny=50"
+  ],
+  "_raw": [
+   "右下颌骨增生，或者是咬肌肥大，脸型不对称",
+   "",
+   ""
+  ]
+ },
+ "inference": {
+  "scenario": "community_first",
+  "scenario_zh": "社区首诊/轻症",
+  "weights": {
+   "match": 0.32,
+   "level": 0.14,
+   "breadth": 0.06,
+   "distance": 0.2,
+   "metro": 0.12,
+   "bus": 0.04,
+   "key_specialty": 0.02,
+   "price": 0.1
+  },
+  "weight_overrides": {},
+  "max_wait_days": 14,
+  "price_cap_cny": 50,
+  "triage_term": "右下颌骨增生",
+  "triage_hits": [],
+  "llm_depts": [
+   "口腔颌面外科",
+   "整形外科",
+   "口腔外科",
+   "医疗美容科"
+  ],
+  "llm_dept_kinds": {
+   "口腔颌面外科": "clinic",
+   "整形外科": "clinic",
+   "口腔外科": "clinic",
+   "医疗美容科": "clinic"
+  },
+  "dept_how": "llm",
+  "reasoning": [
+   "属非急症新诊，优先考虑可评估骨性增生、咬肌肥大与脸型不对称的口腔颌面外科，整形外科、口腔外科作为备选。",
+   "患者地铁偏好明确且位置在普陀区，距离与地铁权重适当提高；等待可接受14天内，无需急诊或强时效加权。",
+   "费用上限50元，price权重提高以控制性价比；水平预期为balanced，医院等级权重适中，不偏向顶级三甲或最低等级。",
+   "triage_term='右下颌骨增生' 词表交叉核对: 与 LLM 科室一致（口腔外科）"
+  ],
+  "llm_mode": "agentsvc(model_id=default; 直出权重向量+目标科室, 含基础数据上下文)",
+  "llm_meta": {
+   "provider": "agentsvc",
+   "model_id": "default",
+   "base": "http://127.0.0.1:7989",
+   "elapsed_ms": 21438.0,
+   "first_byte_ms": 16.0,
+   "attempts": 1,
+   "thinking_chars": 4173,
+   "session_id": null,
+   "n_data": 2322,
+   "prompt_chars": 14418
+  },
+  "fallback": false,
+  "context": {
+   "n_depts": 363,
+   "n_hospitals": 438,
+   "dept_hc_min": 5
+  }
+ },
+ "stage1": {
+  "symptom": "右下颌骨增生",
+  "scenario": "community_first",
+  "triage": {
+   "term": "右下颌骨增生",
+   "how": "llm",
+   "targets": [
+    {
+     "dept_id": "D02969",
+     "canonical": "医疗美容科",
+     "kind": "clinic",
+     "priority": 1,
+     "confidence": "high",
+     "hosp": 6
+    },
+    {
+     "dept_id": "D03200",
+     "canonical": "口腔外科",
+     "kind": "clinic",
+     "priority": 1,
+     "confidence": "high",
+     "hosp": 17
+    },
+    {
+     "dept_id": "D03308",
+     "canonical": "口腔颌面外科",
+     "kind": "clinic",
+     "priority": 1,
+     "confidence": "high",
+     "hosp": 10
+    },
+    {
+     "dept_id": "D05229",
+     "canonical": "整形外科",
+     "kind": "clinic",
+     "priority": 1,
+     "confidence": "high",
+     "hosp": 28
+    }
+   ]
+  },
+  "applied_weights": {
+   "match": 0.3556,
+   "level": 0.1556,
+   "breadth": 0.0667,
+   "distance": 0.2222,
+   "metro": 0.1333,
+   "bus": 0.0444,
+   "key_specialty": 0.0222
+  },
+  "hard_filter": {
+   "radius_km": 12.0,
+   "require_insurance": true,
+   "recall": 54,
+   "passed": 26,
+   "dropped": 28,
+   "drop_reasons": {
+    "超出半径12km": 21,
+    "BLOCKED": 5,
+    "PATIENT_BAND_HOSPITAL: 成人/老年患者不适用于儿科机构": 2
+   },
+   "dropped_ids": [
+    "SH-001",
+    "SH-004",
+    "SH-005",
+    "SH-006",
+    "SH-010",
+    "SH-016",
+    "SH-017",
+    "SH-018",
+    "SH-027",
+    "SH-028",
+    "SH-034",
+    "SH-037",
+    "SH-044",
+    "SH-050",
+    "SH-072",
+    "SH-074",
+    "SH-086",
+    "SH-100",
+    "SH-115",
+    "SH-143",
+    "SH-155",
+    "SH-170",
+    "SH-195",
+    "SH-199",
+    "SH-208",
+    "SH-214",
+    "SH-215",
+    "SH-382"
+   ]
+  },
+  "K": 24,
+  "K_rule": {
+   "n": 26,
+   "s0": 0.9465,
+   "floor": 0.7265,
+   "gap_thr": 0.05,
+   "i_floor": 24,
+   "i_gap": 26
+  },
+  "patient_filter": {
+   "band": "adult",
+   "note": "剔除患者不匹配的专科机构医院 24 家: 上海市妇幼保健中心, 儿童医学中心, 儿童医院泸定路院区, 第一妇婴保健院东院...",
+   "dropped_hospitals": [
+    {
+     "hospital_id": "SH-018",
+     "name": "儿童医学中心",
+     "reason": "成人/老年患者不适用于儿科机构(名称含\"儿童医学中心\")"
+    },
+    {
+     "hospital_id": "SH-074",
+     "name": "儿科医院",
+     "reason": "成人/老年患者不适用于儿科机构(名称含\"儿科医院\")"
+    }
+   ]
+  }
+ },
+ "slot_queries": [
+  {
+   "query_id": "q-62f6cc51ec68",
+   "hospital_id": "SH-084",
+   "dept_id": "D05229",
+   "dept_ids": [
+    "D05229"
+   ],
+   "scenario": "community_first",
+   "user_loc": {
+    "lng": 121.442988,
+    "lat": 31.252108,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 14,
+   "price_cap_cny": 50,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 1,
+   "budget_left": 12,
+   "static_score": 0.9465
+  },
+  {
+   "query_id": "q-149071e81c1f",
+   "hospital_id": "SH-071",
+   "dept_id": "D03200",
+   "dept_ids": [
+    "D03200"
+   ],
+   "scenario": "community_first",
+   "user_loc": {
+    "lng": 121.442988,
+    "lat": 31.252108,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 14,
+   "price_cap_cny": 50,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 2,
+   "budget_left": 11,
+   "static_score": 0.9385
+  },
+  {
+   "query_id": "q-8546e408abbc",
+   "hospital_id": "SH-030",
+   "dept_id": "D05229",
+   "dept_ids": [
+    "D05229"
+   ],
+   "scenario": "community_first",
+   "user_loc": {
+    "lng": 121.442988,
+    "lat": 31.252108,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 14,
+   "price_cap_cny": 50,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 3,
+   "budget_left": 10,
+   "static_score": 0.9302
+  },
+  {
+   "query_id": "q-26dc038c6cde",
+   "hospital_id": "SH-003",
+   "dept_id": "D05229",
+   "dept_ids": [
+    "D05229"
+   ],
+   "scenario": "community_first",
+   "user_loc": {
+    "lng": 121.442988,
+    "lat": 31.252108,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 14,
+   "price_cap_cny": 50,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 4,
+   "budget_left": 9,
+   "static_score": 0.9103
+  },
+  {
+   "query_id": "q-2a05a1f17d31",
+   "hospital_id": "SH-095",
+   "dept_id": "D05229",
+   "dept_ids": [
+    "D05229"
+   ],
+   "scenario": "community_first",
+   "user_loc": {
+    "lng": 121.442988,
+    "lat": 31.252108,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 14,
+   "price_cap_cny": 50,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 5,
+   "budget_left": 8,
+   "static_score": 0.9066
+  },
+  {
+   "query_id": "q-090a930cad91",
+   "hospital_id": "SH-015",
+   "dept_id": "D03308",
+   "dept_ids": [
+    "D03308"
+   ],
+   "scenario": "community_first",
+   "user_loc": {
+    "lng": 121.442988,
+    "lat": 31.252108,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 14,
+   "price_cap_cny": 50,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 6,
+   "budget_left": 7,
+   "static_score": 0.9048
+  },
+  {
+   "query_id": "q-f5b589d6a6ab",
+   "hospital_id": "SH-064",
+   "dept_id": "D02969",
+   "dept_ids": [
+    "D02969"
+   ],
+   "scenario": "community_first",
+   "user_loc": {
+    "lng": 121.442988,
+    "lat": 31.252108,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 14,
+   "price_cap_cny": 50,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 7,
+   "budget_left": 6,
+   "static_score": 0.8933
+  },
+  {
+   "query_id": "q-98b3f11d8058",
+   "hospital_id": "SH-007",
+   "dept_id": "D05229",
+   "dept_ids": [
+    "D05229"
+   ],
+   "scenario": "community_first",
+   "user_loc": {
+    "lng": 121.442988,
+    "lat": 31.252108,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 14,
+   "price_cap_cny": 50,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 8,
+   "budget_left": 5,
+   "static_score": 0.891
+  },
+  {
+   "query_id": "q-ea2a484eaf5a",
+   "hospital_id": "SH-019",
+   "dept_id": "D03308",
+   "dept_ids": [
+    "D03308",
+    "D05229"
+   ],
+   "scenario": "community_first",
+   "user_loc": {
+    "lng": 121.442988,
+    "lat": 31.252108,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 14,
+   "price_cap_cny": 50,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 9,
+   "budget_left": 4,
+   "static_score": 0.8722
+  },
+  {
+   "query_id": "q-ab65540ba330",
+   "hospital_id": "SH-087",
+   "dept_id": "D05229",
+   "dept_ids": [
+    "D05229"
+   ],
+   "scenario": "community_first",
+   "user_loc": {
+    "lng": 121.442988,
+    "lat": 31.252108,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 14,
+   "price_cap_cny": 50,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 10,
+   "budget_left": 3,
+   "static_score": 0.8471
+  },
+  {
+   "query_id": "q-c1f1a90fb146",
+   "hospital_id": "SH-040",
+   "dept_id": "D03200",
+   "dept_ids": [
+    "D03200"
+   ],
+   "scenario": "community_first",
+   "user_loc": {
+    "lng": 121.442988,
+    "lat": 31.252108,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 14,
+   "price_cap_cny": 50,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 11,
+   "budget_left": 2,
+   "static_score": 0.841
+  },
+  {
+   "query_id": "q-b930acdd455e",
+   "hospital_id": "SH-039",
+   "dept_id": "D05229",
+   "dept_ids": [
+    "D05229"
+   ],
+   "scenario": "community_first",
+   "user_loc": {
+    "lng": 121.442988,
+    "lat": 31.252108,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 14,
+   "price_cap_cny": 50,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 12,
+   "budget_left": 1,
+   "static_score": 0.8395
+  }
+ ],
+ "slots": {
+  "SH-084": {
+   "hospital_id": "SH-084",
+   "dept_id": "D05229",
+   "dept_name": "整形外科门诊",
+   "slot_source": "cache",
+   "detail": "observed",
+   "status": "no_slot",
+   "verified": true,
+   "earliest_date": null,
+   "earliest_days": null,
+   "fee_tier": "unknown",
+   "fee_tiers": {},
+   "fee_min_tier": null,
+   "tension": null,
+   "perennial_no_slot": false,
+   "days14_has": 0,
+   "days14_total": 0,
+   "bookable_doctor_count": 0,
+   "provenance": {
+    "file": "slots/out/SH-084-sh084.json",
+    "captured_at": "2026-10-06T09:57:06",
+    "age_min": 0.0,
+    "ttl_min": 90,
+    "ttl_ok": true
+   },
+   "note": "observed（TTL 内）: 近14天 0/0 天有号"
+  },
+  "SH-071": {
+   "hospital_id": "SH-071",
+   "dept_id": "D03200",
+   "dept_name": "口腔外科",
+   "slot_source": "cache",
+   "detail": "observed",
+   "status": "no_slot",
+   "verified": true,
+   "earliest_date": null,
+   "earliest_days": null,
+   "fee_tier": "unknown",
+   "fee_tiers": {},
+   "fee_min_tier": null,
+   "tension": null,
+   "perennial_no_slot": false,
+   "days14_has": 0,
+   "days14_total": 0,
+   "bookable_doctor_count": 0,
+   "provenance": {
+    "file": "slots/out/SH-071-sh071.json",
+    "captured_at": "2026-10-06T09:57:06",
+    "age_min": 0.0,
+    "ttl_min": 90,
+    "ttl_ok": true
+   },
+   "note": "observed（TTL 内）: 近14天 0/0 天有号"
+  },
+  "SH-030": {
+   "hospital_id": "SH-030",
+   "dept_id": "D05229",
+   "dept_name": "整形外科",
+   "slot_source": "cache",
+   "detail": "observed",
+   "status": "no_slot",
+   "verified": true,
+   "earliest_date": null,
+   "earliest_days": null,
+   "fee_tier": "unknown",
+   "fee_tiers": {},
+   "fee_min_tier": null,
+   "tension": null,
+   "perennial_no_slot": false,
+   "days14_has": 0,
+   "days14_total": 0,
+   "bookable_doctor_count": 0,
+   "provenance": {
+    "file": "slots/out/SH-030-sh030.json",
+    "captured_at": "2026-10-06T09:57:06",
+    "age_min": 0.0,
+    "ttl_min": 90,
+    "ttl_ok": true
+   },
+   "note": "observed（TTL 内）: 近14天 0/0 天有号"
+  },
+  "SH-003": {
+   "hospital_id": "SH-003",
+   "dept_id": "D05229",
+   "dept_name": "整形外科",
+   "slot_source": "cache",
+   "detail": "observed",
+   "status": "no_slot",
+   "verified": true,
+   "earliest_date": null,
+   "earliest_days": null,
+   "fee_tier": "unknown",
+   "fee_tiers": {},
+   "fee_min_tier": null,
+   "tension": null,
+   "perennial_no_slot": false,
+   "days14_has": 0,
+   "days14_total": 0,
+   "bookable_doctor_count": 3,
+   "provenance": {
+    "file": "slots/out/SH-003-sh003.json",
+    "captured_at": "2026-10-06T09:57:06",
+    "age_min": 0.0,
+    "ttl_min": 90,
+    "ttl_ok": true
+   },
+   "note": "observed（TTL 内）: 近14天 0/0 天有号"
+  },
+  "SH-095": {
+   "hospital_id": "SH-095",
+   "dept_id": "D05229",
+   "dept_name": "整形外科",
+   "slot_source": "cache",
+   "detail": "observed",
+   "status": "ok",
+   "verified": true,
+   "earliest_date": "2026-10-09",
+   "earliest_days": 3,
+   "fee_tier": "50",
+   "fee_tiers": {
+    "50": 1.0
+   },
+   "fee_min_tier": "50",
+   "tension": null,
+   "perennial_no_slot": false,
+   "days14_has": 4,
+   "days14_total": 4,
+   "bookable_doctor_count": 9,
+   "provenance": {
+    "file": "slots/out/SH-095-sh095.json",
+    "captured_at": "2026-10-06T09:57:06",
+    "age_min": 0.0,
+    "ttl_min": 90,
+    "ttl_ok": true
+   },
+   "note": "observed（TTL 内）: 近14天 4/4 天有号"
+  },
+  "SH-015": {
+   "hospital_id": "SH-015",
+   "dept_id": "D03308",
+   "dept_name": "口腔颌面外科",
+   "slot_source": "cache",
+   "detail": "observed",
+   "status": "no_slot",
+   "verified": true,
+   "earliest_date": null,
+   "earliest_days": null,
+   "fee_tier": "unknown",
+   "fee_tiers": {},
+   "fee_min_tier": null,
+   "tension": null,
+   "perennial_no_slot": false,
+   "days14_has": 0,
+   "days14_total": 0,
+   "bookable_doctor_count": 1,
+   "provenance": {
+    "file": "slots/out/SH-015-sh015.json",
+    "captured_at": "2026-10-06T09:57:06",
+    "age_min": 0.0,
+    "ttl_min": 90,
+    "ttl_ok": true
+   },
+   "note": "observed（TTL 内）: 近14天 0/0 天有号"
+  },
+  "SH-064": {
+   "hospital_id": "SH-064",
+   "dept_id": "D02969",
+   "dept_name": "医疗美容科",
+   "slot_source": "cache",
+   "detail": "observed",
+   "status": "no_slot",
+   "verified": true,
+   "earliest_date": null,
+   "earliest_days": null,
+   "fee_tier": "unknown",
+   "fee_tiers": {},
+   "fee_min_tier": null,
+   "tension": null,
+   "perennial_no_slot": false,
+   "days14_has": 0,
+   "days14_total": 0,
+   "bookable_doctor_count": 1,
+   "provenance": {
+    "file": "slots/out/SH-064-sh064.json",
+    "captured_at": "2026-10-06T09:57:06",
+    "age_min": 0.0,
+    "ttl_min": 90,
+    "ttl_ok": true
+   },
+   "note": "observed（TTL 内）: 近14天 0/0 天有号"
+  },
+  "SH-007": {
+   "hospital_id": "SH-007",
+   "dept_id": "D05229",
+   "dept_name": "整形外科（市民）",
+   "slot_source": "cache",
+   "detail": "observed",
+   "status": "no_slot",
+   "verified": true,
+   "earliest_date": null,
+   "earliest_days": null,
+   "fee_tier": "unknown",
+   "fee_tiers": {},
+   "fee_min_tier": null,
+   "tension": null,
+   "perennial_no_slot": false,
+   "days14_has": 0,
+   "days14_total": 0,
+   "bookable_doctor_count": 0,
+   "provenance": {
+    "file": "slots/out/SH-007-sh007.json",
+    "captured_at": "2026-10-06T09:57:06",
+    "age_min": 0.0,
+    "ttl_min": 90,
+    "ttl_ok": true
+   },
+   "note": "observed（TTL 内）: 近14天 0/0 天有号"
+  },
+  "SH-019": {
+   "hospital_id": "SH-019",
+   "dept_id": "D05229",
+   "dept_name": "整形外科",
+   "slot_source": "cache",
+   "detail": "observed",
+   "status": "ok",
+   "verified": true,
+   "earliest_date": "2026-10-07",
+   "earliest_days": 1,
+   "fee_tier": "50",
+   "fee_tiers": {
+    "50": 1.0
+   },
+   "fee_min_tier": "50",
+   "tension": null,
+   "perennial_no_slot": false,
+   "days14_has": 5,
+   "days14_total": 5,
+   "bookable_doctor_count": 12,
+   "provenance": {
+    "file": "slots/out/SH-019-zhongshan.json",
+    "captured_at": "2026-10-06T09:57:06",
+    "age_min": 0.0,
+    "ttl_min": 90,
+    "ttl_ok": true
+   },
+   "note": "observed（TTL 内）: 近14天 5/5 天有号"
+  },
+  "SH-087": {
+   "hospital_id": "SH-087",
+   "dept_id": "D05229",
+   "dept_name": "整形外科",
+   "slot_source": "cache",
+   "detail": "observed",
+   "status": "no_slot",
+   "verified": true,
+   "earliest_date": null,
+   "earliest_days": null,
+   "fee_tier": "unknown",
+   "fee_tiers": {},
+   "fee_min_tier": null,
+   "tension": null,
+   "perennial_no_slot": false,
+   "days14_has": 0,
+   "days14_total": 0,
+   "bookable_doctor_count": 1,
+   "provenance": {
+    "file": "slots/out/SH-087-sh087.json",
+    "captured_at": "2026-10-06T09:57:06",
+    "age_min": 0.0,
+    "ttl_min": 90,
+    "ttl_ok": true
+   },
+   "note": "observed（TTL 内）: 近14天 0/0 天有号"
+  },
+  "SH-040": {
+   "hospital_id": "SH-040",
+   "dept_id": "D03200",
+   "dept_name": "口腔外科(高科)",
+   "slot_source": "cache",
+   "detail": "observed",
+   "status": "no_slot",
+   "verified": true,
+   "earliest_date": null,
+   "earliest_days": null,
+   "fee_tier": "unknown",
+   "fee_tiers": {},
+   "fee_min_tier": null,
+   "tension": null,
+   "perennial_no_slot": false,
+   "days14_has": 0,
+   "days14_total": 0,
+   "bookable_doctor_count": 0,
+   "provenance": {
+    "file": "slots/out/SH-040-sh040.json",
+    "captured_at": "2026-10-06T09:57:06",
+    "age_min": 0.0,
+    "ttl_min": 90,
+    "ttl_ok": true
+   },
+   "note": "observed（TTL 内）: 近14天 0/0 天有号"
+  },
+  "SH-039": {
+   "hospital_id": "SH-039",
+   "dept_id": "D05229",
+   "slot_source": "cache",
+   "detail": "level_default",
+   "status": "unknown",
+   "verified": false,
+   "earliest_date": null,
+   "earliest_days": 5.0,
+   "fee_tier": "50",
+   "fee_tiers": {
+    "15": 0.0,
+    "25": 0.0,
+    "50": 0.003,
+    "100+": 0.0
+   },
+   "fee_min_tier": "50",
+   "tension": null,
+   "perennial_no_slot": false,
+   "perennial_no_slot_rate": null,
+   "has_slot_rate": 0.65,
+   "confidence": "high",
+   "provenance": {
+    "file": "slots/profiles/level_defaults.json",
+    "stratum_key": "三级甲等|综合医院",
+    "captured_at": null,
+    "age_min": null,
+    "ttl_min": null,
+    "ttl_ok": false
+   },
+   "note": "档位估算（stratum=三级甲等|综合医院, n_units=383, confidence=high; 非实时, 不可当号源事实）",
+   "stale_reference": {
+    "hospital_id": "SH-039",
+    "dept_id": "D05229",
+    "slot_source": "cache",
+    "detail": "observed",
+    "status": "unknown",
+    "verified": false,
+    "earliest_date": null,
+    "earliest_days": null,
+    "fee_tier": "unknown",
+    "fee_tiers": {},
+    "fee_min_tier": null,
+    "tension": null,
+    "perennial_no_slot": false,
+    "lead_days": 5,
+    "release_cycle": "unknown",
+    "obs_count": 0,
+    "provenance": {
+     "file": "slots/profiles/slot_profile.json",
+     "captured_at": null,
+     "age_min": null,
+     "ttl_min": 90,
+     "ttl_ok": false
+    },
+    "note": "观察过期（age_min>TTL）, 按未核实处理; 可约提前5天"
+   },
+   "dept_name": "整形外科"
+  }
+ },
+ "final": {
+  "recommendations": [
+   {
+    "rank": 9,
+    "hospital_id": "SH-019",
+    "name": "中山医院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "徐汇区",
+    "insurance": "yes",
+    "static_score": 0.8722,
+    "slot_utility": 0.97,
+    "final_score": 0.846,
+    "slot_source": "cache/observed(已核实)",
+    "verified": true,
+    "queried": true,
+    "static_rank": 9,
+    "slot_status": "ok",
+    "earliest_date": "2026-10-07",
+    "fee_tier": "50",
+    "fee_tiers": {
+     "50": 1.0
+    },
+    "fee_min_tier": "50",
+    "bookable_doctor_count": 12,
+    "n_records": null,
+    "dept_id": "D05229",
+    "dept": "整形外科",
+    "marks": [
+     "已核实有号（captured_at=2026-10-06T09:57:06）",
+     "性价比(已核实): 可核实费档全部在预算内（≤50元）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.35555555555555557,
+      "v": 1.0,
+      "contrib": 0.3556,
+      "note": "命中: 口腔颌面外科,整形外科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.7472,
+      "contrib": 0.1661,
+      "note": "6.3km"
+     },
+     {
+      "feature": "level",
+      "w": 0.15555555555555556,
+      "v": 1.0,
+      "contrib": 0.1556,
+      "note": "三级甲等"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.7472,
+      "lost": 0.0562,
+      "note": "6.3km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.5967,
+      "lost": 0.0538,
+      "note": "步行12.1m"
+     },
+     {
+      "feature": "bus",
+      "w": 0.044444444444444446,
+      "v": 0.7737,
+      "lost": 0.0101,
+      "note": "3站"
+     }
+    ],
+    "final_rank": 1,
+    "why": "中山医院（三级甲等/徐汇区）: 科室命中=命中: 口腔颌面外科,整形外科 [p1/high]（+0.3556, match），距离就近=6.3km（+0.1661, distance）。号源已核实: 最早可约 2026-10-07（来源 cache/observed(已核实)）。",
+    "evidence": {
+     "static_score": 0.8722,
+     "slot_utility": 0.97,
+     "final_score": 0.846,
+     "top3_contrib": [
+      {
+       "feature": "match",
+       "w": 0.35555555555555557,
+       "v": 1.0,
+       "contrib": 0.3556,
+       "note": "命中: 口腔颌面外科,整形外科 [p1/high]"
+      },
+      {
+       "feature": "distance",
+       "w": 0.22222222222222224,
+       "v": 0.7472,
+       "contrib": 0.1661,
+       "note": "6.3km"
+      },
+      {
+       "feature": "level",
+       "w": 0.15555555555555556,
+       "v": 1.0,
+       "contrib": 0.1556,
+       "note": "三级甲等"
+      }
+     ],
+     "deductions": [
+      {
+       "feature": "distance",
+       "w": 0.22222222222222224,
+       "v": 0.7472,
+       "lost": 0.0562,
+       "note": "6.3km"
+      },
+      {
+       "feature": "metro",
+       "w": 0.13333333333333333,
+       "v": 0.5967,
+       "lost": 0.0538,
+       "note": "步行12.1m"
+      },
+      {
+       "feature": "bus",
+       "w": 0.044444444444444446,
+       "v": 0.7737,
+       "lost": 0.0101,
+       "note": "3站"
+      }
+     ],
+     "slot_info": {
+      "slot_source": "cache",
+      "detail": "observed",
+      "status": "ok",
+      "verified": true,
+      "earliest_date": "2026-10-07",
+      "earliest_days": 1,
+      "fee_tier": "50",
+      "fee_tiers": {
+       "50": 1.0
+      },
+      "fee_min_tier": "50",
+      "tension": null,
+      "perennial_no_slot": false,
+      "days14_has": 5,
+      "days14_total": 5,
+      "provenance": {
+       "file": "slots/out/SH-019-zhongshan.json",
+       "captured_at": "2026-10-06T09:57:06",
+       "age_min": 0.0,
+       "ttl_min": 90,
+       "ttl_ok": true
+      },
+      "note": "observed（TTL 内）: 近14天 5/5 天有号"
+     },
+     "constraints": {
+      "max_wait_days": 14,
+      "price_cap_cny": 50
+     },
+     "violations": []
+    },
+    "dept_tab": "外科",
+    "dept_raw": "整形外科"
+   },
+   {
+    "rank": 12,
+    "hospital_id": "SH-039",
+    "name": "公利医院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "浦东新区",
+    "insurance": "yes",
+    "static_score": 0.8395,
+    "slot_utility": 1.0,
+    "final_score": 0.8395,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 12,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "50",
+    "fee_tiers": {
+     "15": 0.0,
+     "25": 0.0,
+     "50": 0.003,
+     "100+": 0.0
+    },
+    "fee_min_tier": "50",
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": "D05229",
+    "dept": "整形外科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|综合医院, confidence=high, 非实时, 不当作号源事实）",
+     "性价比(未核实, 仅标注): 该档位/观察样本中预算内(≤50元)费档占 0%（未核实, 不参与排序）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.35555555555555557,
+      "v": 1.0,
+      "contrib": 0.3556,
+      "note": "命中: 整形外科 [p1/high]"
+     },
+     {
+      "feature": "level",
+      "w": 0.15555555555555556,
+      "v": 1.0,
+      "contrib": 0.1556,
+      "note": "三级甲等"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.6052,
+      "contrib": 0.1345,
+      "note": "9.9km"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.6052,
+      "lost": 0.0877,
+      "note": "9.9km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.62,
+      "lost": 0.0507,
+      "note": "步行11.4m"
+     },
+     {
+      "feature": "key_specialty",
+      "w": 0.022222222222222223,
+      "v": 0.0,
+      "lost": 0.0222,
+      "note": "空（覆盖4.4%）"
+     }
+    ],
+    "final_rank": 2,
+    "why": "公利医院（三级甲等/浦东新区）: 科室命中=命中: 整形外科 [p1/high]（+0.3556, match），医院等级=三级甲等（+0.1556, level）。号源未核实（cache/level_default(档位先验,未核实)）, 仅按静态分排序, 不得当实时事实。",
+    "evidence": {
+     "static_score": 0.8395,
+     "slot_utility": 1.0,
+     "final_score": 0.8395,
+     "top3_contrib": [
+      {
+       "feature": "match",
+       "w": 0.35555555555555557,
+       "v": 1.0,
+       "contrib": 0.3556,
+       "note": "命中: 整形外科 [p1/high]"
+      },
+      {
+       "feature": "level",
+       "w": 0.15555555555555556,
+       "v": 1.0,
+       "contrib": 0.1556,
+       "note": "三级甲等"
+      },
+      {
+       "feature": "distance",
+       "w": 0.22222222222222224,
+       "v": 0.6052,
+       "contrib": 0.1345,
+       "note": "9.9km"
+      }
+     ],
+     "deductions": [
+      {
+       "feature": "distance",
+       "w": 0.22222222222222224,
+       "v": 0.6052,
+       "lost": 0.0877,
+       "note": "9.9km"
+      },
+      {
+       "feature": "metro",
+       "w": 0.13333333333333333,
+       "v": 0.62,
+       "lost": 0.0507,
+       "note": "步行11.4m"
+      },
+      {
+       "feature": "key_specialty",
+       "w": 0.022222222222222223,
+       "v": 0.0,
+       "lost": 0.0222,
+       "note": "空（覆盖4.4%）"
+      }
+     ],
+     "slot_info": {
+      "slot_source": "cache",
+      "detail": "level_default",
+      "status": "unknown",
+      "verified": false,
+      "earliest_date": null,
+      "earliest_days": 5.0,
+      "fee_tier": "50",
+      "fee_tiers": {
+       "15": 0.0,
+       "25": 0.0,
+       "50": 0.003,
+       "100+": 0.0
+      },
+      "fee_min_tier": "50",
+      "tension": null,
+      "perennial_no_slot": false,
+      "days14_has": null,
+      "days14_total": null,
+      "provenance": {
+       "file": "slots/profiles/level_defaults.json",
+       "stratum_key": "三级甲等|综合医院",
+       "captured_at": null,
+       "age_min": null,
+       "ttl_min": null,
+       "ttl_ok": false
+      },
+      "note": "档位估算（stratum=三级甲等|综合医院, n_units=383, confidence=high; 非实时, 不可当号源事实）"
+     },
+     "constraints": {
+      "max_wait_days": 14,
+      "price_cap_cny": 50
+     },
+     "violations": []
+    },
+    "dept_tab": "整形外科",
+    "dept_raw": "整形外科门诊(专家)"
+   },
+   {
+    "rank": 5,
+    "hospital_id": "SH-095",
+    "name": "第一人民医院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "虹口区",
+    "insurance": "yes",
+    "static_score": 0.9066,
+    "slot_utility": 0.91,
+    "final_score": 0.825,
+    "slot_source": "cache/observed(已核实)",
+    "verified": true,
+    "queried": true,
+    "static_rank": 5,
+    "slot_status": "ok",
+    "earliest_date": "2026-10-09",
+    "fee_tier": "50",
+    "fee_tiers": {
+     "50": 1.0
+    },
+    "fee_min_tier": "50",
+    "bookable_doctor_count": 9,
+    "n_records": null,
+    "dept_id": "D05229",
+    "dept": "整形外科",
+    "marks": [
+     "已核实有号（captured_at=2026-10-06T09:57:06）",
+     "性价比(已核实): 可核实费档全部在预算内（≤50元）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.35555555555555557,
+      "v": 1.0,
+      "contrib": 0.3556,
+      "note": "命中: 整形外科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.8258,
+      "contrib": 0.1835,
+      "note": "4.4km"
+     },
+     {
+      "feature": "level",
+      "w": 0.15555555555555556,
+      "v": 1.0,
+      "contrib": 0.1556,
+      "note": "三级甲等"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.8258,
+      "lost": 0.0387,
+      "note": "4.4km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.7833,
+      "lost": 0.0289,
+      "note": "步行6.5m"
+     },
+     {
+      "feature": "bus",
+      "w": 0.044444444444444446,
+      "v": 0.6131,
+      "lost": 0.0172,
+      "note": "2站"
+     }
+    ],
+    "final_rank": 3,
+    "why": "第一人民医院（三级甲等/虹口区）: 科室命中=命中: 整形外科 [p1/high]（+0.3556, match），距离就近=4.4km（+0.1835, distance）。号源已核实: 最早可约 2026-10-09（来源 cache/observed(已核实)）。",
+    "evidence": {
+     "static_score": 0.9066,
+     "slot_utility": 0.91,
+     "final_score": 0.825,
+     "top3_contrib": [
+      {
+       "feature": "match",
+       "w": 0.35555555555555557,
+       "v": 1.0,
+       "contrib": 0.3556,
+       "note": "命中: 整形外科 [p1/high]"
+      },
+      {
+       "feature": "distance",
+       "w": 0.22222222222222224,
+       "v": 0.8258,
+       "contrib": 0.1835,
+       "note": "4.4km"
+      },
+      {
+       "feature": "level",
+       "w": 0.15555555555555556,
+       "v": 1.0,
+       "contrib": 0.1556,
+       "note": "三级甲等"
+      }
+     ],
+     "deductions": [
+      {
+       "feature": "distance",
+       "w": 0.22222222222222224,
+       "v": 0.8258,
+       "lost": 0.0387,
+       "note": "4.4km"
+      },
+      {
+       "feature": "metro",
+       "w": 0.13333333333333333,
+       "v": 0.7833,
+       "lost": 0.0289,
+       "note": "步行6.5m"
+      },
+      {
+       "feature": "bus",
+       "w": 0.044444444444444446,
+       "v": 0.6131,
+       "lost": 0.0172,
+       "note": "2站"
+      }
+     ],
+     "slot_info": {
+      "slot_source": "cache",
+      "detail": "observed",
+      "status": "ok",
+      "verified": true,
+      "earliest_date": "2026-10-09",
+      "earliest_days": 3,
+      "fee_tier": "50",
+      "fee_tiers": {
+       "50": 1.0
+      },
+      "fee_min_tier": "50",
+      "tension": null,
+      "perennial_no_slot": false,
+      "days14_has": 4,
+      "days14_total": 4,
+      "provenance": {
+       "file": "slots/out/SH-095-sh095.json",
+       "captured_at": "2026-10-06T09:57:06",
+       "age_min": 0.0,
+       "ttl_min": 90,
+       "ttl_ok": true
+      },
+      "note": "observed（TTL 内）: 近14天 4/4 天有号"
+     },
+     "constraints": {
+      "max_wait_days": 14,
+      "price_cap_cny": 50
+     },
+     "violations": []
+    },
+    "dept_tab": "外科",
+    "dept_raw": "整形外科"
+   }
+  ],
+  "top_list": [
+   {
+    "rank": 9,
+    "hospital_id": "SH-019",
+    "name": "中山医院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "徐汇区",
+    "insurance": "yes",
+    "static_score": 0.8722,
+    "slot_utility": 0.97,
+    "final_score": 0.846,
+    "slot_source": "cache/observed(已核实)",
+    "verified": true,
+    "queried": true,
+    "static_rank": 9,
+    "slot_status": "ok",
+    "earliest_date": "2026-10-07",
+    "fee_tier": "50",
+    "fee_tiers": {
+     "50": 1.0
+    },
+    "fee_min_tier": "50",
+    "bookable_doctor_count": 12,
+    "n_records": null,
+    "dept_id": "D05229",
+    "dept": "整形外科",
+    "marks": [
+     "已核实有号（captured_at=2026-10-06T09:57:06）",
+     "性价比(已核实): 可核实费档全部在预算内（≤50元）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.35555555555555557,
+      "v": 1.0,
+      "contrib": 0.3556,
+      "note": "命中: 口腔颌面外科,整形外科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.7472,
+      "contrib": 0.1661,
+      "note": "6.3km"
+     },
+     {
+      "feature": "level",
+      "w": 0.15555555555555556,
+      "v": 1.0,
+      "contrib": 0.1556,
+      "note": "三级甲等"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.7472,
+      "lost": 0.0562,
+      "note": "6.3km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.5967,
+      "lost": 0.0538,
+      "note": "步行12.1m"
+     },
+     {
+      "feature": "bus",
+      "w": 0.044444444444444446,
+      "v": 0.7737,
+      "lost": 0.0101,
+      "note": "3站"
+     }
+    ],
+    "final_rank": 1,
+    "why": "中山医院（三级甲等/徐汇区）: 科室命中=命中: 口腔颌面外科,整形外科 [p1/high]（+0.3556, match），距离就近=6.3km（+0.1661, distance）。号源已核实: 最早可约 2026-10-07（来源 cache/observed(已核实)）。",
+    "evidence": {
+     "static_score": 0.8722,
+     "slot_utility": 0.97,
+     "final_score": 0.846,
+     "top3_contrib": [
+      {
+       "feature": "match",
+       "w": 0.35555555555555557,
+       "v": 1.0,
+       "contrib": 0.3556,
+       "note": "命中: 口腔颌面外科,整形外科 [p1/high]"
+      },
+      {
+       "feature": "distance",
+       "w": 0.22222222222222224,
+       "v": 0.7472,
+       "contrib": 0.1661,
+       "note": "6.3km"
+      },
+      {
+       "feature": "level",
+       "w": 0.15555555555555556,
+       "v": 1.0,
+       "contrib": 0.1556,
+       "note": "三级甲等"
+      }
+     ],
+     "deductions": [
+      {
+       "feature": "distance",
+       "w": 0.22222222222222224,
+       "v": 0.7472,
+       "lost": 0.0562,
+       "note": "6.3km"
+      },
+      {
+       "feature": "metro",
+       "w": 0.13333333333333333,
+       "v": 0.5967,
+       "lost": 0.0538,
+       "note": "步行12.1m"
+      },
+      {
+       "feature": "bus",
+       "w": 0.044444444444444446,
+       "v": 0.7737,
+       "lost": 0.0101,
+       "note": "3站"
+      }
+     ],
+     "slot_info": {
+      "slot_source": "cache",
+      "detail": "observed",
+      "status": "ok",
+      "verified": true,
+      "earliest_date": "2026-10-07",
+      "earliest_days": 1,
+      "fee_tier": "50",
+      "fee_tiers": {
+       "50": 1.0
+      },
+      "fee_min_tier": "50",
+      "tension": null,
+      "perennial_no_slot": false,
+      "days14_has": 5,
+      "days14_total": 5,
+      "provenance": {
+       "file": "slots/out/SH-019-zhongshan.json",
+       "captured_at": "2026-10-06T09:57:06",
+       "age_min": 0.0,
+       "ttl_min": 90,
+       "ttl_ok": true
+      },
+      "note": "observed（TTL 内）: 近14天 5/5 天有号"
+     },
+     "constraints": {
+      "max_wait_days": 14,
+      "price_cap_cny": 50
+     },
+     "violations": []
+    },
+    "dept_tab": "外科",
+    "dept_raw": "整形外科"
+   },
+   {
+    "rank": 12,
+    "hospital_id": "SH-039",
+    "name": "公利医院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "浦东新区",
+    "insurance": "yes",
+    "static_score": 0.8395,
+    "slot_utility": 1.0,
+    "final_score": 0.8395,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 12,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "50",
+    "fee_tiers": {
+     "15": 0.0,
+     "25": 0.0,
+     "50": 0.003,
+     "100+": 0.0
+    },
+    "fee_min_tier": "50",
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": "D05229",
+    "dept": "整形外科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|综合医院, confidence=high, 非实时, 不当作号源事实）",
+     "性价比(未核实, 仅标注): 该档位/观察样本中预算内(≤50元)费档占 0%（未核实, 不参与排序）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.35555555555555557,
+      "v": 1.0,
+      "contrib": 0.3556,
+      "note": "命中: 整形外科 [p1/high]"
+     },
+     {
+      "feature": "level",
+      "w": 0.15555555555555556,
+      "v": 1.0,
+      "contrib": 0.1556,
+      "note": "三级甲等"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.6052,
+      "contrib": 0.1345,
+      "note": "9.9km"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.6052,
+      "lost": 0.0877,
+      "note": "9.9km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.62,
+      "lost": 0.0507,
+      "note": "步行11.4m"
+     },
+     {
+      "feature": "key_specialty",
+      "w": 0.022222222222222223,
+      "v": 0.0,
+      "lost": 0.0222,
+      "note": "空（覆盖4.4%）"
+     }
+    ],
+    "final_rank": 2,
+    "why": "公利医院（三级甲等/浦东新区）: 科室命中=命中: 整形外科 [p1/high]（+0.3556, match），医院等级=三级甲等（+0.1556, level）。号源未核实（cache/level_default(档位先验,未核实)）, 仅按静态分排序, 不得当实时事实。",
+    "evidence": {
+     "static_score": 0.8395,
+     "slot_utility": 1.0,
+     "final_score": 0.8395,
+     "top3_contrib": [
+      {
+       "feature": "match",
+       "w": 0.35555555555555557,
+       "v": 1.0,
+       "contrib": 0.3556,
+       "note": "命中: 整形外科 [p1/high]"
+      },
+      {
+       "feature": "level",
+       "w": 0.15555555555555556,
+       "v": 1.0,
+       "contrib": 0.1556,
+       "note": "三级甲等"
+      },
+      {
+       "feature": "distance",
+       "w": 0.22222222222222224,
+       "v": 0.6052,
+       "contrib": 0.1345,
+       "note": "9.9km"
+      }
+     ],
+     "deductions": [
+      {
+       "feature": "distance",
+       "w": 0.22222222222222224,
+       "v": 0.6052,
+       "lost": 0.0877,
+       "note": "9.9km"
+      },
+      {
+       "feature": "metro",
+       "w": 0.13333333333333333,
+       "v": 0.62,
+       "lost": 0.0507,
+       "note": "步行11.4m"
+      },
+      {
+       "feature": "key_specialty",
+       "w": 0.022222222222222223,
+       "v": 0.0,
+       "lost": 0.0222,
+       "note": "空（覆盖4.4%）"
+      }
+     ],
+     "slot_info": {
+      "slot_source": "cache",
+      "detail": "level_default",
+      "status": "unknown",
+      "verified": false,
+      "earliest_date": null,
+      "earliest_days": 5.0,
+      "fee_tier": "50",
+      "fee_tiers": {
+       "15": 0.0,
+       "25": 0.0,
+       "50": 0.003,
+       "100+": 0.0
+      },
+      "fee_min_tier": "50",
+      "tension": null,
+      "perennial_no_slot": false,
+      "days14_has": null,
+      "days14_total": null,
+      "provenance": {
+       "file": "slots/profiles/level_defaults.json",
+       "stratum_key": "三级甲等|综合医院",
+       "captured_at": null,
+       "age_min": null,
+       "ttl_min": null,
+       "ttl_ok": false
+      },
+      "note": "档位估算（stratum=三级甲等|综合医院, n_units=383, confidence=high; 非实时, 不可当号源事实）"
+     },
+     "constraints": {
+      "max_wait_days": 14,
+      "price_cap_cny": 50
+     },
+     "violations": []
+    },
+    "dept_tab": "整形外科",
+    "dept_raw": "整形外科门诊(专家)"
+   },
+   {
+    "rank": 5,
+    "hospital_id": "SH-095",
+    "name": "第一人民医院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "虹口区",
+    "insurance": "yes",
+    "static_score": 0.9066,
+    "slot_utility": 0.91,
+    "final_score": 0.825,
+    "slot_source": "cache/observed(已核实)",
+    "verified": true,
+    "queried": true,
+    "static_rank": 5,
+    "slot_status": "ok",
+    "earliest_date": "2026-10-09",
+    "fee_tier": "50",
+    "fee_tiers": {
+     "50": 1.0
+    },
+    "fee_min_tier": "50",
+    "bookable_doctor_count": 9,
+    "n_records": null,
+    "dept_id": "D05229",
+    "dept": "整形外科",
+    "marks": [
+     "已核实有号（captured_at=2026-10-06T09:57:06）",
+     "性价比(已核实): 可核实费档全部在预算内（≤50元）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.35555555555555557,
+      "v": 1.0,
+      "contrib": 0.3556,
+      "note": "命中: 整形外科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.8258,
+      "contrib": 0.1835,
+      "note": "4.4km"
+     },
+     {
+      "feature": "level",
+      "w": 0.15555555555555556,
+      "v": 1.0,
+      "contrib": 0.1556,
+      "note": "三级甲等"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.8258,
+      "lost": 0.0387,
+      "note": "4.4km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.7833,
+      "lost": 0.0289,
+      "note": "步行6.5m"
+     },
+     {
+      "feature": "bus",
+      "w": 0.044444444444444446,
+      "v": 0.6131,
+      "lost": 0.0172,
+      "note": "2站"
+     }
+    ],
+    "final_rank": 3,
+    "why": "第一人民医院（三级甲等/虹口区）: 科室命中=命中: 整形外科 [p1/high]（+0.3556, match），距离就近=4.4km（+0.1835, distance）。号源已核实: 最早可约 2026-10-09（来源 cache/observed(已核实)）。",
+    "evidence": {
+     "static_score": 0.9066,
+     "slot_utility": 0.91,
+     "final_score": 0.825,
+     "top3_contrib": [
+      {
+       "feature": "match",
+       "w": 0.35555555555555557,
+       "v": 1.0,
+       "contrib": 0.3556,
+       "note": "命中: 整形外科 [p1/high]"
+      },
+      {
+       "feature": "distance",
+       "w": 0.22222222222222224,
+       "v": 0.8258,
+       "contrib": 0.1835,
+       "note": "4.4km"
+      },
+      {
+       "feature": "level",
+       "w": 0.15555555555555556,
+       "v": 1.0,
+       "contrib": 0.1556,
+       "note": "三级甲等"
+      }
+     ],
+     "deductions": [
+      {
+       "feature": "distance",
+       "w": 0.22222222222222224,
+       "v": 0.8258,
+       "lost": 0.0387,
+       "note": "4.4km"
+      },
+      {
+       "feature": "metro",
+       "w": 0.13333333333333333,
+       "v": 0.7833,
+       "lost": 0.0289,
+       "note": "步行6.5m"
+      },
+      {
+       "feature": "bus",
+       "w": 0.044444444444444446,
+       "v": 0.6131,
+       "lost": 0.0172,
+       "note": "2站"
+      }
+     ],
+     "slot_info": {
+      "slot_source": "cache",
+      "detail": "observed",
+      "status": "ok",
+      "verified": true,
+      "earliest_date": "2026-10-09",
+      "earliest_days": 3,
+      "fee_tier": "50",
+      "fee_tiers": {
+       "50": 1.0
+      },
+      "fee_min_tier": "50",
+      "tension": null,
+      "perennial_no_slot": false,
+      "days14_has": 4,
+      "days14_total": 4,
+      "provenance": {
+       "file": "slots/out/SH-095-sh095.json",
+       "captured_at": "2026-10-06T09:57:06",
+       "age_min": 0.0,
+       "ttl_min": 90,
+       "ttl_ok": true
+      },
+      "note": "observed（TTL 内）: 近14天 4/4 天有号"
+     },
+     "constraints": {
+      "max_wait_days": 14,
+      "price_cap_cny": 50
+     },
+     "violations": []
+    },
+    "dept_tab": "外科",
+    "dept_raw": "整形外科"
+   },
+   {
+    "rank": 13,
+    "hospital_id": "SH-171",
+    "name": "闸北中心医院",
+    "level": "二级甲等",
+    "type": "综合医院",
+    "district": "静安区",
+    "insurance": "yes",
+    "static_score": 0.8248,
+    "slot_utility": 1.0,
+    "final_score": 0.8248,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 13,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "fee_tiers": null,
+    "fee_min_tier": null,
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算/早停), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.35555555555555557,
+      "v": 1.0,
+      "contrib": 0.3556,
+      "note": "命中: 医疗美容科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.9285,
+      "contrib": 0.2063,
+      "note": "1.8km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.63,
+      "contrib": 0.084,
+      "note": "步行11.1m"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "level",
+      "w": 0.15555555555555556,
+      "v": 0.5,
+      "lost": 0.0778,
+      "note": "二级甲等"
+     },
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.63,
+      "lost": 0.0493,
+      "note": "步行11.1m"
+     },
+     {
+      "feature": "key_specialty",
+      "w": 0.022222222222222223,
+      "v": 0.0,
+      "lost": 0.0222,
+      "note": "空（覆盖4.4%）"
+     }
+    ],
+    "final_rank": 4
+   },
+   {
+    "rank": 14,
+    "hospital_id": "SH-083",
+    "name": "普陀区中心医院",
+    "level": "三级乙等",
+    "type": "综合医院",
+    "district": "普陀区",
+    "insurance": "yes",
+    "static_score": 0.824,
+    "slot_utility": 1.0,
+    "final_score": 0.824,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 14,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "fee_tiers": null,
+    "fee_min_tier": null,
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算/早停), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.35555555555555557,
+      "v": 1.0,
+      "contrib": 0.3556,
+      "note": "命中: 整形外科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.8447,
+      "contrib": 0.1877,
+      "note": "3.9km"
+     },
+     {
+      "feature": "level",
+      "w": 0.15555555555555556,
+      "v": 0.72,
+      "contrib": 0.112,
+      "note": "三级乙等"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.56,
+      "lost": 0.0587,
+      "note": "步行13.2m"
+     },
+     {
+      "feature": "level",
+      "w": 0.15555555555555556,
+      "v": 0.72,
+      "lost": 0.0436,
+      "note": "三级乙等"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.8447,
+      "lost": 0.0345,
+      "note": "3.9km"
+     }
+    ],
+    "final_rank": 5
+   },
+   {
+    "rank": 15,
+    "hospital_id": "SH-176",
+    "name": "普陀区眼病牙病防治所",
+    "level": "二级",
+    "type": "专科疾病防治院",
+    "district": "普陀区",
+    "insurance": "yes",
+    "static_score": 0.812,
+    "slot_utility": 1.0,
+    "final_score": 0.812,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 15,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "fee_tiers": null,
+    "fee_min_tier": null,
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算/早停), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.35555555555555557,
+      "v": 1.0,
+      "contrib": 0.3556,
+      "note": "命中: 口腔外科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.9517,
+      "contrib": 0.2115,
+      "note": "1.2km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.86,
+      "contrib": 0.1147,
+      "note": "步行4.2m"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "level",
+      "w": 0.15555555555555556,
+      "v": 0.33,
+      "lost": 0.1042,
+      "note": "二级"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.06666666666666667,
+      "v": 0.5168,
+      "lost": 0.0322,
+      "note": "l2=12"
+     },
+     {
+      "feature": "key_specialty",
+      "w": 0.022222222222222223,
+      "v": 0.0,
+      "lost": 0.0222,
+      "note": "空（覆盖4.4%）"
+     }
+    ],
+    "final_rank": 6
+   },
+   {
+    "rank": 16,
+    "hospital_id": "SH-172",
+    "name": "第八人民医院",
+    "level": "二级甲等",
+    "type": "专科疾病防治院",
+    "district": "徐汇区",
+    "insurance": "yes",
+    "static_score": 0.8012,
+    "slot_utility": 1.0,
+    "final_score": 0.8012,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 16,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "fee_tiers": null,
+    "fee_min_tier": null,
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算/早停), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.35555555555555557,
+      "v": 1.0,
+      "contrib": 0.3556,
+      "note": "命中: 整形外科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.6222,
+      "contrib": 0.1383,
+      "note": "9.4km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.9633,
+      "contrib": 0.1284,
+      "note": "步行1.1m"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.6222,
+      "lost": 0.084,
+      "note": "9.4km"
+     },
+     {
+      "feature": "level",
+      "w": 0.15555555555555556,
+      "v": 0.5,
+      "lost": 0.0778,
+      "note": "二级甲等"
+     },
+     {
+      "feature": "key_specialty",
+      "w": 0.022222222222222223,
+      "v": 0.0,
+      "lost": 0.0222,
+      "note": "空（覆盖4.4%）"
+     }
+    ],
+    "final_rank": 7
+   },
+   {
+    "rank": 17,
+    "hospital_id": "SH-093",
+    "name": "同仁医院",
+    "level": "三级乙等",
+    "type": "综合医院",
+    "district": "长宁区",
+    "insurance": "yes",
+    "static_score": 0.801,
+    "slot_utility": 1.0,
+    "final_score": 0.801,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 17,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "fee_tiers": null,
+    "fee_min_tier": null,
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算/早停), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.35555555555555557,
+      "v": 1.0,
+      "contrib": 0.3556,
+      "note": "命中: 整形外科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.6868,
+      "contrib": 0.1526,
+      "note": "7.8km"
+     },
+     {
+      "feature": "level",
+      "w": 0.15555555555555556,
+      "v": 0.72,
+      "contrib": 0.112,
+      "note": "三级乙等"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.6868,
+      "lost": 0.0696,
+      "note": "7.8km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.5567,
+      "lost": 0.0591,
+      "note": "步行13.3m"
+     },
+     {
+      "feature": "level",
+      "w": 0.15555555555555556,
+      "v": 0.72,
+      "lost": 0.0436,
+      "note": "三级乙等"
+     }
+    ],
+    "final_rank": 8
+   },
+   {
+    "rank": 18,
+    "hospital_id": "SH-080",
+    "name": "长海医院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "杨浦区",
+    "insurance": "yes",
+    "static_score": 0.7923,
+    "slot_utility": 1.0,
+    "final_score": 0.7923,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 18,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "fee_tiers": null,
+    "fee_min_tier": null,
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算/早停), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.35555555555555557,
+      "v": 1.0,
+      "contrib": 0.3556,
+      "note": "命中: 整形外科 [p1/high]"
+     },
+     {
+      "feature": "level",
+      "w": 0.15555555555555556,
+      "v": 1.0,
+      "contrib": 0.1556,
+      "note": "三级甲等"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.5901,
+      "contrib": 0.1311,
+      "note": "10.2km"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.5901,
+      "lost": 0.0911,
+      "note": "10.2km"
+     },
+     {
+      "feature": "bus",
+      "w": 0.044444444444444446,
+      "v": 0.0,
+      "lost": 0.0444,
+      "note": "0站"
+     },
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.67,
+      "lost": 0.044,
+      "note": "步行9.9m"
+     }
+    ],
+    "final_rank": 9
+   },
+   {
+    "rank": 19,
+    "hospital_id": "SH-119",
+    "name": "上海市第二人民医院",
+    "level": "二级甲等",
+    "type": "综合医院",
+    "district": "黄浦区",
+    "insurance": "yes",
+    "static_score": 0.7812,
+    "slot_utility": 1.0,
+    "final_score": 0.7812,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 19,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "fee_tiers": null,
+    "fee_min_tier": null,
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算/早停), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.35555555555555557,
+      "v": 1.0,
+      "contrib": 0.3556,
+      "note": "命中: 口腔颌面外科,整形外科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.7238,
+      "contrib": 0.1608,
+      "note": "6.9km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.72,
+      "contrib": 0.096,
+      "note": "步行8.4m"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "level",
+      "w": 0.15555555555555556,
+      "v": 0.5,
+      "lost": 0.0778,
+      "note": "二级甲等"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.7238,
+      "lost": 0.0614,
+      "note": "6.9km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.72,
+      "lost": 0.0373,
+      "note": "步行8.4m"
+     }
+    ],
+    "final_rank": 10
+   },
+   {
+    "rank": 20,
+    "hospital_id": "SH-123",
+    "name": "江湾医院",
+    "level": "二级甲等",
+    "type": "综合医院",
+    "district": "虹口区",
+    "insurance": "yes",
+    "static_score": 0.7805,
+    "slot_utility": 1.0,
+    "final_score": 0.7805,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 20,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "fee_tiers": null,
+    "fee_min_tier": null,
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算/早停), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.35555555555555557,
+      "v": 1.0,
+      "contrib": 0.3556,
+      "note": "命中: 医疗美容科,整形外科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.716,
+      "contrib": 0.1591,
+      "note": "7.1km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.6633,
+      "contrib": 0.0884,
+      "note": "步行10.1m"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "level",
+      "w": 0.15555555555555556,
+      "v": 0.5,
+      "lost": 0.0778,
+      "note": "二级甲等"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.716,
+      "lost": 0.0631,
+      "note": "7.1km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.6633,
+      "lost": 0.0449,
+      "note": "步行10.1m"
+     }
+    ],
+    "final_rank": 11
+   },
+   {
+    "rank": 21,
+    "hospital_id": "SH-103",
+    "name": "浦南医院",
+    "level": "二级甲等",
+    "type": "综合医院",
+    "district": "浦东新区",
+    "insurance": "yes",
+    "static_score": 0.7783,
+    "slot_utility": 1.0,
+    "final_score": 0.7783,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 21,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "fee_tiers": null,
+    "fee_min_tier": null,
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算/早停), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.35555555555555557,
+      "v": 1.0,
+      "contrib": 0.3556,
+      "note": "命中: 医疗美容科,整形外科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.6332,
+      "contrib": 0.1407,
+      "note": "9.2km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.8,
+      "contrib": 0.1067,
+      "note": "步行6.0m"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.6332,
+      "lost": 0.0815,
+      "note": "9.2km"
+     },
+     {
+      "feature": "level",
+      "w": 0.15555555555555556,
+      "v": 0.5,
+      "lost": 0.0778,
+      "note": "二级甲等"
+     },
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.8,
+      "lost": 0.0267,
+      "note": "步行6.0m"
+     }
+    ],
+    "final_rank": 12
+   },
+   {
+    "rank": 22,
+    "hospital_id": "SH-120",
+    "name": "大场医院",
+    "level": "二级甲等",
+    "type": "综合医院",
+    "district": "宝山区",
+    "insurance": "yes",
+    "static_score": 0.7583,
+    "slot_utility": 1.0,
+    "final_score": 0.7583,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 22,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "fee_tiers": null,
+    "fee_min_tier": null,
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算/早停), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.35555555555555557,
+      "v": 1.0,
+      "contrib": 0.3556,
+      "note": "命中: 整形外科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.6903,
+      "contrib": 0.1534,
+      "note": "7.7km"
+     },
+     {
+      "feature": "level",
+      "w": 0.15555555555555556,
+      "v": 0.5,
+      "contrib": 0.0778,
+      "note": "二级甲等"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "level",
+      "w": 0.15555555555555556,
+      "v": 0.5,
+      "lost": 0.0778,
+      "note": "二级甲等"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.6903,
+      "lost": 0.0688,
+      "note": "7.7km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.5524,
+      "lost": 0.0597,
+      "note": "直线1119m"
+     }
+    ],
+    "final_rank": 13
+   },
+   {
+    "rank": 23,
+    "hospital_id": "SH-183",
+    "name": "虹口区牙病防治所",
+    "level": "二级乙等",
+    "type": "专科疾病防治院",
+    "district": "虹口区",
+    "insurance": "yes",
+    "static_score": 0.7438,
+    "slot_utility": 1.0,
+    "final_score": 0.7438,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 23,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "fee_tiers": null,
+    "fee_min_tier": null,
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算/早停), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.35555555555555557,
+      "v": 1.0,
+      "contrib": 0.3556,
+      "note": "命中: 口腔外科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.8064,
+      "contrib": 0.1792,
+      "note": "4.8km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.6567,
+      "contrib": 0.0876,
+      "note": "步行10.3m"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "level",
+      "w": 0.15555555555555556,
+      "v": 0.38,
+      "lost": 0.0964,
+      "note": "二级乙等"
+     },
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.6567,
+      "lost": 0.0458,
+      "note": "步行10.3m"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.8064,
+      "lost": 0.043,
+      "note": "4.8km"
+     }
+    ],
+    "final_rank": 14
+   },
+   {
+    "rank": 24,
+    "hospital_id": "SH-144",
+    "name": "民航上海医院-瑞金医院古北分院",
+    "level": "二级乙等",
+    "type": "综合医院",
+    "district": "长宁区",
+    "insurance": "yes",
+    "static_score": 0.7389,
+    "slot_utility": 1.0,
+    "final_score": 0.7389,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 24,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "fee_tiers": null,
+    "fee_min_tier": null,
+    "bookable_doctor_count": null,
+    "n_records": null,
+    "dept_id": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算/早停), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.35555555555555557,
+      "v": 1.0,
+      "contrib": 0.3556,
+      "note": "命中: 整形外科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.7115,
+      "contrib": 0.1581,
+      "note": "7.2km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.73,
+      "contrib": 0.0973,
+      "note": "步行8.1m"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "level",
+      "w": 0.15555555555555556,
+      "v": 0.38,
+      "lost": 0.0964,
+      "note": "二级乙等"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.7115,
+      "lost": 0.0641,
+      "note": "7.2km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.73,
+      "lost": 0.036,
+      "note": "步行8.1m"
+     }
+    ],
+    "final_rank": 15
+   },
+   {
+    "rank": 1,
+    "hospital_id": "SH-084",
+    "name": "第十人民医院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "静安区",
+    "insurance": "yes",
+    "static_score": 0.9465,
+    "slot_utility": 0.25,
+    "final_score": 0.2366,
+    "slot_source": "cache/observed(已核实)",
+    "verified": true,
+    "queried": true,
+    "static_rank": 1,
+    "slot_status": "no_slot",
+    "earliest_date": null,
+    "fee_tier": "unknown",
+    "fee_tiers": {},
+    "fee_min_tier": null,
+    "bookable_doctor_count": 0,
+    "n_records": null,
+    "dept_id": "D05229",
+    "dept": "整形外科门诊",
+    "marks": [
+     "已核实无号（captured_at=2026-10-06T09:57:06）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.35555555555555557,
+      "v": 1.0,
+      "contrib": 0.3556,
+      "note": "命中: 整形外科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.8981,
+      "contrib": 0.1996,
+      "note": "2.5km"
+     },
+     {
+      "feature": "level",
+      "w": 0.15555555555555556,
+      "v": 1.0,
+      "contrib": 0.1556,
+      "note": "三级甲等"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.8981,
+      "lost": 0.0226,
+      "note": "2.5km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.8433,
+      "lost": 0.0209,
+      "note": "步行4.7m"
+     },
+     {
+      "feature": "bus",
+      "w": 0.044444444444444446,
+      "v": 0.7737,
+      "lost": 0.0101,
+      "note": "3站"
+     }
+    ],
+    "final_rank": 16,
+    "dept_tab": "外科",
+    "dept_raw": "整形外科门诊"
+   },
+   {
+    "rank": 2,
+    "hospital_id": "SH-071",
+    "name": "同济医院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "普陀区",
+    "insurance": "yes",
+    "static_score": 0.9385,
+    "slot_utility": 0.25,
+    "final_score": 0.2346,
+    "slot_source": "cache/observed(已核实)",
+    "verified": true,
+    "queried": true,
+    "static_rank": 2,
+    "slot_status": "no_slot",
+    "earliest_date": null,
+    "fee_tier": "unknown",
+    "fee_tiers": {},
+    "fee_min_tier": null,
+    "bookable_doctor_count": 0,
+    "n_records": null,
+    "dept_id": "D03200",
+    "dept": "口腔外科",
+    "marks": [
+     "已核实无号（captured_at=2026-10-06T09:57:06）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.35555555555555557,
+      "v": 1.0,
+      "contrib": 0.3556,
+      "note": "命中: 口腔外科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.9227,
+      "contrib": 0.2051,
+      "note": "1.9km"
+     },
+     {
+      "feature": "level",
+      "w": 0.15555555555555556,
+      "v": 1.0,
+      "contrib": 0.1556,
+      "note": "三级甲等"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.8333,
+      "lost": 0.0222,
+      "note": "步行5.0m"
+     },
+     {
+      "feature": "key_specialty",
+      "w": 0.022222222222222223,
+      "v": 0.0,
+      "lost": 0.0222,
+      "note": "空（覆盖4.4%）"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.9227,
+      "lost": 0.0172,
+      "note": "1.9km"
+     }
+    ],
+    "final_rank": 17,
+    "dept_tab": "口腔科",
+    "dept_raw": "口腔外科"
+   },
+   {
+    "rank": 3,
+    "hospital_id": "SH-030",
+    "name": "仁济医院西院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "黄浦区",
+    "insurance": "yes",
+    "static_score": 0.9302,
+    "slot_utility": 0.25,
+    "final_score": 0.2326,
+    "slot_source": "cache/observed(已核实)",
+    "verified": true,
+    "queried": true,
+    "static_rank": 3,
+    "slot_status": "no_slot",
+    "earliest_date": null,
+    "fee_tier": "unknown",
+    "fee_tiers": {},
+    "fee_min_tier": null,
+    "bookable_doctor_count": 0,
+    "n_records": null,
+    "dept_id": "D05229",
+    "dept": "整形外科",
+    "marks": [
+     "已核实无号（captured_at=2026-10-06T09:57:06）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.35555555555555557,
+      "v": 1.0,
+      "contrib": 0.3556,
+      "note": "命中: 整形外科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.8236,
+      "contrib": 0.183,
+      "note": "4.4km"
+     },
+     {
+      "feature": "level",
+      "w": 0.15555555555555556,
+      "v": 1.0,
+      "contrib": 0.1556,
+      "note": "三级甲等"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.8236,
+      "lost": 0.0392,
+      "note": "4.4km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.77,
+      "lost": 0.0307,
+      "note": "步行6.9m"
+     }
+    ],
+    "final_rank": 18,
+    "dept_tab": "外科",
+    "dept_raw": "整形外科"
+   },
+   {
+    "rank": 4,
+    "hospital_id": "SH-003",
+    "name": "华山医院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "静安区",
+    "insurance": "yes",
+    "static_score": 0.9103,
+    "slot_utility": 0.25,
+    "final_score": 0.2276,
+    "slot_source": "cache/observed(已核实)",
+    "verified": true,
+    "queried": true,
+    "static_rank": 4,
+    "slot_status": "no_slot",
+    "earliest_date": null,
+    "fee_tier": "unknown",
+    "fee_tiers": {},
+    "fee_min_tier": null,
+    "bookable_doctor_count": 3,
+    "n_records": null,
+    "dept_id": "D05229",
+    "dept": "整形外科",
+    "marks": [
+     "已核实无号（captured_at=2026-10-06T09:57:06）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.35555555555555557,
+      "v": 1.0,
+      "contrib": 0.3556,
+      "note": "命中: 整形外科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.837,
+      "contrib": 0.186,
+      "note": "4.1km"
+     },
+     {
+      "feature": "level",
+      "w": 0.15555555555555556,
+      "v": 1.0,
+      "contrib": 0.1556,
+      "note": "三级甲等"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.6733,
+      "lost": 0.0436,
+      "note": "步行9.8m"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.837,
+      "lost": 0.0362,
+      "note": "4.1km"
+     },
+     {
+      "feature": "bus",
+      "w": 0.044444444444444446,
+      "v": 0.7737,
+      "lost": 0.0101,
+      "note": "3站"
+     }
+    ],
+    "final_rank": 19,
+    "dept_tab": "外科",
+    "dept_raw": "整形外科"
+   },
+   {
+    "rank": 6,
+    "hospital_id": "SH-015",
+    "name": "同济口腔医院",
+    "level": "三级甲等",
+    "type": "专科疾病防治院",
+    "district": "普陀区",
+    "insurance": "yes",
+    "static_score": 0.9048,
+    "slot_utility": 0.25,
+    "final_score": 0.2262,
+    "slot_source": "cache/observed(已核实)",
+    "verified": true,
+    "queried": true,
+    "static_rank": 6,
+    "slot_status": "no_slot",
+    "earliest_date": null,
+    "fee_tier": "unknown",
+    "fee_tiers": {},
+    "fee_min_tier": null,
+    "bookable_doctor_count": 1,
+    "n_records": null,
+    "dept_id": "D03308",
+    "dept": "口腔颌面外科",
+    "marks": [
+     "已核实无号（captured_at=2026-10-06T09:57:06）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.35555555555555557,
+      "v": 1.0,
+      "contrib": 0.3556,
+      "note": "命中: 口腔颌面外科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.22222222222222224,
+      "v": 0.9241,
+      "contrib": 0.2053,
+      "note": "1.9km"
+     },
+     {
+      "feature": "level",
+      "w": 0.15555555555555556,
+      "v": 1.0,
+      "contrib": 0.1556,
+      "note": "三级甲等"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "breadth",
+      "w": 0.06666666666666667,
+      "v": 0.5587,
+      "lost": 0.0294,
+      "note": "l2=15"
+     },
+     {
+      "feature": "metro",
+      "w": 0.13333333333333333,
+      "v": 0.8,
+      "lost": 0.0267,
+      "note": "步行6.0m"
+     },
+     {
+      "feature": "key_specialty",
+      "w": 0.022222222222222223,
+      "v": 0.0,
+      "lost": 0.0222,
+      "note": "空（覆盖4.4%）"
+     }
+    ],
+    "final_rank": 20,
+    "dept_tab": "口腔科",
+    "dept_raw": "口腔颌面外科"
+   }
+  ],
+  "excluded": [
+   {
+    "hospital_id": "SH-064",
+    "name": "市中西医结合医院",
+    "reason": "实查无可约号源(no_slot, 日期条显示 1 名可约医生但医生页无可约记录) → 号源效用=0.25 → 终分=0.2233, 终排#21（落在 Top20 展示范围之外; 仍保留在候选集完整排序中, 未剔除）"
+   },
+   {
+    "hospital_id": "SH-007",
+    "name": "华东医院",
+    "reason": "实查无可约号源(no_slot) → 号源效用=0.25 → 终分=0.2228, 终排#22（落在 Top20 展示范围之外; 仍保留在候选集完整排序中, 未剔除）"
+   },
+   {
+    "hospital_id": "SH-087",
+    "name": "第六人民医院",
+    "reason": "实查无可约号源(no_slot, 日期条显示 1 名可约医生但医生页无可约记录) → 号源效用=0.25 → 终分=0.2118, 终排#23（落在 Top20 展示范围之外; 仍保留在候选集完整排序中, 未剔除）"
+   },
+   {
+    "hospital_id": "SH-040",
+    "name": "第九人民医院(高科园区)",
+    "reason": "实查无可约号源(no_slot) → 号源效用=0.25 → 终分=0.2102, 终排#24（落在 Top20 展示范围之外; 仍保留在候选集完整排序中, 未剔除）"
+   }
+  ],
+  "fallback_all_unverified": false,
+  "n_verified": 11,
+  "n_total": 24,
+  "top_n": 20
+ },
+ "booking": {
+  "dry_run": true,
+  "executed": false,
+  "steps": [
+   "1. 打开「随申办」App（包名 mobi.w3studio.apps.android.shsmy.phone）",
+   "2. 首页 →「预约挂号」→「全部医院 (444)」",
+   "3. 检索并选择医院: 中山医院（徐汇区, 主院区）",
+   "4. L1 选科室页找到「外科」tab, 点「整形外科」行进入科室页（注意: 同 tab 下可能有多个含相似字样的科室, 以该行为准; L2 页自带日期条）",
+   "5. 选择日期: 2026-10-07（最早可约; 日期条若显示无号则换日期/医生）",
+   "6. 选择医生与时段 →「去预约」（医生列表来自 SlotResult.doctors, is_target 标记目标医生）",
+   "7. 填写实名信息 + 短信验证码（用户手动完成, 脚本不触碰凭据）",
+   "8. 确认预约 → 支付（用户手动完成）"
+  ],
+  "note": "dry-run（默认开）: 仅打印将执行的步骤序列; 不真发、不提交、不支付。"
+ },
+ "candidates_static": [
+  {
+   "rank": 1,
+   "hospital_id": "SH-084",
+   "name": "第十人民医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.9465,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.35555555555555557,
+     "v": 1.0,
+     "contrib": 0.3556,
+     "note": "命中: 整形外科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.8981,
+     "contrib": 0.1996,
+     "note": "2.5km"
+    },
+    {
+     "feature": "level",
+     "w": 0.15555555555555556,
+     "v": 1.0,
+     "contrib": 0.1556,
+     "note": "三级甲等"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.8981,
+     "lost": 0.0226,
+     "note": "2.5km"
+    },
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.8433,
+     "lost": 0.0209,
+     "note": "步行4.7m"
+    },
+    {
+     "feature": "bus",
+     "w": 0.044444444444444446,
+     "v": 0.7737,
+     "lost": 0.0101,
+     "note": "3站"
+    }
+   ]
+  },
+  {
+   "rank": 2,
+   "hospital_id": "SH-071",
+   "name": "同济医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "普陀区",
+   "insurance": "yes",
+   "score": 0.9385,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.35555555555555557,
+     "v": 1.0,
+     "contrib": 0.3556,
+     "note": "命中: 口腔外科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.9227,
+     "contrib": 0.2051,
+     "note": "1.9km"
+    },
+    {
+     "feature": "level",
+     "w": 0.15555555555555556,
+     "v": 1.0,
+     "contrib": 0.1556,
+     "note": "三级甲等"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.8333,
+     "lost": 0.0222,
+     "note": "步行5.0m"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.022222222222222223,
+     "v": 0.0,
+     "lost": 0.0222,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.9227,
+     "lost": 0.0172,
+     "note": "1.9km"
+    }
+   ]
+  },
+  {
+   "rank": 3,
+   "hospital_id": "SH-030",
+   "name": "仁济医院西院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "黄浦区",
+   "insurance": "yes",
+   "score": 0.9302,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.35555555555555557,
+     "v": 1.0,
+     "contrib": 0.3556,
+     "note": "命中: 整形外科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.8236,
+     "contrib": 0.183,
+     "note": "4.4km"
+    },
+    {
+     "feature": "level",
+     "w": 0.15555555555555556,
+     "v": 1.0,
+     "contrib": 0.1556,
+     "note": "三级甲等"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.8236,
+     "lost": 0.0392,
+     "note": "4.4km"
+    },
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.77,
+     "lost": 0.0307,
+     "note": "步行6.9m"
+    }
+   ]
+  },
+  {
+   "rank": 4,
+   "hospital_id": "SH-003",
+   "name": "华山医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.9103,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.35555555555555557,
+     "v": 1.0,
+     "contrib": 0.3556,
+     "note": "命中: 整形外科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.837,
+     "contrib": 0.186,
+     "note": "4.1km"
+    },
+    {
+     "feature": "level",
+     "w": 0.15555555555555556,
+     "v": 1.0,
+     "contrib": 0.1556,
+     "note": "三级甲等"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.6733,
+     "lost": 0.0436,
+     "note": "步行9.8m"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.837,
+     "lost": 0.0362,
+     "note": "4.1km"
+    },
+    {
+     "feature": "bus",
+     "w": 0.044444444444444446,
+     "v": 0.7737,
+     "lost": 0.0101,
+     "note": "3站"
+    }
+   ]
+  },
+  {
+   "rank": 5,
+   "hospital_id": "SH-095",
+   "name": "第一人民医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "虹口区",
+   "insurance": "yes",
+   "score": 0.9066,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.35555555555555557,
+     "v": 1.0,
+     "contrib": 0.3556,
+     "note": "命中: 整形外科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.8258,
+     "contrib": 0.1835,
+     "note": "4.4km"
+    },
+    {
+     "feature": "level",
+     "w": 0.15555555555555556,
+     "v": 1.0,
+     "contrib": 0.1556,
+     "note": "三级甲等"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.8258,
+     "lost": 0.0387,
+     "note": "4.4km"
+    },
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.7833,
+     "lost": 0.0289,
+     "note": "步行6.5m"
+    },
+    {
+     "feature": "bus",
+     "w": 0.044444444444444446,
+     "v": 0.6131,
+     "lost": 0.0172,
+     "note": "2站"
+    }
+   ]
+  },
+  {
+   "rank": 6,
+   "hospital_id": "SH-015",
+   "name": "同济口腔医院",
+   "level": "三级甲等",
+   "type": "专科疾病防治院",
+   "district": "普陀区",
+   "insurance": "yes",
+   "score": 0.9048,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.35555555555555557,
+     "v": 1.0,
+     "contrib": 0.3556,
+     "note": "命中: 口腔颌面外科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.9241,
+     "contrib": 0.2053,
+     "note": "1.9km"
+    },
+    {
+     "feature": "level",
+     "w": 0.15555555555555556,
+     "v": 1.0,
+     "contrib": 0.1556,
+     "note": "三级甲等"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "breadth",
+     "w": 0.06666666666666667,
+     "v": 0.5587,
+     "lost": 0.0294,
+     "note": "l2=15"
+    },
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.8,
+     "lost": 0.0267,
+     "note": "步行6.0m"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.022222222222222223,
+     "v": 0.0,
+     "lost": 0.0222,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 7,
+   "hospital_id": "SH-064",
+   "name": "市中西医结合医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "虹口区",
+   "insurance": "yes",
+   "score": 0.8933,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.35555555555555557,
+     "v": 1.0,
+     "contrib": 0.3556,
+     "note": "命中: 医疗美容科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.7383,
+     "contrib": 0.1641,
+     "note": "6.5km"
+    },
+    {
+     "feature": "level",
+     "w": 0.15555555555555556,
+     "v": 1.0,
+     "contrib": 0.1556,
+     "note": "三级甲等"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.7383,
+     "lost": 0.0582,
+     "note": "6.5km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.022222222222222223,
+     "v": 0.0,
+     "lost": 0.0222,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.8767,
+     "lost": 0.0164,
+     "note": "步行3.7m"
+    }
+   ]
+  },
+  {
+   "rank": 8,
+   "hospital_id": "SH-007",
+   "name": "华东医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.891,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.35555555555555557,
+     "v": 1.0,
+     "contrib": 0.3556,
+     "note": "命中: 整形外科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.8511,
+     "contrib": 0.1891,
+     "note": "3.7km"
+    },
+    {
+     "feature": "level",
+     "w": 0.15555555555555556,
+     "v": 1.0,
+     "contrib": 0.1556,
+     "note": "三级甲等"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.5967,
+     "lost": 0.0538,
+     "note": "步行12.1m"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.8511,
+     "lost": 0.0331,
+     "note": "3.7km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.022222222222222223,
+     "v": 0.0,
+     "lost": 0.0222,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 9,
+   "hospital_id": "SH-019",
+   "name": "中山医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "徐汇区",
+   "insurance": "yes",
+   "score": 0.8722,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.35555555555555557,
+     "v": 1.0,
+     "contrib": 0.3556,
+     "note": "命中: 口腔颌面外科,整形外科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.7472,
+     "contrib": 0.1661,
+     "note": "6.3km"
+    },
+    {
+     "feature": "level",
+     "w": 0.15555555555555556,
+     "v": 1.0,
+     "contrib": 0.1556,
+     "note": "三级甲等"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.7472,
+     "lost": 0.0562,
+     "note": "6.3km"
+    },
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.5967,
+     "lost": 0.0538,
+     "note": "步行12.1m"
+    },
+    {
+     "feature": "bus",
+     "w": 0.044444444444444446,
+     "v": 0.7737,
+     "lost": 0.0101,
+     "note": "3站"
+    }
+   ]
+  },
+  {
+   "rank": 10,
+   "hospital_id": "SH-087",
+   "name": "第六人民医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "徐汇区",
+   "insurance": "yes",
+   "score": 0.8471,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.35555555555555557,
+     "v": 1.0,
+     "contrib": 0.3556,
+     "note": "命中: 整形外科 [p1/high]"
+    },
+    {
+     "feature": "level",
+     "w": 0.15555555555555556,
+     "v": 1.0,
+     "contrib": 0.1556,
+     "note": "三级甲等"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.6681,
+     "contrib": 0.1485,
+     "note": "8.3km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.6681,
+     "lost": 0.0738,
+     "note": "8.3km"
+    },
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.61,
+     "lost": 0.052,
+     "note": "步行11.7m"
+    },
+    {
+     "feature": "bus",
+     "w": 0.044444444444444446,
+     "v": 0.3869,
+     "lost": 0.0272,
+     "note": "1站"
+    }
+   ]
+  },
+  {
+   "rank": 11,
+   "hospital_id": "SH-040",
+   "name": "第九人民医院(高科园区)",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "黄浦区",
+   "insurance": "yes",
+   "score": 0.841,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.35555555555555557,
+     "v": 1.0,
+     "contrib": 0.3556,
+     "note": "命中: 口腔外科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.7187,
+     "contrib": 0.1597,
+     "note": "7.0km"
+    },
+    {
+     "feature": "level",
+     "w": 0.15555555555555556,
+     "v": 1.0,
+     "contrib": 0.1556,
+     "note": "三级甲等"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.7187,
+     "lost": 0.0625,
+     "note": "7.0km"
+    },
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.65,
+     "lost": 0.0467,
+     "note": "步行7.5m,低置信"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.022222222222222223,
+     "v": 0.0,
+     "lost": 0.0222,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 12,
+   "hospital_id": "SH-039",
+   "name": "公利医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "浦东新区",
+   "insurance": "yes",
+   "score": 0.8395,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.35555555555555557,
+     "v": 1.0,
+     "contrib": 0.3556,
+     "note": "命中: 整形外科 [p1/high]"
+    },
+    {
+     "feature": "level",
+     "w": 0.15555555555555556,
+     "v": 1.0,
+     "contrib": 0.1556,
+     "note": "三级甲等"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.6052,
+     "contrib": 0.1345,
+     "note": "9.9km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.6052,
+     "lost": 0.0877,
+     "note": "9.9km"
+    },
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.62,
+     "lost": 0.0507,
+     "note": "步行11.4m"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.022222222222222223,
+     "v": 0.0,
+     "lost": 0.0222,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 13,
+   "hospital_id": "SH-171",
+   "name": "闸北中心医院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.8248,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.35555555555555557,
+     "v": 1.0,
+     "contrib": 0.3556,
+     "note": "命中: 医疗美容科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.9285,
+     "contrib": 0.2063,
+     "note": "1.8km"
+    },
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.63,
+     "contrib": 0.084,
+     "note": "步行11.1m"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "level",
+     "w": 0.15555555555555556,
+     "v": 0.5,
+     "lost": 0.0778,
+     "note": "二级甲等"
+    },
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.63,
+     "lost": 0.0493,
+     "note": "步行11.1m"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.022222222222222223,
+     "v": 0.0,
+     "lost": 0.0222,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 14,
+   "hospital_id": "SH-083",
+   "name": "普陀区中心医院",
+   "level": "三级乙等",
+   "type": "综合医院",
+   "district": "普陀区",
+   "insurance": "yes",
+   "score": 0.824,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.35555555555555557,
+     "v": 1.0,
+     "contrib": 0.3556,
+     "note": "命中: 整形外科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.8447,
+     "contrib": 0.1877,
+     "note": "3.9km"
+    },
+    {
+     "feature": "level",
+     "w": 0.15555555555555556,
+     "v": 0.72,
+     "contrib": 0.112,
+     "note": "三级乙等"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.56,
+     "lost": 0.0587,
+     "note": "步行13.2m"
+    },
+    {
+     "feature": "level",
+     "w": 0.15555555555555556,
+     "v": 0.72,
+     "lost": 0.0436,
+     "note": "三级乙等"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.8447,
+     "lost": 0.0345,
+     "note": "3.9km"
+    }
+   ]
+  },
+  {
+   "rank": 15,
+   "hospital_id": "SH-176",
+   "name": "普陀区眼病牙病防治所",
+   "level": "二级",
+   "type": "专科疾病防治院",
+   "district": "普陀区",
+   "insurance": "yes",
+   "score": 0.812,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.35555555555555557,
+     "v": 1.0,
+     "contrib": 0.3556,
+     "note": "命中: 口腔外科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.9517,
+     "contrib": 0.2115,
+     "note": "1.2km"
+    },
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.86,
+     "contrib": 0.1147,
+     "note": "步行4.2m"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "level",
+     "w": 0.15555555555555556,
+     "v": 0.33,
+     "lost": 0.1042,
+     "note": "二级"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.06666666666666667,
+     "v": 0.5168,
+     "lost": 0.0322,
+     "note": "l2=12"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.022222222222222223,
+     "v": 0.0,
+     "lost": 0.0222,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 16,
+   "hospital_id": "SH-172",
+   "name": "第八人民医院",
+   "level": "二级甲等",
+   "type": "专科疾病防治院",
+   "district": "徐汇区",
+   "insurance": "yes",
+   "score": 0.8012,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.35555555555555557,
+     "v": 1.0,
+     "contrib": 0.3556,
+     "note": "命中: 整形外科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.6222,
+     "contrib": 0.1383,
+     "note": "9.4km"
+    },
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.9633,
+     "contrib": 0.1284,
+     "note": "步行1.1m"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.6222,
+     "lost": 0.084,
+     "note": "9.4km"
+    },
+    {
+     "feature": "level",
+     "w": 0.15555555555555556,
+     "v": 0.5,
+     "lost": 0.0778,
+     "note": "二级甲等"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.022222222222222223,
+     "v": 0.0,
+     "lost": 0.0222,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 17,
+   "hospital_id": "SH-093",
+   "name": "同仁医院",
+   "level": "三级乙等",
+   "type": "综合医院",
+   "district": "长宁区",
+   "insurance": "yes",
+   "score": 0.801,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.35555555555555557,
+     "v": 1.0,
+     "contrib": 0.3556,
+     "note": "命中: 整形外科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.6868,
+     "contrib": 0.1526,
+     "note": "7.8km"
+    },
+    {
+     "feature": "level",
+     "w": 0.15555555555555556,
+     "v": 0.72,
+     "contrib": 0.112,
+     "note": "三级乙等"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.6868,
+     "lost": 0.0696,
+     "note": "7.8km"
+    },
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.5567,
+     "lost": 0.0591,
+     "note": "步行13.3m"
+    },
+    {
+     "feature": "level",
+     "w": 0.15555555555555556,
+     "v": 0.72,
+     "lost": 0.0436,
+     "note": "三级乙等"
+    }
+   ]
+  },
+  {
+   "rank": 18,
+   "hospital_id": "SH-080",
+   "name": "长海医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "杨浦区",
+   "insurance": "yes",
+   "score": 0.7923,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.35555555555555557,
+     "v": 1.0,
+     "contrib": 0.3556,
+     "note": "命中: 整形外科 [p1/high]"
+    },
+    {
+     "feature": "level",
+     "w": 0.15555555555555556,
+     "v": 1.0,
+     "contrib": 0.1556,
+     "note": "三级甲等"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.5901,
+     "contrib": 0.1311,
+     "note": "10.2km"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.5901,
+     "lost": 0.0911,
+     "note": "10.2km"
+    },
+    {
+     "feature": "bus",
+     "w": 0.044444444444444446,
+     "v": 0.0,
+     "lost": 0.0444,
+     "note": "0站"
+    },
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.67,
+     "lost": 0.044,
+     "note": "步行9.9m"
+    }
+   ]
+  },
+  {
+   "rank": 19,
+   "hospital_id": "SH-119",
+   "name": "上海市第二人民医院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "黄浦区",
+   "insurance": "yes",
+   "score": 0.7812,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.35555555555555557,
+     "v": 1.0,
+     "contrib": 0.3556,
+     "note": "命中: 口腔颌面外科,整形外科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.7238,
+     "contrib": 0.1608,
+     "note": "6.9km"
+    },
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.72,
+     "contrib": 0.096,
+     "note": "步行8.4m"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "level",
+     "w": 0.15555555555555556,
+     "v": 0.5,
+     "lost": 0.0778,
+     "note": "二级甲等"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.7238,
+     "lost": 0.0614,
+     "note": "6.9km"
+    },
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.72,
+     "lost": 0.0373,
+     "note": "步行8.4m"
+    }
+   ]
+  },
+  {
+   "rank": 20,
+   "hospital_id": "SH-123",
+   "name": "江湾医院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "虹口区",
+   "insurance": "yes",
+   "score": 0.7805,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.35555555555555557,
+     "v": 1.0,
+     "contrib": 0.3556,
+     "note": "命中: 医疗美容科,整形外科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.716,
+     "contrib": 0.1591,
+     "note": "7.1km"
+    },
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.6633,
+     "contrib": 0.0884,
+     "note": "步行10.1m"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "level",
+     "w": 0.15555555555555556,
+     "v": 0.5,
+     "lost": 0.0778,
+     "note": "二级甲等"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.716,
+     "lost": 0.0631,
+     "note": "7.1km"
+    },
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.6633,
+     "lost": 0.0449,
+     "note": "步行10.1m"
+    }
+   ]
+  },
+  {
+   "rank": 21,
+   "hospital_id": "SH-103",
+   "name": "浦南医院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "浦东新区",
+   "insurance": "yes",
+   "score": 0.7783,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.35555555555555557,
+     "v": 1.0,
+     "contrib": 0.3556,
+     "note": "命中: 医疗美容科,整形外科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.6332,
+     "contrib": 0.1407,
+     "note": "9.2km"
+    },
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.8,
+     "contrib": 0.1067,
+     "note": "步行6.0m"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.6332,
+     "lost": 0.0815,
+     "note": "9.2km"
+    },
+    {
+     "feature": "level",
+     "w": 0.15555555555555556,
+     "v": 0.5,
+     "lost": 0.0778,
+     "note": "二级甲等"
+    },
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.8,
+     "lost": 0.0267,
+     "note": "步行6.0m"
+    }
+   ]
+  },
+  {
+   "rank": 22,
+   "hospital_id": "SH-120",
+   "name": "大场医院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "宝山区",
+   "insurance": "yes",
+   "score": 0.7583,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.35555555555555557,
+     "v": 1.0,
+     "contrib": 0.3556,
+     "note": "命中: 整形外科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.6903,
+     "contrib": 0.1534,
+     "note": "7.7km"
+    },
+    {
+     "feature": "level",
+     "w": 0.15555555555555556,
+     "v": 0.5,
+     "contrib": 0.0778,
+     "note": "二级甲等"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "level",
+     "w": 0.15555555555555556,
+     "v": 0.5,
+     "lost": 0.0778,
+     "note": "二级甲等"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.6903,
+     "lost": 0.0688,
+     "note": "7.7km"
+    },
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.5524,
+     "lost": 0.0597,
+     "note": "直线1119m"
+    }
+   ]
+  },
+  {
+   "rank": 23,
+   "hospital_id": "SH-183",
+   "name": "虹口区牙病防治所",
+   "level": "二级乙等",
+   "type": "专科疾病防治院",
+   "district": "虹口区",
+   "insurance": "yes",
+   "score": 0.7438,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.35555555555555557,
+     "v": 1.0,
+     "contrib": 0.3556,
+     "note": "命中: 口腔外科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.8064,
+     "contrib": 0.1792,
+     "note": "4.8km"
+    },
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.6567,
+     "contrib": 0.0876,
+     "note": "步行10.3m"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "level",
+     "w": 0.15555555555555556,
+     "v": 0.38,
+     "lost": 0.0964,
+     "note": "二级乙等"
+    },
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.6567,
+     "lost": 0.0458,
+     "note": "步行10.3m"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.8064,
+     "lost": 0.043,
+     "note": "4.8km"
+    }
+   ]
+  },
+  {
+   "rank": 24,
+   "hospital_id": "SH-144",
+   "name": "民航上海医院-瑞金医院古北分院",
+   "level": "二级乙等",
+   "type": "综合医院",
+   "district": "长宁区",
+   "insurance": "yes",
+   "score": 0.7389,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.35555555555555557,
+     "v": 1.0,
+     "contrib": 0.3556,
+     "note": "命中: 整形外科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.7115,
+     "contrib": 0.1581,
+     "note": "7.2km"
+    },
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.73,
+     "contrib": 0.0973,
+     "note": "步行8.1m"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "level",
+     "w": 0.15555555555555556,
+     "v": 0.38,
+     "lost": 0.0964,
+     "note": "二级乙等"
+    },
+    {
+     "feature": "distance",
+     "w": 0.22222222222222224,
+     "v": 0.7115,
+     "lost": 0.0641,
+     "note": "7.2km"
+    },
+    {
+     "feature": "metro",
+     "w": 0.13333333333333333,
+     "v": 0.73,
+     "lost": 0.036,
+     "note": "步行8.1m"
+    }
+   ]
+  }
+ ],
+ "checks": [
+  {
+   "id": "A",
+   "name": "已解析号源的 12 家医院不得静默消失: ∈ final.top_list ∪ final.excluded(带原因, 含号源状态)",
+   "ok": true,
+   "detail": "缺失=[]"
+  },
+  {
+   "id": "C",
+   "name": "max(静态分)医院可见: SH-084(0.9465) 在 top_list 或 显式排除(带原因); no_slot 降级属合理结果但必须写明",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "D",
+   "name": "slot_queries 的每家医院 ∈ final.top_list ∪ final.excluded（显式排除+原因, 不得静默消失）",
+   "ok": true,
+   "detail": ""
+  }
+ ]
+}

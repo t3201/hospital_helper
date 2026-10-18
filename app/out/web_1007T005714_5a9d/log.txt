@@ -1,0 +1,118 @@
+【1 位置】121.442988, 31.252108（GCJ-02）— 高德 amap_place 命中「中远两湾城」普陀区中远两湾城（缓存命中）
+【2 病情】(--spec-file 结构化字段, 与交互解析同一 schema)
+   症状: 孩子咽喉不适，吞咽时觉得痛，说话有点声音嘶哑，没发烧。
+   患者=child(age=None, 性别=未提供) 代挂=False 就诊=unknown 等待≤7天 费用上限=None 水平预期=balanced
+   · 病例来源: 显式结构化字段 (web/表单), 非自由文本解析
+   · 年龄未提, 症状文本推断: 儿童关键词 → child
+   · 年龄=未提 → child
+   · 时效 → max_wait_days=7
+[stage1] 已复用 ranking/scripts/score_hospitals.py（import 模式）: 450 manifests / 10334 科室 / 1822 症状词
+   [LLM] agentsvc model_id=default @ http://127.0.0.1:7989 耗时=73016.0ms 首字节=0.0ms 结构重试=1 思维链=5106字(仅长度) prompt=15070字符(含基础数据上下文) session_id=None(仅记录)
+   权重向量(绝对, 行和=1.0): {"match": 0.42, "level": 0.05, "breadth": 0.07, "distance": 0.22, "metro": 0.03, "bus": 0.04, "key_specialty": 0.03, "age_fit": 0.1, "price": 0.04}
+   目标科室(LLM 直选, 归一化词表校验, how=llm): 耳鼻喉科[首选], 儿科[相关], 五官科[弱相关]
+   基础数据上下文: 363 科室(归一化 canonical, 覆盖≥5 家医院) / 438 家医院(等级/区县) — 只读
+【3 权重推理】scenario=peds（儿科）来源=agentsvc(model_id=default; 直出权重向量+目标科室, 含基础数据上下文)
+   · 儿童咽喉不适伴吞咽痛、声音嘶哑但无发热，无红旗急症，首选耳鼻喉科，儿科作为儿童人群相关备选。
+   · 水平预期 balanced 且地铁偏好 False，因此医院等级权重中等，距离和公交可达性权重高于地铁；期望等待≤7天，设置 max_wait_days=7。
+   · 未设费用上限且非疑难重症，费用友好度权重较低；age_fit 用于优先有儿科科室或儿童适配的医院。
+   · triage_term='咽喉不适' 症状词表无命中（不影响: 科室以 LLM 直选为准）
+   患者层科室过滤: 儿童患者剔除目标科室 4 个: 产科儿保陈雪莲[儿童患者不适用于成人科（canonical 含"产科"）], 产科新生儿保健[儿童患者不适用于成人科（canonical 含"产科"）], 小儿妇科内分泌[儿童患者不适用于成人科（canonical 含"妇科"）], 小儿妇科内分泌特色团队[儿童患者不适用于成人科（canonical 含"妇科"）]（剩余 186 个, 已按过滤后目标同构重算召回/打分/K/抓取计划; 词表与字典只读不改）
+   同族 canonical 扩展(只读, 补偿碎片化失召回): 耳鼻咽喉[族员 of 耳鼻喉科, tier1]; 耳鼻咽喉头颈外科[族员 of 耳鼻喉科, tier1]; 耳鼻咽喉科[族员 of 耳鼻喉科, tier1]; 中医五官科[族员 of 耳鼻喉科, tier2]; 五官科[族员 of 耳鼻喉科, tier2]; 小儿外科[族员 of 儿科, tier2]
+【4 候选集】主词="咽喉不适"(llm) 目标科室=186 K=60 硬过滤: 召回=212 通过=126 砍=86
+   应用权重: {"match": 0.4375, "level": 0.0521, "breadth": 0.0729, "distance": 0.2292, "metro": 0.0312, "bus": 0.0417, "key_specialty": 0.0312, "age_fit": 0.1042}
+    1 SH-084 第十人民医院           三级甲等     静安区      static=0.9362
+    2 SH-030 仁济医院西院           三级甲等     黄浦区      static=0.9263
+    3 SH-071 同济医院             三级甲等     普陀区      static=0.9198
+    4 SH-003 华山医院             三级甲等     静安区      static=0.9168
+    5 SH-026 儿童医院北京西路院区       三级甲等     静安区      static=0.915
+    6 SH-053 长征医院             三级甲等     黄浦区      static=0.9114
+    7 SH-018 儿童医学中心           三级甲等     浦东新区     static=0.9079
+    8 SH-095 第一人民医院           三级甲等     虹口区      static=0.9016
+    9 SH-207 普陀区人民医院          二级甲等     普陀区      static=0.892
+   10 SH-045 上海市中医医院（芷江院区）    三级甲等     静安区      static=0.8887
+【5 号源·Phase A】快速探测 probe: 候选前 12 院主科室, L2 单页(按钮/日期条/空态, 不逐医生点), 预算 49 分钟
+[slots] manifest 索引: 450 家
+[slots] 触发 Phase A 快速探测: 12 个(院, 主科室)组, 顺序=静态分序(第1名先跑), 预算=49分钟 (L2 单页: 按钮/日期条/空态, 不逐医生点击)
+    1) SH-084 第十人民医院 / tab=耳鼻咽喉科 / dept=耳鼻喉科门诊
+    2) SH-030 仁济医院西院 / tab=耳鼻咽喉科 / dept=耳鼻咽喉科
+    3) SH-071 同济医院 / tab=耳鼻咽喉科 / dept=耳鼻咽喉头颈外科
+    4) SH-003 华山医院 / tab=耳鼻咽喉科 / dept=耳鼻喉科
+    5) SH-026 儿童医院北京西路院区 / tab=儿科 / dept=耳鼻咽喉头颈外科（北京西路）
+    6) SH-053 长征医院 / tab=耳鼻喉科 / dept=耳鼻喉科门诊
+    7) SH-018 儿童医学中心 / tab=耳鼻咽喉科 / dept=耳鼻咽喉科
+    8) SH-095 第一人民医院 / tab=耳鼻咽喉科 / dept=耳鼻喉科
+    9) SH-207 普陀区人民医院 / tab=耳鼻喉科 / dept=耳鼻咽喉科
+   10) SH-045 上海市中医医院（芷江院区） / tab=中医科 / dept=耳鼻喉科
+   11) SH-075 曙光医院西院 / tab=眼、耳鼻喉、口腔科 / dept=耳鼻咽喉科
+   12) SH-019 中山医院 / tab=耳鼻咽喉科 / dept=耳鼻咽喉头颈外科
+[slots] 条件文件: app\out\probe_conds_20261007T005828.json（UTF-8 免损坏通道, CJK 不经 argv）
+[slots] probe --deadline=2026-10-07T01:47:58: 到点优雅停止(不跑后续组); v2 逐组增量落盘, 已完成组不丢失
+[slots] Phase A 快速探测结束（931s）, 解析 probe 结果…
+[slots] probe 结果: 12 组解析 -> 有号 ok=9 / 无号 no_slot=3（run=run_20261007T005833.json, stop_reason=None）
+[slots] 回写快照: SH-003 耳鼻咽喉科/耳鼻喉科 → slots\out\SH-003-sh003.json
+[slots] 回写快照: SH-018 耳鼻咽喉科/耳鼻咽喉科 → slots\out\SH-018-sh018.json
+[slots] 回写快照: SH-019 耳鼻咽喉科/耳鼻咽喉头颈外科 → slots\out\SH-019-zhongshan.json
+[slots] 回写快照: SH-026 儿科/耳鼻咽喉头颈外科（北京西路） → slots\out\SH-026-sh026.json
+[slots] 回写快照: SH-030 耳鼻咽喉科/耳鼻咽喉科 → slots\out\SH-030-sh030.json
+[slots] 回写快照: SH-045 中医科/耳鼻喉科 → slots\out\SH-045-sh045.json
+[slots] 回写快照: SH-053 耳鼻喉科/耳鼻喉科门诊 → slots\out\SH-053-sh053.json
+[slots] 回写快照: SH-071 耳鼻咽喉科/耳鼻咽喉头颈外科 → slots\out\SH-071-sh071.json
+[slots] 回写快照: SH-075 眼、耳鼻喉、口腔科/耳鼻咽喉科 → slots\out\SH-075-sh075.json
+[slots] 回写快照: SH-084 耳鼻咽喉科/耳鼻喉科门诊 → slots\out\SH-084-sh084.json
+[slots] 回写快照: SH-095 耳鼻咽喉科/耳鼻喉科 → slots\out\SH-095-sh095.json
+[slots] 回写快照: SH-207 耳鼻喉科/耳鼻咽喉科 → slots\out\SH-207-sh207.json
+[slots] live→静态回写完成: 12 条 (下次运行 TTL 内走 cache/observed 已核实, 迭代逼近真实)
+[slots] 已读 slot_profile.json: 7614 条 (dept,hosp)
+[slots] 已读 level_defaults.json: 6 个 strata
+【5 号源】处理 60 家: 已核实有号 11 / 已核实无号 4 / 未核实 45（来源标注见报告 §5/§7）
+【5 号源·Phase B】深核 deep: 初排前 5 名(SH-071, SH-207, SH-053, SH-018, SH-095), 逐医生六字段, 预算 40 分钟
+[slots] ⚠ live 预算预警: 5 条件组 × 约540秒/组 ≈ 45分钟 > 超时上限 40分钟; 到点后后续组不跑（v2 逐组增量落盘, 已完成组保留; 未跑组降级档位）。建议: --live-slot-type expert(最快档) / --live-timeout 调大 / 离线跑 fetch_slots.py 批量积累
+[slots] 触发 v2 批量 live 抓取: 5 个条件组, 顺序=静态分序(第1名先跑), 超时上限=40 分钟
+    1) SH-071 同济医院 / tab=耳鼻咽喉科 / dept=耳鼻咽喉头颈外科
+    2) SH-207 普陀区人民医院 / tab=耳鼻喉科 / dept=耳鼻咽喉科
+    3) SH-053 长征医院 / tab=耳鼻喉科 / dept=耳鼻喉科门诊
+    4) SH-018 儿童医学中心 / tab=耳鼻咽喉科 / dept=耳鼻咽喉科
+    5) SH-095 第一人民医院 / tab=耳鼻咽喉科 / dept=耳鼻喉科
+[slots] 条件文件: app\out\live_conds_20261007T011359.json（UTF-8 免损坏通道, CJK 不经 argv）
+[slots] v2 --deadline=2026-10-07T01:54:29: 到点优雅停止(不跑后续组); v2 逐组增量落盘, 已完成组不丢失
+[slots] v2 批量 live 抓取结束（1552s）, 解析 condition_runs 输出…
+[slots] live 结果: 5 组解析 → ok=4 / no_slot=1 / unknown=0（run=run_20261007T011404.json, stop_reason=None）
+[slots] 回写快照: SH-003 耳鼻咽喉科/耳鼻喉科 → slots\out\SH-003-sh003.json
+[slots] 回写快照: SH-018 耳鼻咽喉科/耳鼻咽喉科 → slots\out\SH-018-sh018.json
+[slots] 回写快照: SH-019 耳鼻咽喉科/耳鼻咽喉头颈外科 → slots\out\SH-019-zhongshan.json
+[slots] 回写快照: SH-026 儿科/耳鼻咽喉头颈外科（北京西路） → slots\out\SH-026-sh026.json
+[slots] 回写快照: SH-030 耳鼻咽喉科/耳鼻咽喉科 → slots\out\SH-030-sh030.json
+[slots] 回写快照: SH-045 中医科/耳鼻喉科 → slots\out\SH-045-sh045.json
+[slots] 回写快照: SH-053 耳鼻喉科/耳鼻喉科门诊 → slots\out\SH-053-sh053.json
+[slots] 回写快照: SH-071 耳鼻咽喉科/耳鼻咽喉头颈外科 → slots\out\SH-071-sh071.json
+[slots] 回写快照: SH-075 眼、耳鼻喉、口腔科/耳鼻咽喉科 → slots\out\SH-075-sh075.json
+[slots] 回写快照: SH-084 耳鼻咽喉科/耳鼻喉科门诊 → slots\out\SH-084-sh084.json
+[slots] 回写快照: SH-095 耳鼻咽喉科/耳鼻喉科 → slots\out\SH-095-sh095.json
+[slots] 回写快照: SH-207 耳鼻喉科/耳鼻咽喉科 → slots\out\SH-207-sh207.json
+[slots] live→静态回写完成: 12 条 (下次运行 TTL 内走 cache/observed 已核实, 迭代逼近真实)
+【5 号源】处理 60 家: 已核实有号 8 / 已核实无号 4 / 未核实 48（来源标注见报告 §5/§7）
+[final-llm] 终裁通过: #1 SH-095; #2 SH-053; #3 SH-018 (prompt=1763字, confidence=high)
+【6 终裁LLM】已应用: #1 SH-095; #2 SH-053; #3 SH-018
+【6 推荐】终排=静态分×号源效用; 已核实 12/60
+   1) 第一人民医院 [三级甲等/虹口区] 终排=0.8746（静态 0.9016 × 号源 0.97）
+      why: 第一人民医院（三级甲等/虹口区）: 科室命中=命中: 新生儿科,耳鼻喉科 [p1/high]（+0.4375, match），距离就近=4.4km（+0.1893, distance）。号源已核实: 最早可约 2026-10-08（来源 live/实时(已核实)）。 【终裁LLM: 耳鼻喉科，1天后可约，低费档比例高】
+      挂号入口: 「耳鼻咽喉科」tab → 点「耳鼻喉科」行（院页面 raw 名, 同 tab 可能有相似名科室）
+   2) 长征医院 [三级甲等/黄浦区] 终排=0.8841（静态 0.9114 × 号源 0.97）
+      why: 长征医院（三级甲等/黄浦区）: 科室命中=命中: 儿科,耳鼻喉科 [p1/high]（+0.4375, match），距离就近=3.2km（+0.2, distance）。号源已核实: 最早可约 2026-10-08（来源 live/实时(已核实)）。 【终裁LLM: 耳鼻喉科，1天后可约，三甲且距离近】
+      挂号入口: 「耳鼻喉科」tab → 点「耳鼻喉科门诊」行（院页面 raw 名, 同 tab 可能有相似名科室）
+   3) 儿童医学中心 [三级甲等/浦东新区] 终排=0.8534（静态 0.9079 × 号源 0.94）
+      why: 儿童医学中心（三级甲等/浦东新区）: 科室命中=命中: 一站式特色门诊儿保科,新生儿,新生儿/婴幼儿,新生儿（+0.4375, match），距离就近=9.2km（+0.1452, distance）。号源已核实: 最早可约 2026-10-09（来源 live/实时(已核实)）。 【终裁LLM: 儿童医学中心，2天后可约，适合儿科】
+      挂号入口: 「耳鼻咽喉科」tab → 点「耳鼻咽喉科」行（院页面 raw 名, 同 tab 可能有相似名科室）
+【7 模拟挂号】dry-run（默认开）: 不真发、不提交、不支付
+   1. 打开「随申办」App（包名 mobi.w3studio.apps.android.shsmy.phone）
+   2. 首页 →「预约挂号」→「全部医院 (444)」
+   3. 检索并选择医院: 第一人民医院（虹口区, 主院区）
+   4. L1 选科室页找到「耳鼻咽喉科」tab, 点「耳鼻喉科」行进入科室页（注意: 同 tab 下可能有多个含相似字样的科室, 以该行为准; L2 页自带日期条）
+   5. 选择日期: 2026-10-08（最早可约; 日期条若显示无号则换日期/医生）
+   6. 选择医生与时段 →「去预约」（医生列表来自 SlotResult.doctors, is_target 标记目标医生）
+   7. 填写实名信息 + 短信验证码（用户手动完成, 脚本不触碰凭据）
+   8. 确认预约 → 支付（用户手动完成）
+【8 断言】PASS 已解析号源的 12 家医院不得静默消失: ∈ final.top_list ∪ final.excluded(带原因, 含号源状态)
+【8 断言】PASS max(静态分)医院可见: SH-084(0.9362) 在 top_list 或 显式排除(带原因); no_slot 降级属合理结果但必须写明
+【8 断言】PASS slot_queries 的每家医院 ∈ final.top_list ∪ final.excluded（显式排除+原因, 不得静默消失）
+【9 落盘】app\out\web_1007T005714_5a9d\result.json / app\out\web_1007T005714_5a9d\report.md

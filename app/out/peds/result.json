@@ -1,0 +1,6508 @@
+{
+ "meta": {
+  "generated_at": "2026-10-04T23:27:18",
+  "mode": "demo:peds",
+  "llm": "agentsvc(model_id=default)",
+  "app": "挂号推荐运行期原型 v0.2（PC 原型, 目标手机端）"
+ },
+ "loc": {
+  "lng": 121.4345,
+  "lat": 31.1955,
+  "crs": "GCJ-02",
+  "method": "user_specified",
+  "note": "demo 固定点: 徐汇区宜山路/漕溪北路一带（GCJ-02）"
+ },
+ "spec": {
+  "symptom_text": "4岁男孩，近一年身高长得慢，身高98cm明显低于同龄人，家长担心生长发育想评估一下",
+  "patient": {
+   "age": 4,
+   "age_band": "child",
+   "is_child": true,
+   "proxy": true,
+   "gender": "male"
+  },
+  "urgency_days": 14,
+  "visit_type": "new",
+  "prefs": {
+   "metro_priority": false,
+   "price_cap_cny": 100,
+   "level_expectation": "balanced"
+  },
+  "notes": [
+   "年龄=4 → child",
+   "代挂号信号 → proxy=True（位置由 --loc 人为指定的主场景）",
+   "visit=new",
+   "时效 → max_wait_days=14",
+   "费用预期 → price_cap_cny=100",
+   "水平预期未提及 → 默认 balanced（不改等级权重）",
+   "性别=male"
+  ],
+  "_raw": [
+   "4岁男孩，近一年身高长得慢，身高98cm明显低于同龄人，家长担心生长发育想评估一下",
+   "儿童，初诊，两周内可以",
+   "均衡，费用100元以内"
+  ]
+ },
+ "inference": {
+  "scenario": "peds",
+  "scenario_zh": "儿科",
+  "weights": {
+   "match": 0.42,
+   "level": 0.06,
+   "breadth": 0.12,
+   "distance": 0.3,
+   "metro": 0.02,
+   "bus": 0.04,
+   "key_specialty": 0.04
+  },
+  "weight_overrides": {},
+  "max_wait_days": 14,
+  "price_cap_cny": 100,
+  "triage_term": "身高增长缓慢",
+  "triage_hits": [],
+  "llm_depts": [
+   "儿童保健科",
+   "儿童生长发育",
+   "儿科"
+  ],
+  "llm_dept_kinds": {
+   "儿童保健科": "screening",
+   "儿童生长发育": "clinic",
+   "儿科": "clinic"
+  },
+  "dept_how": "llm",
+  "reasoning": [
+   "4岁男孩身高增长缓慢属于儿童生长发育初筛，非急症，两周内可约，因此match与distance权重较高，emergency为0。",
+   "费用上限100元且水平预期均衡，优先就近可负担的儿童保健科初筛，level权重压低，breadth适中，key_specialty仅对儿童生长发育保留小权重。",
+   "无地铁偏好且公交权重低，选择可约科室组合：儿童保健科首推，儿童生长发育作专病补充，儿科兜底。",
+   "triage_term='身高增长缓慢' 症状词表无命中（不影响: 科室以 LLM 直选为准）"
+  ],
+  "llm_mode": "agentsvc(model_id=default; 直出权重向量+目标科室, 含基础数据上下文)",
+  "llm_meta": {
+   "provider": "agentsvc",
+   "model_id": "default",
+   "base": "http://127.0.0.1:7989",
+   "elapsed_ms": 67937.0,
+   "first_byte_ms": 15.0,
+   "attempts": 1,
+   "thinking_chars": 8253,
+   "session_id": null,
+   "n_data": 2953,
+   "prompt_chars": 14214
+  },
+  "fallback": false,
+  "context": {
+   "n_depts": 363,
+   "n_hospitals": 438,
+   "dept_hc_min": 5
+  }
+ },
+ "stage1": {
+  "symptom": "身高增长缓慢",
+  "scenario": "peds",
+  "triage": {
+   "term": "身高增长缓慢",
+   "how": "llm",
+   "targets": [
+    {
+     "dept_id": "D02013",
+     "canonical": "儿科",
+     "kind": "clinic",
+     "priority": 1,
+     "confidence": "high",
+     "hosp": 140
+    },
+    {
+     "dept_id": "D02076",
+     "canonical": "儿童保健科",
+     "kind": "screening",
+     "priority": 1,
+     "confidence": "high",
+     "hosp": 96
+    },
+    {
+     "dept_id": "D02190",
+     "canonical": "儿童生长发育",
+     "kind": "clinic",
+     "priority": 1,
+     "confidence": "high",
+     "hosp": 15
+    }
+   ]
+  },
+  "applied_weights": {
+   "match": 0.42,
+   "level": 0.06,
+   "breadth": 0.12,
+   "distance": 0.3,
+   "metro": 0.02,
+   "bus": 0.04,
+   "key_specialty": 0.04
+  },
+  "hard_filter": {
+   "radius_km": 20.0,
+   "require_insurance": true,
+   "recall": 198,
+   "passed": 106,
+   "dropped": 92,
+   "drop_reasons": {
+    "超出半径20km": 70,
+    "BLOCKED": 21,
+    "非医保": 1
+   },
+   "dropped_ids": [
+    "SH-005",
+    "SH-010",
+    "SH-021",
+    "SH-022",
+    "SH-033",
+    "SH-034",
+    "SH-035",
+    "SH-037",
+    "SH-051",
+    "SH-055",
+    "SH-056",
+    "SH-057",
+    "SH-066",
+    "SH-068",
+    "SH-073",
+    "SH-079",
+    "SH-086",
+    "SH-088",
+    "SH-090",
+    "SH-091",
+    "SH-094",
+    "SH-096",
+    "SH-100",
+    "SH-116",
+    "SH-117",
+    "SH-139",
+    "SH-154",
+    "SH-155",
+    "SH-156",
+    "SH-170",
+    "SH-174",
+    "SH-177",
+    "SH-180",
+    "SH-185",
+    "SH-194",
+    "SH-195",
+    "SH-199",
+    "SH-206",
+    "SH-211",
+    "SH-225",
+    "SH-227",
+    "SH-228",
+    "SH-229",
+    "SH-231",
+    "SH-233",
+    "SH-235",
+    "SH-238",
+    "SH-242",
+    "SH-251",
+    "SH-253",
+    "SH-257",
+    "SH-264",
+    "SH-265",
+    "SH-266",
+    "SH-268",
+    "SH-272",
+    "SH-275",
+    "SH-278",
+    "SH-280",
+    "SH-281",
+    "SH-282",
+    "SH-289",
+    "SH-296",
+    "SH-300",
+    "SH-301",
+    "SH-306",
+    "SH-311",
+    "SH-328",
+    "SH-329",
+    "SH-330",
+    "SH-339",
+    "SH-348",
+    "SH-350",
+    "SH-351",
+    "SH-352",
+    "SH-358",
+    "SH-359",
+    "SH-372",
+    "SH-381",
+    "SH-393",
+    "SH-394",
+    "SH-397",
+    "SH-399",
+    "SH-400",
+    "SH-416",
+    "SH-432",
+    "SH-434",
+    "SH-436",
+    "SH-438",
+    "SH-439",
+    "SH-440",
+    "SH-442"
+   ]
+  },
+  "K": 60,
+  "K_rule": {
+   "n": 106,
+   "s0": 0.9429,
+   "floor": 0.7229,
+   "gap_thr": 0.0519,
+   "i_floor": 75,
+   "i_gap": 106
+  },
+  "patient_filter": {}
+ },
+ "slot_queries": [
+  {
+   "query_id": "q-cd5aad37c2bd",
+   "hospital_id": "SH-087",
+   "dept_id": "D02076",
+   "dept_ids": [
+    "D02076",
+    "D02013"
+   ],
+   "scenario": "peds",
+   "user_loc": {
+    "lng": 121.4345,
+    "lat": 31.1955,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 14,
+   "price_cap_cny": 100,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 1,
+   "budget_left": 12,
+   "static_score": 0.9429
+  },
+  {
+   "query_id": "q-ac08e50455a5",
+   "hospital_id": "SH-030",
+   "dept_id": "D02013",
+   "dept_ids": [
+    "D02013"
+   ],
+   "scenario": "peds",
+   "user_loc": {
+    "lng": 121.4345,
+    "lat": 31.1955,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 14,
+   "price_cap_cny": 100,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 2,
+   "budget_left": 11,
+   "static_score": 0.9186
+  },
+  {
+   "query_id": "q-3dd902a005cf",
+   "hospital_id": "SH-065",
+   "dept_id": "D02013",
+   "dept_ids": [
+    "D02013"
+   ],
+   "scenario": "peds",
+   "user_loc": {
+    "lng": 121.4345,
+    "lat": 31.1955,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 14,
+   "price_cap_cny": 100,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 3,
+   "budget_left": 10,
+   "static_score": 0.9183
+  },
+  {
+   "query_id": "q-e053d25ed7bc",
+   "hospital_id": "SH-074",
+   "dept_id": "D02076",
+   "dept_ids": [
+    "D02076"
+   ],
+   "scenario": "peds",
+   "user_loc": {
+    "lng": 121.4345,
+    "lat": 31.1955,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 14,
+   "price_cap_cny": 100,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 4,
+   "budget_left": 9,
+   "static_score": 0.8995
+  },
+  {
+   "query_id": "q-eac4eced735b",
+   "hospital_id": "SH-053",
+   "dept_id": "D02013",
+   "dept_ids": [
+    "D02013"
+   ],
+   "scenario": "peds",
+   "user_loc": {
+    "lng": 121.4345,
+    "lat": 31.1955,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 14,
+   "price_cap_cny": 100,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 5,
+   "budget_left": 8,
+   "static_score": 0.8993
+  },
+  {
+   "query_id": "q-a0f16e13fff0",
+   "hospital_id": "SH-018",
+   "dept_id": "D02076",
+   "dept_ids": [
+    "D02076"
+   ],
+   "scenario": "peds",
+   "user_loc": {
+    "lng": 121.4345,
+    "lat": 31.1955,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 14,
+   "price_cap_cny": 100,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 6,
+   "budget_left": 7,
+   "static_score": 0.8934
+  },
+  {
+   "query_id": "q-8501fd76c682",
+   "hospital_id": "SH-075",
+   "dept_id": "D02013",
+   "dept_ids": [
+    "D02013"
+   ],
+   "scenario": "peds",
+   "user_loc": {
+    "lng": 121.4345,
+    "lat": 31.1955,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 14,
+   "price_cap_cny": 100,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 7,
+   "budget_left": 6,
+   "static_score": 0.8882
+  },
+  {
+   "query_id": "q-518b735fdb22",
+   "hospital_id": "SH-036",
+   "dept_id": "D02013",
+   "dept_ids": [
+    "D02013"
+   ],
+   "scenario": "peds",
+   "user_loc": {
+    "lng": 121.4345,
+    "lat": 31.1955,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 14,
+   "price_cap_cny": 100,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 8,
+   "budget_left": 5,
+   "static_score": 0.8867
+  },
+  {
+   "query_id": "q-195af0dc088c",
+   "hospital_id": "SH-172",
+   "dept_id": "D02013",
+   "dept_ids": [
+    "D02013"
+   ],
+   "scenario": "peds",
+   "user_loc": {
+    "lng": 121.4345,
+    "lat": 31.1955,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 14,
+   "price_cap_cny": 100,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 9,
+   "budget_left": 4,
+   "static_score": 0.883
+  },
+  {
+   "query_id": "q-6b9459f2b8a3",
+   "hospital_id": "SH-084",
+   "dept_id": "D02013",
+   "dept_ids": [
+    "D02013"
+   ],
+   "scenario": "peds",
+   "user_loc": {
+    "lng": 121.4345,
+    "lat": 31.1955,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 14,
+   "price_cap_cny": 100,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 10,
+   "budget_left": 3,
+   "static_score": 0.8821
+  },
+  {
+   "query_id": "q-ee4ca1fb8c17",
+   "hospital_id": "SH-121",
+   "dept_id": "D02190",
+   "dept_ids": [
+    "D02190",
+    "D02013"
+   ],
+   "scenario": "peds",
+   "user_loc": {
+    "lng": 121.4345,
+    "lat": 31.1955,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 14,
+   "price_cap_cny": 100,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 11,
+   "budget_left": 2,
+   "static_score": 0.8714
+  },
+  {
+   "query_id": "q-99e232ab4e66",
+   "hospital_id": "SH-026",
+   "dept_id": "D02076",
+   "dept_ids": [
+    "D02076"
+   ],
+   "scenario": "peds",
+   "user_loc": {
+    "lng": 121.4345,
+    "lat": 31.1955,
+    "crs": "GCJ-02"
+   },
+   "earliest_from": "TODAY",
+   "max_wait_days": 14,
+   "price_cap_cny": 100,
+   "target_doctor": {
+    "name": null,
+    "title": null
+   },
+   "timeout_ms": 8000,
+   "order": 12,
+   "budget_left": 1,
+   "static_score": 0.8713
+  }
+ ],
+ "slots": {
+  "SH-087": {
+   "hospital_id": "SH-087",
+   "dept_id": "D02013",
+   "slot_source": "cache",
+   "detail": "level_default",
+   "status": "unknown",
+   "verified": false,
+   "earliest_date": null,
+   "earliest_days": 5.0,
+   "fee_tier": "50",
+   "tension": null,
+   "perennial_no_slot": false,
+   "perennial_no_slot_rate": null,
+   "has_slot_rate": 0.65,
+   "confidence": "high",
+   "provenance": {
+    "file": "slots/profiles/level_defaults.json",
+    "stratum_key": "三级甲等|综合医院",
+    "captured_at": null,
+    "age_min": null,
+    "ttl_min": null,
+    "ttl_ok": false
+   },
+   "note": "档位估算（stratum=三级甲等|综合医院, n_units=383, confidence=high; 非实时, 不可当号源事实）",
+   "stale_reference": {
+    "hospital_id": "SH-087",
+    "dept_id": "D02013",
+    "slot_source": "cache",
+    "detail": "observed",
+    "status": "unknown",
+    "verified": false,
+    "earliest_date": null,
+    "earliest_days": null,
+    "fee_tier": "unknown",
+    "tension": null,
+    "perennial_no_slot": false,
+    "lead_days": 5,
+    "release_cycle": "unknown",
+    "obs_count": 0,
+    "provenance": {
+     "file": "slots/profiles/slot_profile.json",
+     "captured_at": null,
+     "age_min": null,
+     "ttl_min": 90,
+     "ttl_ok": false
+    },
+    "note": "观察过期（age_min>TTL）, 按未核实处理; 可约提前5天"
+   },
+   "dept_name": "儿科"
+  },
+  "SH-030": {
+   "hospital_id": "SH-030",
+   "dept_id": "D02013",
+   "slot_source": "cache",
+   "detail": "level_default",
+   "status": "unknown",
+   "verified": false,
+   "earliest_date": null,
+   "earliest_days": 5.0,
+   "fee_tier": "50",
+   "tension": null,
+   "perennial_no_slot": false,
+   "perennial_no_slot_rate": null,
+   "has_slot_rate": 0.65,
+   "confidence": "high",
+   "provenance": {
+    "file": "slots/profiles/level_defaults.json",
+    "stratum_key": "三级甲等|综合医院",
+    "captured_at": null,
+    "age_min": null,
+    "ttl_min": null,
+    "ttl_ok": false
+   },
+   "note": "档位估算（stratum=三级甲等|综合医院, n_units=383, confidence=high; 非实时, 不可当号源事实）",
+   "stale_reference": {
+    "hospital_id": "SH-030",
+    "dept_id": "D02013",
+    "slot_source": "cache",
+    "detail": "observed",
+    "status": "unknown",
+    "verified": false,
+    "earliest_date": null,
+    "earliest_days": null,
+    "fee_tier": "unknown",
+    "tension": null,
+    "perennial_no_slot": false,
+    "lead_days": 5,
+    "release_cycle": "unknown",
+    "obs_count": 0,
+    "provenance": {
+     "file": "slots/profiles/slot_profile.json",
+     "captured_at": null,
+     "age_min": null,
+     "ttl_min": 90,
+     "ttl_ok": false
+    },
+    "note": "观察过期（age_min>TTL）, 按未核实处理; 可约提前5天"
+   },
+   "dept_name": "儿科"
+  },
+  "SH-065": {
+   "hospital_id": "SH-065",
+   "dept_id": "D02013",
+   "slot_source": "cache",
+   "detail": "level_default",
+   "status": "unknown",
+   "verified": false,
+   "earliest_date": null,
+   "earliest_days": 6.0,
+   "fee_tier": "100+",
+   "tension": null,
+   "perennial_no_slot": false,
+   "perennial_no_slot_rate": null,
+   "has_slot_rate": 0.661,
+   "confidence": "mid",
+   "provenance": {
+    "file": "slots/profiles/level_defaults.json",
+    "stratum_key": "三级甲等|专科医院",
+    "captured_at": null,
+    "age_min": null,
+    "ttl_min": null,
+    "ttl_ok": false
+   },
+   "note": "档位估算（stratum=三级甲等|专科医院, n_units=56, confidence=mid; 非实时, 不可当号源事实）",
+   "stale_reference": {
+    "hospital_id": "SH-065",
+    "dept_id": "D02013",
+    "slot_source": "cache",
+    "detail": "observed",
+    "status": "unknown",
+    "verified": false,
+    "earliest_date": null,
+    "earliest_days": null,
+    "fee_tier": "unknown",
+    "tension": null,
+    "perennial_no_slot": false,
+    "lead_days": null,
+    "release_cycle": "unknown",
+    "obs_count": 0,
+    "provenance": {
+     "file": "slots/profiles/slot_profile.json",
+     "captured_at": null,
+     "age_min": null,
+     "ttl_min": 90,
+     "ttl_ok": false
+    },
+    "note": "观察过期（age_min>TTL）, 按未核实处理"
+   },
+   "dept_name": "儿科"
+  },
+  "SH-074": {
+   "hospital_id": "SH-074",
+   "dept_id": "D02076",
+   "slot_source": "cache",
+   "detail": "level_default",
+   "status": "unknown",
+   "verified": false,
+   "earliest_date": null,
+   "earliest_days": 6.0,
+   "fee_tier": "100+",
+   "tension": null,
+   "perennial_no_slot": false,
+   "perennial_no_slot_rate": null,
+   "has_slot_rate": 0.661,
+   "confidence": "mid",
+   "provenance": {
+    "file": "slots/profiles/level_defaults.json",
+    "stratum_key": "三级甲等|专科疾病防治院",
+    "captured_at": null,
+    "age_min": null,
+    "ttl_min": null,
+    "ttl_ok": false
+   },
+   "note": "档位估算（stratum=三级甲等|专科疾病防治院, n_units=56, confidence=mid; 非实时, 不可当号源事实）",
+   "stale_reference": null,
+   "dept_name": "儿童保健科"
+  },
+  "SH-053": {
+   "hospital_id": "SH-053",
+   "dept_id": "D02013",
+   "slot_source": "cache",
+   "detail": "level_default",
+   "status": "unknown",
+   "verified": false,
+   "earliest_date": null,
+   "earliest_days": 5.0,
+   "fee_tier": "50",
+   "tension": null,
+   "perennial_no_slot": false,
+   "perennial_no_slot_rate": null,
+   "has_slot_rate": 0.65,
+   "confidence": "high",
+   "provenance": {
+    "file": "slots/profiles/level_defaults.json",
+    "stratum_key": "三级甲等|综合医院",
+    "captured_at": null,
+    "age_min": null,
+    "ttl_min": null,
+    "ttl_ok": false
+   },
+   "note": "档位估算（stratum=三级甲等|综合医院, n_units=383, confidence=high; 非实时, 不可当号源事实）",
+   "stale_reference": {
+    "hospital_id": "SH-053",
+    "dept_id": "D02013",
+    "slot_source": "cache",
+    "detail": "observed",
+    "status": "unknown",
+    "verified": false,
+    "earliest_date": null,
+    "earliest_days": null,
+    "fee_tier": "unknown",
+    "tension": null,
+    "perennial_no_slot": false,
+    "lead_days": 5,
+    "release_cycle": "unknown",
+    "obs_count": 0,
+    "provenance": {
+     "file": "slots/profiles/slot_profile.json",
+     "captured_at": null,
+     "age_min": null,
+     "ttl_min": 90,
+     "ttl_ok": false
+    },
+    "note": "观察过期（age_min>TTL）, 按未核实处理; 可约提前5天"
+   },
+   "dept_name": "儿科"
+  },
+  "SH-018": {
+   "hospital_id": "SH-018",
+   "dept_id": "D02076",
+   "slot_source": "cache",
+   "detail": "level_default",
+   "status": "unknown",
+   "verified": false,
+   "earliest_date": null,
+   "earliest_days": 6.0,
+   "fee_tier": "100+",
+   "tension": null,
+   "perennial_no_slot": false,
+   "perennial_no_slot_rate": null,
+   "has_slot_rate": 0.661,
+   "confidence": "mid",
+   "provenance": {
+    "file": "slots/profiles/level_defaults.json",
+    "stratum_key": "三级甲等|专科疾病防治院",
+    "captured_at": null,
+    "age_min": null,
+    "ttl_min": null,
+    "ttl_ok": false
+   },
+   "note": "档位估算（stratum=三级甲等|专科疾病防治院, n_units=56, confidence=mid; 非实时, 不可当号源事实）",
+   "stale_reference": null,
+   "dept_name": "儿童保健科"
+  },
+  "SH-075": {
+   "hospital_id": "SH-075",
+   "dept_id": "D02013",
+   "slot_source": "cache",
+   "detail": "level_default",
+   "status": "unknown",
+   "verified": false,
+   "earliest_date": null,
+   "earliest_days": 6.0,
+   "fee_tier": "100+",
+   "tension": null,
+   "perennial_no_slot": false,
+   "perennial_no_slot_rate": null,
+   "has_slot_rate": 0.661,
+   "confidence": "mid",
+   "provenance": {
+    "file": "slots/profiles/level_defaults.json",
+    "stratum_key": "三级甲等|专科医院",
+    "captured_at": null,
+    "age_min": null,
+    "ttl_min": null,
+    "ttl_ok": false
+   },
+   "note": "档位估算（stratum=三级甲等|专科医院, n_units=56, confidence=mid; 非实时, 不可当号源事实）",
+   "stale_reference": {
+    "hospital_id": "SH-075",
+    "dept_id": "D02013",
+    "slot_source": "cache",
+    "detail": "observed",
+    "status": "unknown",
+    "verified": false,
+    "earliest_date": null,
+    "earliest_days": null,
+    "fee_tier": "unknown",
+    "tension": null,
+    "perennial_no_slot": false,
+    "lead_days": null,
+    "release_cycle": "unknown",
+    "obs_count": 0,
+    "provenance": {
+     "file": "slots/profiles/slot_profile.json",
+     "captured_at": null,
+     "age_min": null,
+     "ttl_min": 90,
+     "ttl_ok": false
+    },
+    "note": "观察过期（age_min>TTL）, 按未核实处理"
+   },
+   "dept_name": "儿科"
+  },
+  "SH-036": {
+   "hospital_id": "SH-036",
+   "dept_id": "D02013",
+   "slot_source": "cache",
+   "detail": "level_default",
+   "status": "unknown",
+   "verified": false,
+   "earliest_date": null,
+   "earliest_days": 5.0,
+   "fee_tier": "50",
+   "tension": null,
+   "perennial_no_slot": false,
+   "perennial_no_slot_rate": null,
+   "has_slot_rate": 0.65,
+   "confidence": "high",
+   "provenance": {
+    "file": "slots/profiles/level_defaults.json",
+    "stratum_key": "三级甲等|综合医院",
+    "captured_at": null,
+    "age_min": null,
+    "ttl_min": null,
+    "ttl_ok": false
+   },
+   "note": "档位估算（stratum=三级甲等|综合医院, n_units=383, confidence=high; 非实时, 不可当号源事实）",
+   "stale_reference": {
+    "hospital_id": "SH-036",
+    "dept_id": "D02013",
+    "slot_source": "cache",
+    "detail": "observed",
+    "status": "unknown",
+    "verified": false,
+    "earliest_date": null,
+    "earliest_days": null,
+    "fee_tier": "unknown",
+    "tension": null,
+    "perennial_no_slot": false,
+    "lead_days": 5,
+    "release_cycle": "unknown",
+    "obs_count": 0,
+    "provenance": {
+     "file": "slots/profiles/slot_profile.json",
+     "captured_at": null,
+     "age_min": null,
+     "ttl_min": 90,
+     "ttl_ok": false
+    },
+    "note": "观察过期（age_min>TTL）, 按未核实处理; 可约提前5天"
+   },
+   "dept_name": "儿科"
+  },
+  "SH-172": {
+   "hospital_id": "SH-172",
+   "dept_id": "D02013",
+   "slot_source": "cache",
+   "detail": "level_default",
+   "status": "unknown",
+   "verified": false,
+   "earliest_date": null,
+   "earliest_days": null,
+   "fee_tier": "25",
+   "tension": null,
+   "perennial_no_slot": false,
+   "perennial_no_slot_rate": null,
+   "has_slot_rate": 0.474,
+   "confidence": "mid",
+   "provenance": {
+    "file": "slots/profiles/level_defaults.json",
+    "stratum_key": "二级甲等|专科疾病防治院",
+    "captured_at": null,
+    "age_min": null,
+    "ttl_min": null,
+    "ttl_ok": false
+   },
+   "note": "档位估算（stratum=二级甲等|专科疾病防治院, n_units=57, confidence=mid; 非实时, 不可当号源事实）",
+   "stale_reference": {
+    "hospital_id": "SH-172",
+    "dept_id": "D02013",
+    "slot_source": "cache",
+    "detail": "observed",
+    "status": "unknown",
+    "verified": false,
+    "earliest_date": null,
+    "earliest_days": null,
+    "fee_tier": "unknown",
+    "tension": null,
+    "perennial_no_slot": false,
+    "lead_days": null,
+    "release_cycle": "unknown",
+    "obs_count": 0,
+    "provenance": {
+     "file": "slots/profiles/slot_profile.json",
+     "captured_at": null,
+     "age_min": null,
+     "ttl_min": 90,
+     "ttl_ok": false
+    },
+    "note": "观察过期（age_min>TTL）, 按未核实处理"
+   },
+   "dept_name": "儿科"
+  },
+  "SH-084": {
+   "hospital_id": "SH-084",
+   "dept_id": "D02013",
+   "slot_source": "cache",
+   "detail": "level_default",
+   "status": "unknown",
+   "verified": false,
+   "earliest_date": null,
+   "earliest_days": 5.0,
+   "fee_tier": "50",
+   "tension": null,
+   "perennial_no_slot": false,
+   "perennial_no_slot_rate": null,
+   "has_slot_rate": 0.65,
+   "confidence": "high",
+   "provenance": {
+    "file": "slots/profiles/level_defaults.json",
+    "stratum_key": "三级甲等|综合医院",
+    "captured_at": null,
+    "age_min": null,
+    "ttl_min": null,
+    "ttl_ok": false
+   },
+   "note": "档位估算（stratum=三级甲等|综合医院, n_units=383, confidence=high; 非实时, 不可当号源事实）",
+   "stale_reference": {
+    "hospital_id": "SH-084",
+    "dept_id": "D02013",
+    "slot_source": "cache",
+    "detail": "observed",
+    "status": "unknown",
+    "verified": false,
+    "earliest_date": null,
+    "earliest_days": null,
+    "fee_tier": "unknown",
+    "tension": null,
+    "perennial_no_slot": false,
+    "lead_days": 5,
+    "release_cycle": "unknown",
+    "obs_count": 0,
+    "provenance": {
+     "file": "slots/profiles/slot_profile.json",
+     "captured_at": null,
+     "age_min": null,
+     "ttl_min": 90,
+     "ttl_ok": false
+    },
+    "note": "观察过期（age_min>TTL）, 按未核实处理; 可约提前5天"
+   },
+   "dept_name": "儿科"
+  },
+  "SH-121": {
+   "hospital_id": "SH-121",
+   "dept_id": "D02013",
+   "slot_source": "cache",
+   "detail": "level_default",
+   "status": "unknown",
+   "verified": false,
+   "earliest_date": null,
+   "earliest_days": null,
+   "fee_tier": "15",
+   "tension": null,
+   "perennial_no_slot": false,
+   "perennial_no_slot_rate": null,
+   "has_slot_rate": 0.721,
+   "confidence": "low",
+   "provenance": {
+    "file": "slots/profiles/level_defaults.json",
+    "stratum_key": "二级乙等|综合医院",
+    "captured_at": null,
+    "age_min": null,
+    "ttl_min": null,
+    "ttl_ok": false
+   },
+   "note": "档位估算（stratum=二级乙等|综合医院, n_units=43, confidence=low; 非实时, 不可当号源事实）",
+   "stale_reference": {
+    "hospital_id": "SH-121",
+    "dept_id": "D02013",
+    "slot_source": "cache",
+    "detail": "observed",
+    "status": "unknown",
+    "verified": false,
+    "earliest_date": null,
+    "earliest_days": null,
+    "fee_tier": "unknown",
+    "tension": null,
+    "perennial_no_slot": false,
+    "lead_days": null,
+    "release_cycle": "unknown",
+    "obs_count": 0,
+    "provenance": {
+     "file": "slots/profiles/slot_profile.json",
+     "captured_at": null,
+     "age_min": null,
+     "ttl_min": 90,
+     "ttl_ok": false
+    },
+    "note": "观察过期（age_min>TTL）, 按未核实处理"
+   },
+   "dept_name": "儿科"
+  },
+  "SH-026": {
+   "hospital_id": "SH-026",
+   "dept_id": "D02076",
+   "slot_source": "cache",
+   "detail": "level_default",
+   "status": "unknown",
+   "verified": false,
+   "earliest_date": null,
+   "earliest_days": 6.0,
+   "fee_tier": "100+",
+   "tension": null,
+   "perennial_no_slot": false,
+   "perennial_no_slot_rate": null,
+   "has_slot_rate": 0.661,
+   "confidence": "mid",
+   "provenance": {
+    "file": "slots/profiles/level_defaults.json",
+    "stratum_key": "三级甲等|专科疾病防治院",
+    "captured_at": null,
+    "age_min": null,
+    "ttl_min": null,
+    "ttl_ok": false
+   },
+   "note": "档位估算（stratum=三级甲等|专科疾病防治院, n_units=56, confidence=mid; 非实时, 不可当号源事实）",
+   "stale_reference": null,
+   "dept_name": "儿童保健科"
+  }
+ },
+ "final": {
+  "recommendations": [
+   {
+    "rank": 1,
+    "hospital_id": "SH-087",
+    "name": "第六人民医院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "徐汇区",
+    "insurance": "yes",
+    "static_score": 0.9429,
+    "slot_utility": 1.0,
+    "final_score": 0.9429,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 1,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "50",
+    "dept": "儿科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|综合医院, confidence=high, 非实时, 不当作号源事实）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.42,
+      "v": 1.0,
+      "contrib": 0.42,
+      "note": "命中: 儿科,儿童保健科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.9174,
+      "contrib": 0.2752,
+      "note": "2.1km"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 1.0,
+      "contrib": 0.12,
+      "note": "l2=353"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.9174,
+      "lost": 0.0248,
+      "note": "2.1km"
+     },
+     {
+      "feature": "bus",
+      "w": 0.04,
+      "v": 0.3869,
+      "lost": 0.0245,
+      "note": "1站"
+     },
+     {
+      "feature": "metro",
+      "w": 0.02,
+      "v": 0.61,
+      "lost": 0.0078,
+      "note": "步行11.7m"
+     }
+    ],
+    "final_rank": 1,
+    "why": "第六人民医院（三级甲等/徐汇区）: 科室命中=命中: 儿科,儿童保健科 [p1/high]（+0.42, match），距离就近=2.1km（+0.2752, distance）。号源未核实（cache/level_default(档位先验,未核实)）, 仅按静态分排序, 不得当实时事实。",
+    "evidence": {
+     "static_score": 0.9429,
+     "slot_utility": 1.0,
+     "final_score": 0.9429,
+     "top3_contrib": [
+      {
+       "feature": "match",
+       "w": 0.42,
+       "v": 1.0,
+       "contrib": 0.42,
+       "note": "命中: 儿科,儿童保健科 [p1/high]"
+      },
+      {
+       "feature": "distance",
+       "w": 0.3,
+       "v": 0.9174,
+       "contrib": 0.2752,
+       "note": "2.1km"
+      },
+      {
+       "feature": "breadth",
+       "w": 0.12,
+       "v": 1.0,
+       "contrib": 0.12,
+       "note": "l2=353"
+      }
+     ],
+     "deductions": [
+      {
+       "feature": "distance",
+       "w": 0.3,
+       "v": 0.9174,
+       "lost": 0.0248,
+       "note": "2.1km"
+      },
+      {
+       "feature": "bus",
+       "w": 0.04,
+       "v": 0.3869,
+       "lost": 0.0245,
+       "note": "1站"
+      },
+      {
+       "feature": "metro",
+       "w": 0.02,
+       "v": 0.61,
+       "lost": 0.0078,
+       "note": "步行11.7m"
+      }
+     ],
+     "slot_info": {
+      "slot_source": "cache",
+      "detail": "level_default",
+      "status": "unknown",
+      "verified": false,
+      "earliest_date": null,
+      "earliest_days": 5.0,
+      "fee_tier": "50",
+      "tension": null,
+      "perennial_no_slot": false,
+      "days14_has": null,
+      "days14_total": null,
+      "provenance": {
+       "file": "slots/profiles/level_defaults.json",
+       "stratum_key": "三级甲等|综合医院",
+       "captured_at": null,
+       "age_min": null,
+       "ttl_min": null,
+       "ttl_ok": false
+      },
+      "note": "档位估算（stratum=三级甲等|综合医院, n_units=383, confidence=high; 非实时, 不可当号源事实）"
+     },
+     "constraints": {
+      "max_wait_days": 14,
+      "price_cap_cny": 100
+     },
+     "violations": []
+    }
+   },
+   {
+    "rank": 2,
+    "hospital_id": "SH-030",
+    "name": "仁济医院西院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "黄浦区",
+    "insurance": "yes",
+    "static_score": 0.9186,
+    "slot_utility": 1.0,
+    "final_score": 0.9186,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 2,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "50",
+    "dept": "儿科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|综合医院, confidence=high, 非实时, 不当作号源事实）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.42,
+      "v": 1.0,
+      "contrib": 0.42,
+      "note": "命中: 儿科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.7441,
+      "contrib": 0.2232,
+      "note": "6.4km"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 1.0,
+      "contrib": 0.12,
+      "note": "l2=208"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.7441,
+      "lost": 0.0768,
+      "note": "6.4km"
+     }
+    ],
+    "final_rank": 2,
+    "why": "仁济医院西院（三级甲等/黄浦区）: 科室命中=命中: 儿科 [p1/high]（+0.42, match），距离就近=6.4km（+0.2232, distance）。号源未核实（cache/level_default(档位先验,未核实)）, 仅按静态分排序, 不得当实时事实。",
+    "evidence": {
+     "static_score": 0.9186,
+     "slot_utility": 1.0,
+     "final_score": 0.9186,
+     "top3_contrib": [
+      {
+       "feature": "match",
+       "w": 0.42,
+       "v": 1.0,
+       "contrib": 0.42,
+       "note": "命中: 儿科 [p1/high]"
+      },
+      {
+       "feature": "distance",
+       "w": 0.3,
+       "v": 0.7441,
+       "contrib": 0.2232,
+       "note": "6.4km"
+      },
+      {
+       "feature": "breadth",
+       "w": 0.12,
+       "v": 1.0,
+       "contrib": 0.12,
+       "note": "l2=208"
+      }
+     ],
+     "deductions": [
+      {
+       "feature": "distance",
+       "w": 0.3,
+       "v": 0.7441,
+       "lost": 0.0768,
+       "note": "6.4km"
+      }
+     ],
+     "slot_info": {
+      "slot_source": "cache",
+      "detail": "level_default",
+      "status": "unknown",
+      "verified": false,
+      "earliest_date": null,
+      "earliest_days": 5.0,
+      "fee_tier": "50",
+      "tension": null,
+      "perennial_no_slot": false,
+      "days14_has": null,
+      "days14_total": null,
+      "provenance": {
+       "file": "slots/profiles/level_defaults.json",
+       "stratum_key": "三级甲等|综合医院",
+       "captured_at": null,
+       "age_min": null,
+       "ttl_min": null,
+       "ttl_ok": false
+      },
+      "note": "档位估算（stratum=三级甲等|综合医院, n_units=383, confidence=high; 非实时, 不可当号源事实）"
+     },
+     "constraints": {
+      "max_wait_days": 14,
+      "price_cap_cny": 100
+     },
+     "violations": []
+    }
+   },
+   {
+    "rank": 5,
+    "hospital_id": "SH-053",
+    "name": "长征医院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "黄浦区",
+    "insurance": "yes",
+    "static_score": 0.8993,
+    "slot_utility": 1.0,
+    "final_score": 0.8993,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 5,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "50",
+    "dept": "儿科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|综合医院, confidence=high, 非实时, 不当作号源事实）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.42,
+      "v": 1.0,
+      "contrib": 0.42,
+      "note": "命中: 儿科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.7927,
+      "contrib": 0.2378,
+      "note": "5.2km"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 0.7842,
+      "contrib": 0.0941,
+      "note": "l2=48"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.7927,
+      "lost": 0.0622,
+      "note": "5.2km"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 0.7842,
+      "lost": 0.0259,
+      "note": "l2=48"
+     },
+     {
+      "feature": "metro",
+      "w": 0.02,
+      "v": 0.5733,
+      "lost": 0.0085,
+      "note": "步行12.8m"
+     }
+    ],
+    "final_rank": 5,
+    "why": "长征医院（三级甲等/黄浦区）: 科室命中=命中: 儿科 [p1/high]（+0.42, match），距离就近=5.2km（+0.2378, distance）。号源未核实（cache/level_default(档位先验,未核实)）, 仅按静态分排序, 不得当实时事实。",
+    "evidence": {
+     "static_score": 0.8993,
+     "slot_utility": 1.0,
+     "final_score": 0.8993,
+     "top3_contrib": [
+      {
+       "feature": "match",
+       "w": 0.42,
+       "v": 1.0,
+       "contrib": 0.42,
+       "note": "命中: 儿科 [p1/high]"
+      },
+      {
+       "feature": "distance",
+       "w": 0.3,
+       "v": 0.7927,
+       "contrib": 0.2378,
+       "note": "5.2km"
+      },
+      {
+       "feature": "breadth",
+       "w": 0.12,
+       "v": 0.7842,
+       "contrib": 0.0941,
+       "note": "l2=48"
+      }
+     ],
+     "deductions": [
+      {
+       "feature": "distance",
+       "w": 0.3,
+       "v": 0.7927,
+       "lost": 0.0622,
+       "note": "5.2km"
+      },
+      {
+       "feature": "breadth",
+       "w": 0.12,
+       "v": 0.7842,
+       "lost": 0.0259,
+       "note": "l2=48"
+      },
+      {
+       "feature": "metro",
+       "w": 0.02,
+       "v": 0.5733,
+       "lost": 0.0085,
+       "note": "步行12.8m"
+      }
+     ],
+     "slot_info": {
+      "slot_source": "cache",
+      "detail": "level_default",
+      "status": "unknown",
+      "verified": false,
+      "earliest_date": null,
+      "earliest_days": 5.0,
+      "fee_tier": "50",
+      "tension": null,
+      "perennial_no_slot": false,
+      "days14_has": null,
+      "days14_total": null,
+      "provenance": {
+       "file": "slots/profiles/level_defaults.json",
+       "stratum_key": "三级甲等|综合医院",
+       "captured_at": null,
+       "age_min": null,
+       "ttl_min": null,
+       "ttl_ok": false
+      },
+      "note": "档位估算（stratum=三级甲等|综合医院, n_units=383, confidence=high; 非实时, 不可当号源事实）"
+     },
+     "constraints": {
+      "max_wait_days": 14,
+      "price_cap_cny": 100
+     },
+     "violations": []
+    }
+   }
+  ],
+  "top_list": [
+   {
+    "rank": 1,
+    "hospital_id": "SH-087",
+    "name": "第六人民医院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "徐汇区",
+    "insurance": "yes",
+    "static_score": 0.9429,
+    "slot_utility": 1.0,
+    "final_score": 0.9429,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 1,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "50",
+    "dept": "儿科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|综合医院, confidence=high, 非实时, 不当作号源事实）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.42,
+      "v": 1.0,
+      "contrib": 0.42,
+      "note": "命中: 儿科,儿童保健科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.9174,
+      "contrib": 0.2752,
+      "note": "2.1km"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 1.0,
+      "contrib": 0.12,
+      "note": "l2=353"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.9174,
+      "lost": 0.0248,
+      "note": "2.1km"
+     },
+     {
+      "feature": "bus",
+      "w": 0.04,
+      "v": 0.3869,
+      "lost": 0.0245,
+      "note": "1站"
+     },
+     {
+      "feature": "metro",
+      "w": 0.02,
+      "v": 0.61,
+      "lost": 0.0078,
+      "note": "步行11.7m"
+     }
+    ],
+    "final_rank": 1,
+    "why": "第六人民医院（三级甲等/徐汇区）: 科室命中=命中: 儿科,儿童保健科 [p1/high]（+0.42, match），距离就近=2.1km（+0.2752, distance）。号源未核实（cache/level_default(档位先验,未核实)）, 仅按静态分排序, 不得当实时事实。",
+    "evidence": {
+     "static_score": 0.9429,
+     "slot_utility": 1.0,
+     "final_score": 0.9429,
+     "top3_contrib": [
+      {
+       "feature": "match",
+       "w": 0.42,
+       "v": 1.0,
+       "contrib": 0.42,
+       "note": "命中: 儿科,儿童保健科 [p1/high]"
+      },
+      {
+       "feature": "distance",
+       "w": 0.3,
+       "v": 0.9174,
+       "contrib": 0.2752,
+       "note": "2.1km"
+      },
+      {
+       "feature": "breadth",
+       "w": 0.12,
+       "v": 1.0,
+       "contrib": 0.12,
+       "note": "l2=353"
+      }
+     ],
+     "deductions": [
+      {
+       "feature": "distance",
+       "w": 0.3,
+       "v": 0.9174,
+       "lost": 0.0248,
+       "note": "2.1km"
+      },
+      {
+       "feature": "bus",
+       "w": 0.04,
+       "v": 0.3869,
+       "lost": 0.0245,
+       "note": "1站"
+      },
+      {
+       "feature": "metro",
+       "w": 0.02,
+       "v": 0.61,
+       "lost": 0.0078,
+       "note": "步行11.7m"
+      }
+     ],
+     "slot_info": {
+      "slot_source": "cache",
+      "detail": "level_default",
+      "status": "unknown",
+      "verified": false,
+      "earliest_date": null,
+      "earliest_days": 5.0,
+      "fee_tier": "50",
+      "tension": null,
+      "perennial_no_slot": false,
+      "days14_has": null,
+      "days14_total": null,
+      "provenance": {
+       "file": "slots/profiles/level_defaults.json",
+       "stratum_key": "三级甲等|综合医院",
+       "captured_at": null,
+       "age_min": null,
+       "ttl_min": null,
+       "ttl_ok": false
+      },
+      "note": "档位估算（stratum=三级甲等|综合医院, n_units=383, confidence=high; 非实时, 不可当号源事实）"
+     },
+     "constraints": {
+      "max_wait_days": 14,
+      "price_cap_cny": 100
+     },
+     "violations": []
+    }
+   },
+   {
+    "rank": 2,
+    "hospital_id": "SH-030",
+    "name": "仁济医院西院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "黄浦区",
+    "insurance": "yes",
+    "static_score": 0.9186,
+    "slot_utility": 1.0,
+    "final_score": 0.9186,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 2,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "50",
+    "dept": "儿科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|综合医院, confidence=high, 非实时, 不当作号源事实）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.42,
+      "v": 1.0,
+      "contrib": 0.42,
+      "note": "命中: 儿科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.7441,
+      "contrib": 0.2232,
+      "note": "6.4km"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 1.0,
+      "contrib": 0.12,
+      "note": "l2=208"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.7441,
+      "lost": 0.0768,
+      "note": "6.4km"
+     }
+    ],
+    "final_rank": 2,
+    "why": "仁济医院西院（三级甲等/黄浦区）: 科室命中=命中: 儿科 [p1/high]（+0.42, match），距离就近=6.4km（+0.2232, distance）。号源未核实（cache/level_default(档位先验,未核实)）, 仅按静态分排序, 不得当实时事实。",
+    "evidence": {
+     "static_score": 0.9186,
+     "slot_utility": 1.0,
+     "final_score": 0.9186,
+     "top3_contrib": [
+      {
+       "feature": "match",
+       "w": 0.42,
+       "v": 1.0,
+       "contrib": 0.42,
+       "note": "命中: 儿科 [p1/high]"
+      },
+      {
+       "feature": "distance",
+       "w": 0.3,
+       "v": 0.7441,
+       "contrib": 0.2232,
+       "note": "6.4km"
+      },
+      {
+       "feature": "breadth",
+       "w": 0.12,
+       "v": 1.0,
+       "contrib": 0.12,
+       "note": "l2=208"
+      }
+     ],
+     "deductions": [
+      {
+       "feature": "distance",
+       "w": 0.3,
+       "v": 0.7441,
+       "lost": 0.0768,
+       "note": "6.4km"
+      }
+     ],
+     "slot_info": {
+      "slot_source": "cache",
+      "detail": "level_default",
+      "status": "unknown",
+      "verified": false,
+      "earliest_date": null,
+      "earliest_days": 5.0,
+      "fee_tier": "50",
+      "tension": null,
+      "perennial_no_slot": false,
+      "days14_has": null,
+      "days14_total": null,
+      "provenance": {
+       "file": "slots/profiles/level_defaults.json",
+       "stratum_key": "三级甲等|综合医院",
+       "captured_at": null,
+       "age_min": null,
+       "ttl_min": null,
+       "ttl_ok": false
+      },
+      "note": "档位估算（stratum=三级甲等|综合医院, n_units=383, confidence=high; 非实时, 不可当号源事实）"
+     },
+     "constraints": {
+      "max_wait_days": 14,
+      "price_cap_cny": 100
+     },
+     "violations": []
+    }
+   },
+   {
+    "rank": 3,
+    "hospital_id": "SH-065",
+    "name": "龙华医院",
+    "level": "三级甲等",
+    "type": "专科医院",
+    "district": "徐汇区",
+    "insurance": "yes",
+    "static_score": 0.9183,
+    "slot_utility": 1.0,
+    "final_score": 0.9183,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 3,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "100+",
+    "dept": "儿科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|专科医院, confidence=mid, 非实时, 不当作号源事实）"
+    ],
+    "violations": [
+     "费用档 100+（≈120元（cache/level_default(档位先验,未核实), 未核实））超出预算 100 元"
+    ],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.42,
+      "v": 1.0,
+      "contrib": 0.42,
+      "note": "命中: 儿科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.9337,
+      "contrib": 0.2801,
+      "note": "1.7km"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 1.0,
+      "contrib": 0.12,
+      "note": "l2=404"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "key_specialty",
+      "w": 0.04,
+      "v": 0.0,
+      "lost": 0.04,
+      "note": "空（覆盖4.4%）"
+     },
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.9337,
+      "lost": 0.0199,
+      "note": "1.7km"
+     },
+     {
+      "feature": "bus",
+      "w": 0.04,
+      "v": 0.6131,
+      "lost": 0.0155,
+      "note": "2站"
+     }
+    ],
+    "final_rank": 3
+   },
+   {
+    "rank": 4,
+    "hospital_id": "SH-074",
+    "name": "儿科医院",
+    "level": "三级甲等",
+    "type": "专科疾病防治院",
+    "district": "闵行区",
+    "insurance": "yes",
+    "static_score": 0.8995,
+    "slot_utility": 1.0,
+    "final_score": 0.8995,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 4,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "100+",
+    "dept": "儿童保健科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|专科疾病防治院, confidence=mid, 非实时, 不当作号源事实）"
+    ],
+    "violations": [
+     "费用档 100+（≈120元（cache/level_default(档位先验,未核实), 未核实））超出预算 100 元"
+    ],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.42,
+      "v": 1.0,
+      "contrib": 0.42,
+      "note": "命中: 儿童保健科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.7138,
+      "contrib": 0.2142,
+      "note": "7.2km"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 1.0,
+      "contrib": 0.12,
+      "note": "l2=504"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.7138,
+      "lost": 0.0859,
+      "note": "7.2km"
+     },
+     {
+      "feature": "bus",
+      "w": 0.04,
+      "v": 0.7737,
+      "lost": 0.0091,
+      "note": "3站"
+     },
+     {
+      "feature": "metro",
+      "w": 0.02,
+      "v": 0.72,
+      "lost": 0.0056,
+      "note": "步行8.4m"
+     }
+    ],
+    "final_rank": 4
+   },
+   {
+    "rank": 5,
+    "hospital_id": "SH-053",
+    "name": "长征医院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "黄浦区",
+    "insurance": "yes",
+    "static_score": 0.8993,
+    "slot_utility": 1.0,
+    "final_score": 0.8993,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 5,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "50",
+    "dept": "儿科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|综合医院, confidence=high, 非实时, 不当作号源事实）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.42,
+      "v": 1.0,
+      "contrib": 0.42,
+      "note": "命中: 儿科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.7927,
+      "contrib": 0.2378,
+      "note": "5.2km"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 0.7842,
+      "contrib": 0.0941,
+      "note": "l2=48"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.7927,
+      "lost": 0.0622,
+      "note": "5.2km"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 0.7842,
+      "lost": 0.0259,
+      "note": "l2=48"
+     },
+     {
+      "feature": "metro",
+      "w": 0.02,
+      "v": 0.5733,
+      "lost": 0.0085,
+      "note": "步行12.8m"
+     }
+    ],
+    "final_rank": 5,
+    "why": "长征医院（三级甲等/黄浦区）: 科室命中=命中: 儿科 [p1/high]（+0.42, match），距离就近=5.2km（+0.2378, distance）。号源未核实（cache/level_default(档位先验,未核实)）, 仅按静态分排序, 不得当实时事实。",
+    "evidence": {
+     "static_score": 0.8993,
+     "slot_utility": 1.0,
+     "final_score": 0.8993,
+     "top3_contrib": [
+      {
+       "feature": "match",
+       "w": 0.42,
+       "v": 1.0,
+       "contrib": 0.42,
+       "note": "命中: 儿科 [p1/high]"
+      },
+      {
+       "feature": "distance",
+       "w": 0.3,
+       "v": 0.7927,
+       "contrib": 0.2378,
+       "note": "5.2km"
+      },
+      {
+       "feature": "breadth",
+       "w": 0.12,
+       "v": 0.7842,
+       "contrib": 0.0941,
+       "note": "l2=48"
+      }
+     ],
+     "deductions": [
+      {
+       "feature": "distance",
+       "w": 0.3,
+       "v": 0.7927,
+       "lost": 0.0622,
+       "note": "5.2km"
+      },
+      {
+       "feature": "breadth",
+       "w": 0.12,
+       "v": 0.7842,
+       "lost": 0.0259,
+       "note": "l2=48"
+      },
+      {
+       "feature": "metro",
+       "w": 0.02,
+       "v": 0.5733,
+       "lost": 0.0085,
+       "note": "步行12.8m"
+      }
+     ],
+     "slot_info": {
+      "slot_source": "cache",
+      "detail": "level_default",
+      "status": "unknown",
+      "verified": false,
+      "earliest_date": null,
+      "earliest_days": 5.0,
+      "fee_tier": "50",
+      "tension": null,
+      "perennial_no_slot": false,
+      "days14_has": null,
+      "days14_total": null,
+      "provenance": {
+       "file": "slots/profiles/level_defaults.json",
+       "stratum_key": "三级甲等|综合医院",
+       "captured_at": null,
+       "age_min": null,
+       "ttl_min": null,
+       "ttl_ok": false
+      },
+      "note": "档位估算（stratum=三级甲等|综合医院, n_units=383, confidence=high; 非实时, 不可当号源事实）"
+     },
+     "constraints": {
+      "max_wait_days": 14,
+      "price_cap_cny": 100
+     },
+     "violations": []
+    }
+   },
+   {
+    "rank": 6,
+    "hospital_id": "SH-018",
+    "name": "儿童医学中心",
+    "level": "三级甲等",
+    "type": "专科疾病防治院",
+    "district": "浦东新区",
+    "insurance": "yes",
+    "static_score": 0.8934,
+    "slot_utility": 1.0,
+    "final_score": 0.8934,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 6,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "100+",
+    "dept": "儿童保健科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|专科疾病防治院, confidence=mid, 非实时, 不当作号源事实）"
+    ],
+    "violations": [
+     "费用档 100+（≈120元（cache/level_default(档位先验,未核实), 未核实））超出预算 100 元"
+    ],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.42,
+      "v": 1.0,
+      "contrib": 0.42,
+      "note": "命中: 儿童保健科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.6619,
+      "contrib": 0.1986,
+      "note": "8.5km"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 1.0,
+      "contrib": 0.12,
+      "note": "l2=511"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.6619,
+      "lost": 0.1014,
+      "note": "8.5km"
+     },
+     {
+      "feature": "metro",
+      "w": 0.02,
+      "v": 0.74,
+      "lost": 0.0052,
+      "note": "步行7.8m"
+     }
+    ],
+    "final_rank": 6
+   },
+   {
+    "rank": 7,
+    "hospital_id": "SH-075",
+    "name": "曙光医院西院",
+    "level": "三级甲等",
+    "type": "专科医院",
+    "district": "黄浦区",
+    "insurance": "yes",
+    "static_score": 0.8882,
+    "slot_utility": 1.0,
+    "final_score": 0.8882,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 7,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "100+",
+    "dept": "儿科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|专科医院, confidence=mid, 非实时, 不当作号源事实）"
+    ],
+    "violations": [
+     "费用档 100+（≈120元（cache/level_default(档位先验,未核实), 未核实））超出预算 100 元"
+    ],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.42,
+      "v": 1.0,
+      "contrib": 0.42,
+      "note": "命中: 儿科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.7932,
+      "contrib": 0.238,
+      "note": "5.2km"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 0.9729,
+      "contrib": 0.1167,
+      "note": "l2=124"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.7932,
+      "lost": 0.062,
+      "note": "5.2km"
+     },
+     {
+      "feature": "key_specialty",
+      "w": 0.04,
+      "v": 0.0,
+      "lost": 0.04,
+      "note": "空（覆盖4.4%）"
+     },
+     {
+      "feature": "metro",
+      "w": 0.02,
+      "v": 0.6733,
+      "lost": 0.0065,
+      "note": "步行9.8m"
+     }
+    ],
+    "final_rank": 7
+   },
+   {
+    "rank": 8,
+    "hospital_id": "SH-036",
+    "name": "瑞金医院总院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "黄浦区",
+    "insurance": "yes",
+    "static_score": 0.8867,
+    "slot_utility": 1.0,
+    "final_score": 0.8867,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 8,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "50",
+    "dept": "儿科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|综合医院, confidence=high, 非实时, 不当作号源事实）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.42,
+      "v": 1.0,
+      "contrib": 0.42,
+      "note": "命中: 儿科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.8587,
+      "contrib": 0.2576,
+      "note": "3.5km"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 1.0,
+      "contrib": 0.12,
+      "note": "l2=148"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.8587,
+      "lost": 0.0424,
+      "note": "3.5km"
+     },
+     {
+      "feature": "key_specialty",
+      "w": 0.04,
+      "v": 0.0,
+      "lost": 0.04,
+      "note": "空（覆盖4.4%）"
+     },
+     {
+      "feature": "bus",
+      "w": 0.04,
+      "v": 0.4321,
+      "lost": 0.0227,
+      "note": "1站"
+     }
+    ],
+    "final_rank": 8
+   },
+   {
+    "rank": 9,
+    "hospital_id": "SH-172",
+    "name": "第八人民医院",
+    "level": "二级甲等",
+    "type": "专科疾病防治院",
+    "district": "徐汇区",
+    "insurance": "yes",
+    "static_score": 0.883,
+    "slot_utility": 1.0,
+    "final_score": 0.883,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 9,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "25",
+    "dept": "儿科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=二级甲等|专科疾病防治院, confidence=mid, 非实时, 不当作号源事实）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.42,
+      "v": 1.0,
+      "contrib": 0.42,
+      "note": "命中: 儿科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.8758,
+      "contrib": 0.2628,
+      "note": "3.1km"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 1.0,
+      "contrib": 0.12,
+      "note": "l2=183"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "key_specialty",
+      "w": 0.04,
+      "v": 0.0,
+      "lost": 0.04,
+      "note": "空（覆盖4.4%）"
+     },
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.8758,
+      "lost": 0.0373,
+      "note": "3.1km"
+     },
+     {
+      "feature": "level",
+      "w": 0.06,
+      "v": 0.5,
+      "lost": 0.03,
+      "note": "二级甲等"
+     }
+    ],
+    "final_rank": 9
+   },
+   {
+    "rank": 10,
+    "hospital_id": "SH-084",
+    "name": "第十人民医院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "静安区",
+    "insurance": "yes",
+    "static_score": 0.8821,
+    "slot_utility": 1.0,
+    "final_score": 0.8821,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 10,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "50",
+    "dept": "儿科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|综合医院, confidence=high, 非实时, 不当作号源事实）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.42,
+      "v": 1.0,
+      "contrib": 0.42,
+      "note": "命中: 儿科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.6477,
+      "contrib": 0.1943,
+      "note": "8.8km"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 1.0,
+      "contrib": 0.12,
+      "note": "l2=300"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.6477,
+      "lost": 0.1057,
+      "note": "8.8km"
+     },
+     {
+      "feature": "bus",
+      "w": 0.04,
+      "v": 0.7737,
+      "lost": 0.0091,
+      "note": "3站"
+     }
+    ],
+    "final_rank": 10
+   },
+   {
+    "rank": 11,
+    "hospital_id": "SH-121",
+    "name": "大华医院",
+    "level": "二级乙等",
+    "type": "综合医院",
+    "district": "徐汇区",
+    "insurance": "yes",
+    "static_score": 0.8714,
+    "slot_utility": 1.0,
+    "final_score": 0.8714,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 11,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "15",
+    "dept": "儿科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=二级乙等|综合医院, confidence=low, 非实时, 不当作号源事实）"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.42,
+      "v": 1.0,
+      "contrib": 0.42,
+      "note": "命中: 儿科,儿童生长发育 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.8689,
+      "contrib": 0.2607,
+      "note": "3.3km"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 1.0,
+      "contrib": 0.12,
+      "note": "l2=212"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "key_specialty",
+      "w": 0.04,
+      "v": 0.0,
+      "lost": 0.04,
+      "note": "空（覆盖4.4%）"
+     },
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.8689,
+      "lost": 0.0393,
+      "note": "3.3km"
+     },
+     {
+      "feature": "level",
+      "w": 0.06,
+      "v": 0.38,
+      "lost": 0.0372,
+      "note": "二级乙等"
+     }
+    ],
+    "final_rank": 11
+   },
+   {
+    "rank": 12,
+    "hospital_id": "SH-026",
+    "name": "儿童医院北京西路院区",
+    "level": "三级甲等",
+    "type": "专科疾病防治院",
+    "district": "静安区",
+    "insurance": "yes",
+    "static_score": 0.8713,
+    "slot_utility": 1.0,
+    "final_score": 0.8713,
+    "slot_source": "cache/level_default(档位先验,未核实)",
+    "verified": false,
+    "queried": true,
+    "static_rank": 12,
+    "slot_status": "unknown",
+    "earliest_date": null,
+    "fee_tier": "100+",
+    "dept": "儿童保健科",
+    "marks": [
+     "号源未核实: 档位先验 level_defaults（stratum=三级甲等|专科疾病防治院, confidence=mid, 非实时, 不当作号源事实）"
+    ],
+    "violations": [
+     "费用档 100+（≈120元（cache/level_default(档位先验,未核实), 未核实））超出预算 100 元"
+    ],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.42,
+      "v": 1.0,
+      "contrib": 0.42,
+      "note": "命中: 儿童保健科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.8385,
+      "contrib": 0.2515,
+      "note": "4.0km"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 0.7221,
+      "contrib": 0.0866,
+      "note": "l2=35"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.8385,
+      "lost": 0.0484,
+      "note": "4.0km"
+     },
+     {
+      "feature": "key_specialty",
+      "w": 0.04,
+      "v": 0.0,
+      "lost": 0.04,
+      "note": "空（覆盖4.4%）"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 0.7221,
+      "lost": 0.0333,
+      "note": "l2=35"
+     }
+    ],
+    "final_rank": 12
+   },
+   {
+    "rank": 13,
+    "hospital_id": "SH-145",
+    "name": "海军第九〇五医院",
+    "level": "二级甲等",
+    "type": "综合医院",
+    "district": "长宁区",
+    "insurance": "yes",
+    "static_score": 0.8667,
+    "slot_utility": 1.0,
+    "final_score": 0.8667,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 13,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算/早停), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.42,
+      "v": 1.0,
+      "contrib": 0.42,
+      "note": "命中: 儿科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.9353,
+      "contrib": 0.2806,
+      "note": "1.6km"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 0.8348,
+      "contrib": 0.1002,
+      "note": "l2=62"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "key_specialty",
+      "w": 0.04,
+      "v": 0.0,
+      "lost": 0.04,
+      "note": "空（覆盖4.4%）"
+     },
+     {
+      "feature": "level",
+      "w": 0.06,
+      "v": 0.5,
+      "lost": 0.03,
+      "note": "二级甲等"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 0.8348,
+      "lost": 0.0198,
+      "note": "l2=62"
+     }
+    ],
+    "final_rank": 13
+   },
+   {
+    "rank": 14,
+    "hospital_id": "SH-071",
+    "name": "同济医院",
+    "level": "三级甲等",
+    "type": "综合医院",
+    "district": "普陀区",
+    "insurance": "yes",
+    "static_score": 0.8624,
+    "slot_utility": 1.0,
+    "final_score": 0.8624,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 14,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算/早停), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.42,
+      "v": 1.0,
+      "contrib": 0.42,
+      "note": "命中: 儿科,儿童保健科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.6857,
+      "contrib": 0.2057,
+      "note": "7.9km"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 1.0,
+      "contrib": 0.12,
+      "note": "l2=170"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.6857,
+      "lost": 0.0943,
+      "note": "7.9km"
+     },
+     {
+      "feature": "key_specialty",
+      "w": 0.04,
+      "v": 0.0,
+      "lost": 0.04,
+      "note": "空（覆盖4.4%）"
+     }
+    ],
+    "final_rank": 14
+   },
+   {
+    "rank": 15,
+    "hospital_id": "SH-093",
+    "name": "同仁医院",
+    "level": "三级乙等",
+    "type": "综合医院",
+    "district": "长宁区",
+    "insurance": "yes",
+    "static_score": 0.8619,
+    "slot_utility": 1.0,
+    "final_score": 0.8619,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 15,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算/早停), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.42,
+      "v": 1.0,
+      "contrib": 0.42,
+      "note": "命中: 儿科,儿童保健科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.7724,
+      "contrib": 0.2317,
+      "note": "5.7km"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 1.0,
+      "contrib": 0.12,
+      "note": "l2=396"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.7724,
+      "lost": 0.0683,
+      "note": "5.7km"
+     },
+     {
+      "feature": "key_specialty",
+      "w": 0.04,
+      "v": 0.0,
+      "lost": 0.04,
+      "note": "空（覆盖4.4%）"
+     },
+     {
+      "feature": "level",
+      "w": 0.06,
+      "v": 0.72,
+      "lost": 0.0168,
+      "note": "三级乙等"
+     }
+    ],
+    "final_rank": 15
+   },
+   {
+    "rank": 16,
+    "hospital_id": "SH-092",
+    "name": "岳阳中西医结合医院青海路门诊部",
+    "level": "三级甲等",
+    "type": "专科医院",
+    "district": "静安区",
+    "insurance": "yes",
+    "static_score": 0.8564,
+    "slot_utility": 1.0,
+    "final_score": 0.8564,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 16,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算/早停), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.42,
+      "v": 1.0,
+      "contrib": 0.42,
+      "note": "命中: 儿科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.8096,
+      "contrib": 0.2429,
+      "note": "4.8km"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 0.78,
+      "contrib": 0.0936,
+      "note": "l2=47"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.8096,
+      "lost": 0.0571,
+      "note": "4.8km"
+     },
+     {
+      "feature": "key_specialty",
+      "w": 0.04,
+      "v": 0.0,
+      "lost": 0.04,
+      "note": "空（覆盖4.4%）"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 0.78,
+      "lost": 0.0264,
+      "note": "l2=47"
+     }
+    ],
+    "final_rank": 16
+   },
+   {
+    "rank": 17,
+    "hospital_id": "SH-179",
+    "name": "瑞金医院卢湾分院",
+    "level": "二级甲等",
+    "type": "综合医院",
+    "district": "黄浦区",
+    "insurance": "yes",
+    "static_score": 0.8542,
+    "slot_utility": 1.0,
+    "final_score": 0.8542,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 17,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算/早停), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.42,
+      "v": 1.0,
+      "contrib": 0.42,
+      "note": "命中: 儿科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.8237,
+      "contrib": 0.2471,
+      "note": "4.4km"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 0.8855,
+      "contrib": 0.1063,
+      "note": "l2=80"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.8237,
+      "lost": 0.0529,
+      "note": "4.4km"
+     },
+     {
+      "feature": "key_specialty",
+      "w": 0.04,
+      "v": 0.0,
+      "lost": 0.04,
+      "note": "空（覆盖4.4%）"
+     },
+     {
+      "feature": "level",
+      "w": 0.06,
+      "v": 0.5,
+      "lost": 0.03,
+      "note": "二级甲等"
+     }
+    ],
+    "final_rank": 17
+   },
+   {
+    "rank": 18,
+    "hospital_id": "SH-212",
+    "name": "长宁区妇幼保健院",
+    "level": "二级甲等",
+    "type": "专科疾病防治院",
+    "district": "长宁区",
+    "insurance": null,
+    "static_score": 0.8503,
+    "slot_utility": 1.0,
+    "final_score": 0.8503,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 18,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算/早停), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.42,
+      "v": 1.0,
+      "contrib": 0.42,
+      "note": "命中: 儿科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.8882,
+      "contrib": 0.2665,
+      "note": "2.8km"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 0.78,
+      "contrib": 0.0936,
+      "note": "l2=47"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "key_specialty",
+      "w": 0.04,
+      "v": 0.0,
+      "lost": 0.04,
+      "note": "空（覆盖4.4%）"
+     },
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.8882,
+      "lost": 0.0335,
+      "note": "2.8km"
+     },
+     {
+      "feature": "level",
+      "w": 0.06,
+      "v": 0.5,
+      "lost": 0.03,
+      "note": "二级甲等"
+     }
+    ],
+    "final_rank": 18
+   },
+   {
+    "rank": 19,
+    "hospital_id": "SH-083",
+    "name": "普陀区中心医院",
+    "level": "三级乙等",
+    "type": "综合医院",
+    "district": "普陀区",
+    "insurance": "yes",
+    "static_score": 0.8482,
+    "slot_utility": 1.0,
+    "final_score": 0.8482,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 19,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算/早停), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.42,
+      "v": 1.0,
+      "contrib": 0.42,
+      "note": "命中: 儿科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.7645,
+      "contrib": 0.2293,
+      "note": "5.9km"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 1.0,
+      "contrib": 0.12,
+      "note": "l2=167"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.7645,
+      "lost": 0.0707,
+      "note": "5.9km"
+     },
+     {
+      "feature": "key_specialty",
+      "w": 0.04,
+      "v": 0.0,
+      "lost": 0.04,
+      "note": "空（覆盖4.4%）"
+     },
+     {
+      "feature": "level",
+      "w": 0.06,
+      "v": 0.72,
+      "lost": 0.0168,
+      "note": "三级乙等"
+     }
+    ],
+    "final_rank": 19
+   },
+   {
+    "rank": 20,
+    "hospital_id": "SH-045",
+    "name": "上海市中医医院（芷江院区）",
+    "level": "三级甲等",
+    "type": "专科医院",
+    "district": "静安区",
+    "insurance": "yes",
+    "static_score": 0.8424,
+    "slot_utility": 1.0,
+    "final_score": 0.8424,
+    "slot_source": "未查询(无号源信息)",
+    "verified": false,
+    "queried": false,
+    "static_rank": 20,
+    "slot_status": null,
+    "earliest_date": null,
+    "fee_tier": null,
+    "dept": null,
+    "marks": [
+     "未查询: 本轮未对该院发起号源查询(预算/早停), 无号源信息, 按静态分排序"
+    ],
+    "violations": [],
+    "top3_contrib": [
+     {
+      "feature": "match",
+      "w": 0.42,
+      "v": 1.0,
+      "contrib": 0.42,
+      "note": "命中: 儿科 [p1/high]"
+     },
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.683,
+      "contrib": 0.2049,
+      "note": "7.9km"
+     },
+     {
+      "feature": "breadth",
+      "w": 0.12,
+      "v": 1.0,
+      "contrib": 0.12,
+      "note": "l2=333"
+     }
+    ],
+    "deductions": [
+     {
+      "feature": "distance",
+      "w": 0.3,
+      "v": 0.683,
+      "lost": 0.0951,
+      "note": "7.9km"
+     },
+     {
+      "feature": "key_specialty",
+      "w": 0.04,
+      "v": 0.0,
+      "lost": 0.04,
+      "note": "空（覆盖4.4%）"
+     },
+     {
+      "feature": "bus",
+      "w": 0.04,
+      "v": 0.6642,
+      "lost": 0.0134,
+      "note": "3站"
+     }
+    ],
+    "final_rank": 20
+   }
+  ],
+  "excluded": [],
+  "fallback_all_unverified": true,
+  "n_verified": 0,
+  "n_total": 60,
+  "top_n": 20
+ },
+ "booking": {
+  "dry_run": true,
+  "executed": false,
+  "steps": [
+   "1. 打开「随申办」App（包名 mobi.w3studio.apps.android.shsmy.phone）",
+   "2. 首页 →「预约挂号」→「全部医院 (444)」",
+   "3. 检索并选择医院: 第六人民医院（徐汇区, 主院区）",
+   "4. 科室页找到「儿科」tab 并进入（L2 页自带 14 天日期条）",
+   "5. 选择日期: 待定（最早号源未核实, 到院/到页后再选）（最早可约; 日期条若显示无号则换日期/医生）",
+   "6. 选择医生与时段 →「去预约」（医生列表来自 SlotResult.doctors, is_target 标记目标医生）",
+   "7. 填写实名信息 + 短信验证码（用户手动完成, 脚本不触碰凭据）",
+   "8. 确认预约 → 支付（用户手动完成）"
+  ],
+  "note": "dry-run（默认开）: 仅打印将执行的步骤序列; 不真发、不提交、不支付。"
+ },
+ "candidates_static": [
+  {
+   "rank": 1,
+   "hospital_id": "SH-087",
+   "name": "第六人民医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "徐汇区",
+   "insurance": "yes",
+   "score": 0.9429,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科,儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.9174,
+     "contrib": 0.2752,
+     "note": "2.1km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 1.0,
+     "contrib": 0.12,
+     "note": "l2=353"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.9174,
+     "lost": 0.0248,
+     "note": "2.1km"
+    },
+    {
+     "feature": "bus",
+     "w": 0.04,
+     "v": 0.3869,
+     "lost": 0.0245,
+     "note": "1站"
+    },
+    {
+     "feature": "metro",
+     "w": 0.02,
+     "v": 0.61,
+     "lost": 0.0078,
+     "note": "步行11.7m"
+    }
+   ]
+  },
+  {
+   "rank": 2,
+   "hospital_id": "SH-030",
+   "name": "仁济医院西院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "黄浦区",
+   "insurance": "yes",
+   "score": 0.9186,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7441,
+     "contrib": 0.2232,
+     "note": "6.4km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 1.0,
+     "contrib": 0.12,
+     "note": "l2=208"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7441,
+     "lost": 0.0768,
+     "note": "6.4km"
+    }
+   ]
+  },
+  {
+   "rank": 3,
+   "hospital_id": "SH-065",
+   "name": "龙华医院",
+   "level": "三级甲等",
+   "type": "专科医院",
+   "district": "徐汇区",
+   "insurance": "yes",
+   "score": 0.9183,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.9337,
+     "contrib": 0.2801,
+     "note": "1.7km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 1.0,
+     "contrib": 0.12,
+     "note": "l2=404"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.9337,
+     "lost": 0.0199,
+     "note": "1.7km"
+    },
+    {
+     "feature": "bus",
+     "w": 0.04,
+     "v": 0.6131,
+     "lost": 0.0155,
+     "note": "2站"
+    }
+   ]
+  },
+  {
+   "rank": 4,
+   "hospital_id": "SH-074",
+   "name": "儿科医院",
+   "level": "三级甲等",
+   "type": "专科疾病防治院",
+   "district": "闵行区",
+   "insurance": "yes",
+   "score": 0.8995,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7138,
+     "contrib": 0.2142,
+     "note": "7.2km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 1.0,
+     "contrib": 0.12,
+     "note": "l2=504"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7138,
+     "lost": 0.0859,
+     "note": "7.2km"
+    },
+    {
+     "feature": "bus",
+     "w": 0.04,
+     "v": 0.7737,
+     "lost": 0.0091,
+     "note": "3站"
+    },
+    {
+     "feature": "metro",
+     "w": 0.02,
+     "v": 0.72,
+     "lost": 0.0056,
+     "note": "步行8.4m"
+    }
+   ]
+  },
+  {
+   "rank": 5,
+   "hospital_id": "SH-053",
+   "name": "长征医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "黄浦区",
+   "insurance": "yes",
+   "score": 0.8993,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7927,
+     "contrib": 0.2378,
+     "note": "5.2km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.7842,
+     "contrib": 0.0941,
+     "note": "l2=48"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7927,
+     "lost": 0.0622,
+     "note": "5.2km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.7842,
+     "lost": 0.0259,
+     "note": "l2=48"
+    },
+    {
+     "feature": "metro",
+     "w": 0.02,
+     "v": 0.5733,
+     "lost": 0.0085,
+     "note": "步行12.8m"
+    }
+   ]
+  },
+  {
+   "rank": 6,
+   "hospital_id": "SH-018",
+   "name": "儿童医学中心",
+   "level": "三级甲等",
+   "type": "专科疾病防治院",
+   "district": "浦东新区",
+   "insurance": "yes",
+   "score": 0.8934,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.6619,
+     "contrib": 0.1986,
+     "note": "8.5km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 1.0,
+     "contrib": 0.12,
+     "note": "l2=511"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.6619,
+     "lost": 0.1014,
+     "note": "8.5km"
+    },
+    {
+     "feature": "metro",
+     "w": 0.02,
+     "v": 0.74,
+     "lost": 0.0052,
+     "note": "步行7.8m"
+    }
+   ]
+  },
+  {
+   "rank": 7,
+   "hospital_id": "SH-075",
+   "name": "曙光医院西院",
+   "level": "三级甲等",
+   "type": "专科医院",
+   "district": "黄浦区",
+   "insurance": "yes",
+   "score": 0.8882,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7932,
+     "contrib": 0.238,
+     "note": "5.2km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.9729,
+     "contrib": 0.1167,
+     "note": "l2=124"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7932,
+     "lost": 0.062,
+     "note": "5.2km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "metro",
+     "w": 0.02,
+     "v": 0.6733,
+     "lost": 0.0065,
+     "note": "步行9.8m"
+    }
+   ]
+  },
+  {
+   "rank": 8,
+   "hospital_id": "SH-036",
+   "name": "瑞金医院总院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "黄浦区",
+   "insurance": "yes",
+   "score": 0.8867,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8587,
+     "contrib": 0.2576,
+     "note": "3.5km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 1.0,
+     "contrib": 0.12,
+     "note": "l2=148"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8587,
+     "lost": 0.0424,
+     "note": "3.5km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "bus",
+     "w": 0.04,
+     "v": 0.4321,
+     "lost": 0.0227,
+     "note": "1站"
+    }
+   ]
+  },
+  {
+   "rank": 9,
+   "hospital_id": "SH-172",
+   "name": "第八人民医院",
+   "level": "二级甲等",
+   "type": "专科疾病防治院",
+   "district": "徐汇区",
+   "insurance": "yes",
+   "score": 0.883,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8758,
+     "contrib": 0.2628,
+     "note": "3.1km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 1.0,
+     "contrib": 0.12,
+     "note": "l2=183"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8758,
+     "lost": 0.0373,
+     "note": "3.1km"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.5,
+     "lost": 0.03,
+     "note": "二级甲等"
+    }
+   ]
+  },
+  {
+   "rank": 10,
+   "hospital_id": "SH-084",
+   "name": "第十人民医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.8821,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.6477,
+     "contrib": 0.1943,
+     "note": "8.8km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 1.0,
+     "contrib": 0.12,
+     "note": "l2=300"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.6477,
+     "lost": 0.1057,
+     "note": "8.8km"
+    },
+    {
+     "feature": "bus",
+     "w": 0.04,
+     "v": 0.7737,
+     "lost": 0.0091,
+     "note": "3站"
+    }
+   ]
+  },
+  {
+   "rank": 11,
+   "hospital_id": "SH-121",
+   "name": "大华医院",
+   "level": "二级乙等",
+   "type": "综合医院",
+   "district": "徐汇区",
+   "insurance": "yes",
+   "score": 0.8714,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科,儿童生长发育 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8689,
+     "contrib": 0.2607,
+     "note": "3.3km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 1.0,
+     "contrib": 0.12,
+     "note": "l2=212"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8689,
+     "lost": 0.0393,
+     "note": "3.3km"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.38,
+     "lost": 0.0372,
+     "note": "二级乙等"
+    }
+   ]
+  },
+  {
+   "rank": 12,
+   "hospital_id": "SH-026",
+   "name": "儿童医院北京西路院区",
+   "level": "三级甲等",
+   "type": "专科疾病防治院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.8713,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8385,
+     "contrib": 0.2515,
+     "note": "4.0km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.7221,
+     "contrib": 0.0866,
+     "note": "l2=35"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8385,
+     "lost": 0.0484,
+     "note": "4.0km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.7221,
+     "lost": 0.0333,
+     "note": "l2=35"
+    }
+   ]
+  },
+  {
+   "rank": 13,
+   "hospital_id": "SH-145",
+   "name": "海军第九〇五医院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "长宁区",
+   "insurance": "yes",
+   "score": 0.8667,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.9353,
+     "contrib": 0.2806,
+     "note": "1.6km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.8348,
+     "contrib": 0.1002,
+     "note": "l2=62"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.5,
+     "lost": 0.03,
+     "note": "二级甲等"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.8348,
+     "lost": 0.0198,
+     "note": "l2=62"
+    }
+   ]
+  },
+  {
+   "rank": 14,
+   "hospital_id": "SH-071",
+   "name": "同济医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "普陀区",
+   "insurance": "yes",
+   "score": 0.8624,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科,儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.6857,
+     "contrib": 0.2057,
+     "note": "7.9km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 1.0,
+     "contrib": 0.12,
+     "note": "l2=170"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.6857,
+     "lost": 0.0943,
+     "note": "7.9km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 15,
+   "hospital_id": "SH-093",
+   "name": "同仁医院",
+   "level": "三级乙等",
+   "type": "综合医院",
+   "district": "长宁区",
+   "insurance": "yes",
+   "score": 0.8619,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科,儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7724,
+     "contrib": 0.2317,
+     "note": "5.7km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 1.0,
+     "contrib": 0.12,
+     "note": "l2=396"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7724,
+     "lost": 0.0683,
+     "note": "5.7km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.72,
+     "lost": 0.0168,
+     "note": "三级乙等"
+    }
+   ]
+  },
+  {
+   "rank": 16,
+   "hospital_id": "SH-092",
+   "name": "岳阳中西医结合医院青海路门诊部",
+   "level": "三级甲等",
+   "type": "专科医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.8564,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8096,
+     "contrib": 0.2429,
+     "note": "4.8km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.78,
+     "contrib": 0.0936,
+     "note": "l2=47"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8096,
+     "lost": 0.0571,
+     "note": "4.8km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.78,
+     "lost": 0.0264,
+     "note": "l2=47"
+    }
+   ]
+  },
+  {
+   "rank": 17,
+   "hospital_id": "SH-179",
+   "name": "瑞金医院卢湾分院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "黄浦区",
+   "insurance": "yes",
+   "score": 0.8542,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8237,
+     "contrib": 0.2471,
+     "note": "4.4km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.8855,
+     "contrib": 0.1063,
+     "note": "l2=80"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8237,
+     "lost": 0.0529,
+     "note": "4.4km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.5,
+     "lost": 0.03,
+     "note": "二级甲等"
+    }
+   ]
+  },
+  {
+   "rank": 18,
+   "hospital_id": "SH-212",
+   "name": "长宁区妇幼保健院",
+   "level": "二级甲等",
+   "type": "专科疾病防治院",
+   "district": "长宁区",
+   "insurance": null,
+   "score": 0.8503,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8882,
+     "contrib": 0.2665,
+     "note": "2.8km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.78,
+     "contrib": 0.0936,
+     "note": "l2=47"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8882,
+     "lost": 0.0335,
+     "note": "2.8km"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.5,
+     "lost": 0.03,
+     "note": "二级甲等"
+    }
+   ]
+  },
+  {
+   "rank": 19,
+   "hospital_id": "SH-083",
+   "name": "普陀区中心医院",
+   "level": "三级乙等",
+   "type": "综合医院",
+   "district": "普陀区",
+   "insurance": "yes",
+   "score": 0.8482,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7645,
+     "contrib": 0.2293,
+     "note": "5.9km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 1.0,
+     "contrib": 0.12,
+     "note": "l2=167"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7645,
+     "lost": 0.0707,
+     "note": "5.9km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.72,
+     "lost": 0.0168,
+     "note": "三级乙等"
+    }
+   ]
+  },
+  {
+   "rank": 20,
+   "hospital_id": "SH-045",
+   "name": "上海市中医医院（芷江院区）",
+   "level": "三级甲等",
+   "type": "专科医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.8424,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.683,
+     "contrib": 0.2049,
+     "note": "7.9km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 1.0,
+     "contrib": 0.12,
+     "note": "l2=333"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.683,
+     "lost": 0.0951,
+     "note": "7.9km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "bus",
+     "w": 0.04,
+     "v": 0.6642,
+     "lost": 0.0134,
+     "note": "3站"
+    }
+   ]
+  },
+  {
+   "rank": 21,
+   "hospital_id": "SH-027",
+   "name": "东方医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "浦东新区",
+   "insurance": "yes",
+   "score": 0.8421,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.6349,
+     "contrib": 0.1905,
+     "note": "9.1km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 1.0,
+     "contrib": 0.12,
+     "note": "l2=409"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.6349,
+     "lost": 0.1095,
+     "note": "9.1km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 22,
+   "hospital_id": "SH-207",
+   "name": "普陀区人民医院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "普陀区",
+   "insurance": "yes",
+   "score": 0.8409,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7735,
+     "contrib": 0.2321,
+     "note": "5.7km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.8879,
+     "contrib": 0.1066,
+     "note": "l2=81"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7735,
+     "lost": 0.068,
+     "note": "5.7km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.5,
+     "lost": 0.03,
+     "note": "二级甲等"
+    }
+   ]
+  },
+  {
+   "rank": 23,
+   "hospital_id": "SH-020",
+   "name": "儿童医院泸定路院区",
+   "level": "三级甲等",
+   "type": "专科疾病防治院",
+   "district": "普陀区",
+   "insurance": "yes",
+   "score": 0.8365,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7696,
+     "contrib": 0.2309,
+     "note": "5.8km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.7579,
+     "contrib": 0.0909,
+     "note": "l2=42"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7696,
+     "lost": 0.0691,
+     "note": "5.8km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.7579,
+     "lost": 0.0291,
+     "note": "l2=42"
+    }
+   ]
+  },
+  {
+   "rank": 24,
+   "hospital_id": "SH-259",
+   "name": "曹家渡街道社区卫生服务中心",
+   "level": "一级甲等",
+   "type": "综合医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.8319,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8312,
+     "contrib": 0.2494,
+     "note": "4.2km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.78,
+     "contrib": 0.0936,
+     "note": "l2=47"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8312,
+     "lost": 0.0506,
+     "note": "4.2km"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.22,
+     "lost": 0.0468,
+     "note": "一级甲等"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 25,
+   "hospital_id": "SH-119",
+   "name": "上海市第二人民医院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "黄浦区",
+   "insurance": "yes",
+   "score": 0.8317,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7602,
+     "contrib": 0.2281,
+     "note": "6.0km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.9561,
+     "contrib": 0.1147,
+     "note": "l2=114"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7602,
+     "lost": 0.0719,
+     "note": "6.0km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.5,
+     "lost": 0.03,
+     "note": "二级甲等"
+    }
+   ]
+  },
+  {
+   "rank": 26,
+   "hospital_id": "SH-171",
+   "name": "闸北中心医院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.8293,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7194,
+     "contrib": 0.2158,
+     "note": "7.0km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 1.0,
+     "contrib": 0.12,
+     "note": "l2=181"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7194,
+     "lost": 0.0842,
+     "note": "7.0km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.5,
+     "lost": 0.03,
+     "note": "二级甲等"
+    }
+   ]
+  },
+  {
+   "rank": 27,
+   "hospital_id": "SH-263",
+   "name": "静安寺街道社区卫生服务中心",
+   "level": "一级甲等",
+   "type": "综合医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.8287,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科,儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8486,
+     "contrib": 0.2546,
+     "note": "3.8km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.733,
+     "contrib": 0.088,
+     "note": "l2=37"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.22,
+     "lost": 0.0468,
+     "note": "一级甲等"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8486,
+     "lost": 0.0454,
+     "note": "3.8km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 28,
+   "hospital_id": "SH-064",
+   "name": "市中西医结合医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "虹口区",
+   "insurance": "yes",
+   "score": 0.828,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科,儿童生长发育 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.5986,
+     "contrib": 0.1796,
+     "note": "10.0km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 1.0,
+     "contrib": 0.12,
+     "note": "l2=199"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.5986,
+     "lost": 0.1204,
+     "note": "10.0km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "bus",
+     "w": 0.04,
+     "v": 0.7737,
+     "lost": 0.0091,
+     "note": "3站"
+    }
+   ]
+  },
+  {
+   "rank": 29,
+   "hospital_id": "SH-024",
+   "name": "第一妇婴保健院东院",
+   "level": "三级甲等",
+   "type": "专科疾病防治院",
+   "district": "浦东新区",
+   "insurance": "yes",
+   "score": 0.8253,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科,儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.5625,
+     "contrib": 0.1687,
+     "note": "10.9km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.8879,
+     "contrib": 0.1066,
+     "note": "l2=81"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.5625,
+     "lost": 0.1313,
+     "note": "10.9km"
+    },
+    {
+     "feature": "bus",
+     "w": 0.04,
+     "v": 0.3869,
+     "lost": 0.0245,
+     "note": "1站"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.8879,
+     "lost": 0.0135,
+     "note": "l2=81"
+    }
+   ]
+  },
+  {
+   "rank": 30,
+   "hospital_id": "SH-252",
+   "name": "长宁区虹桥街道社区卫生服务中心",
+   "level": "一级甲等",
+   "type": "综合医院",
+   "district": "长宁区",
+   "insurance": "yes",
+   "score": 0.8224,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.938,
+     "contrib": 0.2814,
+     "note": "1.6km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.5168,
+     "contrib": 0.062,
+     "note": "l2=12"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.5168,
+     "lost": 0.058,
+     "note": "l2=12"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.22,
+     "lost": 0.0468,
+     "note": "一级甲等"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 31,
+   "hospital_id": "SH-230",
+   "name": "南京西路街道社区卫生服务中心",
+   "level": "一级甲等",
+   "type": "综合医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.8217,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科,儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8148,
+     "contrib": 0.2445,
+     "note": "4.6km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.7579,
+     "contrib": 0.0909,
+     "note": "l2=42"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8148,
+     "lost": 0.0556,
+     "note": "4.6km"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.22,
+     "lost": 0.0468,
+     "note": "一级甲等"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 32,
+   "hospital_id": "SH-271",
+   "name": "石门二路街道社区卫生服务中心",
+   "level": "一级甲等",
+   "type": "综合医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.8193,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科,儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7956,
+     "contrib": 0.2387,
+     "note": "5.1km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.8283,
+     "contrib": 0.0994,
+     "note": "l2=60"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7956,
+     "lost": 0.0613,
+     "note": "5.1km"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.22,
+     "lost": 0.0468,
+     "note": "一级甲等"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 33,
+   "hospital_id": "SH-277",
+   "name": "天平街道社区卫生服务中心",
+   "level": "一级甲等",
+   "type": "综合医院",
+   "district": "徐汇区",
+   "insurance": "yes",
+   "score": 0.8157,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.9083,
+     "contrib": 0.2725,
+     "note": "2.3km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.6318,
+     "contrib": 0.0758,
+     "note": "l2=22"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.22,
+     "lost": 0.0468,
+     "note": "一级甲等"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.6318,
+     "lost": 0.0442,
+     "note": "l2=22"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 34,
+   "hospital_id": "SH-103",
+   "name": "浦南医院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "浦东新区",
+   "insurance": "yes",
+   "score": 0.8152,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7124,
+     "contrib": 0.2137,
+     "note": "7.2km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.7962,
+     "contrib": 0.0955,
+     "note": "l2=51"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7124,
+     "lost": 0.0863,
+     "note": "7.2km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.5,
+     "lost": 0.03,
+     "note": "二级甲等"
+    }
+   ]
+  },
+  {
+   "rank": 35,
+   "hospital_id": "SH-039",
+   "name": "公利医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "浦东新区",
+   "insurance": "yes",
+   "score": 0.811,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.5287,
+     "contrib": 0.1586,
+     "note": "11.8km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 1.0,
+     "contrib": 0.12,
+     "note": "l2=160"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.5287,
+     "lost": 0.1414,
+     "note": "11.8km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "metro",
+     "w": 0.02,
+     "v": 0.62,
+     "lost": 0.0076,
+     "note": "步行11.4m"
+    }
+   ]
+  },
+  {
+   "rank": 36,
+   "hospital_id": "SH-334",
+   "name": "江宁路街道社区卫生服务中心",
+   "level": "一级甲等",
+   "type": "综合医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.811,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科,儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7933,
+     "contrib": 0.238,
+     "note": "5.2km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.8038,
+     "contrib": 0.0965,
+     "note": "l2=53"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7933,
+     "lost": 0.062,
+     "note": "5.2km"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.22,
+     "lost": 0.0468,
+     "note": "一级甲等"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 37,
+   "hospital_id": "SH-218",
+   "name": "静安区妇幼保健所",
+   "level": "二级甲等",
+   "type": "专科疾病防治院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.8095,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8467,
+     "contrib": 0.254,
+     "note": "3.8km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.419,
+     "contrib": 0.0503,
+     "note": "l2=7"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.419,
+     "lost": 0.0697,
+     "note": "l2=7"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8467,
+     "lost": 0.046,
+     "note": "3.8km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 38,
+   "hospital_id": "SH-099",
+   "name": "徐汇区中心医院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "徐汇区",
+   "insurance": "yes",
+   "score": 0.809,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7758,
+     "contrib": 0.2328,
+     "note": "5.6km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 1.0,
+     "contrib": 0.12,
+     "note": "l2=258"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7758,
+     "lost": 0.0673,
+     "note": "5.6km"
+    },
+    {
+     "feature": "bus",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "0站"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 39,
+   "hospital_id": "SH-072",
+   "name": "闵行区中心医院",
+   "level": "三级乙等",
+   "type": "综合医院",
+   "district": "闵行区",
+   "insurance": "yes",
+   "score": 0.8057,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科,儿童保健科,儿童生长发育 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.5538,
+     "contrib": 0.1661,
+     "note": "11.2km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 1.0,
+     "contrib": 0.12,
+     "note": "l2=261"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.5538,
+     "lost": 0.1339,
+     "note": "11.2km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.72,
+     "lost": 0.0168,
+     "note": "三级乙等"
+    }
+   ]
+  },
+  {
+   "rank": 40,
+   "hospital_id": "SH-062",
+   "name": "岳阳中西医结合医院",
+   "level": "三级甲等",
+   "type": "专科医院",
+   "district": "虹口区",
+   "insurance": "yes",
+   "score": 0.8019,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.5364,
+     "contrib": 0.1609,
+     "note": "11.6km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.8975,
+     "contrib": 0.1077,
+     "note": "l2=85"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.5364,
+     "lost": 0.1391,
+     "note": "11.6km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.8975,
+     "lost": 0.0123,
+     "note": "l2=85"
+    }
+   ]
+  },
+  {
+   "rank": 41,
+   "hospital_id": "SH-147",
+   "name": "天山中医医院",
+   "level": "二级甲等",
+   "type": "专科疾病防治院",
+   "district": "长宁区",
+   "insurance": "yes",
+   "score": 0.8012,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8583,
+     "contrib": 0.2575,
+     "note": "3.5km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.6486,
+     "contrib": 0.0778,
+     "note": "l2=24"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8583,
+     "lost": 0.0425,
+     "note": "3.5km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.6486,
+     "lost": 0.0422,
+     "note": "l2=24"
+    },
+    {
+     "feature": "bus",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "0站"
+    }
+   ]
+  },
+  {
+   "rank": 42,
+   "hospital_id": "SH-248",
+   "name": "南京东路街道社区卫生服务中心",
+   "level": "一级甲等",
+   "type": "综合医院",
+   "district": "黄浦区",
+   "insurance": "yes",
+   "score": 0.7997,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8052,
+     "contrib": 0.2416,
+     "note": "4.9km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.6853,
+     "contrib": 0.0822,
+     "note": "l2=29"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8052,
+     "lost": 0.0584,
+     "note": "4.9km"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.22,
+     "lost": 0.0468,
+     "note": "一级甲等"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 43,
+   "hospital_id": "SH-013",
+   "name": "上海市妇幼保健中心",
+   "level": "三级",
+   "type": "综合医院",
+   "district": "普陀区",
+   "insurance": "yes",
+   "score": 0.7938,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7749,
+     "contrib": 0.2325,
+     "note": "5.6km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.5933,
+     "contrib": 0.0712,
+     "note": "l2=18"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7749,
+     "lost": 0.0675,
+     "note": "5.6km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.5933,
+     "lost": 0.0488,
+     "note": "l2=18"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 44,
+   "hospital_id": "SH-198",
+   "name": "利群医院",
+   "level": "二级甲等",
+   "type": "综合医院",
+   "district": "普陀区",
+   "insurance": "yes",
+   "score": 0.7918,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.6558,
+     "contrib": 0.1968,
+     "note": "8.6km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.9089,
+     "contrib": 0.1091,
+     "note": "l2=90"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.6558,
+     "lost": 0.1033,
+     "note": "8.6km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.5,
+     "lost": 0.03,
+     "note": "二级甲等"
+    }
+   ]
+  },
+  {
+   "rank": 45,
+   "hospital_id": "SH-002",
+   "name": "新华医院",
+   "level": "三级甲等",
+   "type": "综合医院",
+   "district": "杨浦区",
+   "insurance": "yes",
+   "score": 0.7902,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.5308,
+     "contrib": 0.1592,
+     "note": "11.7km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 1.0,
+     "contrib": 0.12,
+     "note": "l2=731"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.5308,
+     "lost": 0.1408,
+     "note": "11.7km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "bus",
+     "w": 0.04,
+     "v": 0.3869,
+     "lost": 0.0245,
+     "note": "1站"
+    }
+   ]
+  },
+  {
+   "rank": 46,
+   "hospital_id": "SH-222",
+   "name": "白玉社区卫生服务中心",
+   "level": "一级甲等",
+   "type": "综合医院",
+   "district": "普陀区",
+   "insurance": "yes",
+   "score": 0.7894,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8107,
+     "contrib": 0.2432,
+     "note": "4.7km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.5587,
+     "contrib": 0.067,
+     "note": "l2=15"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8107,
+     "lost": 0.0568,
+     "note": "4.7km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.5587,
+     "lost": 0.053,
+     "note": "l2=15"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.22,
+     "lost": 0.0468,
+     "note": "一级甲等"
+    }
+   ]
+  },
+  {
+   "rank": 47,
+   "hospital_id": "SH-138",
+   "name": "黄浦区妇幼保健所",
+   "level": "二级",
+   "type": "专科医院",
+   "district": "黄浦区",
+   "insurance": "yes",
+   "score": 0.7826,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7804,
+     "contrib": 0.2341,
+     "note": "5.5km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.419,
+     "contrib": 0.0503,
+     "note": "l2=7"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.419,
+     "lost": 0.0697,
+     "note": "l2=7"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7804,
+     "lost": 0.0659,
+     "note": "5.5km"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.33,
+     "lost": 0.0402,
+     "note": "二级"
+    }
+   ]
+  },
+  {
+   "rank": 48,
+   "hospital_id": "SH-367",
+   "name": "芷江西路街道社区卫生服务中心",
+   "level": "一级甲等",
+   "type": "综合医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.7807,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科,儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7088,
+     "contrib": 0.2126,
+     "note": "7.3km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.7164,
+     "contrib": 0.086,
+     "note": "l2=34"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7088,
+     "lost": 0.0874,
+     "note": "7.3km"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.22,
+     "lost": 0.0468,
+     "note": "一级甲等"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 49,
+   "hospital_id": "SH-444",
+   "name": "天山路街道社区卫生服务中心",
+   "level": "未定级",
+   "type": "",
+   "district": "长宁区",
+   "insurance": "yes",
+   "score": 0.7757,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8613,
+     "contrib": 0.2584,
+     "note": "3.5km"
+    },
+    {
+     "feature": "bus",
+     "w": 0.04,
+     "v": 0.7737,
+     "contrib": 0.0309,
+     "note": "3站"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.2214,
+     "lost": 0.0934,
+     "note": "l2=2"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8613,
+     "lost": 0.0416,
+     "note": "3.5km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 50,
+   "hospital_id": "SH-298",
+   "name": "田林街道社区卫生服务中心",
+   "level": "一级甲等",
+   "type": "综合医院",
+   "district": "徐汇区",
+   "insurance": "yes",
+   "score": 0.773,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8933,
+     "contrib": 0.268,
+     "note": "2.7km"
+    },
+    {
+     "feature": "bus",
+     "w": 0.04,
+     "v": 0.7737,
+     "contrib": 0.0309,
+     "note": "3站"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.2214,
+     "lost": 0.0934,
+     "note": "l2=2"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.22,
+     "lost": 0.0468,
+     "note": "一级甲等"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 51,
+   "hospital_id": "SH-387",
+   "name": "彭浦镇社区卫生服务中心",
+   "level": "一级甲等",
+   "type": "综合医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.7686,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.6732,
+     "contrib": 0.2019,
+     "note": "8.2km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.7382,
+     "contrib": 0.0886,
+     "note": "l2=38"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.6732,
+     "lost": 0.098,
+     "note": "8.2km"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.22,
+     "lost": 0.0468,
+     "note": "一级甲等"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 52,
+   "hospital_id": "SH-274",
+   "name": "大宁路街道社区卫生服务中心",
+   "level": "一级甲等",
+   "type": "综合医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.7671,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.6417,
+     "contrib": 0.1925,
+     "note": "9.0km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.7433,
+     "contrib": 0.0892,
+     "note": "l2=39"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.6417,
+     "lost": 0.1075,
+     "note": "9.0km"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.22,
+     "lost": 0.0468,
+     "note": "一级甲等"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 53,
+   "hospital_id": "SH-380",
+   "name": "宝山路街道社区卫生服务中心",
+   "level": "一级甲等",
+   "type": "综合医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.7665,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.705,
+     "contrib": 0.2115,
+     "note": "7.4km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.5933,
+     "contrib": 0.0712,
+     "note": "l2=18"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.705,
+     "lost": 0.0885,
+     "note": "7.4km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.5933,
+     "lost": 0.0488,
+     "note": "l2=18"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.22,
+     "lost": 0.0468,
+     "note": "一级甲等"
+    }
+   ]
+  },
+  {
+   "rank": 54,
+   "hospital_id": "SH-060",
+   "name": "同济大学附属上海市第四人民医院",
+   "level": "三级乙等",
+   "type": "综合医院",
+   "district": "虹口区",
+   "insurance": "yes",
+   "score": 0.7644,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科,儿童生长发育 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.4672,
+     "contrib": 0.1402,
+     "note": "13.3km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 1.0,
+     "contrib": 0.12,
+     "note": "l2=295"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.4672,
+     "lost": 0.1598,
+     "note": "13.3km"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.72,
+     "lost": 0.0168,
+     "note": "三级乙等"
+    }
+   ]
+  },
+  {
+   "rank": 55,
+   "hospital_id": "SH-425",
+   "name": "华阳街道社区卫生服务中心",
+   "level": "一级甲等",
+   "type": "综合医院",
+   "district": "长宁区",
+   "insurance": "yes",
+   "score": 0.7637,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.8744,
+     "contrib": 0.2623,
+     "note": "3.1km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.2793,
+     "contrib": 0.0335,
+     "note": "l2=3"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.2793,
+     "lost": 0.0865,
+     "note": "l2=3"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.22,
+     "lost": 0.0468,
+     "note": "一级甲等"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 56,
+   "hospital_id": "SH-337",
+   "name": "古美社区卫生服务中心",
+   "level": "一级甲等",
+   "type": "综合医院",
+   "district": "闵行区",
+   "insurance": "yes",
+   "score": 0.7589,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.674,
+     "contrib": 0.2022,
+     "note": "8.1km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.6983,
+     "contrib": 0.0838,
+     "note": "l2=31"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.674,
+     "lost": 0.0978,
+     "note": "8.1km"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.22,
+     "lost": 0.0468,
+     "note": "一级甲等"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 57,
+   "hospital_id": "SH-297",
+   "name": "宜川社区卫生服务中心",
+   "level": "一级甲等",
+   "type": "综合医院",
+   "district": "普陀区",
+   "insurance": "yes",
+   "score": 0.7582,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7116,
+     "contrib": 0.2135,
+     "note": "7.2km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.6486,
+     "contrib": 0.0778,
+     "note": "l2=24"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7116,
+     "lost": 0.0865,
+     "note": "7.2km"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.22,
+     "lost": 0.0468,
+     "note": "一级甲等"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.6486,
+     "lost": 0.0422,
+     "note": "l2=24"
+    }
+   ]
+  },
+  {
+   "rank": 58,
+   "hospital_id": "SH-374",
+   "name": "共和新路街道社区卫生服务中心",
+   "level": "一级甲等",
+   "type": "综合医院",
+   "district": "静安区",
+   "insurance": "yes",
+   "score": 0.7569,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.6409,
+     "contrib": 0.1923,
+     "note": "9.0km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.7164,
+     "contrib": 0.086,
+     "note": "l2=34"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.6409,
+     "lost": 0.1077,
+     "note": "9.0km"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.22,
+     "lost": 0.0468,
+     "note": "一级甲等"
+    },
+    {
+     "feature": "key_specialty",
+     "w": 0.04,
+     "v": 0.0,
+     "lost": 0.04,
+     "note": "空（覆盖4.4%）"
+    }
+   ]
+  },
+  {
+   "rank": 59,
+   "hospital_id": "SH-443",
+   "name": "真如镇街道社区卫生服务中心",
+   "level": "一级",
+   "type": "综合医院",
+   "district": "普陀区",
+   "insurance": "yes",
+   "score": 0.7537,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7324,
+     "contrib": 0.2197,
+     "note": "6.7km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.6135,
+     "contrib": 0.0736,
+     "note": "l2=20"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.7324,
+     "lost": 0.0803,
+     "note": "6.7km"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.15,
+     "lost": 0.051,
+     "note": "一级"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.6135,
+     "lost": 0.0464,
+     "note": "l2=20"
+    }
+   ]
+  },
+  {
+   "rank": 60,
+   "hospital_id": "SH-260",
+   "name": "四川北路街道社区卫生服务中心",
+   "level": "一级甲等",
+   "type": "综合医院",
+   "district": "虹口区",
+   "insurance": "yes",
+   "score": 0.7534,
+   "top3_contrib": [
+    {
+     "feature": "match",
+     "w": 0.42,
+     "v": 1.0,
+     "contrib": 0.42,
+     "note": "命中: 儿科,儿童保健科 [p1/high]"
+    },
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.6697,
+     "contrib": 0.2009,
+     "note": "8.3km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.5824,
+     "contrib": 0.0699,
+     "note": "l2=17"
+    }
+   ],
+   "deductions": [
+    {
+     "feature": "distance",
+     "w": 0.3,
+     "v": 0.6697,
+     "lost": 0.0991,
+     "note": "8.3km"
+    },
+    {
+     "feature": "breadth",
+     "w": 0.12,
+     "v": 0.5824,
+     "lost": 0.0501,
+     "note": "l2=17"
+    },
+    {
+     "feature": "level",
+     "w": 0.06,
+     "v": 0.22,
+     "lost": 0.0468,
+     "note": "一级甲等"
+    }
+   ]
+  }
+ ],
+ "checks": [
+  {
+   "id": "A",
+   "name": "已查询预算内前 12 家（candidates_static[:12]）⊆ final.top_list",
+   "ok": true,
+   "detail": "缺失=[]"
+  },
+  {
+   "id": "B",
+   "name": "fallback_all_unverified → top_list 前 20 项与静态序同序（§4.5 回落）",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "C",
+   "name": "max(静态分) 保留: top_list 内最大静态分 == 候选集最大静态分（0.9429）",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "D",
+   "name": "slot_queries 的每家医院 ∈ final.top_list ∪ final.excluded（显式排除+原因, 不得静默消失）",
+   "ok": true,
+   "detail": ""
+  }
+ ]
+}

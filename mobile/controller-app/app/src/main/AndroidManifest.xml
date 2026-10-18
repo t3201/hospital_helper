@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  hospital_helper · 手机端控制器 App（P0–P2 骨架）
+  Chaquopy（内嵌 CPython）+ Gradle；目标被操作 App = 随申办
+  mobi.w3studio.apps.android.shsmy.phone
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:versionCode="15"
+    android:versionName="0.2.14-chaquopy">
+
+    <!-- 约束#10：联网（LLM/Agent Service）+ 前台服务 + 明文放行 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- 采集就诊人后把挂号助手带回前台（AppTask.moveToFront）：REORDER_TASKS 属普通权限 -->
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
+    <!-- 抗 HyperOS SmartPower 冻结：Keeper 用 2x2 透明小窗保持进程「可见」adj -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!--
+      无障碍自授权：signature|privileged 权限，普通安装默认「不授予」，声明它本身无副作用。
+      用户只需在电脑上执行一次：
+        adb shell pm grant com.hospitalhelper.controller android.permission.WRITE_SECURE_SETTINGS
+      之后「使用前检查」里的「去开启」就能真正一键打开读屏桥（ServiceGate.bestEffortEnable），
+      无需在 HyperOS 深层菜单里翻找。未授权时 Preflight 会自动退回「跳设置 + 显示手动步骤」。
+    -->
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+    <!--
+      2026-10-14 接口归集：APK 自更新（hh-server /v1/app/version + /v1/app/download）。
+      Android 8+ 拉起系统安装器需要「安装未知应用」授权（运行时引导用户开启）。
+    -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
+    <!--
+      约束#10：Android 11+（API30）包可见性。
+      不声明 <queries> 时 getLaunchIntentForPackage(随申办) 恒为 null。
+    -->
+    <queries>
+        <package android:name="mobi.w3studio.apps.android.shsmy.phone" />
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+    </queries>
+
+    <application
+        android:name="com.chaquo.python.android.PyApplication"
+        android:allowBackup="false"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
+        android:theme="@android:style/Theme.Material.Light.DarkActionBar">
+
+        <!-- 单 Activity：区块（表/日志/结果/历史）线性堆叠 -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 约束#3/#8：端上设备桥本体。getWindows() 取随申办 root；
+          监听 WINDOW_STATE_CHANGED / WINDOW_CONTENT_CHANGED 做事件驱动等待。
+        -->
+        <service
+            android:name=".SsAccessibilityService"
+            android:exported="true"
+            android:label="@string/service_label"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+
+        <!-- 约束#7：Redmi/HyperOS 高版本后台启动受限，用前台服务兜底保活 -->
+        <service
+            android:name=".ForegroundKeeperService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
+        <!--
+          自检广播通道（debug 自动化用）。
+          声明式接收器才能收到跨进程 am broadcast（Android 13+/MIUI 对 runtime-registered
+          接收器不下发），也才能被 `am broadcast -n .../.SelfTestReceiver` 精确投递。
+          真正的门控在 SelfTestReceiver.onReceive 里的 `if (!BuildConfig.DEBUG) return;`：
+          release 构建即使被广播到也直接忽略，不执行任何抓取。
+        -->
+        <receiver
+            android:name=".SelfTestReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.hospitalhelper.controller.SELF_TEST" />
+            </intent-filter>
+        </receiver>
+
+        <!--
+          LLM 连通性自检通道（debug 自动化用）：只发一次推理请求走 hh-server /v1/infer，
+          不碰随申办 UI、不做自动化、不下单。换服务端地址后需要能单独验证「大模型这一腿」，
+          因为自检刻意绕过 9 段 LLM 流水线，号源跑通不代表 LLM 通。
+          同样：门控在 LlmPingReceiver.onReceive 的 `if (!BuildConfig.DEBUG) return;`。
+        -->
+        <!-- debug 专用：推理流回放（压测实时日志渲染路径）。
+             同 SelfTestReceiver/LlmPingReceiver：manifest 里注册才能被 am broadcast -n 精确投递
+             （HyperOS 不给运行时注册的隐式广播），真正的门控在 onReceive 的 BuildConfig.DEBUG。
+             用法：am broadcast 加 action com.hospitalhelper.controller.REASON_REPLAY、
+             组件 .ReasonReplayReceiver，extras 为 chunks / delay_ms。
+             （注：XML 注释里不能出现连续两个减号，所以这里不写 adb 的双横线参数写法。）
+        -->
+        <receiver
+            android:name=".ReasonReplayReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.hospitalhelper.controller.REASON_REPLAY" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".LlmPingReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.hospitalhelper.controller.LLM_PING" />
+            </intent-filter>
+        </receiver>
+
+        <!--
+          APK 自更新的下载文件授权通道（filesDir/updates/*.apk → content://）。
+          自研 ContentProvider（非 androidx FileProvider）：本 App 零第三方依赖。
+        -->
+        <provider
+            android:name=".ApkProvider"
+            android:authorities="com.hospitalhelper.controller.apkprovider"
+            android:exported="false"
+            android:grantUriPermissions="true" />
+    </application>
+</manifest>

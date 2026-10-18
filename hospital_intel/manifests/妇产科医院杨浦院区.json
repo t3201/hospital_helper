@@ -1,0 +1,543 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-070",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:39",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=119; geo=amap(name_in_poi); dept=suishenban#yuyue_guahao(2026-09-26, l1=24/l2u=24)"
+  },
+  "institution": {
+    "name": "妇产科医院杨浦院区",
+    "aliases": [],
+    "level": "三级甲等",
+    "type": "专科疾病防治院",
+    "ownership": "公立",
+    "affiliation": "",
+    "official_site": "",
+    "tel": "021-33189900;021-63455050"
+  },
+  "campuses": [
+    {
+      "id": "SH-070-M",
+      "name": "本部",
+      "district": "杨浦区",
+      "address": "大桥街道沈阳路128号复旦大学附属妇产科医院教学楼2楼",
+      "geo": {
+        "lng": 121.534969,
+        "lat": 31.259854,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:name_in_poi"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "三级甲等",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [
+        "宫颈疾病门诊",
+        "妇科门诊"
+      ],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "mid",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "丹阳路(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 763,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 2,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": 16.8,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 1,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 213,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "平凉路眉州路(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "computed",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html",
+        "basis": "parent_institution",
+        "parent": "复旦大学附属妇产科医院",
+        "note": "推定：母院为医保定点，该院区未在名单单列（母院=复旦大学附属妇产科医院）"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-26T17:42:40Z",
+        "l1": [
+          {
+            "name": "妇科肿瘤科",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "(杨)妇科肿瘤科门诊",
+                "dept_id": "D04048",
+                "canonical": "妇科肿瘤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:杨;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "宫颈宫腔中心",
+            "tab_index": 1,
+            "depts": [
+              {
+                "raw": "(杨)宫颈宫腔中心门诊",
+                "dept_id": "D04212",
+                "canonical": "宫颈宫腔中心门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:杨"
+              }
+            ]
+          },
+          {
+            "name": "营养科",
+            "tab_index": 2,
+            "depts": [
+              {
+                "raw": "(杨)营养科门诊",
+                "dept_id": "D08749",
+                "canonical": "营养科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:杨;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "体检中心",
+            "tab_index": 3,
+            "depts": [
+              {
+                "raw": "(杨)体检中心门诊",
+                "dept_id": "D01869",
+                "canonical": "体检科",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": "院区:杨;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "乳腺科",
+            "tab_index": 4,
+            "depts": [
+              {
+                "raw": "(杨)乳腺科门诊",
+                "dept_id": "D01637",
+                "canonical": "乳腺外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:杨;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "麻醉科",
+            "tab_index": 5,
+            "depts": [
+              {
+                "raw": "(杨)麻醉科门诊",
+                "dept_id": "D10244",
+                "canonical": "麻醉科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:杨;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "计划生育科",
+            "tab_index": 6,
+            "depts": [
+              {
+                "raw": "(杨)计划生育科门诊",
+                "dept_id": "D09089",
+                "canonical": "计划生育科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:杨;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "普通妇科",
+            "tab_index": 7,
+            "depts": [
+              {
+                "raw": "(杨)普通妇科门诊",
+                "dept_id": "D05521",
+                "canonical": "普通妇科门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:杨"
+              }
+            ]
+          },
+          {
+            "name": "心内科",
+            "tab_index": 8,
+            "depts": [
+              {
+                "raw": "(杨)心内科门诊",
+                "dept_id": "D04780",
+                "canonical": "心血管内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:杨;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "超声科",
+            "tab_index": 9,
+            "depts": [
+              {
+                "raw": "(杨)超声科门诊",
+                "dept_id": "D09188",
+                "canonical": "超声科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": "院区:杨;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "儿童随访中心",
+            "tab_index": 10,
+            "depts": [
+              {
+                "raw": "(杨)儿童随访中心门诊",
+                "dept_id": "D02291",
+                "canonical": "儿童随访中心门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:杨"
+              }
+            ]
+          },
+          {
+            "name": "中西医结合妇科",
+            "tab_index": 11,
+            "depts": [
+              {
+                "raw": "(杨)中西医结合妇科门诊",
+                "dept_id": "D01524",
+                "canonical": "中西医结合妇科门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:杨"
+              }
+            ]
+          },
+          {
+            "name": "放射科",
+            "tab_index": 12,
+            "depts": [
+              {
+                "raw": "(杨)放射科门诊",
+                "dept_id": "D05186",
+                "canonical": "放射科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": "院区:杨;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "新生儿科",
+            "tab_index": 13,
+            "depts": [
+              {
+                "raw": "(杨)新生儿门诊",
+                "dept_id": "D05306",
+                "canonical": "新生儿",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:杨;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "生殖免疫科",
+            "tab_index": 14,
+            "depts": [
+              {
+                "raw": "(杨)生殖免疫科门诊",
+                "dept_id": "D06249",
+                "canonical": "生殖免疫科",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": "院区:杨;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "护理部",
+            "tab_index": 15,
+            "depts": [
+              {
+                "raw": "(杨)护理门诊",
+                "dept_id": "D05103",
+                "canonical": "护理",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:杨;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "胎儿医学中心",
+            "tab_index": 16,
+            "depts": [
+              {
+                "raw": "(杨)胎儿医学中心门诊",
+                "dept_id": "D08270",
+                "canonical": "胎儿医学中心门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:杨"
+              }
+            ]
+          },
+          {
+            "name": "妇科内分泌科",
+            "tab_index": 17,
+            "depts": [
+              {
+                "raw": "(杨)妇科内分泌科门诊",
+                "dept_id": "D04004",
+                "canonical": "妇科内分泌科门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:杨"
+              }
+            ]
+          },
+          {
+            "name": "母体病理产科",
+            "tab_index": 18,
+            "depts": [
+              {
+                "raw": "(杨)母体病理产科门诊",
+                "dept_id": "D05716",
+                "canonical": "母体病理产科门诊",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": "院区:杨"
+              }
+            ]
+          },
+          {
+            "name": "妇科门诊",
+            "tab_index": 19,
+            "depts": [
+              {
+                "raw": "(杨)妇科门诊(通用)",
+                "dept_id": "D03984",
+                "canonical": "妇科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:杨;医师:通用;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "产科门诊",
+            "tab_index": 20,
+            "depts": [
+              {
+                "raw": "(杨)产科门诊(通用)",
+                "dept_id": "D01730",
+                "canonical": "产科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:杨;医师:通用;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "普通生理产科",
+            "tab_index": 21,
+            "depts": [
+              {
+                "raw": "(杨)普通生理产科门诊",
+                "dept_id": "D05524",
+                "canonical": "普通生理产科门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:杨"
+              }
+            ]
+          },
+          {
+            "name": "药学部",
+            "tab_index": 22,
+            "depts": [
+              {
+                "raw": "(杨)药学部门诊",
+                "dept_id": "D08705",
+                "canonical": "药学部",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:杨;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "男科",
+            "tab_index": 23,
+            "depts": [
+              {
+                "raw": "(杨)男科门诊",
+                "dept_id": "D06418",
+                "canonical": "男科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:杨;形态:门诊"
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 24,
+          "entry_count": 24,
+          "unique_count": 24,
+          "canonical_count": 24
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T17:42:40Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 24,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T17:42:40Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 24,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T17:42:40Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

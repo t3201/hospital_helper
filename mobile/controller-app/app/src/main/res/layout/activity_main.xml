@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  底部 Tab 切换：表单 / 实时日志 / 结果 / 历史 / 设置。
+  内容区用 FrameLayout 叠 5 个面板，Java 里 toggle visibility（纯 framework 控件，零依赖）。
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/hh_bg">
+
+    <!-- ======================= 内容区（5 面板叠放，只显示其一） ======================= -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <!-- ============ 面板 1：表单（滚动区 + 底部固定主按钮） ============ -->
+        <LinearLayout
+            android:id="@+id/panel_form"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- ===== 前置检查卡片（始终可交互；必需项未满足时禁用下方表单） ===== -->
+                <LinearLayout
+                    android:id="@+id/check_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:background="@color/hh_card"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/check_card_title"
+                        android:textColor="@color/hh_text"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/check_summary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textColor="@color/hh_text_2"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        android:id="@+id/check_rows"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn_recheck"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/hh_field"
+                            android:text="@string/btn_recheck"
+                            android:textColor="@color/hh_primary"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- ===== 表单主体（必需项未满足时被禁用） ===== -->
+                <LinearLayout
+                    android:id="@+id/form_body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <!-- 症状描述 -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lbl_symptom"
+                    android:textColor="@color/hh_text"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/symptom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@color/hh_field"
+                    android:gravity="top"
+                    android:hint="@string/hint_symptom"
+                    android:inputType="textMultiLine"
+                    android:minLines="3"
+                    android:padding="12dp"
+                    android:textColor="@color/hh_text" />
+
+                <!-- 预期费用 + 全部子tab（同一行，左右排列；下拉框高度统一为 46dp） -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="预期费用 / 号源子tab"
+                    android:textColor="@color/hh_text"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/fee"
+                        style="@style/HhSpinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="1" />
+
+                    <Spinner
+                        android:id="@+id/slottype"
+                        style="@style/HhSpinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp" />
+                </LinearLayout>
+
+                <!-- 位置（地址占整行，自动定位按钮靠右；地址文字缩小以容纳长地址） -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/lbl_location"
+                    android:textColor="@color/hh_text"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <EditText
+                        android:id="@+id/loctext"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/hh_field"
+                        android:hint="@string/hint_location"
+                        android:inputType="text"
+                        android:maxLines="2"
+                        android:minHeight="46dp"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:textColor="@color/hh_text"
+                        android:textSize="13sp" />
+
+                    <Button
+                        android:id="@+id/btn_autoloc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="46dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@color/hh_field"
+                        android:minWidth="96dp"
+                        android:text="@string/btn_autoloc"
+                        android:textColor="@color/hh_primary"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <!-- 读屏服务状态（放在位置下面） -->
+                <TextView
+                    android:id="@+id/service_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="#FFEEEEEE"
+                    android:padding="10dp"
+                    android:text="@string/svc_missing"
+                    android:textColor="@color/hh_text"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <!-- 就诊人 -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/lbl_patient"
+                    android:textColor="@color/hh_text"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/patient"
+                        style="@style/HhSpinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:id="@+id/btn_get_patients"
+                        android:layout_width="wrap_content"
+                        android:layout_height="46dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@color/hh_field"
+                        android:minWidth="110dp"
+                        android:text="@string/btn_get_patients"
+                        android:textColor="@color/hh_primary"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/hint_patient_note"
+                    android:textSize="11sp"
+                    android:textColor="@color/hh_text_2" />
+
+                <!-- AI 代理实时读取 -->
+                <CheckBox
+                    android:id="@+id/live"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:paddingStart="4dp"
+                    android:text="@string/lbl_live_new"
+                    android:textColor="@color/hh_text"
+                    android:textSize="14sp" />
+
+                <!-- 实时读取展开说明（放到 checkbox 下面一行） -->
+                <TextView
+                    android:id="@+id/live_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/hint_live_desc"
+                    android:textColor="@color/hh_text_2"
+                    android:textSize="12sp" />
+
+                <!-- 预计耗时（实时估算） -->
+                <LinearLayout
+                    android:id="@+id/est_row"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_est_time"
+                        android:textColor="@color/hh_primary"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/est_time"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/est_idle"
+                        android:textColor="@color/hh_text"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                </LinearLayout><!-- /form_body -->
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- 主按钮：获取号源推荐（固定底部，始终可见；置于底部按钮/ Tab 栏上方） -->
+        <Button
+            android:id="@+id/btn_run"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/hh_primary"
+            android:padding="16dp"
+            android:text="@string/btn_recommend"
+            android:textColor="#FFFFFFFF"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+        </LinearLayout><!-- /panel_form 滚动+固定按钮 -->
+
+        <!-- ============ 面板 2：实时日志（模型推理 恒显 / 详细日志 默认折叠） ============ -->
+        <ScrollView
+            android:id="@+id/panel_log"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="实时日志"
+                    android:textColor="@color/hh_text"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <!-- 模型推理区：主展示、恒显（两次 LLM 调用的 thinking + 正文） -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="模型推理（思考 + 正文）"
+                    android:textColor="@color/hh_text"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <!-- 2026-10-14：推理框改成自带滚动容器。以前它是 wrap_content 直接长在
+                     panel_log 里，文本一长整页被撑老高、可视区却停在上面 -> 看着像卡死；
+                     现在限高（代码里设成屏高 80%）+ 自己滚到底，"在动"这件事一眼可见。 -->
+                <ScrollView
+                    android:id="@+id/log_reasoning_scroll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="120dp"
+                    android:layout_marginTop="4dp"
+                    android:background="#FF0E1A2B"
+                    android:scrollbars="vertical">
+
+                    <TextView
+                        android:id="@+id/log_reasoning"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="monospace"
+                        android:gravity="top|start"
+                        android:padding="10dp"
+                        android:text="（等待模型输出…）"
+                        android:textColor="#FFBFE3FF"
+                        android:textSize="12sp"
+                        android:textIsSelectable="true" />
+                </ScrollView>
+
+                <!-- 详细日志区：默认折叠，点击展开 -->
+                <TextView
+                    android:id="@+id/log_detail_toggle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="8dp"
+                    android:text="▼ 详细日志（点击展开）"
+                    android:textColor="@color/hh_text"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/log"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="#FF101010"
+                    android:fontFamily="monospace"
+                    android:gravity="top|start"
+                    android:padding="10dp"
+                    android:textColor="#FF66FF66"
+                    android:textSize="11sp"
+                    android:textIsSelectable="true"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- ============ 面板 3：结果 ============ -->
+        <ScrollView
+            android:id="@+id/panel_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="结果"
+                    android:textColor="@color/hh_text"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/result"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/hh_card"
+                    android:fontFamily="monospace"
+                    android:padding="12dp"
+                    android:textColor="@color/hh_text"
+                    android:textSize="12sp"
+                    android:textIsSelectable="true" />
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- ============ 面板 4：历史 ============ -->
+        <ScrollView
+            android:id="@+id/panel_history"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="历史记录"
+                        android:textColor="@color/hh_text"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btn_clear_hist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/hh_field"
+                        android:text="@string/btn_clear_hist"
+                        android:textColor="@color/hh_warn"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/history_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical" />
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- ============ 面板 5：设置（开发按钮 + LLM 配置） ============ -->
+        <ScrollView
+            android:id="@+id/panel_settings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="设置"
+                    android:textColor="@color/hh_text"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/hint_settings"
+                    android:textColor="@color/hh_text_2"
+                    android:textSize="12sp" />
+
+                <!-- 浮窗提醒开关（非开发项，用户可自助关） -->
+                <CheckBox
+                    android:id="@+id/mini_chip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:paddingStart="4dp"
+                    android:checked="true"
+                    android:text="@string/lbl_mini_chip"
+                    android:textColor="@color/hh_text"
+                    android:textSize="14sp" />
+
+                <!-- 运行参数（候选集 / 推荐数量） -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/lbl_run_params"
+                    android:textColor="@color/hh_text"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/lbl_cand_n"
+                    android:textColor="@color/hh_text_2"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/cand_n"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/hh_field"
+                    android:inputType="number"
+                    android:padding="12dp"
+                    android:text="12"
+                    android:textColor="@color/hh_text" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="@string/lbl_top_n"
+                    android:textColor="@color/hh_text_2"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/top_n"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/hh_field"
+                    android:inputType="number"
+                    android:padding="12dp"
+                    android:text="3"
+                    android:textColor="@color/hh_text" />
+
+                <!-- LLM 配置 -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/lbl_agentsvc"
+                    android:textColor="@color/hh_text"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/agentsvc_base"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/hh_field"
+                    android:hint="@string/hint_agentsvc"
+                    android:inputType="textUri"
+                    android:padding="12dp"
+                    android:textColor="@color/hh_text" />
+
+                <!-- 2026-10-14 接口归集：APK 自更新走同一服务端的 /v1/app/version -->
+                <Button
+                    android:id="@+id/btn_check_update"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/hh_field"
+                    android:text="@string/btn_check_update"
+                    android:textSize="13sp" />
+
+                <!-- 2026-10-14 接口归集：上游凭据（Agent Service Bearer / 高德 key）全部由
+                     hh-server 侧持有，App 不再提供 API_KEY 输入框。 -->
+
+                <!-- 开发 / 调试按钮 -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="调试按钮"
+                    android:textColor="@color/hh_text_2"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_launch"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:background="@color/hh_field"
+                        android:text="@string/btn_launch"
+                        android:textSize="13sp" />
+
+                    <Button
+                        android:id="@+id/btn_dump"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:background="@color/hh_field"
+                        android:text="@string/btn_dump"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_llm"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:background="@color/hh_field"
+                        android:text="@string/btn_llm"
+                        android:textSize="13sp" />
+
+                    <Button
+                        android:id="@+id/btn_selftest"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:background="@color/hh_field"
+                        android:text="@string/btn_selftest"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </FrameLayout>
+
+    <!-- ======================= 底部 Tab 栏（表单 | 实时日志 | 结果 | 历史 | 设置） ======================= -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/hh_tabbar"
+        android:orientation="horizontal"
+        android:elevation="6dp">
+
+        <TextView
+            android:id="@+id/tab_form"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
+            android:text="@string/tab_form"
+            android:textColor="@color/hh_tab_active"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tab_log"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
+            android:text="@string/tab_log"
+            android:textColor="@color/hh_tab_inactive"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tab_result"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
+            android:text="@string/tab_result"
+            android:textColor="@color/hh_tab_inactive"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tab_history"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
+            android:text="@string/tab_history"
+            android:textColor="@color/hh_tab_inactive"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tab_settings"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
+            android:text="@string/tab_settings"
+            android:textColor="@color/hh_tab_inactive"
+            android:textSize="14sp" />
+    </LinearLayout>
+</LinearLayout>

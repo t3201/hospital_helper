@@ -1,0 +1,466 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-047",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:39",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=64; geo=amap(name_in_poi); dept=suishenban#yuyue_guahao(2026-09-26, l1=1/l2u=32)"
+  },
+  "institution": {
+    "name": "上海市眼病防治中心（虹桥路院区）",
+    "aliases": [],
+    "level": "三级甲等",
+    "type": "专科疾病防治院",
+    "ownership": "公立",
+    "affiliation": "",
+    "official_site": "",
+    "tel": "021-62717733"
+  },
+  "campuses": [
+    {
+      "id": "SH-047-M",
+      "name": "本部",
+      "district": "长宁区",
+      "address": "伊犁路地铁站3号口步行210米",
+      "geo": {
+        "lng": 121.40179,
+        "lat": 31.198422,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:name_in_poi"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "三级甲等",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "伊犁路(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 207,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 4,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": 6.6,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 1,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 222,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "虹桥路古北路(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "computed",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html",
+        "basis": "parent_institution",
+        "parent": "上海市眼病防治中心",
+        "note": "推定：母院为医保定点，该院区未在名单单列（母院=上海市眼病防治中心）"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-26T11:06:10Z",
+        "l1": [
+          {
+            "name": "眼科",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "青光眼白内障(虹桥)",
+                "dept_id": "D09715",
+                "canonical": "青光眼白内障",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:虹桥"
+              },
+              {
+                "raw": "近视防控门诊(朱剑锋、贺江南)",
+                "dept_id": "D09321",
+                "canonical": "近视防控门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:朱剑锋、贺江南"
+              },
+              {
+                "raw": "泪道专科(虹桥)",
+                "dept_id": "D05876",
+                "canonical": "泪道",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:虹桥"
+              },
+              {
+                "raw": "特需(虹桥)",
+                "dept_id": "D06194",
+                "canonical": "特需",
+                "kind": "specialty_clinic",
+                "visit_type": "特需",
+                "qualifiers": "院区:虹桥"
+              },
+              {
+                "raw": "专家(虹桥)",
+                "dept_id": "D00268",
+                "canonical": "专家",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "院区:虹桥"
+              },
+              {
+                "raw": "朱剑锋(OK镜近视防控)(虹桥)",
+                "dept_id": "D05567",
+                "canonical": "朱剑锋",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "其他:OK镜近视防控;院区:虹桥"
+              },
+              {
+                "raw": "青光眼临床药学(葛玲、席宇飞)",
+                "dept_id": "D09714",
+                "canonical": "青光眼临床药学",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "其他:葛玲、席宇飞"
+              },
+              {
+                "raw": "普通眼科(虹桥)",
+                "dept_id": "D05525",
+                "canonical": "普通眼科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:虹桥"
+              },
+              {
+                "raw": "近视(老视)手术(王敏)(虹桥)",
+                "dept_id": "D09309",
+                "canonical": "近视手术",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:老视;医师:王敏;院区:虹桥"
+              },
+              {
+                "raw": "白内障专题(虹桥)",
+                "dept_id": "D06640",
+                "canonical": "白内障专题",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:虹桥"
+              },
+              {
+                "raw": "屈光手术(虹桥)",
+                "dept_id": "D04382",
+                "canonical": "屈光手术",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:虹桥"
+              },
+              {
+                "raw": "眼底病(虹桥)",
+                "dept_id": "D06820",
+                "canonical": "眼底病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:虹桥"
+              },
+              {
+                "raw": "白内障专家(虹桥)",
+                "dept_id": "D06635",
+                "canonical": "白内障",
+                "kind": "other",
+                "visit_type": "专家",
+                "qualifiers": "院区:虹桥"
+              },
+              {
+                "raw": "眼底病眼外伤(虹桥)",
+                "dept_id": "D06821",
+                "canonical": "眼底病眼外伤",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:虹桥"
+              },
+              {
+                "raw": "李滢(OK镜近视防控)(虹桥)",
+                "dept_id": "D05597",
+                "canonical": "李滢",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "其他:OK镜近视防控;院区:虹桥"
+              },
+              {
+                "raw": "青光眼专题(虹桥)",
+                "dept_id": "D09713",
+                "canonical": "青光眼专题",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:虹桥"
+              },
+              {
+                "raw": "眼疲劳、老花(虹桥)",
+                "dept_id": "D06826",
+                "canonical": "眼疲劳、老花",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:虹桥"
+              },
+              {
+                "raw": "视功能康复(王宁)(虹桥)",
+                "dept_id": "D09056",
+                "canonical": "视功能康复",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:王宁;院区:虹桥"
+              },
+              {
+                "raw": "近视针灸专题(虹桥)",
+                "dept_id": "D09316",
+                "canonical": "近视针灸专题",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:虹桥"
+              },
+              {
+                "raw": "赵立全(近视手术)(虹桥)",
+                "dept_id": "D09160",
+                "canonical": "赵立全",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "其他:近视手术;院区:虹桥"
+              },
+              {
+                "raw": "飞蚊症专题(虹桥)",
+                "dept_id": "D09943",
+                "canonical": "飞蚊症专题",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:虹桥"
+              },
+              {
+                "raw": "成人配镜(虹桥)",
+                "dept_id": "D05040",
+                "canonical": "成人配镜",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:虹桥"
+              },
+              {
+                "raw": "近视(老视)手术(虹桥)",
+                "dept_id": "D09309",
+                "canonical": "近视手术",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:老视;院区:虹桥"
+              },
+              {
+                "raw": "儿童近视(虹桥)",
+                "dept_id": "D02279",
+                "canonical": "儿童近视",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:虹桥"
+              },
+              {
+                "raw": "OK镜(虹桥)",
+                "dept_id": "D00089",
+                "canonical": "OK镜",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:虹桥"
+              },
+              {
+                "raw": "干眼及角膜病(虹桥)",
+                "dept_id": "D04447",
+                "canonical": "干眼及角膜病",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:虹桥"
+              },
+              {
+                "raw": "白内障(陶津华)(虹桥)",
+                "dept_id": "D06635",
+                "canonical": "白内障",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "医师:陶津华;院区:虹桥"
+              },
+              {
+                "raw": "王敏(屈光手术)(虹桥)",
+                "dept_id": "D06218",
+                "canonical": "王敏",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "其他:屈光手术;院区:虹桥"
+              },
+              {
+                "raw": "许琰(斜弱视门诊)",
+                "dept_id": "D09114",
+                "canonical": "许琰",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "其他:斜弱视门诊"
+              },
+              {
+                "raw": "视觉与学习困难(徐蔚)(虹桥)",
+                "dept_id": "D09067",
+                "canonical": "视觉与学习困难",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "医师:徐蔚;院区:虹桥"
+              },
+              {
+                "raw": "低视力康复与眼底病(虹桥)",
+                "dept_id": "D01861",
+                "canonical": "低视力康复与眼底病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:虹桥"
+              },
+              {
+                "raw": "中医干眼(虹桥)",
+                "dept_id": "D01237",
+                "canonical": "中医干眼",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:虹桥"
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 1,
+          "entry_count": 32,
+          "unique_count": 32,
+          "canonical_count": 30
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T11:06:10Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 1,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T11:06:10Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 32,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T11:06:10Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

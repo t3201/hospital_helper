@@ -1,0 +1,367 @@
+package com.hh.controller;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.provider.Settings;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+/**
+ * 单 Activity + 4 区块（表单 / 实时日志 / 结果 / 历史），线性堆叠（P0 允许）。
+ *
+ * <p>P0–P2 落地的动作：
+ * <ul>
+ *   <li>“唤起随申办” → {@link DeviceBridge#launch}</li>
+ *   <li>“读屏” → {@link DeviceBridge#dump}，把节点树打印成 JSON</li>
+ *   <li>“开始（哑回放）” → {@link TaskEngine#runDumbReplay}</li>
+ *   <li>“测试 LLM” → {@link AgentClient#chatJson} 跑通一次 JSON 推理</li>
+ * </ul>
+ */
+public class MainActivity extends Activity {
+
+    private static final int LOG_MAX_CHARS = 24000;
+
+    private final ExecutorService io = Executors.newSingleThreadExecutor();
+    private final Handler ui = new Handler(Looper.getMainLooper());
+    private final StringBuilder logBuf = new StringBuilder();
+
+    private TextView serviceStatus;
+    private TextView logView;
+    private TextView resultView;
+    private LinearLayout historyBox;
+    private EditText symptom;
+    private EditText agentsvcBase;
+    private CheckBox live;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        serviceStatus = findViewById(R.id.service_status);
+        logView = findViewById(R.id.log);
+        resultView = findViewById(R.id.result);
+        historyBox = findViewById(R.id.history_box);
+        symptom = findViewById(R.id.symptom);
+        agentsvcBase = findViewById(R.id.agentsvc_base);
+        live = findViewById(R.id.live);
+
+        setupSpinners();
+
+        // 服务状态条：未授权点它跳系统设置
+        serviceStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openAccessibilitySettings();
+            }
+        });
+
+        findViewById(R.id.btn_launch).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doLaunch();
+            }
+        });
+        findViewById(R.id.btn_dump).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doDump();
+            }
+        });
+        findViewById(R.id.btn_run).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doRunReplay();
+            }
+        });
+        findViewById(R.id.btn_llm).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doTestLlm();
+            }
+        });
+        ((Button) findViewById(R.id.btn_clear_hist)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HistoryStore.clear(MainActivity.this);
+                renderHistory();
+                log("历史已清空");
+            }
+        });
+
+        renderHistory();
+        log("就绪。默认 Agent base = " + AgentClient.DEFAULT_BASE
+                + "（可在表单里改成 PC 局域网地址）");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refreshServiceStatus();
+    }
+
+    // ------------------------------------------------------------------ 表单
+
+    private void setupSpinners() {
+        Spinner patient = findViewById(R.id.patient);
+        ArrayAdapter<String> pa = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_dropdown_item,
+                new String[]{"不选择（代他人挂号：年龄/性别由描述解析）"});
+        patient.setAdapter(pa);
+
+        Spinner fee = findViewById(R.id.fee);
+        ArrayAdapter<String> fa = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_dropdown_item,
+                new String[]{"0 = auto（由 LLM 从描述判断）", "1 最省", "2", "3", "4", "5", "6 不设上限"});
+        fee.setAdapter(fa);
+    }
+
+    // ------------------------------------------------------------------ 服务状态
+
+    private void refreshServiceStatus() {
+        boolean ready = SsAccessibilityService.isReady();
+        if (ready) {
+            serviceStatus.setText(getString(R.string.svc_ready));
+            serviceStatus.setBackgroundColor(0xFFDDF5DD);
+        } else {
+            serviceStatus.setText(getString(R.string.svc_missing));
+            serviceStatus.setBackgroundColor(0xFFFFE0E0);
+        }
+    }
+
+    private void openAccessibilitySettings() {
+        try {
+            startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
+        } catch (Exception e) {
+            Toast.makeText(this, R.string.toast_need_service, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    // ------------------------------------------------------------------ 动作
+
+    private void doLaunch() {
+        if (!ensureService()) {
+            return;
+        }
+        runAsync(new Runnable() {
+            @Override
+            public void run() {
+                DeviceBridge br = SsAccessibilityService.bridge();
+                boolean ok = br != null && br.launch(DeviceBridge.TARGET_PKG);
+                log("launch(随申办) -> " + ok);
+                if (!ok) {
+                    log("失败：随申办可能未安装，或 Android11+ 缺少 <queries> 包可见性声明");
+                } else {
+                    ui.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(MainActivity.this, "已唤起随申办", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    private void doDump() {
+        if (!ensureService()) {
+            return;
+        }
+        runAsync(new Runnable() {
+            @Override
+            public void run() {
+                DeviceBridge br = SsAccessibilityService.bridge();
+                if (br == null) {
+                    log("读屏失败：服务已断开");
+                    return;
+                }
+                log("读屏中…（getWindows → 随申办 root）");
+                JSONObject tree = br.dump();
+                if (tree == null) {
+                    log("读屏为 null：未取到随申办窗口 —— 确认随申办在前台、且读屏桥已授权");
+                    return;
+                }
+                int n = NodeTree.count(tree);
+                log("读屏成功：节点数 = " + n + "（rotation=" + tree.optInt("rotation") + "）");
+                setResult(NodeTree.pretty(tree));
+                saveHistory("读屏快照", "节点数=" + n, tree);
+            }
+        });
+    }
+
+    private void doRunReplay() {
+        if (!ensureService()) {
+            return;
+        }
+        ForegroundKeeperService.start(this); // 约束#7 前台兜底
+        runAsync(new Runnable() {
+            @Override
+            public void run() {
+                TaskEngine engine = new TaskEngine(new TaskEngine.Listener() {
+                    @Override
+                    public void onLog(String line) {
+                        log("[engine] " + line);
+                    }
+
+                    @Override
+                    public void onState(String state, String note) {
+                        log("[state] " + state + " — " + note);
+                    }
+
+                    @Override
+                    public void onResult(JSONObject result) {
+                        setResult(NodeTree.pretty(result));
+                    }
+
+                    @Override
+                    public void onError(String message) {
+                        log("[error] " + message);
+                    }
+                });
+                JSONObject tree = engine.runDumbReplay(SsAccessibilityService.bridge(),
+                        DeviceBridge.TARGET_PKG);
+                if (tree != null) {
+                    saveHistory("哑回放", "节点数=" + NodeTree.count(tree), tree);
+                }
+                ForegroundKeeperService.stop(MainActivity.this);
+            }
+        });
+    }
+
+    private void doTestLlm() {
+        final String base = agentsvcBase.getText().toString().trim();
+        final String symptomText = symptom.getText().toString().trim();
+        runAsync(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    String sys = "只输出 JSON，不要解释、不要 markdown 代码块";
+                    String user = symptomText.isEmpty()
+                            ? "请输出一个 JSON 对象: {\"ok\": true, \"from\": \"android\"}"
+                            : "把这句话解析成 JSON（字段: 症状, 希望等待天数, 是否三甲偏好）"
+                              + "，只输出 JSON 对象本身。原句: " + symptomText;
+                    long t0 = System.currentTimeMillis();
+                    AgentClient.JsonResult jr = AgentClient.chatJson(sys, user, null, base);
+                    long dt = System.currentTimeMillis() - t0;
+                    log("LLM base=" + AgentClient.resolveBase(base)
+                            + " elapsed=" + dt + "ms attempts=" + jr.meta.attempts
+                            + " thinkingChars=" + jr.meta.thinkingChars
+                            + " nData=" + jr.meta.nData);
+                    log("LLM content=" + jr.meta.content);
+                    setResult("LLM JSON:\n" + NodeTree.pretty(jr.obj));
+                    saveHistory("LLM 推理", "content 长度=" + jr.meta.content.length(), jr.obj);
+                } catch (AgentClient.AgentsvcError e) {
+                    log("LLM 失败: " + e.getMessage());
+                }
+            }
+        });
+    }
+
+    // ------------------------------------------------------------------ 历史
+
+    private void saveHistory(String title, String sub, JSONObject result) {
+        try {
+            JSONObject task = new JSONObject();
+            task.put("id", "t" + System.currentTimeMillis());
+            task.put("ts", System.currentTimeMillis());
+            task.put("title", title);
+            task.put("sub", sub);
+            if (result != null) {
+                task.put("result", result);
+            }
+            HistoryStore.save(this, task);
+            renderHistory();
+        } catch (Exception ignored) {
+        }
+    }
+
+    private void renderHistory() {
+        ui.post(new Runnable() {
+            @Override
+            public void run() {
+                historyBox.removeAllViews();
+                List<JSONObject> tasks = HistoryStore.list(MainActivity.this);
+                if (tasks.isEmpty()) {
+                    TextView tv = new TextView(MainActivity.this);
+                    tv.setText(R.string.history_placeholder);
+                    historyBox.addView(tv);
+                    return;
+                }
+                LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
+                SimpleDateFormat fmt = new SimpleDateFormat("MM-dd HH:mm:ss", Locale.CHINA);
+                for (JSONObject t : tasks) {
+                    View row = inflater.inflate(R.layout.item_history, historyBox, false);
+                    TextView title = row.findViewById(R.id.h_title);
+                    TextView sub = row.findViewById(R.id.h_sub);
+                    String ts = fmt.format(new Date(t.optLong("ts", 0)));
+                    title.setText(ts + "  " + t.optString("title"));
+                    sub.setText(t.optString("sub"));
+                    historyBox.addView(row);
+                }
+            }
+        });
+    }
+
+    // ------------------------------------------------------------------ 工具
+
+    private boolean ensureService() {
+        if (SsAccessibilityService.isReady()) {
+            return true;
+        }
+        Toast.makeText(this, R.string.toast_need_service, Toast.LENGTH_LONG).show();
+        openAccessibilitySettings();
+        return false;
+    }
+
+    private void runAsync(Runnable r) {
+        io.execute(r);
+    }
+
+    private void log(final String line) {
+        ui.post(new Runnable() {
+            @Override
+            public void run() {
+                logBuf.append(line).append('\n');
+                if (logBuf.length() > LOG_MAX_CHARS) {
+                    logBuf.delete(0, logBuf.length() - LOG_MAX_CHARS);
+                }
+                logView.setText(logBuf.toString());
+            }
+        });
+    }
+
+    private void setResult(final String text) {
+        ui.post(new Runnable() {
+            @Override
+            public void run() {
+                resultView.setText(text);
+            }
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        io.shutdownNow();
+    }
+}

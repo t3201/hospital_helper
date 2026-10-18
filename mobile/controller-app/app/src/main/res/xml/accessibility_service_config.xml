@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  读屏桥配置。关键点：
+  * canRetrieveWindowContent = true        -> 才能 getWindows()/取 root
+  * canPerformGestures = true              -> dispatchGesture（tap/swipe 兜底）
+  * flagRetrieveInteractiveWindows         -> getWindows() 遍历所有窗口（约束#3 必须）
+  * flagReportViewIds / flagIncludeNotImportantViews -> class/resource-id 更全
+  * flagRequestEnhancedWebAccessibility    -> 随申办是 WebView，增强读屏
+  * packageNames 只收随申办事件（getWindows() 不受其影响，仍可看到全部窗口）
+    这样等待/唤醒事件都来自目标 App，天然过滤掉控制器自己。
+-->
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/service_description"
+    android:summary="@string/service_label"
+    android:accessibilityEventTypes="typeWindowStateChanged|typeWindowContentChanged|typeViewTextChanged|typeViewClicked|typeViewScrolled|typeViewAccessibilityFocused"
+    android:accessibilityFeedbackType="feedbackGeneric"
+    android:accessibilityFlags="flagReportViewIds|flagRetrieveInteractiveWindows|flagIncludeNotImportantViews|flagRequestEnhancedWebAccessibility"
+    android:canRetrieveWindowContent="true"
+    android:canPerformGestures="true"
+    android:notificationTimeout="100"
+    android:settingsActivity="com.hospitalhelper.controller.MainActivity" />

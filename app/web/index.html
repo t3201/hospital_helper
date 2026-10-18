@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>挂号推荐 · 实测</title>
+<style>
+  :root { --bd:#d9dee5; --bg:#f6f8fa; --ink:#1f2328; --mut:#6a737d; --ok:#1a7f37; --warn:#9a6700; --err:#cf222e; --live:#0969da; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:14px/1.55 -apple-system,"Segoe UI","Microsoft YaHei",sans-serif; color:var(--ink); background:var(--bg); }
+  header { background:#fff; border-bottom:1px solid var(--bd); padding:10px 18px; }
+  header h1 { margin:0; font-size:16px; }
+  header .sub { color:var(--mut); font-size:12px; }
+  .wrap { display:flex; gap:14px; padding:14px 18px; align-items:flex-start; flex-wrap:wrap; }
+  .card { background:#fff; border:1px solid var(--bd); border-radius:8px; padding:14px; }
+  #form-card { width:340px; flex:0 0 340px; }
+  #right { flex:1 1 560px; min-width:520px; display:flex; flex-direction:column; gap:14px; }
+  label { display:block; margin:10px 0 3px; font-size:12px; color:var(--mut); }
+  input,select,textarea { width:100%; padding:6px 8px; border:1px solid var(--bd); border-radius:6px; font-size:14px; background:#fff; }
+  textarea { resize:vertical; min-height:56px; }
+  .row { display:flex; gap:8px; } .row > div { flex:1; }
+  .chk { display:flex; align-items:center; gap:6px; margin-top:10px; font-size:13px; }
+  .chk input { width:auto; }
+  button { margin-top:14px; width:100%; padding:8px; border:0; border-radius:6px; background:#1f6feb; color:#fff; font-size:14px; cursor:pointer; }
+  button:disabled { background:#8ba3c7; cursor:not-allowed; }
+  .hint { font-size:11px; color:var(--mut); margin-top:6px; }
+  #log { background:#0d1117; color:#c9d1d9; border-radius:6px; padding:10px; height:260px; overflow:auto; font:12px/1.5 Consolas,"Courier New",monospace; white-space:pre-wrap; word-break:break-all; }
+  #log .e { color:#f85149; } #log .ok { color:#3fb950; }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th,td { border:1px solid var(--bd); padding:5px 7px; text-align:left; vertical-align:top; }
+  th { background:#f0f3f6; font-size:12px; }
+  .badge { display:inline-block; padding:1px 7px; border-radius:10px; font-size:11px; white-space:nowrap; }
+  .b-live { background:#dafbe1; color:var(--ok); }
+  .b-cache { background:#ddf4ff; color:var(--live); }
+  .b-stub { background:#fff8c5; color:var(--warn); }
+  .b-none { background:#eaeef2; color:var(--mut); }
+  .b-noslot { background:#ffe1e0; color:var(--err); }
+  .b-fail { background:#ffebe9; color:var(--err); }
+  .dlink { color:var(--live); cursor:pointer; }
+  .dlink:hover { text-decoration:underline; }
+  .wbar { display:inline-block; height:9px; background:#1f6feb; border-radius:3px; vertical-align:middle; }
+  .why { color:var(--mut); font-size:12px; max-width:420px; }
+  .small { font-size:12px; color:var(--mut); }
+  #hist li { list-style:none; padding:4px 0; border-bottom:1px dashed var(--bd); font-size:12px; cursor:pointer; }
+  #hist li:hover { color:var(--live); }
+  #hist { margin:0; padding:0; }
+  .sec { margin:14px 0 6px; font-size:13px; font-weight:600; }
+  #status { font-size:12px; color:var(--mut); }
+  #status.run { color:var(--live); } #status.err { color:var(--err); }
+  h2 { font-size:14px; margin:0 0 8px; }
+  details { margin-top:8px; } summary { cursor:pointer; font-size:13px; color:var(--live); }
+  /* 预期费用尺度条（替代原「费用上限」输入框） */
+  input[type=range] { width:100%; padding:0; margin:6px 0 2px; height:20px; border:0; background:transparent; accent-color:#1f6feb; }
+  .fee-cur { font-size:13px; font-weight:600; }
+  .ticks { display:flex; justify-content:space-between; font-size:10px; color:var(--mut); margin-top:2px; }
+  .ticks span { flex:1 1 0; text-align:center; }
+  .ticks span:first-child { text-align:left; } .ticks span:last-child { text-align:right; }
+  .btn2 { background:#57606a; } .btn2:disabled { background:#a5abb3; }
+</style>
+</head>
+<body>
+<header>
+  <h1>挂号推荐 · 实测 <span class="sub">python -m app.web · 纯标准库 · 与 CLI 同一 run_pipeline 代码路径 · 不发起真实挂号</span></h1>
+</header>
+<div class="wrap">
+  <div class="card" id="form-card">
+    <h2>病例</h2>
+    <label>症状描述（必填）— 建议顺带写清「多久内要看到」「要大三甲还是就近」「预算」：时效/就诊类型/水平预期/费用由 LLM 从这段解析</label>
+    <textarea id="symptom" placeholder="如：孩子反复咳嗽伴发热3天，夜间加重；希望1-2天内看到，不必非三甲"></textarea>
+    <div class="row" style="align-items:flex-end">
+      <div style="flex:2.4"><label>就诊人（随申办 · 预约挂号 · 就诊人）</label>
+        <select id="patient"><option value="">不选择（代他人挂号：年龄/性别由描述解析）</option></select></div>
+      <div style="flex:1"><button type="button" id="getpatients" class="btn2" style="margin-top:0">👤 获取就诊人</button></div>
+    </div>
+    <div class="hint" id="patient-status">尚未获取。点按钮 = 服务端 adb 只读采集随申办就诊人列表（约 5-15 秒，30 分钟缓存）；不选就诊人时按「代他人挂号」处理。</div>
+    <label>预期费用（档位；auto = 由 LLM 从描述判断）</label>
+    <input type="range" id="fee" min="0" max="6" step="1" value="0">
+    <div><span class="fee-cur" id="fee-cur"></span></div>
+    <div class="ticks" id="fee-ticks"></div>
+    <div class="hint" id="fee-hint"></div>
+    <label>位置（必填 — 与是否代他人挂号无关；可点右侧自动定位）</label>
+    <div class="row">
+      <div style="flex:2"><input id="loctext" placeholder="如：徐汇区宜山路600号"></div>
+      <div style="flex:1"><button type="button" id="autoloc" style="margin-top:0;width:100%">📍 自动定位</button></div>
+    </div>
+    <div class="hint" id="loctext-status"></div>
+    <div class="hint">自动定位 = 服务端 adb 读手机最后位置（fused&gt;gps&gt;network）→ 高德逆地理成地址；30 分钟文件缓存, 页面刷新自动回填, 点按钮实时重读。</div>
+    <label>或 经纬度 "lng,lat"（GCJ-02；填了优先用坐标）</label>
+    <input id="loc" placeholder="如：121.4737,31.2304">
+    <hr style="border:0;border-top:1px solid var(--bd);margin:12px 0">
+    <h2>号源</h2>
+    <div class="chk"><input type="checkbox" id="live"><span><b>实时抓取 --live</b>（adb 真机, 慢: 全量 ~5-15 分钟/科室, 专家档 ~1/3）</span></div>
+    <label>采集深度（--live 时）</label>
+    <select id="slottype"><option value="">全部子tab（最全）</option><option value="expert">仅专家门诊（快速档）</option><option value="normal">仅普通门诊</option><option value="specialty">仅专病门诊</option></select>
+    <label>adb 设备（--live 时, 默认 476cf991）</label>
+    <input id="device" value="476cf991">
+    <label>live 超时（分钟, 默认 90; 两阶段=probe 55%+deep 45%; 候选多时建议 120-180）</label>
+    <input id="livetmo" type="number" min="5" value="90">
+    <label>Agent Service base（可空=按环境变量/默认 7988）</label>
+    <input id="agentsvc" placeholder="如 http://127.0.0.1:7989">
+    <button id="go">开始推荐</button>
+    <div class="hint">全局单任务（adb 独占）；LLM 推理约 30-70 秒；结果落盘 app/out/web_*/。</div>
+  </div>
+
+  <div id="right">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h2 style="margin:0">实时日志</h2>
+        <span id="status"></span>
+      </div>
+      <div id="log">（尚未运行）</div>
+    </div>
+    <div class="card" id="result-card" style="display:none">
+      <h2>结果</h2>
+      <div id="result-body"></div>
+    </div>
+    <div class="card">
+      <h2>历史</h2>
+      <ul id="hist"><li class="small">（加载中…）</li></ul>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var logEl = $('log'), statusEl = $('status');
+  var es = null;
+
+  function logLine(t, cls){
+    var d = document.createElement('div');
+    if (cls) d.className = cls;
+    d.textContent = t;
+    logEl.appendChild(d);
+    logEl.scrollTop = logEl.scrollHeight;
+  }
+  function setStat(t, cls){ statusEl.textContent = t; statusEl.className = cls||''; }
+
+  function badge(src, x){
+    src = src || '';
+    if (x && x.verified === true){
+      var _pb = (x.slot_source || '').indexOf('probe') >= 0 ? '(探测)' : '';
+      if (x.slot_status === 'no_slot') return '<span class="badge b-noslot">已核实·无号' + _pb + '</span>';
+      return '<span class="badge b-live">已核实·有号' + _pb + '</span>';
+    }
+    if (src.indexOf('level_default') >= 0) return '<span class="badge b-cache">档位先验</span>';
+    if (src.indexOf('stub') >= 0) return '<span class="badge b-stub">stub 先验</span>';
+    if (!src) return '<span class="badge b-none">未查询</span>';
+    return '<span class="badge b-none">未核实</span>';
+  }
+  function _candHasCoord(hid){
+    var r = CUR_RESULT;
+    if (!r) return false;
+    var cs = r.candidates_static || [];
+    for (var i = 0; i < cs.length; i++){
+      if (cs[i].hospital_id === hid && cs[i].lng && cs[i].lat) return true;
+    }
+    return false;
+  }
+  function dkmCell(x, dkm){
+    if (dkm == null) return '—';
+    if ((x && x.lng && x.lat) || _candHasCoord(x && x.hospital_id)){
+      return '<span class="dlink" onclick="openRoute(\'' + x.hospital_id + '\')" title="点击查看高德地图路线">' + dkm + 'km</span>';
+    }
+    return dkm + 'km';
+  }
+
+  var FEATURE_ZH = {match:'科室命中', level:'医院等级', breadth:'科室齐全度', distance:'距离就近', metro:'地铁可达', bus:'公交站点', key_specialty:'特色科室加分', emergency:'急诊能力', chronic:'慢病专病随访', chronic_fit:'分级诊疗承接', age_fit:'人群适配(儿科能力)', price:'费用友好度'};
+  var CUR_RESULT = null;
+  function renderResult(r){
+    CUR_RESULT = r;
+    var body = $('result-body');
+    var html = '';
+    var inf = r.inference || {};
+    var st = r.stage1 || {};
+    // 推理
+    // 本次输入（表单简化后: 就诊人 / 预期费用档位 / 症状; 时效·类型·水平预期由 LLM 解析）
+    var sp = r.spec || {};
+    var pf = sp.prefs || {};
+    var pt = sp.patient || null;
+    var ptTxt;
+    if (pt){
+      ptTxt = (pt.name_masked || '?') + ' · ' + (pt.age != null ? pt.age + '岁' : '年龄未知') + ' · ' +
+              (({male:'男', female:'女'})[pt.gender] || '性别未定') +
+              (pt.insurance_card ? ' · 医保卡' : ' · 无医保卡') +
+              (pt.gender_source ? '（' + pt.gender_source + '）' : '');
+    } else if (pf.fee_expect || sp.patient_selected === false){
+      ptTxt = '未选择（代他人挂号：年龄/性别由描述解析）';
+    } else {
+      ptTxt = '—（旧运行: 无就诊人字段）';
+    }
+    html += '<div class="sec">本次输入</div>';
+    html += '<div class="small">就诊人：' + escapeHtml(ptTxt) + ' · 预期费用：' + escapeHtml(pf.fee_expect_label || 'auto') +
+            (pf.fee_expect_cny != null ? '（硬上限 ' + pf.fee_expect_cny + ' 元）' : '') +
+            ' · 时效默认：' + (sp.urgency_days != null ? sp.urgency_days + '天（LLM 从描述改写）' : '?') + '</div>';
+    html += '<div class="sec">推理（Agent Service 直出）</div>';
+    html += '<div class="small">scenario=<b>' + (inf.scenario||'?') + '</b>' + (inf.scenario_zh ? '（' + inf.scenario_zh + '）' : '') +
+            ' · 主词=' + (st.triage ? st.triage.term : '?') +
+            ' · 目标科室=' + (inf.llm_depts ? inf.llm_depts.map(function(d){ return inf.llm_dept_tiers ? (d + '·' + ({1:'首选',2:'相关',3:'弱相关'})[inf.llm_dept_tiers[d] || 1]) : d; }).join('、') : '(词表)') +
+            ' · K=' + (st.K!=null?st.K:'?') + '</div>';
+    var w = inf.weights || {};
+    var maxw = 0; for (var k in w) if (w[k] > maxw) maxw = w[k];
+    html += '<div class="small" style="margin-top:6px">权重向量（行和=1; price=费用友好度, 仅对已核实号源生效）：</div>';
+    for (var k2 in w){
+      var pct = maxw ? Math.round(w[k2]/maxw*100) : 0;
+      html += '<div><span style="display:inline-block;width:250px;white-space:nowrap">' + (FEATURE_ZH[k2] || k2) + ' <span class="small">' + k2 + '</span> ' + w[k2] + '</span><span class="wbar" style="width:' + pct*1.6 + 'px"></span></div>';
+    }
+    // 推荐表
+    html += '<div class="sec">推荐（两级排序: ① 号源状态 已核实有号 > 未核实 > 已核实无号 ② 同状态 final_score = 静态分 × 号源效用）</div><table><tr>' +
+      '<th>#</th><th>医院</th><th>等级/区</th><th>科室</th><th>距离</th><th>静态</th>' +
+      '<th title="号源效用 u：final=静态分×u, 仅作同状态内排序; 跨状态由号源状态优先级决定（已核实有号 > 未核实 > 已核实无号）——有号是高权重独立特征。已核实有号 → max(0.6, 1−0.03×最早天数)×(1−0.4×紧张度); 已核实无号 → 0.25（沉底但不剔除, 现在没号≠一直没号）; 未核实 → 1.0（中性, 不决定生死）; 含已核实号源的本轮: 未核实 1% 折扣">号源u</th>' +
+      '<th>终排</th><th>最早可约</th><th>费档</th><th>号源来源</th></tr>';
+    (r.final && r.final.recommendations || []).forEach(function(x){
+      var dep = x.dept_tab ? (x.dept_tab + '/' + (x.dept_raw || x.dept || '')) : (x.dept || '—');
+      var dkm = x.distance_km;
+      if (dkm == null){  // 旧结果无 distance_km 字段时从 stage-1 贡献项 note 回推
+        var srcs = [x.top3_contrib, x.deductions];
+        for (var si = 0; si < srcs.length && dkm == null; si++){
+          (srcs[si] || []).forEach(function(t){
+            if (dkm == null && t && t.feature === 'distance' && t.note){
+              var mm = String(t.note).match(/([\d.]+)km/);
+              if (mm) dkm = parseFloat(mm[1]);
+            }
+          });
+        }
+      }
+      var _doc = x.llm_doctor ? '<br><span class="small">终裁医生: ' + x.llm_doctor + (x.llm_reason ? ' (' + x.llm_reason + ')' : '') + '</span>'
+                 : (x.llm_final ? '<br><span class="small">终裁LLM' + (x.llm_reason ? ': ' + x.llm_reason : '') + '</span>' : '');
+      html += '<tr><td>' + x.final_rank + '</td><td><b>' + x.name + '</b>' + _doc + '</td>' +
+        '<td>' + x.level + ' / ' + x.district + '</td>' +
+        '<td>' + dep + '</td>' +
+        '<td>' + dkmCell(x, dkm) + '</td>' +
+        '<td>' + x.static_score + '</td><td>' + x.slot_utility + '</td><td><b>' + x.final_score + '</b></td>' +
+        '<td>' + (x.earliest_date || (x.verified === true ? (x.slot_status === 'no_slot' ? '无号(已核实)' : '—') : '未核实')) + '</td>' +
+        '<td>' + (x.fee_tier ? (x.fee_tier + (x.fee_from_stale ? ' <span class="small">(历史参考)</span>' : '')) : '—') + feeDist(x) + ((x.fee_min_tier && x.fee_min_tier !== x.fee_tier) ? '<br><span class="small">最低档 ' + x.fee_min_tier + '</span>' : '') + '</td><td>' + badge(x.slot_source, x) + '</td></tr>';
+    });
+    html += '</table>';
+    if (r.final && r.final.fallback_all_unverified){
+      html += '<div class="small" style="color:var(--warn)">⚠ 全部未核实 → §4.5 回落静态排序（RANKING_SPEC）</div>';
+    }
+    var lc = r.final && r.final.live_coverage;
+    if (lc){
+      var _parts = [], _partial = false;
+      if (lc.probe || lc.deep){
+        var _p = lc.probe || {}, _d = lc.deep || {};
+        if (_p.n_routes != null){ _parts.push('Phase A 快速探测 ' + (_p.n_parsed||0) + '/' + _p.n_routes + ' 院(L2 单页: 按钮/日期条/空态)' + (_p.stop_reason ? ' [' + _p.stop_reason + ']' : '')); if ((_p.n_parsed||0) < _p.n_routes) _partial = true; }
+        if (_d.n_routes != null){ _parts.push('Phase B 深核 ' + (_d.n_parsed||0) + '/' + _d.n_routes + ' 院(逐医生六字段)' + (_d.stop_reason ? ' [' + _d.stop_reason + ']' : '')); if ((_d.n_parsed||0) < _d.n_routes) _partial = true; }
+      } else if (lc.n_routes){
+        _parts.push('实时核实 ' + (lc.n_parsed||0) + '/' + lc.n_routes + ' 家医院' + (lc.stop_reason ? ' [' + lc.stop_reason + ']' : ''));
+        if ((lc.n_parsed||0) < lc.n_routes) _partial = true;
+      }
+      var _fl = r.final && r.final.final_llm;
+      if (_fl && _fl.applied) _parts.push('终裁LLM 已应用' + (_fl.confidence ? ' (confidence=' + _fl.confidence + ')' : ''));
+      if (_parts.length){
+        html += '<div class="small" style="color:' + (_partial ? 'var(--warn)' : 'var(--mut)') + '">' + (_partial ? '⚠ ' : '') + _parts.join(' · ') +
+          (_partial ? '；未覆盖医院按未核实处理。排序按号源状态优先级: 已核实有号在前, 已核实无号沉底。' : '') + '</div>';
+      }
+    }
+    // 断言
+    var checks = r.checks || [];
+    var nok = checks.filter(function(c){return !c.ok;}).length;
+    html += '<div class="sec">回归断言 ' + (nok ? '<span style="color:var(--err)">' + nok + ' FAIL</span>' : '<span style="color:var(--ok)">全部 PASS</span>') + '</div>';
+    // 排除
+    var ex = r.final && r.final.excluded || [];
+    if (ex.length){
+      html += '<details><summary>显式排除 ' + ex.length + ' 家</summary><table><tr><th>医院</th><th>距离</th><th>原因</th></tr>';
+      ex.forEach(function(x){ html += '<tr><td>' + (x.name||x.hospital_id) + '</td><td>' + dkmCell(x, x.distance_km) + '</td><td class="why">' + (x.reason||'') + '</td></tr>'; });
+      html += '</table></details>';
+    }
+    // 模拟挂号
+    if (r.booking){
+      html += '<div class="sec">模拟挂号（dry-run）</div><div class="small">' +
+        (r.booking.steps||[]).map(escapeHtml).join('<br>') +
+        (r.booking.refused ? '<br><span style="color:var(--err)">' + escapeHtml(r.booking.refused) + '</span>' : '') + '</div>';
+    }
+    html += '<div class="small" style="margin-top:10px">落盘: ' + (r.meta && r.meta.mode || '') + ' · ' + (r.meta && r.meta.generated_at || '') + '</div>';
+    body.innerHTML = html;
+    $('result-card').style.display = 'block';
+  }
+  function feeDist(x){
+    var ft = x.fee_tiers;
+    if (!ft || typeof ft !== 'object') return '';
+    var ks = Object.keys(ft);
+    if (!ks.length) return '';
+    var sum = 0;
+    ks.forEach(function(k){ sum += (typeof ft[k] === 'number' ? ft[k] : 0); });
+    ks.sort(function(a, b){ return ft[b] - ft[a]; });
+    var s = ks.slice(0, 3).map(function(k){ return k + ':' + Math.round(ft[k] * 100) + '%'; }).join(' ');
+    if (sum < 0.995) s += ' 未记录 ' + Math.round((1 - sum) * 100) + '%';
+    return '<br><span class="small">分布 ' + s + '</span>';
+  }
+  function escapeHtml(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+  var autoLocText = null;
+  function setLocStat(t, bad){
+    var el = $('loctext-status');
+    el.textContent = t; el.style.color = bad ? 'var(--err)' : 'var(--mut)';
+  }
+  // 自动定位 = 服务端 adb 读手机最后位置 (fused>gps>network, WGS-84) -> GCJ-02 -> 高德逆地理地址(权威坐标校正)。
+  // 提交的是地址文本(loc_text), pipeline 再用高德 geocode 成精确 GCJ-02 ——
+  // 不依赖浏览器 Geolocation(LAN http 下不可用), 也不依赖 WGS-84->GCJ-02 近似精度。
+  function fetchDeviceLoc(fresh){
+    setLocStat(fresh ? '正在通过 adb 实时读取手机位置…' : '正在获取设备位置（30 分钟缓存优先）…');
+    var url = '/api/device-loc?fresh=' + (fresh ? 1 : 0);
+    var dv = $('device').value.trim();
+    if (dv) url += '&dev=' + encodeURIComponent(dv);
+    fetch(url).then(function(r){ return r.json().then(function(d){ return {status: r.status, d: d}; }); })
+      .then(function(o){
+        if (o.status !== 200 || !o.d.ok){ setLocStat('设备定位失败: ' + (o.d.error || o.status) + '（请手填位置）', true); return; }
+        autoLocText = o.d.address || (o.d.lng + ',' + o.d.lat);
+        var cur = $('loctext').value.trim();
+        if (cur === '' || cur === autoLocText) $('loctext').value = autoLocText;
+        var tag = o.d.from_cache ? '缓存' : (o.d.amap_snapped ? 'adb+高德校正' : 'adb');
+        var note = o.d.error ? ' [实时读失败, 用旧缓存: ' + o.d.error + ']' : '';
+        var age = '';
+        if (typeof o.d.age_s === 'number' && isFinite(o.d.age_s)) {
+          if (o.d.age_s > 1800) age = ' ⚠ 该位置记录约 ' + (o.d.age_s / 3600).toFixed(1) + ' 小时前（手机近期未更新定位, 可能非当前位置, 建议手填）';
+          else age = ' (定位记录 ' + Math.max(1, Math.round(o.d.age_s / 60)) + ' 分钟前)';
+        }
+        setLocStat('✓ ' + tag + ' 设备定位 (provider=' + (o.d.provider || '?') + '): ' + autoLocText + note + age);
+      })
+      .catch(function(e){ setLocStat('设备定位请求失败: ' + e + '（请手填位置）', true); });
+  }
+  $('autoloc').onclick = function(){ fetchDeviceLoc(true); };
+
+  // ---------- 就诊人（随申办 · 预约挂号 · 「就诊人」列表; 服务端 adb 只读采集, 见 app/patients.py） ----------
+  var PATIENTS = [];
+  function setPatStat(t, bad){ var el = $('patient-status'); el.textContent = t; el.style.color = bad ? 'var(--err)' : 'var(--mut)'; }
+  function fillPatients(d){
+    PATIENTS = d.patients || [];
+    var sel = $('patient'), prev = sel.value;
+    sel.innerHTML = '';
+    var o0 = document.createElement('option');
+    o0.value = ''; o0.textContent = '不选择（代他人挂号：年龄/性别由描述解析）';
+    sel.appendChild(o0);
+    PATIENTS.forEach(function(p){
+      var o = document.createElement('option');
+      o.value = p.id;
+      o.textContent = p.label || (p.name_masked + ' · ' + (p.age != null ? p.age + '岁' : '年龄未知'));
+      o.title = '证件号 ' + (p.id_no_masked || '?') + (p.insurance_card_no ? ' · 医保卡 ' + p.insurance_card_no : '') + ' · 手机 ' + (p.phone_masked || '?');
+      sel.appendChild(o);
+    });
+    for (var i = 0; i < sel.options.length; i++){ if (sel.options[i].value === prev){ sel.value = prev; break; } }
+    var n = (d.total_declared != null) ? d.total_declared : PATIENTS.length;
+    setPatStat('\u2713 就诊人 ' + n + ' 位 · ' + (d.from_cache ? '缓存' : '实时采集') + ' · ' + (d.captured_at || '') +
+               (d.error ? '（' + d.error + '）' : ''));
+  }
+  function fetchPatients(cacheOnly){
+    var url = '/api/patients' + (cacheOnly ? '?cache=1' : '?fresh=1');
+    var dv = $('device').value.trim();
+    if (dv && !cacheOnly) url += '&dev=' + encodeURIComponent(dv);
+    if (!cacheOnly) setPatStat('正在通过 adb 读取随申办「就诊人」列表…（约 5-15 秒, 只读: 不点新增/绑定/去预约）');
+    fetch(url).then(function(r){ return r.json().then(function(d){ return {status:r.status, d:d}; }); })
+      .then(function(o){
+        if (o.d && o.d.patients){ fillPatients(o.d); return; }
+        if (cacheOnly){ setPatStat('尚无就诊人缓存 — 需要时点「获取就诊人」（服务端 adb 只读采集, 约 5-15 秒）'); return; }
+        setPatStat('获取就诊人失败: ' + ((o.d && o.d.error) || o.status) + '（可仍用「不选择」, 年龄/性别写在症状描述里）', true);
+      })
+      .catch(function(e){ setPatStat('获取就诊人请求失败: ' + e, true); });
+  }
+  $('getpatients').onclick = function(){ fetchPatients(false); };
+
+  // ---------- 预期费用尺度条（替代原「费用上限」输入框; 档位 key 必须与 app/dialogue.py FEE_EXPECT_TIERS 一致） ----------
+  var FEE_TIERS = [['auto','自动'],['zero','0元'],['ten','10元'],['hundred','百元'],['thousand','千元'],['tenk','万元'],['any','不限']];
+  var FEE_HINT = {
+    auto: '自动：不预设上限, 由 LLM 从描述判断（如“别太贵”“特需也行”）',
+    zero: '0元：只接受免费/最低费用 → 社区/一级 + 普通门诊优先',
+    ten: '10元：低价号源优先（社区/一级普通门诊为主）',
+    hundred: '百元：普通门诊为主, 可少量二级医院',
+    thousand: '千元：可接受专家门诊/二级医院主力',
+    tenk: '万元：可接受特需/国际医疗部',
+    any: '不限：费用完全不敏感（price 权重 0）'
+  };
+  function renderFee(){
+    var i = parseInt($('fee').value, 10) || 0;
+    if (i < 0) i = 0; if (i >= FEE_TIERS.length) i = FEE_TIERS.length - 1;
+    $('fee-cur').textContent = '预期费用：' + FEE_TIERS[i][1];
+    $('fee-hint').textContent = FEE_HINT[FEE_TIERS[i][0]];
+  }
+  (function(){
+    var el = $('fee-ticks');
+    FEE_TIERS.forEach(function(t){ var s = document.createElement('span'); s.textContent = t[1]; el.appendChild(s); });
+    $('fee').oninput = renderFee;
+    renderFee();
+  })();
+
+  function stream(jobId){
+    if (es) es.close();
+    es = new EventSource('/api/stream?job=' + jobId);
+    es.onmessage = function(ev){
+      var m; try { m = JSON.parse(ev.data); } catch(e){ return; }
+      if (m.type === 'line'){
+        logLine(m.v, m.v.indexOf('FAIL') >= 0 || m.v.indexOf('【错误') >= 0 ? 'e' : '');
+      } else if (m.type === 'done'){
+        es.close(); es = null;
+        $('go').disabled = false;
+        if (m.v.ok){ setStat('完成 ✓'); logLine('[done] ok', 'ok'); }
+        else { setStat('失败 (code=' + m.v.code + ')', 'err'); logLine('[done] fail code=' + m.v.code + (m.v.error ? ' ' + m.v.error : ''), 'e'); }
+        fetchResult(jobId);
+        loadHist();
+      }
+    };
+    es.onerror = function(){ if (es) { es.close(); es = null; } };
+  }
+
+  function fetchResult(jobId){
+    fetch('/api/result?job=' + jobId).then(function(r){
+      if (r.status === 200) return r.json().then(renderResult);
+      return null;
+    }).catch(function(){});
+  }
+
+  function loadHist(){
+    fetch('/api/jobs').then(function(r){ return r.json(); }).then(function(d){
+      var ul = $('hist');
+      ul.innerHTML = '';
+      (d.jobs||[]).forEach(function(j){
+        var li = document.createElement('li');
+        var t = (j.started_at||'').replace('T', ' ');
+        var ck = j.checks_total ? (' 断言' + j.checks_pass + '/' + j.checks_total) : '';
+        li.textContent = t + '  [' + (j.running ? '运行中' : (j.mode||'')) + ']' + (j.live ? ' [live]' : '') + ' ' + (j.symptom||'') +
+          (j.top1 ? '  → top1: ' + j.top1 + ' (' + j.top1_score + ')' : '') + ck;
+        li.onclick = function(){
+          logEl.innerHTML = '';
+          logLine('（加载历史 ' + j.id + ' — 持久目录 app/out/' + j.id + '）');
+          fetch('/api/result?job=' + j.id).then(function(r){
+            if (r.status === 200) return r.json().then(function(res){
+              renderResult(res);
+              fetch('/api/report?job=' + j.id).then(function(r2){
+                if (r2.status === 200) return r2.text().then(function(txt){
+                  var det = document.createElement('details');
+                  var sum = document.createElement('summary');
+                  sum.textContent = 'report.md 完整报告（' + txt.length + ' 字符）';
+                  var pre = document.createElement('pre');
+                  pre.style.whiteSpace = 'pre-wrap'; pre.style.maxHeight = '320px'; pre.style.overflow = 'auto';
+                  pre.style.background = '#f6f8fa'; pre.style.padding = '8px'; pre.style.font = '12px/1.5 Consolas,monospace';
+                  pre.textContent = txt;
+                  det.appendChild(sum); det.appendChild(pre);
+                  $('result-body').appendChild(det);
+                });
+                return null;
+              }).catch(function(){});
+            });
+            logLine('（该次运行无 result.json — 未完成或失败）', 'e');
+          });
+          setStat(j.running ? '运行中' : '历史运行');
+        };
+        ul.appendChild(li);
+      });
+      if (!(d.jobs||[]).length) ul.innerHTML = '<li class="small">（暂无）</li>';
+    }).catch(function(){ $('hist').innerHTML = '<li class="small">（加载失败）</li>'; });
+  }
+
+  $('go').onclick = function(){
+    var symptom = $('symptom').value.trim();
+    var loc_text = $('loctext').value.trim(), loc = $('loc').value.trim();
+    if (autoLocText && !loc && (loc_text === '' || loc_text === autoLocText)){
+      // 自动定位走高德地址: pipeline 用高德把地址 geocode 成精确 GCJ-02(不依赖浏览器 WGS-84 的近似转换)
+      loc_text = autoLocText;
+    }
+    if (!symptom){ alert('请填写症状描述'); return; }
+    if (!loc_text && !loc){ alert('请填写位置（可点“📍 自动定位”或手填地址/经纬度）'); return; }
+    var body = {
+      symptom: symptom, loc_text: loc_text, loc: loc,
+      patient_id: $('patient').value || '',
+      fee_expect: FEE_TIERS[parseInt($('fee').value, 10) || 0][0],
+      live: $('live').checked, slot_type: $('slottype').value || null,
+      device: $('device').value.trim(), live_timeout_min: $('livetmo').value || null,
+      agentsvc_base: $('agentsvc').value.trim()
+    };
+    logEl.innerHTML = '';
+    setStat('运行中…', 'run');
+    $('go').disabled = true;
+    logLine('POST /api/run …');
+    fetch('/api/run', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)})
+      .then(function(r){ return r.json().then(function(d){ return {status:r.status, d:d}; }); })
+      .then(function(o){
+        if (o.status !== 202){ setStat('拒绝: ' + o.d.error, 'err'); logLine('[reject] ' + o.d.error, 'e'); $('go').disabled = false; return; }
+        logLine('[job] ' + o.d.job_id + ' → 打开 ' + o.d.stream);
+        stream(o.d.job_id);
+      })
+      .catch(function(e){ setStat('请求失败: ' + e, 'err'); $('go').disabled = false; });
+  };
+
+
+  // ---------- 高德地图路线弹窗 ----------
+  var _amapPromise = null, _amapCfg = null, _rmMap = null;
+  function _rmUri(from, to){
+    function pt(nm, p){ return nm + '=' + p.lng + ',' + p.lat; }
+    if (from){
+      return 'https://uri.amap.com/navigation?from=' + encodeURIComponent(pt('起点', from)) +
+             '&to=' + encodeURIComponent(pt(to.name, to)) + '&mode=car&policy=1';
+    }
+    return 'https://uri.amap.com/marker?position=' + to.lng + ',' + to.lat + '&name=' + encodeURIComponent(to.name);
+  }
+  function _loadAmap(){
+    if (window.AMap) return Promise.resolve(window.AMap);
+    if (!_amapPromise){
+      _amapPromise = fetch('/api/amap-js-config').then(function(res){ return res.json(); }).then(function(cfg){
+        _amapCfg = cfg;
+        if (!cfg.ok || !cfg.key){ _amapPromise = null; return null; }
+        if (cfg.code) window._AMapSecurityConfig = { securityJsCode: cfg.code };
+        return new Promise(function(resolve, reject){
+          var sc = document.createElement('script');
+          sc.src = 'https://webapi.amap.com/maps?v=2.0&key=' + encodeURIComponent(cfg.key) + '&plugin=AMap.Driving';
+          sc.onload = function(){ resolve(window.AMap || null); };
+          sc.onerror = function(){ reject(new Error('amap jsapi load failed')); };
+          document.head.appendChild(sc);
+        });
+      }).catch(function(e){ _amapPromise = null; throw e; });
+    }
+    return _amapPromise;
+  }
+  function _rmClearMap(){
+    if (_rmMap){ try { _rmMap.destroy(); } catch(e){} _rmMap = null; }
+  }
+  function _rmStraight(AMap, u, h){
+    var pl = new AMap.Polyline({ path: [[u.lng, u.lat], [h.lng, h.lat]],
+      strokeColor: '#1f6feb', strokeWeight: 3, lineJoin: 'round' });
+    _rmMap.add(pl);
+  }
+  function _rmFallbackMsg(info, h, u){
+    var link = _rmUri(u, h);
+    info.innerHTML = '内嵌高德地图不可用（未配置 Web端 JS API key / 平台未开 / 网络加载失败）。' +
+      '<a href="' + link + '" target="_blank" style="color:var(--live)">点此在新窗口打开高德导航</a>';
+    $('rm-map').style.background = '#f3f4f6';
+    $('rm-map').innerHTML = '';
+  }
+  function openRoute(hid){
+    var r = CUR_RESULT;
+    if (!r) return;
+    var row = null;
+    (r.final && r.final.recommendations || []).forEach(function(x){ if (x.hospital_id === hid) row = x; });
+    var h = null;
+    if (row && row.lng && row.lat) h = { name: row.name, lng: row.lng, lat: row.lat };
+    if (!h){
+      (r.candidates_static || []).forEach(function(c){
+        if (!h && c.hospital_id === hid && c.lng && c.lat) h = { name: c.name, lng: c.lng, lat: c.lat };
+      });
+    }
+    var u = (r.loc && r.loc.lng && r.loc.lat) ? { name: '我的位置', lng: r.loc.lng, lat: r.loc.lat, addr: r.loc.address || r.loc.note || '' } : null;
+    $('routemodal').style.display = 'block';
+    $('rm-title').textContent = h ? (h.name + ' — 导航路线') : hid;
+    $('rm-uri').href = _rmUri(u, h || { lng: 0, lat: 0, name: hid });
+    var info = $('rm-info');
+    $('rm-map').style.background = '#e8ecf1';
+    $('rm-map').innerHTML = '';
+    if (!h){ info.textContent = '该医院无坐标数据（旧结果）'; _rmClearMap(); return; }
+    if (!u){
+      info.innerHTML = '本次任务未记录起点坐标 → 仅提供医院定位链接。';
+      _loadAmap().then(function(AMap){
+        if (!AMap){ _rmFallbackMsg(info, h, u); return; }
+        _rmClearMap();
+        _rmMap = new AMap.Map('rm-map', { center: [h.lng, h.lat], zoom: 13 });
+        _rmMap.add(new AMap.Marker({ position: [h.lng, h.lat], title: h.name }));
+      }).catch(function(){ _rmFallbackMsg(info, h, u); });
+      return;
+    }
+    var dkm = row && row.distance_km != null ? ('（直线 ' + row.distance_km + 'km）') : '';
+    info.textContent = '起点: ' + (u.addr || (u.lng + ',' + u.lat)) + ' → 终点: ' + h.name + dkm + ' … 正在加载高德地图';
+    _loadAmap().then(function(AMap){
+      if (!AMap){ _rmFallbackMsg(info, h, u); return; }
+      _rmClearMap();
+      _rmMap = new AMap.Map('rm-map', { center: [(u.lng + h.lng) / 2, (u.lat + h.lat) / 2], zoom: 12 });
+      _rmMap.add([
+        new AMap.Marker({ position: [u.lng, u.lat], title: '起点',
+          content: '<div style="background:#1f6feb;color:#fff;padding:1px 6px;border-radius:3px;font-size:12px;white-space:nowrap">起点</div>',
+          offset: new AMap.Pixel(-14, -14) }),
+        new AMap.Marker({ position: [h.lng, h.lat], title: h.name,
+          content: '<div style="background:#cf222e;color:#fff;padding:1px 6px;border-radius:3px;font-size:12px;white-space:nowrap">' + h.name + '</div>',
+          offset: new AMap.Pixel(-20, -16) })
+      ]);
+      var done = false;
+      var failMsg = '路线规划未成功 → 已画直线。';
+      var t = setTimeout(function(){
+        if (!done){ done = true; try { _rmStraight(AMap, u, h); } catch(e){} info.innerHTML = failMsg + '<a href="' + $('rm-uri').href + '" target="_blank" style="color:var(--live)">在新窗口打开高德</a>'; }
+      }, 8000);
+      try {
+        var drv = new AMap.Driving({ map: _rmMap, autoFitView: true });
+        drv.search([u.lng, u.lat], [h.lng, h.lat], function(status, result){
+          clearTimeout(t);
+          if (done) return;
+          done = true;
+          if (status === 'complete' && result && result.routes && result.routes[0]){
+            var p = result.routes[0];
+            info.innerHTML = '驾车路线: 约 ' + Math.round((p.distance || 0) / 1000 * 10) / 10 + 'km, ' +
+              (p.time ? Math.max(1, Math.round(p.time / 60)) + ' 分钟' : '') +
+              '。<a href="' + $('rm-uri').href + '" target="_blank" style="color:var(--live)">在新窗口打开高德</a>';
+          } else {
+            try { _rmStraight(AMap, u, h); } catch(e){}
+            info.innerHTML = failMsg + '（status=' + status + '）<a href="' + $('rm-uri').href + '" target="_blank" style="color:var(--live)">在新窗口打开高德</a>';
+          }
+        });
+      } catch(e){
+        clearTimeout(t); done = true;
+        try { _rmStraight(AMap, u, h); } catch(e2){}
+        info.innerHTML = failMsg + '<a href="' + $('rm-uri').href + '" target="_blank" style="color:var(--live)">在新窗口打开高德</a>';
+      }
+    }).catch(function(){ _rmFallbackMsg(info, h, u); });
+  }
+  function closeRoute(){
+    $('routemodal').style.display = 'none';
+    _rmClearMap();
+    $('rm-map').innerHTML = '';
+  }
+  window.openRoute = openRoute;
+  window.closeRoute = closeRoute;
+  fetchDeviceLoc(false);
+  fetchPatients(true);   // 只读缓存(cache=1); 实采要点按钮
+  loadHist();
+})();
+</script>
+<div id="routemodal" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:900">
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:720px;max-width:94vw;background:#fff;border-radius:10px;box-shadow:0 10px 40px rgba(0,0,0,.35);padding:12px 14px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <b id="rm-title" style="font-size:15px">路线</b>
+      <span style="font-size:13px"><a id="rm-uri" href="#" target="_blank" style="color:var(--live);margin-right:14px">在新窗口打开高德 ↗</a><a href="javascript:void(0)" onclick="closeRoute()" style="color:var(--mut)">✕ 关闭</a></span>
+    </div>
+    <div id="rm-map" style="width:100%;height:430px;background:#e8ecf1;border-radius:6px"></div>
+    <div id="rm-info" style="margin-top:6px;font-size:12px;color:#555;line-height:1.7"></div>
+  </div>
+</div>
+</body>
+</html>

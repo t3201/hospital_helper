@@ -1,0 +1,705 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-118",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:39",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=77; geo=amap(exact); level_raw=二级医院; dept=suishenban#yuyue_guahao(2026-09-26, l1=4/l2u=19)"
+  },
+  "institution": {
+    "name": "静安区牙病防治所",
+    "aliases": [],
+    "level": "二级",
+    "type": "专科疾病防治院",
+    "ownership": "公立",
+    "affiliation": "",
+    "official_site": "",
+    "tel": "021-62530433"
+  },
+  "campuses": [
+    {
+      "id": "SH-118-M",
+      "name": "本部",
+      "district": "静安区",
+      "address": "江宁路422号甲",
+      "geo": {
+        "lng": 121.453574,
+        "lat": 31.234791,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:exact"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "二级",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "南京西路(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 820,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 3,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": 14.7,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 5,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 75,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "昌化路武定路(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-28T01:14:01Z",
+        "l1": [
+          {
+            "name": "平型关门诊部",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "儿童专科（14岁以下）",
+                "dept_id": "D02055",
+                "canonical": "儿童",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "其他:14岁以下"
+              },
+              {
+                "raw": "儿童初诊（14岁以下）",
+                "dept_id": "D02087",
+                "canonical": "儿童初诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:14岁以下"
+              },
+              {
+                "raw": "正畸专科（矫正）",
+                "dept_id": "D05687",
+                "canonical": "正畸",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "医师:矫正"
+              },
+              {
+                "raw": "修复专科（装牙）",
+                "dept_id": "D01936",
+                "canonical": "修复",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "其他:装牙"
+              },
+              {
+                "raw": "口外初诊（拔牙）",
+                "dept_id": "D03169",
+                "canonical": "口外初诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:拔牙"
+              },
+              {
+                "raw": "种植专科（种植）",
+                "dept_id": "D07097",
+                "canonical": "种植",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "其他:种植"
+              },
+              {
+                "raw": "专家门诊",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "洁牙门诊1（洗牙）",
+                "dept_id": "D05887",
+                "canonical": "洁牙门诊1",
+                "kind": "site",
+                "visit_type": "普通",
+                "qualifiers": "其他:洗牙"
+              },
+              {
+                "raw": "口内初诊（补牙）",
+                "dept_id": "D03159",
+                "canonical": "口内初诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:补牙"
+              },
+              {
+                "raw": "口修初诊（装牙）",
+                "dept_id": "D03156",
+                "canonical": "口修初诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:装牙"
+              },
+              {
+                "raw": "牙体牙髓专科（补牙）",
+                "dept_id": "D06063",
+                "canonical": "牙体牙髓",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "其他:补牙"
+              },
+              {
+                "raw": "牙周专科（牙周治疗）",
+                "dept_id": "D06079",
+                "canonical": "牙周",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "其他:牙周治疗"
+              },
+              {
+                "raw": "种植初诊（种植）",
+                "dept_id": "D07099",
+                "canonical": "种植初诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:种植"
+              },
+              {
+                "raw": "正畸初诊（矫正）",
+                "dept_id": "D05690",
+                "canonical": "正畸初诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:矫正"
+              },
+              {
+                "raw": "牙周初诊（牙周治疗）",
+                "dept_id": "D06080",
+                "canonical": "牙周初诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:牙周治疗"
+              },
+              {
+                "raw": "洁牙门诊2（洗牙）",
+                "dept_id": "D05888",
+                "canonical": "洁牙门诊2",
+                "kind": "site",
+                "visit_type": "普通",
+                "qualifiers": "其他:洗牙"
+              },
+              {
+                "raw": "儿童早期矫正（14岁以下）",
+                "dept_id": "D02175",
+                "canonical": "儿童早期矫正",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:14岁以下"
+              }
+            ]
+          },
+          {
+            "name": "武宁门诊部",
+            "tab_index": 1,
+            "depts": [
+              {
+                "raw": "儿童专科（14岁以下）",
+                "dept_id": "D02055",
+                "canonical": "儿童",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "其他:14岁以下"
+              },
+              {
+                "raw": "牙周专科（牙周治疗）",
+                "dept_id": "D06079",
+                "canonical": "牙周",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "其他:牙周治疗"
+              },
+              {
+                "raw": "正畸专科（矫正）",
+                "dept_id": "D05687",
+                "canonical": "正畸",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "医师:矫正"
+              },
+              {
+                "raw": "口内初诊（补牙）",
+                "dept_id": "D03159",
+                "canonical": "口内初诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:补牙"
+              },
+              {
+                "raw": "儿童初诊（14岁以下）",
+                "dept_id": "D02087",
+                "canonical": "儿童初诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:14岁以下"
+              },
+              {
+                "raw": "口修初诊（装牙）",
+                "dept_id": "D03156",
+                "canonical": "口修初诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:装牙"
+              },
+              {
+                "raw": "正畸初诊（矫正）",
+                "dept_id": "D05690",
+                "canonical": "正畸初诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:矫正"
+              },
+              {
+                "raw": "专家门诊",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "种植专科（种植）",
+                "dept_id": "D07097",
+                "canonical": "种植",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "其他:种植"
+              },
+              {
+                "raw": "种植初诊（种植）",
+                "dept_id": "D07099",
+                "canonical": "种植初诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:种植"
+              },
+              {
+                "raw": "口外初诊（拔牙）",
+                "dept_id": "D03169",
+                "canonical": "口外初诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:拔牙"
+              },
+              {
+                "raw": "洁牙门诊（洗牙）",
+                "dept_id": "D05886",
+                "canonical": "洁牙门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:洗牙"
+              },
+              {
+                "raw": "牙周初诊（牙周治疗）",
+                "dept_id": "D06080",
+                "canonical": "牙周初诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:牙周治疗"
+              },
+              {
+                "raw": "牙体牙髓专科（补牙）",
+                "dept_id": "D06063",
+                "canonical": "牙体牙髓",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "其他:补牙"
+              },
+              {
+                "raw": "修复专科（装牙）",
+                "dept_id": "D01936",
+                "canonical": "修复",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "其他:装牙"
+              },
+              {
+                "raw": "儿童早期矫正（14岁以下）",
+                "dept_id": "D02175",
+                "canonical": "儿童早期矫正",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:14岁以下"
+              }
+            ]
+          },
+          {
+            "name": "江宁门诊部",
+            "tab_index": 2,
+            "depts": [
+              {
+                "raw": "种植专科（种植）",
+                "dept_id": "D07097",
+                "canonical": "种植",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "其他:种植"
+              },
+              {
+                "raw": "修复专科（装牙）",
+                "dept_id": "D01936",
+                "canonical": "修复",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "其他:装牙"
+              },
+              {
+                "raw": "洁牙门诊（洗牙）",
+                "dept_id": "D05886",
+                "canonical": "洁牙门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:洗牙"
+              },
+              {
+                "raw": "口内初诊（补牙）",
+                "dept_id": "D03159",
+                "canonical": "口内初诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:补牙"
+              },
+              {
+                "raw": "口修初诊（装牙）",
+                "dept_id": "D03156",
+                "canonical": "口修初诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:装牙"
+              },
+              {
+                "raw": "牙周初诊（牙周治疗）",
+                "dept_id": "D06080",
+                "canonical": "牙周初诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:牙周治疗"
+              },
+              {
+                "raw": "牙周专科（牙周治疗）",
+                "dept_id": "D06079",
+                "canonical": "牙周",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "其他:牙周治疗"
+              },
+              {
+                "raw": "牙体牙髓专科（补牙）",
+                "dept_id": "D06063",
+                "canonical": "牙体牙髓",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "其他:补牙"
+              },
+              {
+                "raw": "口外初诊（拔牙）",
+                "dept_id": "D03169",
+                "canonical": "口外初诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:拔牙"
+              },
+              {
+                "raw": "种植初诊（种植）",
+                "dept_id": "D07099",
+                "canonical": "种植初诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:种植"
+              },
+              {
+                "raw": "老年预防",
+                "dept_id": "D07465",
+                "canonical": "老年预防",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "彭浦门诊部",
+            "tab_index": 3,
+            "depts": [
+              {
+                "raw": "口内初诊（补牙）",
+                "dept_id": "D03159",
+                "canonical": "口内初诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:补牙"
+              },
+              {
+                "raw": "口外初诊（拔牙）",
+                "dept_id": "D03169",
+                "canonical": "口外初诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:拔牙"
+              },
+              {
+                "raw": "口修初诊（装牙）",
+                "dept_id": "D03156",
+                "canonical": "口修初诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:装牙"
+              },
+              {
+                "raw": "儿童初诊（14岁以下）",
+                "dept_id": "D02087",
+                "canonical": "儿童初诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:14岁以下"
+              },
+              {
+                "raw": "儿童专科（14岁以下）",
+                "dept_id": "D02055",
+                "canonical": "儿童",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "其他:14岁以下"
+              },
+              {
+                "raw": "正畸专科（矫正）",
+                "dept_id": "D05687",
+                "canonical": "正畸",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "医师:矫正"
+              },
+              {
+                "raw": "正畸初诊（矫正）",
+                "dept_id": "D05690",
+                "canonical": "正畸初诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:矫正"
+              },
+              {
+                "raw": "种植专科（种植）",
+                "dept_id": "D07097",
+                "canonical": "种植",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "其他:种植"
+              },
+              {
+                "raw": "种植初诊（种植）",
+                "dept_id": "D07099",
+                "canonical": "种植初诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:种植"
+              },
+              {
+                "raw": "专家门诊",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "牙体牙髓专科（补牙）",
+                "dept_id": "D06063",
+                "canonical": "牙体牙髓",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "其他:补牙"
+              },
+              {
+                "raw": "牙周专科（牙周治疗）",
+                "dept_id": "D06079",
+                "canonical": "牙周",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "其他:牙周治疗"
+              },
+              {
+                "raw": "洁牙门诊（洗牙）",
+                "dept_id": "D05886",
+                "canonical": "洁牙门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:洗牙"
+              },
+              {
+                "raw": "牙周初诊（牙周治疗）",
+                "dept_id": "D06080",
+                "canonical": "牙周初诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:牙周治疗"
+              },
+              {
+                "raw": "老年预防",
+                "dept_id": "D07465",
+                "canonical": "老年预防",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "儿童早期矫正（14岁以下）",
+                "dept_id": "D02175",
+                "canonical": "儿童早期矫正",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:14岁以下"
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 4,
+          "entry_count": 60,
+          "unique_count": 19,
+          "canonical_count": 19
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-28T01:14:01Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 4,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-28T01:14:01Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 19,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-28T01:14:01Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

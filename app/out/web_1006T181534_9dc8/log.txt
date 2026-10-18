@@ -1,0 +1,147 @@
+【1 位置】121.432932, 31.254204（GCJ-02）— 高德 amap_place 命中「香溢花城三期南商办」普陀区香溢花城三期南商办（缓存命中）
+【2 病情】(--spec-file 结构化字段, 与交互解析同一 schema)
+   症状: 孩子咽喉不适，吞咽时觉得痛，说话有点声音嘶哑，没发烧。倾向去儿童专属医院
+   患者=child(age=None, 性别=未提供) 代挂=False 就诊=unknown 等待≤7天 费用上限=None 水平预期=balanced
+   · 病例来源: 显式结构化字段 (web/表单), 非自由文本解析
+   · 年龄未提, 症状文本推断: 儿童关键词 → child
+   · 年龄=未提 → child
+   · 时效 → max_wait_days=7
+[stage1] 已复用 ranking/scripts/score_hospitals.py（import 模式）: 450 manifests / 10334 科室 / 1822 症状词
+   [LLM] agentsvc model_id=default @ http://127.0.0.1:7989 耗时=34641.0ms 首字节=16.0ms 结构重试=1 思维链=5611字(仅长度) prompt=15087字符(含基础数据上下文) session_id=None(仅记录)
+   权重向量(绝对, 行和=1.0): {"match": 0.32, "level": 0.04, "breadth": 0.07, "distance": 0.18, "metro": 0.02, "bus": 0.03, "key_specialty": 0.04, "age_fit": 0.25, "price": 0.05}
+   目标科室(LLM 直选, 归一化词表校验, how=llm): 耳鼻喉科[首选], 儿科[相关], 全科医疗科[弱相关]
+   基础数据上下文: 363 科室(归一化 canonical, 覆盖≥5 家医院) / 438 家医院(等级/区县) — 只读
+【3 权重推理】scenario=peds（儿科）来源=agentsvc(model_id=default; 直出权重向量+目标科室, 含基础数据上下文)
+   · 儿童急性咽喉不适伴吞咽痛、声音嘶哑但未发烧，无红旗急症，场景定为peds；症状专科首选耳鼻喉科，儿科作为人群归属相关科室。
+   · 患者明确倾向儿童专属医院，因此age_fit提升到0.25，distance和breadth略降，优先匹配儿童医院/儿童医学中心等有儿童接诊能力的机构。
+   · 期望等待≤7天且无明确费用上限，保留低distance和price权重；level不主导，metro因地铁偏好为False而压低。
+   · triage_term='咽喉不适' 症状词表无命中（不影响: 科室以 LLM 直选为准）
+   患者层科室过滤: 儿童患者剔除目标科室 4 个: 产科儿保陈雪莲[儿童患者不适用于成人科（canonical 含"产科"）], 产科新生儿保健[儿童患者不适用于成人科（canonical 含"产科"）], 小儿妇科内分泌[儿童患者不适用于成人科（canonical 含"妇科"）], 小儿妇科内分泌特色团队[儿童患者不适用于成人科（canonical 含"妇科"）]（剩余 206 个, 已按过滤后目标同构重算召回/打分/K/抓取计划; 词表与字典只读不改）
+   同族 canonical 扩展(只读, 补偿碎片化失召回): 耳鼻咽喉[族员 of 耳鼻喉科, tier1]; 耳鼻咽喉头颈外科[族员 of 耳鼻喉科, tier1]; 耳鼻咽喉科[族员 of 耳鼻喉科, tier1]; 中医五官科[族员 of 耳鼻喉科, tier2]; 五官科[族员 of 耳鼻喉科, tier2]; 小儿外科[族员 of 儿科, tier2]
+【4 候选集】主词="咽喉不适"(llm) 目标科室=206 K=60 硬过滤: 召回=328 通过=178 砍=150
+   应用权重: {"match": 0.3368, "level": 0.0421, "breadth": 0.0737, "distance": 0.1895, "metro": 0.0211, "bus": 0.0316, "key_specialty": 0.0421, "age_fit": 0.2632}
+    1 SH-018 儿童医学中心           三级甲等     浦东新区     static=0.9181
+    2 SH-026 儿童医院北京西路院区       三级甲等     静安区      static=0.9072
+    3 SH-084 第十人民医院           三级甲等     静安区      static=0.9018
+    4 SH-030 仁济医院西院           三级甲等     黄浦区      static=0.8887
+    5 SH-074 儿科医院             三级甲等     闵行区      static=0.8874
+    6 SH-003 华山医院             三级甲等     静安区      static=0.8866
+    7 SH-071 同济医院             三级甲等     普陀区      static=0.8785
+    8 SH-020 儿童医院泸定路院区        三级甲等     普陀区      static=0.877
+    9 SH-053 长征医院             三级甲等     黄浦区      static=0.8754
+   10 SH-095 第一人民医院           三级甲等     虹口区      static=0.8676
+[slots] manifest 索引: 450 家
+[slots] ⚠ live 预算预警: 42 条件组 × 约540秒/组 ≈ 378分钟 > 超时上限 60分钟; 到点后后续组不跑（v2 逐组增量落盘, 已完成组保留; 未跑组降级档位）。建议: --live-slot-type expert(最快档) / --live-timeout 调大 / 离线跑 fetch_slots.py 批量积累
+[slots] 触发 v2 批量 live 抓取: 42 个条件组, 顺序=静态分序(第1名先跑), 超时上限=60 分钟
+    1) SH-018 儿童医学中心 / tab=耳鼻咽喉科 / dept=耳鼻咽喉科
+    2) SH-018 儿童医学中心 / tab=儿科 / dept=新生儿专科
+    3) SH-018 儿童医学中心 / tab=耳鼻咽喉科 / dept=耳鼻咽喉手术
+    4) SH-018 儿童医学中心 / tab=其他 / dept=耳鼻咽喉科高年资特色团队
+    5) SH-018 儿童医学中心 / tab=其他 / dept=一站式特色门诊儿保科
+    6) SH-026 儿童医院北京西路院区 / tab=儿科 / dept=耳鼻咽喉头颈外科（北京西路）
+    7) SH-026 儿童医院北京西路院区 / tab=儿科 / dept=新生儿科（北京西路）
+    8) SH-084 第十人民医院 / tab=耳鼻咽喉科 / dept=耳鼻喉科门诊
+    9) SH-084 第十人民医院 / tab=儿科 / dept=儿科门诊
+   10) SH-084 第十人民医院 / tab=全科医疗科 / dept=全科医疗科
+   11) SH-030 仁济医院西院 / tab=耳鼻咽喉科 / dept=耳鼻咽喉科
+   12) SH-030 仁济医院西院 / tab=儿科 / dept=儿科
+   13) SH-030 仁济医院西院 / tab=耳鼻咽喉科 / dept=耳鼻咽喉科-鼻窦炎
+   14) SH-030 仁济医院西院 / tab=耳鼻咽喉科 / dept=耳鼻咽喉科-鼾症及扁桃体
+   15) SH-030 仁济医院西院 / tab=儿科 / dept=儿科—儿童过敏风湿免疫
+   16) SH-074 儿科医院 / tab=耳鼻咽喉科 / dept=耳鼻咽喉头颈外科
+   17) SH-074 儿科医院 / tab=小儿骨科专业 / dept=新生儿外科
+   18) SH-074 儿科医院 / tab=重点科室 / dept=新生儿科
+   19) SH-074 儿科医院 / tab=儿童保健科 / dept=儿保发育行为门诊
+   20) SH-074 儿科医院 / tab=小儿骨科专业 / dept=小儿实体肿瘤MDT
+   21) SH-003 华山医院 / tab=耳鼻咽喉科 / dept=耳鼻喉科
+   22) SH-003 华山医院 / tab=耳鼻咽喉科 / dept=耳鼻咽喉科声带疾病专病门诊
+   23) SH-003 华山医院 / tab=耳鼻咽喉科 / dept=耳鼻咽喉科头颈肿瘤专病
+   24) SH-003 华山医院 / tab=耳鼻咽喉科 / dept=耳鼻喉科眩晕专病
+   25) SH-003 华山医院 / tab=其他 / dept=全科医学多病共患综合管理
+   26) SH-071 同济医院 / tab=耳鼻咽喉科 / dept=耳鼻咽喉头颈外科
+   27) SH-071 同济医院 / tab=儿科 / dept=儿科
+   28) SH-071 同济医院 / tab=耳鼻咽喉科 / dept=耳鼻咽喉室(医技)
+   29) SH-071 同济医院 / tab=内科 / dept=全科医学科
+   30) SH-020 儿童医院泸定路院区 / tab=儿科 / dept=耳鼻咽喉头颈外科
+   31) SH-020 儿童医院泸定路院区 / tab=儿科 / dept=新生儿科
+   32) SH-053 长征医院 / tab=耳鼻喉科 / dept=耳鼻喉科门诊
+   33) SH-053 长征医院 / tab=儿内科 / dept=儿科门诊
+   34) SH-053 长征医院 / tab=内科 / dept=全科医学科门诊
+   35) SH-095 第一人民医院 / tab=耳鼻咽喉科 / dept=耳鼻喉科
+   36) SH-095 第一人民医院 / tab=儿科 / dept=新生儿科
+   37) SH-095 第一人民医院 / tab=其他 / dept=全科
+   38) SH-019 中山医院 / tab=耳鼻咽喉科 / dept=耳鼻咽喉头颈外科
+   39) SH-019 中山医院 / tab=其他 / dept=儿科中心
+   40) SH-019 中山医院 / tab=其他 / dept=全科医学科
+   41) SH-207 普陀区人民医院 / tab=耳鼻喉科 / dept=耳鼻咽喉科
+   42) SH-207 普陀区人民医院 / tab=儿科 / dept=儿科
+[slots] 条件文件: app\out\live_conds_20261006T181609.json（UTF-8 免损坏通道, CJK 不经 argv）
+[slots] v2 --deadline=2026-10-06T19:16:09: 到点优雅停止(不跑后续组); v2 逐组增量落盘, 已完成组不丢失
+[slots] v2 批量 live 抓取结束（3705s）, 解析 condition_runs 输出…
+[slots] live 未匹配到条件组 SH-003/耳鼻咽喉科头颈肿瘤专病（condition_errors=[]）
+[slots] live 未匹配到条件组 SH-003/耳鼻喉科眩晕专病（condition_errors=[]）
+[slots] live 未匹配到条件组 SH-003/全科医学多病共患综合管理（condition_errors=[]）
+[slots] live 未匹配到条件组 SH-071/耳鼻咽喉头颈外科（condition_errors=[]）
+[slots] live 未匹配到条件组 SH-071/儿科（condition_errors=[]）
+[slots] live 未匹配到条件组 SH-071/耳鼻咽喉室(医技)（condition_errors=[]）
+[slots] live 未匹配到条件组 SH-071/全科医学科（condition_errors=[]）
+[slots] live 未匹配到条件组 SH-020/耳鼻咽喉头颈外科（condition_errors=[]）
+[slots] live 未匹配到条件组 SH-020/新生儿科（condition_errors=[]）
+[slots] live 未匹配到条件组 SH-053/耳鼻喉科门诊（condition_errors=[]）
+[slots] live 未匹配到条件组 SH-053/儿科门诊（condition_errors=[]）
+[slots] live 未匹配到条件组 SH-053/全科医学科门诊（condition_errors=[]）
+[slots] live 未匹配到条件组 SH-095/耳鼻喉科（condition_errors=[]）
+[slots] live 未匹配到条件组 SH-095/新生儿科（condition_errors=[]）
+[slots] live 未匹配到条件组 SH-095/全科（condition_errors=[]）
+[slots] live 未匹配到条件组 SH-019/耳鼻咽喉头颈外科（condition_errors=[]）
+[slots] live 未匹配到条件组 SH-019/儿科中心（condition_errors=[]）
+[slots] live 未匹配到条件组 SH-019/全科医学科（condition_errors=[]）
+[slots] live 未匹配到条件组 SH-207/耳鼻咽喉科（condition_errors=[]）
+[slots] live 未匹配到条件组 SH-207/儿科（condition_errors=[]）
+[slots] live 结果: 22 组解析 → ok=4 / no_slot=15 / unknown=3（run=run_20261006T181615.json）
+[slots] 回写快照: SH-003 耳鼻咽喉科/耳鼻喉科 → slots\out\SH-003-sh003.json
+[slots] 回写快照: SH-018 儿科/新生儿专科 → slots\out\SH-018-sh018.json
+[slots] 回写快照: SH-018 耳鼻咽喉科/耳鼻咽喉手术 → slots\out\SH-018-sh018.json
+[slots] 回写快照: SH-018 耳鼻咽喉科/耳鼻咽喉科 → slots\out\SH-018-sh018.json
+[slots] 回写快照: SH-026 儿科/新生儿科（北京西路） → slots\out\SH-026-sh026.json
+[slots] 回写快照: SH-026 儿科/耳鼻咽喉头颈外科（北京西路） → slots\out\SH-026-sh026.json
+[slots] 回写快照: SH-030 儿科/儿科 → slots\out\SH-030-sh030.json
+[slots] 回写快照: SH-030 儿科/儿科—儿童过敏风湿免疫 → slots\out\SH-030-sh030.json
+[slots] 回写快照: SH-030 耳鼻咽喉科/耳鼻咽喉科 → slots\out\SH-030-sh030.json
+[slots] 回写快照: SH-030 耳鼻咽喉科/耳鼻咽喉科-鼻窦炎 → slots\out\SH-030-sh030.json
+[slots] 回写快照: SH-030 耳鼻咽喉科/耳鼻咽喉科-鼾症及扁桃体 → slots\out\SH-030-sh030.json
+[slots] 回写快照: SH-074 儿童保健科/儿保发育行为门诊 → slots\out\SH-074-sh074.json
+[slots] 回写快照: SH-074 小儿骨科专业/小儿实体肿瘤MDT → slots\out\SH-074-sh074.json
+[slots] 回写快照: SH-074 小儿骨科专业/新生儿外科 → slots\out\SH-074-sh074.json
+[slots] 回写快照: SH-074 重点科室/新生儿科 → slots\out\SH-074-sh074.json
+[slots] 回写快照: SH-074 耳鼻咽喉科/耳鼻咽喉头颈外科 → slots\out\SH-074-sh074.json
+[slots] 回写快照: SH-084 儿科/儿科门诊 → slots\out\SH-084-sh084.json
+[slots] 回写快照: SH-084 全科医疗科/全科医疗科 → slots\out\SH-084-sh084.json
+[slots] 回写快照: SH-084 耳鼻咽喉科/耳鼻喉科门诊 → slots\out\SH-084-sh084.json
+[slots] live→静态回写完成: 19 条 (下次运行 TTL 内走 cache/observed 已核实, 迭代逼近真实)
+[slots] 已读 slot_profile.json: 7614 条 (dept,hosp)
+[slots] 已读 level_defaults.json: 6 个 strata
+【5 号源】处理 12 家（预算≤12）: 已核实有号 3 / 已核实无号 2 / 未核实 7（来源标注见报告 §5/§7）
+【6 推荐】终排=静态分×号源效用; 已核实 5/60
+   1) 华山医院 [三级甲等/静安区] 终排=0.8777（静态 0.8866 × 号源 0.99）
+      why: 华山医院（三级甲等/静安区）: 科室命中=命中: 全科医学多病共患综合管理,全科医学新冠后综合管理门诊（+0.3368, match），人群适配(儿科能力)=有可约儿科类科室(非儿童专属机构)（+0.1974, age_fit）。号源未核实（cache/level_default(档位先验,未核实)）, 仅按静态分排序, 不得当实时事实。
+      挂号入口: 「耳鼻咽喉科」tab → 点「耳鼻咽喉科声带疾病专病门诊」行（院页面 raw 名, 同 tab 可能有相似名科室）
+   2) 同济医院 [三级甲等/普陀区] 终排=0.8697（静态 0.8785 × 号源 0.99）
+      why: 同济医院（三级甲等/普陀区）: 科室命中=命中: 儿科,全科医疗科,耳鼻咽喉头颈外科,耳鼻咽喉室 [p（+0.3368, match），人群适配(儿科能力)=有可约儿科类科室(非儿童专属机构)（+0.1974, age_fit）。号源未核实（cache/level_default(档位先验,未核实)）, 仅按静态分排序, 不得当实时事实。
+      挂号入口: 「耳鼻咽喉科」tab → 点「耳鼻咽喉头颈外科」行（院页面 raw 名, 同 tab 可能有相似名科室）
+   3) 儿童医院泸定路院区 [三级甲等/普陀区] 终排=0.8682（静态 0.877 × 号源 0.99）
+      why: 儿童医院泸定路院区（三级甲等/普陀区）: 科室命中=命中: 新生儿科,耳鼻咽喉头颈外科 [p1/high]（+0.3368, match），人群适配(儿科能力)=儿童专属机构（+0.2632, age_fit）。号源未核实（cache/level_default(档位先验,未核实)）, 仅按静态分排序, 不得当实时事实。
+      挂号入口: 「儿科」tab → 点「耳鼻咽喉头颈外科」行（院页面 raw 名, 同 tab 可能有相似名科室）
+【7 模拟挂号】dry-run（默认开）: 不真发、不提交、不支付
+   1. 打开「随申办」App（包名 mobi.w3studio.apps.android.shsmy.phone）
+   2. 首页 →「预约挂号」→「全部医院 (444)」
+   3. 检索并选择医院: 华山医院（静安区, 主院区）
+   4. L1 选科室页找到「耳鼻咽喉科」tab, 点「耳鼻咽喉科声带疾病专病门诊」行进入科室页（注意: 同 tab 下可能有多个含相似字样的科室, 以该行为准; L2 页自带日期条）
+   5. 选择日期: 待定（最早号源未核实, 到院/到页后再选）（最早可约; 日期条若显示无号则换日期/医生）
+   6. 选择医生与时段 →「去预约」（医生列表来自 SlotResult.doctors, is_target 标记目标医生）
+   7. 填写实名信息 + 短信验证码（用户手动完成, 脚本不触碰凭据）
+   8. 确认预约 → 支付（用户手动完成）
+【8 断言】PASS 已解析号源的 12 家医院不得静默消失: ∈ final.top_list ∪ final.excluded(带原因, 含号源状态)
+【8 断言】PASS max(静态分)医院可见: SH-018(0.9181) 在 top_list 或 显式排除(带原因); no_slot 降级属合理结果但必须写明
+【8 断言】PASS slot_queries 的每家医院 ∈ final.top_list ∪ final.excluded（显式排除+原因, 不得静默消失）
+【9 落盘】app\out\web_1006T181534_9dc8\result.json / app\out\web_1006T181534_9dc8\report.md

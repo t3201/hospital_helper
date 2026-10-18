@@ -1,0 +1,354 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-052",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:39",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=69; geo=amap(exact); dept=suishenban#yuyue_guahao(2026-09-26, l1=1/l2u=18)"
+  },
+  "institution": {
+    "name": "上海市眼病防治中心（康定路院区）",
+    "aliases": [],
+    "level": "三级甲等",
+    "type": "专科疾病防治院",
+    "ownership": "公立",
+    "affiliation": "",
+    "official_site": "",
+    "tel": "021-62717733"
+  },
+  "campuses": [
+    {
+      "id": "SH-052-M",
+      "name": "本部",
+      "district": "静安区",
+      "address": "康定路380号",
+      "geo": {
+        "lng": 121.448845,
+        "lat": 31.235101,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:exact"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "三级甲等",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "昌平路(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 611,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 1,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": 10.6,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 6,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 151,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "陕西北路新闸路(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "computed",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html",
+        "basis": "parent_institution",
+        "parent": "上海市眼病防治中心",
+        "note": "推定：母院为医保定点，该院区未在名单单列（母院=上海市眼病防治中心）"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-26T11:02:49Z",
+        "l1": [
+          {
+            "name": "眼科",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "屈光手术",
+                "dept_id": "D04382",
+                "canonical": "屈光手术",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "儿童近视",
+                "dept_id": "D02279",
+                "canonical": "儿童近视",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "成人配镜",
+                "dept_id": "D05040",
+                "canonical": "成人配镜",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "视功能康复(王宁)",
+                "dept_id": "D09056",
+                "canonical": "视功能康复",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:王宁"
+              },
+              {
+                "raw": "儿童近视预防(朱剑锋、何鲜桂)",
+                "dept_id": "D02280",
+                "canonical": "儿童近视预防",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": "其他:朱剑锋、何鲜桂"
+              },
+              {
+                "raw": "近视(老视)手术",
+                "dept_id": "D09309",
+                "canonical": "近视手术",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:老视"
+              },
+              {
+                "raw": "斜视、弱视(强俊)",
+                "dept_id": "D05260",
+                "canonical": "斜视、弱视",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "医师:强俊"
+              },
+              {
+                "raw": "朱梦钧(OK镜验配及优化控制)",
+                "dept_id": "D05572",
+                "canonical": "朱梦钧",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "其他:OK镜验配及优化控制"
+              },
+              {
+                "raw": "青光眼白内障",
+                "dept_id": "D09715",
+                "canonical": "青光眼白内障",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "OK镜",
+                "dept_id": "D00089",
+                "canonical": "OK镜",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "眼疲劳、老花",
+                "dept_id": "D06826",
+                "canonical": "眼疲劳、老花",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "视觉训练",
+                "dept_id": "D09070",
+                "canonical": "视觉训练",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "白内障专家",
+                "dept_id": "D06635",
+                "canonical": "白内障",
+                "kind": "other",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "特需",
+                "dept_id": "D06194",
+                "canonical": "特需",
+                "kind": "specialty_clinic",
+                "visit_type": "特需",
+                "qualifiers": ""
+              },
+              {
+                "raw": "普通眼科",
+                "dept_id": "D05525",
+                "canonical": "普通眼科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "专家",
+                "dept_id": "D00268",
+                "canonical": "专家",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "RGP巩膜镜等特殊验配门诊(朱剑锋)",
+                "dept_id": "D00110",
+                "canonical": "RGP巩膜镜等特殊验配门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:朱剑锋"
+              },
+              {
+                "raw": "眼底病",
+                "dept_id": "D06820",
+                "canonical": "眼底病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 1,
+          "entry_count": 18,
+          "unique_count": 18,
+          "canonical_count": 18
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T11:02:49Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 1,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T11:02:49Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 18,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T11:02:49Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

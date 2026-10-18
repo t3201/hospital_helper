@@ -1,0 +1,2130 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-051",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:39",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=68; geo=amap(relevance,review=wrong); !低置信待核; dept=suishenban#yuyue_guahao(2026-09-26, l1=17/l2u=227)"
+  },
+  "institution": {
+    "name": "上海市中医医院（石门路门诊部）",
+    "aliases": [],
+    "level": "三级甲等",
+    "type": "专科医院",
+    "ownership": "公立",
+    "affiliation": "",
+    "official_site": "http://szy.sh.cn",
+    "tel": "021-56639828"
+  },
+  "campuses": [
+    {
+      "id": "SH-051-M",
+      "name": "本部",
+      "district": "静安区",
+      "address": "石门一路67弄1号(近大沽路)",
+      "geo": {
+        "lng": 121.462363,
+        "lat": 31.224883,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:relevance"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "三级甲等",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "淮海中路(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 570,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 3,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": 11.8,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 4,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 128,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "茂名北路(快速公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "computed",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html",
+        "basis": "parent_institution",
+        "parent": "上海市中医医院",
+        "note": "推定：母院为医保定点，该院区未在名单单列（母院=上海市中医医院）"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-26T10:19:07Z",
+        "l1": [
+          {
+            "name": "肿瘤科",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "妇科肿瘤专科(石)",
+                "dept_id": "D04040",
+                "canonical": "妇科肿瘤",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "李雁名中医传承门诊(石)",
+                "dept_id": "D05602",
+                "canonical": "李雁名中医传承门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "肿瘤二科(上消化道消化腺肿瘤)(石)",
+                "dept_id": "D08034",
+                "canonical": "肿瘤二科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:上消化道消化腺肿瘤;院区:石"
+              },
+              {
+                "raw": "肿瘤五科(甲乳生殖肿瘤)(石)",
+                "dept_id": "D08040",
+                "canonical": "肿瘤五科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:甲乳生殖肿瘤;院区:石"
+              },
+              {
+                "raw": "甲状腺肿瘤专科(石)",
+                "dept_id": "D06375",
+                "canonical": "甲状腺肿瘤",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "肿瘤三科(下消化道肿瘤)(石)",
+                "dept_id": "D08020",
+                "canonical": "肿瘤三科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:下消化道肿瘤;院区:石"
+              },
+              {
+                "raw": "胃癌专科(石)",
+                "dept_id": "D08161",
+                "canonical": "胃癌",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "大肠癌专科(石)",
+                "dept_id": "D03844",
+                "canonical": "大肠癌",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "癌因性疲劳专科(石)",
+                "dept_id": "D06619",
+                "canonical": "癌因性疲劳",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "肿瘤一科(呼吸道肿瘤)(石)",
+                "dept_id": "D08013",
+                "canonical": "肿瘤一科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:呼吸道肿瘤;院区:石"
+              },
+              {
+                "raw": "胰腺癌专科(石)",
+                "dept_id": "D08301",
+                "canonical": "胰腺癌",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "朱氏非遗门诊(石)",
+                "dept_id": "D05575",
+                "canonical": "朱氏非遗门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "肿瘤热疗专科(石)",
+                "dept_id": "D08104",
+                "canonical": "肿瘤热疗",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "肺癌专科(石)",
+                "dept_id": "D07854",
+                "canonical": "肺癌",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              }
+            ]
+          },
+          {
+            "name": "综合及其它",
+            "tab_index": 1,
+            "depts": [
+              {
+                "raw": "名专风湿病科(石)",
+                "dept_id": "D03368",
+                "canonical": "名专风湿病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "退休肝病科(石)",
+                "dept_id": "D09345",
+                "canonical": "退休肝病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "特诊皮肤科(石)",
+                "dept_id": "D06159",
+                "canonical": "特诊皮肤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "膏方门诊(石)",
+                "dept_id": "D08619",
+                "canonical": "膏方",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石;形态:门诊"
+              },
+              {
+                "raw": "名专脾胃病科(石)",
+                "dept_id": "D03365",
+                "canonical": "名专脾胃病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "特诊心病科(石)",
+                "dept_id": "D06144",
+                "canonical": "特诊心病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "退休失眠科(石)",
+                "dept_id": "D09336",
+                "canonical": "退休失眠科",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "名专失眠科(石)",
+                "dept_id": "D03347",
+                "canonical": "名专失眠科",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "名专肺病科(石)",
+                "dept_id": "D03361",
+                "canonical": "名专肺病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "名专心病科(石)",
+                "dept_id": "D03350",
+                "canonical": "名专心病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "名专眼科(石)",
+                "dept_id": "D03357",
+                "canonical": "名专眼科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "名专泌尿科(石)",
+                "dept_id": "D03352",
+                "canonical": "名专泌尿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "退休骨伤科(石)",
+                "dept_id": "D09354",
+                "canonical": "退休骨伤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "退休肾病科(石)",
+                "dept_id": "D09347",
+                "canonical": "退休肾病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "特诊脾胃病科(石)",
+                "dept_id": "D06181",
+                "canonical": "特诊脾胃病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "特诊失眠科(石)",
+                "dept_id": "D06138",
+                "canonical": "特诊失眠科",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "退休血液病科(石)",
+                "dept_id": "D09351",
+                "canonical": "退休血液病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "外宾内科(石)",
+                "dept_id": "D03763",
+                "canonical": "外宾内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "特诊外三科(石)",
+                "dept_id": "D06135",
+                "canonical": "特诊外三科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "名专内分泌科(石)",
+                "dept_id": "D03344",
+                "canonical": "名专内分泌科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "名专血液病科(石)",
+                "dept_id": "D03366",
+                "canonical": "名专血液病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "特诊骨伤科(石)",
+                "dept_id": "D06191",
+                "canonical": "特诊骨伤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "退休风湿病科(石)",
+                "dept_id": "D09353",
+                "canonical": "退休风湿病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "特诊脑病科(石)",
+                "dept_id": "D06179",
+                "canonical": "特诊脑病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "退休外科(石)",
+                "dept_id": "D09335",
+                "canonical": "退休外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "名专肛肠科(石)",
+                "dept_id": "D03359",
+                "canonical": "名专肛肠科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "特诊外二科(石)",
+                "dept_id": "D06136",
+                "canonical": "特诊外二科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "退休妇科(石)",
+                "dept_id": "D09337",
+                "canonical": "退休妇科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "特诊眼科(石)",
+                "dept_id": "D06160",
+                "canonical": "特诊眼科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "退休针灸科(石)",
+                "dept_id": "D09352",
+                "canonical": "退休针灸科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "特诊风湿病科(石)",
+                "dept_id": "D06190",
+                "canonical": "特诊风湿病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "特诊肿瘤科(石)",
+                "dept_id": "D06175",
+                "canonical": "特诊肿瘤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "退休专家(石)",
+                "dept_id": "D09332",
+                "canonical": "退休",
+                "kind": "other",
+                "visit_type": "专家",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "特诊推拿科(石)",
+                "dept_id": "D06148",
+                "canonical": "特诊推拿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "中医治疗室(石)",
+                "dept_id": "D01276",
+                "canonical": "中医治疗室",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "名专耳鼻喉科（石）",
+                "dept_id": "D03358",
+                "canonical": "名专耳鼻喉科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "退休男性科(石)",
+                "dept_id": "D09340",
+                "canonical": "退休男性科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "护理部(石)",
+                "dept_id": "D05110",
+                "canonical": "护理部",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "特诊肾病科(石)",
+                "dept_id": "D06172",
+                "canonical": "特诊肾病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "名专泌尿科(石)",
+                "dept_id": "D03352",
+                "canonical": "名专泌尿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "退休肿瘤科(石)",
+                "dept_id": "D09348",
+                "canonical": "退休肿瘤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "名专儿科(石)",
+                "dept_id": "D03343",
+                "canonical": "名专儿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "退休皮肤科(石)",
+                "dept_id": "D09341",
+                "canonical": "退休皮肤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "名专肿瘤科(石)",
+                "dept_id": "D03363",
+                "canonical": "名专肿瘤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "名专外科(石)",
+                "dept_id": "D03346",
+                "canonical": "名专外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "特诊儿科(石)",
+                "dept_id": "D06127",
+                "canonical": "特诊儿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "名专肝病科(石)",
+                "dept_id": "D03360",
+                "canonical": "名专肝病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "名专针灸科(石)",
+                "dept_id": "D03367",
+                "canonical": "名专针灸科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "名专推拿科(石)",
+                "dept_id": "D03351",
+                "canonical": "名专推拿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "特诊外科(石)",
+                "dept_id": "D06137",
+                "canonical": "特诊外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "退休脾胃病科(石)",
+                "dept_id": "D09350",
+                "canonical": "退休脾胃病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "特诊妇科(石)",
+                "dept_id": "D06139",
+                "canonical": "特诊妇科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "特诊男性科(石)",
+                "dept_id": "D06158",
+                "canonical": "特诊男性科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "特诊肝病科(石)",
+                "dept_id": "D06168",
+                "canonical": "特诊肝病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "特诊血液病科(石)",
+                "dept_id": "D06183",
+                "canonical": "特诊血液病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "名专康复科(石)",
+                "dept_id": "D03349",
+                "canonical": "名专康复科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "特诊耳鼻喉科(石)",
+                "dept_id": "D06166",
+                "canonical": "特诊耳鼻喉科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "退休心病科(石)",
+                "dept_id": "D09338",
+                "canonical": "退休心病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "特诊针灸科(石)",
+                "dept_id": "D06188",
+                "canonical": "特诊针灸科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "退休眼科(石)",
+                "dept_id": "D09342",
+                "canonical": "退休眼科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "名专(石)",
+                "dept_id": "D03341",
+                "canonical": "名专",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "名专(1)(石)",
+                "dept_id": "D03341",
+                "canonical": "名专",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:1;院区:石"
+              },
+              {
+                "raw": "名专内科(石)",
+                "dept_id": "D03345",
+                "canonical": "名专内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "退休耳鼻喉科(石)",
+                "dept_id": "D09343",
+                "canonical": "退休耳鼻喉科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "特诊内分泌科(石)",
+                "dept_id": "D06130",
+                "canonical": "特诊内分泌科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "名专男性病科(石)",
+                "dept_id": "D03353",
+                "canonical": "名专男性病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "退休脑病科(石)",
+                "dept_id": "D09349",
+                "canonical": "退休脑病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "退休肺病科(石)",
+                "dept_id": "D09346",
+                "canonical": "退休肺病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "特诊内科(石)",
+                "dept_id": "D06131",
+                "canonical": "特诊内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "特诊(石)",
+                "dept_id": "D06122",
+                "canonical": "特诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "综合(1)(石)",
+                "dept_id": "D07290",
+                "canonical": "综合",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:1;院区:石"
+              },
+              {
+                "raw": "特诊泌尿外科(石)",
+                "dept_id": "D06152",
+                "canonical": "特诊泌尿外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "名专骨伤科(石)",
+                "dept_id": "D03369",
+                "canonical": "名专骨伤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "名专妇科(石)",
+                "dept_id": "D03348",
+                "canonical": "名专妇科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "名专脑病科(石)",
+                "dept_id": "D03364",
+                "canonical": "名专脑病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "退休泌尿外科(石)",
+                "dept_id": "D09339",
+                "canonical": "退休泌尿外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "退休肛肠科(石)",
+                "dept_id": "D09344",
+                "canonical": "退休肛肠科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "名专肾病科(石)",
+                "dept_id": "D03362",
+                "canonical": "名专肾病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "特诊肛肠科(石)",
+                "dept_id": "D06167",
+                "canonical": "特诊肛肠科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "特诊肺病科(石)",
+                "dept_id": "D06170",
+                "canonical": "特诊肺病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "退休儿科(石)",
+                "dept_id": "D09333",
+                "canonical": "退休儿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "肺结节病专科(石)",
+                "dept_id": "D07899",
+                "canonical": "肺结节病",
+                "kind": "specialty_clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "支气管炎专科（石）",
+                "dept_id": "D05173",
+                "canonical": "支气管炎",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "名专皮肤科(石)",
+                "dept_id": "D03356",
+                "canonical": "名专皮肤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "核酸检测专科（石）",
+                "dept_id": "D05657",
+                "canonical": "核酸检测",
+                "kind": "ancillary",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "儿科小膏方(石)",
+                "dept_id": "D02036",
+                "canonical": "儿科小膏方",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "中医护理门诊（石）",
+                "dept_id": "D01258",
+                "canonical": "中医护理",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:石;形态:门诊"
+              },
+              {
+                "raw": "退休内科(石)",
+                "dept_id": "D09334",
+                "canonical": "退休内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "特诊治未病科(石)",
+                "dept_id": "D06151",
+                "canonical": "特诊治未病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              }
+            ]
+          },
+          {
+            "name": "儿科",
+            "tab_index": 2,
+            "depts": [
+              {
+                "raw": "哮喘专科(小儿)(石)",
+                "dept_id": "D03532",
+                "canonical": "哮喘",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "其他:小儿;院区:石"
+              },
+              {
+                "raw": "儿科(石)",
+                "dept_id": "D02013",
+                "canonical": "儿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "复感专科(石)",
+                "dept_id": "D03729",
+                "canonical": "复感",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "疳积专科(石)",
+                "dept_id": "D06513",
+                "canonical": "疳积",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "小儿厌食专科(石)",
+                "dept_id": "D04269",
+                "canonical": "小儿厌食",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "小儿慢性咳嗽专科(石)",
+                "dept_id": "D04291",
+                "canonical": "小儿慢性咳嗽",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              }
+            ]
+          },
+          {
+            "name": "针灸科",
+            "tab_index": 3,
+            "depts": [
+              {
+                "raw": "膝关节病专科(石)",
+                "dept_id": "D08634",
+                "canonical": "膝关节病",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "针灸科(石)",
+                "dept_id": "D09528",
+                "canonical": "针灸科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "温灸专科(石)",
+                "dept_id": "D06006",
+                "canonical": "温灸",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "针灸治疗肥胖专科(石)",
+                "dept_id": "D09516",
+                "canonical": "针灸治疗肥胖",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              }
+            ]
+          },
+          {
+            "name": "痔科",
+            "tab_index": 4,
+            "depts": [
+              {
+                "raw": "炎性肠病专科(石)",
+                "dept_id": "D06032",
+                "canonical": "炎性肠病",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "肛肠科(石)",
+                "dept_id": "D07615",
+                "canonical": "肛肠科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              }
+            ]
+          },
+          {
+            "name": "急诊科",
+            "tab_index": 5,
+            "depts": [
+              {
+                "raw": "急诊儿科(石)",
+                "dept_id": "D04838",
+                "canonical": "急诊儿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "急诊骨伤科(石)",
+                "dept_id": "D04882",
+                "canonical": "急诊骨伤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              }
+            ]
+          },
+          {
+            "name": "内科",
+            "tab_index": 6,
+            "depts": [
+              {
+                "raw": "徐氏儿科(石)",
+                "dept_id": "D04597",
+                "canonical": "徐氏儿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "肝癌专病(石)",
+                "dept_id": "D07651",
+                "canonical": "肝癌",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "慢性萎缩性胃炎专科(石)",
+                "dept_id": "D05006",
+                "canonical": "慢性萎缩性胃炎",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "缺铁性贫血专科(石)",
+                "dept_id": "D07311",
+                "canonical": "缺铁性贫血",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "陈氏外科(石)",
+                "dept_id": "D09666",
+                "canonical": "陈氏外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "脉管炎专科(石)",
+                "dept_id": "D08367",
+                "canonical": "脉管炎",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "张氏内科(石)",
+                "dept_id": "D04562",
+                "canonical": "张氏内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "呼吸内科(石)",
+                "dept_id": "D03443",
+                "canonical": "呼吸内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "高尿酸血症专科(石)",
+                "dept_id": "D10193",
+                "canonical": "高尿酸血症",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "结节病专科（石）",
+                "dept_id": "D07284",
+                "canonical": "结节病",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "哮喘专科(石)",
+                "dept_id": "D03532",
+                "canonical": "哮喘",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "慢性肾功能衰竭专科(石)",
+                "dept_id": "D04985",
+                "canonical": "慢性肾功能衰竭",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "肺病科(石)",
+                "dept_id": "D07843",
+                "canonical": "肺病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "肝硬化腹水专科(石)",
+                "dept_id": "D07657",
+                "canonical": "肝硬化腹水",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "肾病科(石)",
+                "dept_id": "D07936",
+                "canonical": "肾内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "失眠科(石)",
+                "dept_id": "D03868",
+                "canonical": "失眠科",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "脾胃病科(石)",
+                "dept_id": "D08531",
+                "canonical": "脾胃病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "肾小球肾炎专科(石)",
+                "dept_id": "D07963",
+                "canonical": "肾小球肾炎",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "内分泌科(石)",
+                "dept_id": "D02588",
+                "canonical": "内分泌科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "药师门诊（石）",
+                "dept_id": "D08708",
+                "canonical": "药师门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "虚病调护专科门诊（石）",
+                "dept_id": "D08773",
+                "canonical": "虚病调护门诊",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "心血管内科(CCU、心电图室)（石）",
+                "dept_id": "D04780",
+                "canonical": "心血管内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:CCU、心电图室;院区:石"
+              },
+              {
+                "raw": "夜门诊(石)",
+                "dept_id": "D03834",
+                "canonical": "夜门诊",
+                "kind": "other",
+                "visit_type": "夜间门诊",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "淋巴瘤专科(石)",
+                "dept_id": "D05993",
+                "canonical": "淋巴瘤",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "反流性食管炎专科（石）",
+                "dept_id": "D03118",
+                "canonical": "反流性食管炎",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "便秘专科(石)",
+                "dept_id": "D01916",
+                "canonical": "便秘",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "神经内科(石)",
+                "dept_id": "D06976",
+                "canonical": "神经内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "情志调摄",
+                "dept_id": "D04907",
+                "canonical": "情志调摄",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "复发性尿路感染专科(石)",
+                "dept_id": "D03725",
+                "canonical": "复发性尿路感染",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "肥胖病专科（石）",
+                "dept_id": "D07773",
+                "canonical": "肥胖病",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "血液科(石)",
+                "dept_id": "D08806",
+                "canonical": "血液内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "血液免疫专科(石)",
+                "dept_id": "D08805",
+                "canonical": "血液免疫",
+                "kind": "screening",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "代谢综合症专科(石)",
+                "dept_id": "D01806",
+                "canonical": "代谢综合症",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "糖尿病专科(石)",
+                "dept_id": "D07170",
+                "canonical": "糖尿病",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "老年记忆障碍专科（石）",
+                "dept_id": "D07461",
+                "canonical": "老年记忆障碍",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "护师门诊（石）",
+                "dept_id": "D05102",
+                "canonical": "护师门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "治未病科(石)",
+                "dept_id": "D05773",
+                "canonical": "治未病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "老慢支专科(石)",
+                "dept_id": "D07475",
+                "canonical": "老慢支",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "口腔黏膜病（石）",
+                "dept_id": "D03323",
+                "canonical": "口腔黏膜病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "甲状腺疾病专科(石)",
+                "dept_id": "D06357",
+                "canonical": "甲状腺疾病",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "郁病专科(石)",
+                "dept_id": "D09407",
+                "canonical": "郁病",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "免疫性肝病专科(石)",
+                "dept_id": "D02352",
+                "canonical": "免疫性肝病",
+                "kind": "screening",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "脂肪肝专科中医综合治疗(石)",
+                "dept_id": "D08356",
+                "canonical": "脂肪肝中医综合治疗",
+                "kind": "specialty_clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "心病科(石)",
+                "dept_id": "D04721",
+                "canonical": "心病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "消化内科(石)",
+                "dept_id": "D05920",
+                "canonical": "消化内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "亚健康专科（石）",
+                "dept_id": "D01698",
+                "canonical": "亚健康",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "传承门诊(石)",
+                "dept_id": "D01818",
+                "canonical": "传承门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "血管斑块专科(石)",
+                "dept_id": "D08857",
+                "canonical": "血管斑块",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "胃食管病专科(石)",
+                "dept_id": "D08226",
+                "canonical": "胃食管病",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "肝病科(石)",
+                "dept_id": "D07644",
+                "canonical": "肝病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "内科(石)",
+                "dept_id": "D02633",
+                "canonical": "内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "冠心病专科(石)",
+                "dept_id": "D02683",
+                "canonical": "冠心病",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "董氏儿科(石)",
+                "dept_id": "D08761",
+                "canonical": "董氏儿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "慢阻肺专科(石)",
+                "dept_id": "D05015",
+                "canonical": "慢阻肺",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "皮炎专科(石)",
+                "dept_id": "D06663",
+                "canonical": "皮炎",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "体质辨识专科(石)",
+                "dept_id": "D01884",
+                "canonical": "体质辨识",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "汗病专科（石）",
+                "dept_id": "D05743",
+                "canonical": "汗病",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              }
+            ]
+          },
+          {
+            "name": "泌尿科",
+            "tab_index": 7,
+            "depts": [
+              {
+                "raw": "外四科(泌尿外科)(石)",
+                "dept_id": "D03762",
+                "canonical": "外四科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:泌尿外科;院区:石"
+              }
+            ]
+          },
+          {
+            "name": "外科",
+            "tab_index": 8,
+            "depts": [
+              {
+                "raw": "椎间盘突出专科(石)",
+                "dept_id": "D05681",
+                "canonical": "椎间盘突出",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "外三科(甲乳血管外科)(石)",
+                "dept_id": "D03749",
+                "canonical": "外三科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:甲乳血管外科;院区:石"
+              },
+              {
+                "raw": "外六科(神经外科)(石)",
+                "dept_id": "D03757",
+                "canonical": "外六科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:神经外科;院区:石"
+              },
+              {
+                "raw": "甲乳专科（石）",
+                "dept_id": "D06304",
+                "canonical": "甲乳",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "外一科(胃肠外科)(石)",
+                "dept_id": "D03748",
+                "canonical": "外一科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:胃肠外科;院区:石"
+              }
+            ]
+          },
+          {
+            "name": "眼科",
+            "tab_index": 9,
+            "depts": [
+              {
+                "raw": "眼科(石)",
+                "dept_id": "D06839",
+                "canonical": "眼科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "干眼病专科(石)",
+                "dept_id": "D04449",
+                "canonical": "干眼病",
+                "kind": "specialty_clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "青少年屈光不正专科(石)",
+                "dept_id": "D09724",
+                "canonical": "青少年屈光不正",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              }
+            ]
+          },
+          {
+            "name": "耳鼻喉科",
+            "tab_index": 10,
+            "depts": [
+              {
+                "raw": "过敏性鼻炎科(石)",
+                "dept_id": "D09270",
+                "canonical": "过敏性鼻炎科",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "耳鼻喉科(石)",
+                "dept_id": "D07533",
+                "canonical": "耳鼻喉科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "嗓音病科(石)",
+                "dept_id": "D03565",
+                "canonical": "嗓音病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "耳鸣耳聋科(石)",
+                "dept_id": "D07501",
+                "canonical": "耳鸣耳聋科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "慢性咽炎科(石)",
+                "dept_id": "D04958",
+                "canonical": "慢性咽炎科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              }
+            ]
+          },
+          {
+            "name": "皮肤科",
+            "tab_index": 11,
+            "depts": [
+              {
+                "raw": "皮肤科(石)",
+                "dept_id": "D06702",
+                "canonical": "皮肤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              }
+            ]
+          },
+          {
+            "name": "推拿科",
+            "tab_index": 12,
+            "depts": [
+              {
+                "raw": "小儿推拿专科（石）",
+                "dept_id": "D04295",
+                "canonical": "小儿推拿",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "小儿腺样体肥大专病(石)",
+                "dept_id": "D04315",
+                "canonical": "小儿腺样体肥大",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "推拿科(石)",
+                "dept_id": "D05155",
+                "canonical": "推拿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "内功推拿疗法传承专科(石)",
+                "dept_id": "D02627",
+                "canonical": "内功推拿疗法传承",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              }
+            ]
+          },
+          {
+            "name": "中医科",
+            "tab_index": 13,
+            "depts": [
+              {
+                "raw": "脑病科(石)",
+                "dept_id": "D08468",
+                "canonical": "脑病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "恶性肿瘤门诊化疗(异地门慢特)(石)",
+                "dept_id": "D04903",
+                "canonical": "恶性肿瘤门诊化疗",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:异地门慢特;院区:石"
+              },
+              {
+                "raw": "男性病专科(石)",
+                "dept_id": "D06411",
+                "canonical": "男性病",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "脑肿瘤专科(石)",
+                "dept_id": "D08483",
+                "canonical": "脑肿瘤",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "痤疮专科(石)",
+                "dept_id": "D06595",
+                "canonical": "痤疮",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "过敏性皮肤专科(石)",
+                "dept_id": "D09264",
+                "canonical": "过敏性皮肤",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "中风专科(石)",
+                "dept_id": "D01569",
+                "canonical": "中风",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "光子激光门诊(石)",
+                "dept_id": "D02341",
+                "canonical": "光子激光门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "外八科(皮肤与疮疡科)(石)",
+                "dept_id": "D03755",
+                "canonical": "外八科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:皮肤与疮疡科;院区:石"
+              },
+              {
+                "raw": "软组织感染专科(石)",
+                "dept_id": "D09231",
+                "canonical": "软组织感染",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "黄褐斑专科(石)",
+                "dept_id": "D10272",
+                "canonical": "黄褐斑",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "老年病科(石)",
+                "dept_id": "D07399",
+                "canonical": "老年病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "糖尿病(异地门慢特)(石)",
+                "dept_id": "D07170",
+                "canonical": "糖尿病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:异地门慢特;院区:石"
+              },
+              {
+                "raw": "眩晕专科(石)",
+                "dept_id": "D06802",
+                "canonical": "眩晕",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "高血压(异地门慢特)(石)",
+                "dept_id": "D10206",
+                "canonical": "高血压",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:异地门慢特;院区:石"
+              },
+              {
+                "raw": "尿毒症透析(异地门慢特)(石)",
+                "dept_id": "D04356",
+                "canonical": "尿毒症透析",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:异地门慢特;院区:石"
+              }
+            ]
+          },
+          {
+            "name": "骨科",
+            "tab_index": 14,
+            "depts": [
+              {
+                "raw": "脑卒中康复专科(石)",
+                "dept_id": "D08438",
+                "canonical": "脑卒中康复",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "康复医学科(石)",
+                "dept_id": "D04496",
+                "canonical": "康复医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "颈椎病康复专科(石)",
+                "dept_id": "D09825",
+                "canonical": "颈椎病康复",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "骨关节炎专科(石)",
+                "dept_id": "D10027",
+                "canonical": "骨关节炎",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "骨质疏松症专科(石)",
+                "dept_id": "D10141",
+                "canonical": "骨质疏松症",
+                "kind": "specialty_clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "股骨头坏死康复专科(石)",
+                "dept_id": "D07738",
+                "canonical": "股骨头坏死康复",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "脊柱微创专科(石)",
+                "dept_id": "D08396",
+                "canonical": "脊柱微创",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "骨伤科(石)",
+                "dept_id": "D10069",
+                "canonical": "骨科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "腰椎间盘突出症专科(石)",
+                "dept_id": "D08559",
+                "canonical": "腰椎间盘突出症",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "肩袖损伤康复专科(石)",
+                "dept_id": "D07817",
+                "canonical": "肩袖损伤康复",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              }
+            ]
+          },
+          {
+            "name": "妇科",
+            "tab_index": 15,
+            "depts": [
+              {
+                "raw": "不孕不育专科(石)",
+                "dept_id": "D00246",
+                "canonical": "不孕不育",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "子宫内膜异位症专科(石)",
+                "dept_id": "D04108",
+                "canonical": "子宫内膜异位症",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "围绝经期综合症专科(石)",
+                "dept_id": "D03598",
+                "canonical": "围绝经期综合症",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "多囊卵巢综合症专科(石)",
+                "dept_id": "D03817",
+                "canonical": "多囊卵巢综合症",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "盆腔炎性病后遗症专科(石)",
+                "dept_id": "D06790",
+                "canonical": "盆腔炎性病后遗症",
+                "kind": "specialty_clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "妇科(石)",
+                "dept_id": "D03984",
+                "canonical": "妇科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "月经病专科(石)",
+                "dept_id": "D05554",
+                "canonical": "月经病",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              },
+              {
+                "raw": "不孕症专科(石)",
+                "dept_id": "D00252",
+                "canonical": "不孕症",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:石"
+              }
+            ]
+          },
+          {
+            "name": "风湿科",
+            "tab_index": 16,
+            "depts": [
+              {
+                "raw": "风湿病科(石)",
+                "dept_id": "D09915",
+                "canonical": "风湿病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:石"
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 17,
+          "entry_count": 228,
+          "unique_count": 227,
+          "canonical_count": 224
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T10:19:07Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 17,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T10:19:07Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 227,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T10:19:07Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

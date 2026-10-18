@@ -1,0 +1,1272 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-012",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:39",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=12; geo=amap(name_in_poi); dept=suishenban#yuyue_guahao(2026-09-26, l1=14/l2u=123)"
+  },
+  "institution": {
+    "name": "华山医院(虹桥院区)",
+    "aliases": [],
+    "level": "三级甲等",
+    "type": "综合医院",
+    "ownership": "公立",
+    "affiliation": "复旦大学",
+    "official_site": "http://www.huashan.org.cn",
+    "tel": "021-52889999;021-9699176"
+  },
+  "campuses": [
+    {
+      "id": "SH-012-M",
+      "name": "本部",
+      "district": "闵行区",
+      "address": "金光路958号复旦大学附属华山医院虹桥院区111C病区",
+      "geo": {
+        "lng": 121.273659,
+        "lat": 31.20825,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:name_in_poi"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "三级甲等",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "季乐路(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 519,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 2,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": 11.0,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 3,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 153,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "北青公路金光路(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "computed",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html",
+        "basis": "parent_institution",
+        "parent": "华山医院",
+        "note": "推定：母院为医保定点，该院区未在名单单列（母院=华山医院）"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-26T15:26:53Z",
+        "l1": [
+          {
+            "name": "医学影像科",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "西院心超",
+                "dept_id": "D08959",
+                "canonical": "西院心超",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院超声医学血管专病",
+                "dept_id": "D09041",
+                "canonical": "西院超声医学血管",
+                "kind": "ancillary",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院超声医学科",
+                "dept_id": "D09040",
+                "canonical": "西院超声医学科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院心超造影专病",
+                "dept_id": "D08960",
+                "canonical": "西院心超造影",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "康复医学科",
+            "tab_index": 1,
+            "depts": [
+              {
+                "raw": "西院康复医学科言语康复专病(胡瑞萍组)",
+                "dept_id": "D08948",
+                "canonical": "西院康复医学科言语康复",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "医师:胡瑞萍组"
+              },
+              {
+                "raw": "西院康复医学科运动障碍康复专病(朱玉连组)",
+                "dept_id": "D08950",
+                "canonical": "西院康复医学科运动障碍康复",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "医师:朱玉连组"
+              },
+              {
+                "raw": "西院康复医学科意识障碍康复专病门诊(余克威组)",
+                "dept_id": "D08947",
+                "canonical": "西院康复医学科意识障碍康复门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "医师:余克威组"
+              },
+              {
+                "raw": "西院康复科高压氧治疗专病门诊(孙莉敏组)",
+                "dept_id": "D08952",
+                "canonical": "西院康复科高压氧治疗门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "医师:孙莉敏组"
+              },
+              {
+                "raw": "西院康复医学科",
+                "dept_id": "D08946",
+                "canonical": "西院康复医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院康复医学科颈肩腰腿痛专病(孙莉敏组)",
+                "dept_id": "D08951",
+                "canonical": "西院康复医学科颈肩腰腿痛",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "医师:孙莉敏组"
+              },
+              {
+                "raw": "西院康复医学科运动康复专病(朱玉连组)",
+                "dept_id": "D08949",
+                "canonical": "西院康复医学科运动康复",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "医师:朱玉连组"
+              }
+            ]
+          },
+          {
+            "name": "口腔科",
+            "tab_index": 2,
+            "depts": [
+              {
+                "raw": "西院造口/伤口护理专科门诊",
+                "dept_id": "D09045",
+                "canonical": "西院造口/伤口护理门诊",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "眼科",
+            "tab_index": 3,
+            "depts": [
+              {
+                "raw": "西院眼科",
+                "dept_id": "D08995",
+                "canonical": "西院眼科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院眼科屈光专病",
+                "dept_id": "D08996",
+                "canonical": "西院眼科屈光",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "肿瘤科",
+            "tab_index": 4,
+            "depts": [
+              {
+                "raw": "西院肿瘤科",
+                "dept_id": "D09031",
+                "canonical": "西院肿瘤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "传染科",
+            "tab_index": 5,
+            "depts": [
+              {
+                "raw": "西院感染门诊",
+                "dept_id": "D08962",
+                "canonical": "西院感染门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院感染科",
+                "dept_id": "D08961",
+                "canonical": "西院感染科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "外科",
+            "tab_index": 6,
+            "depts": [
+              {
+                "raw": "西院胸外科肺小结节专病",
+                "dept_id": "D09034",
+                "canonical": "西院胸外科肺小结节",
+                "kind": "specialty_clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院神经外科垂体瘤专病",
+                "dept_id": "D09011",
+                "canonical": "西院神经外科垂体瘤",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院神经外科颅底肿瘤专病(钟平组)",
+                "dept_id": "D09024",
+                "canonical": "西院神经外科颅底肿瘤",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "医师:钟平组"
+              },
+              {
+                "raw": "西院神经外科烟雾病脑血管专病",
+                "dept_id": "D09015",
+                "canonical": "西院神经外科烟雾病脑血管",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院神经外科",
+                "dept_id": "D09009",
+                "canonical": "西院神经外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院整形外科",
+                "dept_id": "D08968",
+                "canonical": "西院整形外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院普外科乳腺专病",
+                "dept_id": "D08975",
+                "canonical": "西院普外科乳腺",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院泌尿外科",
+                "dept_id": "D08979",
+                "canonical": "西院泌尿外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院神经外科颈肩腰腿痛专病",
+                "dept_id": "D09025",
+                "canonical": "西院神经外科颈肩腰腿痛",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院普外科腹壁疝专病",
+                "dept_id": "D08978",
+                "canonical": "西院普外科腹壁疝",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院普外科甲状腺专病",
+                "dept_id": "D08976",
+                "canonical": "西院普外科甲状腺",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院胸外科",
+                "dept_id": "D09033",
+                "canonical": "西院胸外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院骨科",
+                "dept_id": "D09047",
+                "canonical": "西院骨科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院神经外科胶质瘤随访专病",
+                "dept_id": "D09020",
+                "canonical": "西院神经外科胶质瘤随访",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院整形外科颅面畸形整复专病",
+                "dept_id": "D08973",
+                "canonical": "西院整形外科颅面畸形整复",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院手外科",
+                "dept_id": "D08963",
+                "canonical": "西院手外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院神经外科复发胶质瘤专病门诊",
+                "dept_id": "D09012",
+                "canonical": "西院神经外科复发胶质瘤门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院神经外科脑膜瘤专病(宫晔组)",
+                "dept_id": "D09022",
+                "canonical": "西院神经外科脑膜瘤",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "医师:宫晔组"
+              },
+              {
+                "raw": "西院普外科胆石症专病",
+                "dept_id": "D08977",
+                "canonical": "西院普外科胆石症",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院神经外科垂体瘤专病(赵曜组)",
+                "dept_id": "D09011",
+                "canonical": "西院神经外科垂体瘤",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "医师:赵曜组"
+              },
+              {
+                "raw": "西院神经外科脑转移瘤专病",
+                "dept_id": "D09023",
+                "canonical": "西院神经外科脑转移瘤",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院神经外科神经重症专病门诊",
+                "dept_id": "D09017",
+                "canonical": "西院神经外科神经重症门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院普外科",
+                "dept_id": "D08974",
+                "canonical": "西院普外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院神经外科脑外伤脑积水专病",
+                "dept_id": "D09021",
+                "canonical": "西院神经外科脑外伤脑积水",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院胰腺外科",
+                "dept_id": "D09032",
+                "canonical": "西院胰腺外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院整形外科体表肿瘤(胎记黑痣)专病",
+                "dept_id": "D08970",
+                "canonical": "西院整形外科体表肿瘤",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "医师:胎记黑痣"
+              },
+              {
+                "raw": "西院功能神经外科专病",
+                "dept_id": "D08941",
+                "canonical": "西院功能神经外科",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院骨科脊柱专病(吕飞舟组)",
+                "dept_id": "D09048",
+                "canonical": "西院骨科脊柱",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "医师:吕飞舟组"
+              }
+            ]
+          },
+          {
+            "name": "内科",
+            "tab_index": 7,
+            "depts": [
+              {
+                "raw": "西院消化科",
+                "dept_id": "D08980",
+                "canonical": "西院消化科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院神经内科头痛专病",
+                "dept_id": "D08999",
+                "canonical": "西院神经内科头痛",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院消化科幽门螺旋杆菌相关疾病专病门诊",
+                "dept_id": "D08981",
+                "canonical": "西院消化科幽门螺旋杆菌相关疾病门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院神经内科脱髓鞘专病",
+                "dept_id": "D09006",
+                "canonical": "西院神经内科脱髓鞘",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院神经内科脑血管病介入专病",
+                "dept_id": "D09005",
+                "canonical": "西院神经内科脑血管病介入",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院消化科脂肪肝与肝功能异常专病",
+                "dept_id": "D08982",
+                "canonical": "西院消化科脂肪肝与肝功能异常",
+                "kind": "specialty_clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院神经内科帕金森专病",
+                "dept_id": "D09000",
+                "canonical": "西院神经内科帕金森",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院心内科起搏器专病",
+                "dept_id": "D08956",
+                "canonical": "西院心内科起搏器",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院中医科呼吸专病",
+                "dept_id": "D08930",
+                "canonical": "西院中医科呼吸",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院神经内科",
+                "dept_id": "D08997",
+                "canonical": "西院神经内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院神经内科记忆力障碍专病(郁金泰组)",
+                "dept_id": "D09008",
+                "canonical": "西院神经内科记忆力障碍",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "医师:郁金泰组"
+              },
+              {
+                "raw": "西院内分泌科",
+                "dept_id": "D08939",
+                "canonical": "西院内分泌科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院心内科",
+                "dept_id": "D08953",
+                "canonical": "西院心内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院肾内科",
+                "dept_id": "D09030",
+                "canonical": "西院肾内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院神经内科中风专病",
+                "dept_id": "D08998",
+                "canonical": "西院神经内科中风",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院神经内科脑小血管专病",
+                "dept_id": "D09004",
+                "canonical": "西院神经内科脑小血管",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院神经内科肌电图",
+                "dept_id": "D09003",
+                "canonical": "西院神经内科肌电图",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院心内科心肌功能心超评估门诊",
+                "dept_id": "D08955",
+                "canonical": "西院心内科心肌功能心超评估门诊",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院呼吸与危重症医学科",
+                "dept_id": "D08942",
+                "canonical": "西院呼吸与危重症医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院神经内科记忆力筛查和防治门诊(郁金泰组)",
+                "dept_id": "D09007",
+                "canonical": "西院神经内科记忆力筛查和防治门诊",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": "医师:郁金泰组"
+              },
+              {
+                "raw": "西院神经内科癫痫专病",
+                "dept_id": "D09001",
+                "canonical": "西院神经内科癫痫",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "其他",
+            "tab_index": 8,
+            "depts": [
+              {
+                "raw": "西院神经心理抑郁症焦虑障碍专病(刘登堂组)",
+                "dept_id": "D09026",
+                "canonical": "西院神经心理抑郁症焦虑障碍",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "医师:刘登堂组"
+              },
+              {
+                "raw": "西院神经外科肿瘤电场治疗专病门诊",
+                "dept_id": "D09018",
+                "canonical": "西院神经外科肿瘤电场治疗门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院中西医结合科肺部感染和尿路感染专病",
+                "dept_id": "D08935",
+                "canonical": "西院中西医结合科肺部感染和尿路感染",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院放射科阿尔兹海默病新药影像评估专病门诊",
+                "dept_id": "D08967",
+                "canonical": "西院放射科阿尔兹海默病新药影像评估门诊",
+                "kind": "ancillary",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院运动医学科膝/肩关节专病",
+                "dept_id": "D09044",
+                "canonical": "西院运动医学科膝/肩关节",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院神经外科帕金森病和脑机接口手术筛查与随访门诊(陈亮组)",
+                "dept_id": "D09013",
+                "canonical": "西院神经外科帕金森病和脑机接口手术筛查与随访门诊",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": "医师:陈亮组"
+              },
+              {
+                "raw": "西院神经外科癫痫和神经调控专病门诊",
+                "dept_id": "D09016",
+                "canonical": "西院神经外科癫痫和神经调控门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院骨科髋膝肩关节专病",
+                "dept_id": "D09049",
+                "canonical": "西院骨科髋膝肩关节",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院整形外科瘢痕整形(瘢痕疙瘩)专病",
+                "dept_id": "D08971",
+                "canonical": "西院整形外科瘢痕整形",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "医师:瘢痕疙瘩"
+              },
+              {
+                "raw": "西院皮肤科面部皮炎与痤疮专病",
+                "dept_id": "D08994",
+                "canonical": "西院皮肤科面部皮炎与痤疮",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院营养咨询",
+                "dept_id": "D09038",
+                "canonical": "西院营养咨询",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院神经外科出血性脑血管疾病(朱巍组)",
+                "dept_id": "D09010",
+                "canonical": "西院神经外科出血性脑血管疾病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:朱巍组"
+              },
+              {
+                "raw": "西院神经外科微创锁孔手术专病",
+                "dept_id": "D09014",
+                "canonical": "西院神经外科微创锁孔手术",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院胸外科肺部肿瘤鉴别和微创手术专病",
+                "dept_id": "D09035",
+                "canonical": "西院胸外科肺部肿瘤鉴别和微创手术",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院放射治疗科神经肿瘤放疗专病",
+                "dept_id": "D08965",
+                "canonical": "西院放射治疗科神经肿瘤放疗",
+                "kind": "ancillary",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院老年医学科",
+                "dept_id": "D09027",
+                "canonical": "西院老年医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院疼痛门诊",
+                "dept_id": "D08983",
+                "canonical": "西院疼痛门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院运动医学科",
+                "dept_id": "D09043",
+                "canonical": "西院运动医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院老年医学科睡眠障碍及慢性病专病",
+                "dept_id": "D09028",
+                "canonical": "西院老年医学科睡眠障碍及慢性病",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院膏方门诊",
+                "dept_id": "D09036",
+                "canonical": "西院膏方门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院病理会诊",
+                "dept_id": "D08984",
+                "canonical": "西院病理会诊",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院小儿神经外科专病",
+                "dept_id": "D08945",
+                "canonical": "西院小儿神经外科",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院整形外科体表外伤精细缝合专病",
+                "dept_id": "D08969",
+                "canonical": "西院整形外科体表外伤精细缝合",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院射波刀专病",
+                "dept_id": "D08944",
+                "canonical": "西院射波刀",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院中西医结合科睡眠障碍专病",
+                "dept_id": "D08934",
+                "canonical": "西院中西医结合科睡眠障碍",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院全科门诊",
+                "dept_id": "D08938",
+                "canonical": "西院全科门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院放射治疗科",
+                "dept_id": "D08964",
+                "canonical": "西院放射治疗科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院神经外科烟雾病脑血管专病(顾宇翔组)",
+                "dept_id": "D09015",
+                "canonical": "西院神经外科烟雾病脑血管",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "医师:顾宇翔组"
+              },
+              {
+                "raw": "西院药剂科咳喘药学专病门诊",
+                "dept_id": "D09037",
+                "canonical": "西院药剂科咳喘药学门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院神经外科胶质瘤化疗及免疫治疗专病门诊",
+                "dept_id": "D09019",
+                "canonical": "西院神经外科胶质瘤化疗及免疫治疗门诊",
+                "kind": "screening",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院血液科",
+                "dept_id": "D09039",
+                "canonical": "西院血液科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院神经内科肌炎/肌病门诊",
+                "dept_id": "D09002",
+                "canonical": "西院神经内科肌炎/肌病门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院心内科心力衰竭专病门诊",
+                "dept_id": "D08954",
+                "canonical": "西院心内科心力衰竭门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院整形外科腋臭专科(微创腋臭)专病",
+                "dept_id": "D08972",
+                "canonical": "西院整形外科腋臭专科",
+                "kind": "specialty_clinic",
+                "visit_type": "专病",
+                "qualifiers": "其他:微创腋臭"
+              },
+              {
+                "raw": "西院风湿免疫科",
+                "dept_id": "D09046",
+                "canonical": "西院风湿免疫科",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院内科",
+                "dept_id": "D08940",
+                "canonical": "西院内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院垂体瘤/泌乳素瘤专病门诊",
+                "dept_id": "D08943",
+                "canonical": "西院垂体瘤/泌乳素瘤门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院放射科",
+                "dept_id": "D08966",
+                "canonical": "西院放射科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "耳鼻咽喉科",
+            "tab_index": 9,
+            "depts": [
+              {
+                "raw": "西院耳鼻咽喉科",
+                "dept_id": "D09029",
+                "canonical": "西院耳鼻咽喉科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "中医科",
+            "tab_index": 10,
+            "depts": [
+              {
+                "raw": "西院中医科",
+                "dept_id": "D08929",
+                "canonical": "西院中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院过敏和免疫(变态反应)科(中医科)",
+                "dept_id": "D09042",
+                "canonical": "西院过敏和免疫科",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": "其他:变态反应;其他:中医科"
+              },
+              {
+                "raw": "西院中医科针灸推拿",
+                "dept_id": "D08932",
+                "canonical": "西院中医科针灸推拿",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院中医科埋线专病",
+                "dept_id": "D08931",
+                "canonical": "西院中医科埋线",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "中西医结合科",
+            "tab_index": 11,
+            "depts": [
+              {
+                "raw": "西院中西医结合科脱发专病",
+                "dept_id": "D08936",
+                "canonical": "西院中西医结合科脱发",
+                "kind": "specialty_clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院中西医结合肝胆脾胃专病",
+                "dept_id": "D08937",
+                "canonical": "西院中西医结合肝胆脾胃",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "皮肤科",
+            "tab_index": 12,
+            "depts": [
+              {
+                "raw": "西院皮肤科红斑狼疮硬皮病专病",
+                "dept_id": "D08991",
+                "canonical": "西院皮肤科红斑狼疮硬皮病",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院中西医结合皮肤免疫专病",
+                "dept_id": "D08933",
+                "canonical": "西院中西医结合皮肤免疫",
+                "kind": "screening",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院皮肤科脱发专病",
+                "dept_id": "D08993",
+                "canonical": "西院皮肤科脱发",
+                "kind": "specialty_clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院皮肤科美容与激光门诊",
+                "dept_id": "D08992",
+                "canonical": "西院皮肤科美容与激光门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院皮肤科皮肤色素血管专病(项蕾红组)",
+                "dept_id": "D08990",
+                "canonical": "西院皮肤科皮肤色素血管",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "医师:项蕾红组"
+              },
+              {
+                "raw": "西院皮肤科痤疮与玫瑰痤疮专病",
+                "dept_id": "D08986",
+                "canonical": "西院皮肤科痤疮与玫瑰痤疮",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院皮肤科皮肤中医联合门诊",
+                "dept_id": "D08988",
+                "canonical": "西院皮肤科皮肤中医联合门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院皮肤科皮肤年轻化专病",
+                "dept_id": "D08989",
+                "canonical": "西院皮肤科皮肤年轻化",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院皮肤科白癜风专病",
+                "dept_id": "D08987",
+                "canonical": "西院皮肤科白癜风",
+                "kind": "specialty_clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院皮肤科",
+                "dept_id": "D08985",
+                "canonical": "西院皮肤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "精神科",
+            "tab_index": 13,
+            "depts": [
+              {
+                "raw": "西院心理咨询",
+                "dept_id": "D08957",
+                "canonical": "西院心理咨询",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西院心理咨询抑郁症焦虑障碍专病",
+                "dept_id": "D08958",
+                "canonical": "西院心理咨询抑郁症焦虑障碍",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 14,
+          "entry_count": 123,
+          "unique_count": 123,
+          "canonical_count": 121
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T15:26:53Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 14,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T15:26:53Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 123,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T15:26:53Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

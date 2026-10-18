@@ -1,0 +1,365 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-141",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:39",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=103; geo=amap(exact); level_raw=二级医院; dept=suishenban#yuyue_guahao(2026-09-26, l1=2/l2u=19)"
+  },
+  "institution": {
+    "name": "浦东新区眼病牙病防治所",
+    "aliases": [],
+    "level": "二级",
+    "type": "专科疾病防治院",
+    "ownership": "公立",
+    "affiliation": "",
+    "official_site": "",
+    "tel": "021-58016019"
+  },
+  "campuses": [
+    {
+      "id": "SH-141-M",
+      "name": "本部",
+      "district": "浦东新区",
+      "address": "文化路222号",
+      "geo": {
+        "lng": 121.754175,
+        "lat": 31.052215,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:exact"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "二级",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "惠南(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 737,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 1,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": 14.3,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 1,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 152,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "拱极路城北路(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-28T01:17:31Z",
+        "l1": [
+          {
+            "name": "眼科",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "眼科（社区转诊）",
+                "dept_id": "D06839",
+                "canonical": "眼科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:社区转诊"
+              },
+              {
+                "raw": "干眼专科（社区转诊）",
+                "dept_id": "D04445",
+                "canonical": "干眼",
+                "kind": "specialty_clinic",
+                "visit_type": "专科",
+                "qualifiers": "医师:社区转诊"
+              }
+            ]
+          },
+          {
+            "name": "牙科",
+            "tab_index": 1,
+            "depts": [
+              {
+                "raw": "口腔正畸科",
+                "dept_id": "D03215",
+                "canonical": "口腔正畸科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "口腔牙体牙髓科",
+                "dept_id": "D03225",
+                "canonical": "口腔牙体牙髓科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "口腔牙周科",
+                "dept_id": "D03228",
+                "canonical": "口腔牙周科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "口腔种植科",
+                "dept_id": "D03243",
+                "canonical": "口腔种植科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "口腔修复科",
+                "dept_id": "D03187",
+                "canonical": "口腔修复科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "口腔牙槽外科",
+                "dept_id": "D03229",
+                "canonical": "口腔牙槽外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "儿童早期矫正专科（社区转诊）",
+                "dept_id": "D02175",
+                "canonical": "儿童早期矫正",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "医师:社区转诊"
+              },
+              {
+                "raw": "口腔种植修复科（社区转诊）",
+                "dept_id": "D03239",
+                "canonical": "口腔种植修复科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:社区转诊"
+              },
+              {
+                "raw": "口腔牙体牙髓科（社区转诊）",
+                "dept_id": "D03225",
+                "canonical": "口腔牙体牙髓科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:社区转诊"
+              },
+              {
+                "raw": "口腔牙槽外科（社区转诊）",
+                "dept_id": "D03229",
+                "canonical": "口腔牙槽外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:社区转诊"
+              },
+              {
+                "raw": "口腔修复科（社区转诊）",
+                "dept_id": "D03187",
+                "canonical": "口腔修复科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:社区转诊"
+              },
+              {
+                "raw": "口腔牙周科（社区转诊）",
+                "dept_id": "D03228",
+                "canonical": "口腔牙周科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:社区转诊"
+              },
+              {
+                "raw": "儿童拔牙（社区转诊）",
+                "dept_id": "D02167",
+                "canonical": "儿童拔牙",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:社区转诊"
+              },
+              {
+                "raw": "口腔种植科（社区转诊）",
+                "dept_id": "D03243",
+                "canonical": "口腔种植科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:社区转诊"
+              },
+              {
+                "raw": "口腔正畸科（社区转诊）",
+                "dept_id": "D03215",
+                "canonical": "口腔正畸科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:社区转诊"
+              },
+              {
+                "raw": "成人口腔综合(社区转诊)",
+                "dept_id": "D05029",
+                "canonical": "成人口腔综合",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:社区转诊"
+              },
+              {
+                "raw": "口腔综合",
+                "dept_id": "D03281",
+                "canonical": "口腔综合",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 2,
+          "entry_count": 19,
+          "unique_count": 19,
+          "canonical_count": 13
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-28T01:17:31Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 2,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-28T01:17:31Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 19,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-28T01:17:31Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

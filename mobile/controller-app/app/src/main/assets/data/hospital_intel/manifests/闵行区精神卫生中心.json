@@ -1,0 +1,345 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-160",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:39",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=160; geo=amap(name_in_poi); dept=suishenban#yuyue_guahao(2026-09-26, l1=4/l2u=13)"
+  },
+  "institution": {
+    "name": "闵行区精神卫生中心",
+    "aliases": [],
+    "level": "二级甲等",
+    "type": "专科疾病防治院",
+    "ownership": "公立",
+    "affiliation": "",
+    "official_site": "",
+    "tel": ""
+  },
+  "campuses": [
+    {
+      "id": "SH-160-M",
+      "name": "本部",
+      "district": "闵行区",
+      "address": "东环路与北环路交叉口东140米",
+      "geo": {
+        "lng": 121.537107,
+        "lat": 31.020853,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:name_in_poi"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "二级甲等",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "东城一路(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 1164,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 0,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": null,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 2,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 165,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "闸航路卫生中心(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-27T20:08:59Z",
+        "l1": [
+          {
+            "name": "浦东总院心理科",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "普通心理咨询",
+                "dept_id": "D05522",
+                "canonical": "普通心理咨询",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "儿少心理门诊(浦东)",
+                "dept_id": "D02001",
+                "canonical": "儿少心理门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:浦东"
+              }
+            ]
+          },
+          {
+            "name": "浦东总院精神科",
+            "tab_index": 1,
+            "depts": [
+              {
+                "raw": "精神科专家门诊",
+                "dept_id": "D07162",
+                "canonical": "精神科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "精神科普通门诊",
+                "dept_id": "D07165",
+                "canonical": "精神科普通门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "老年精神科",
+                "dept_id": "D07432",
+                "canonical": "老年精神科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "精神科(浦东长效)",
+                "dept_id": "D07162",
+                "canonical": "精神科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:浦东长效"
+              },
+              {
+                "raw": "焦虑抑郁专病门诊",
+                "dept_id": "D06058",
+                "canonical": "焦虑抑郁门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "睡眠专病",
+                "dept_id": "D06901",
+                "canonical": "睡眠",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "抑郁焦虑专家门诊(浦东)",
+                "dept_id": "D05092",
+                "canonical": "抑郁焦虑门诊",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": "院区:浦东"
+              }
+            ]
+          },
+          {
+            "name": "浦西门诊部精神科",
+            "tab_index": 2,
+            "depts": [
+              {
+                "raw": "精神科普通门诊",
+                "dept_id": "D07165",
+                "canonical": "精神科普通门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "抑郁焦虑专病门诊(浦西)",
+                "dept_id": "D05092",
+                "canonical": "抑郁焦虑门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "院区:浦西"
+              },
+              {
+                "raw": "精神科(浦西长效)",
+                "dept_id": "D07162",
+                "canonical": "精神科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:浦西长效"
+              }
+            ]
+          },
+          {
+            "name": "浦西门诊部心理科",
+            "tab_index": 3,
+            "depts": [
+              {
+                "raw": "普通心理咨询",
+                "dept_id": "D05522",
+                "canonical": "普通心理咨询",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "儿少心理专家门诊(浦西)",
+                "dept_id": "D02001",
+                "canonical": "儿少心理门诊",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": "院区:浦西"
+              },
+              {
+                "raw": "心理疏导护理",
+                "dept_id": "D04712",
+                "canonical": "心理疏导护理",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 4,
+          "entry_count": 15,
+          "unique_count": 13,
+          "canonical_count": 9
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-27T20:08:59Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 4,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-27T20:08:59Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 13,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-27T20:08:59Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

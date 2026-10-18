@@ -1,0 +1,681 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-392",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:40",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=392; geo=amap(exact); dept=suishenban#yuyue_guahao(2026-09-26, l1=16/l2u=48)"
+  },
+  "institution": {
+    "name": "莘庄社区卫生服务中心",
+    "aliases": [],
+    "level": "一级甲等",
+    "type": "综合医院",
+    "ownership": "公立",
+    "affiliation": "",
+    "official_site": "",
+    "tel": "021-64133120"
+  },
+  "campuses": [
+    {
+      "id": "SH-392-M",
+      "name": "本部",
+      "district": "闵行区",
+      "address": "水清路1099号(近秀文路)",
+      "geo": {
+        "lng": 121.37436,
+        "lat": 31.128094,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:exact"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "一级甲等",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "虹莘路(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 1187,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 0,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": null,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 2,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 102,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "水清路秀文路(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-29T00:43:15Z",
+        "l1": [
+          {
+            "name": "云诊室",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "护理云诊室",
+                "dept_id": "D05106",
+                "canonical": "护理云诊室",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "莘城服务站",
+            "tab_index": 1,
+            "depts": [
+              {
+                "raw": "莘城全科",
+                "dept_id": "D08724",
+                "canonical": "莘城全科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "莘城中医科",
+                "dept_id": "D08723",
+                "canonical": "莘城中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "西环服务站",
+            "tab_index": 2,
+            "depts": [
+              {
+                "raw": "西环中医科",
+                "dept_id": "D08923",
+                "canonical": "西环中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "西环全科",
+                "dept_id": "D08924",
+                "canonical": "西环全科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "莘光服务站",
+            "tab_index": 3,
+            "depts": [
+              {
+                "raw": "莘光全科",
+                "dept_id": "D08721",
+                "canonical": "莘光全科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "莘光中医科",
+                "dept_id": "D08720",
+                "canonical": "莘光中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "春申万科服务站",
+            "tab_index": 4,
+            "depts": [
+              {
+                "raw": "万科全科",
+                "dept_id": "D00201",
+                "canonical": "万科全科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "万科中医科",
+                "dept_id": "D00200",
+                "canonical": "万科中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "报春服务站",
+            "tab_index": 5,
+            "depts": [
+              {
+                "raw": "报春全科",
+                "dept_id": "D05114",
+                "canonical": "报春全科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "报春中医科",
+                "dept_id": "D05113",
+                "canonical": "报春中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "沁春园服务站",
+            "tab_index": 6,
+            "depts": [
+              {
+                "raw": "沁春园中医科",
+                "dept_id": "D05753",
+                "canonical": "沁春园中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "沁春园全科",
+                "dept_id": "D05754",
+                "canonical": "沁春园全科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "新天地服务站",
+            "tab_index": 7,
+            "depts": [
+              {
+                "raw": "新天地中医科",
+                "dept_id": "D05295",
+                "canonical": "新天地中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "新天地全科",
+                "dept_id": "D05296",
+                "canonical": "新天地全科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "春申复地服务站",
+            "tab_index": 8,
+            "depts": [
+              {
+                "raw": "春申中医科",
+                "dept_id": "D05422",
+                "canonical": "春申中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "春申全科",
+                "dept_id": "D05423",
+                "canonical": "春申全科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "七莘服务站",
+            "tab_index": 9,
+            "depts": [
+              {
+                "raw": "七莘中医科",
+                "dept_id": "D00195",
+                "canonical": "七莘中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "七莘全科",
+                "dept_id": "D00196",
+                "canonical": "七莘全科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "新梅服务站",
+            "tab_index": 10,
+            "depts": [
+              {
+                "raw": "新梅中医科",
+                "dept_id": "D05302",
+                "canonical": "新梅中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "新梅全科",
+                "dept_id": "D05303",
+                "canonical": "新梅全科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "闵城服务站",
+            "tab_index": 11,
+            "depts": [
+              {
+                "raw": "闵城全科",
+                "dept_id": "D09635",
+                "canonical": "闵城全科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "闵城中医科",
+                "dept_id": "D09634",
+                "canonical": "闵城中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "闵城针灸科",
+                "dept_id": "D09636",
+                "canonical": "闵城针灸科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "康城分中心",
+            "tab_index": 12,
+            "depts": [
+              {
+                "raw": "康城全科",
+                "dept_id": "D04490",
+                "canonical": "康城全科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "康城导管维护护理门诊",
+                "dept_id": "D04491",
+                "canonical": "康城导管维护护理门诊",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "康城中医科",
+                "dept_id": "D04489",
+                "canonical": "康城中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "莘谭服务站",
+            "tab_index": 13,
+            "depts": [
+              {
+                "raw": "莘谭全科",
+                "dept_id": "D08732",
+                "canonical": "莘谭全科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "莘夜诊全科",
+                "dept_id": "D08722",
+                "canonical": "莘全科",
+                "kind": "clinic",
+                "visit_type": "夜间门诊",
+                "qualifiers": ""
+              },
+              {
+                "raw": "莘夜诊中医科",
+                "dept_id": "D08719",
+                "canonical": "莘中医科",
+                "kind": "clinic",
+                "visit_type": "夜间门诊",
+                "qualifiers": ""
+              },
+              {
+                "raw": "莘谭中医科",
+                "dept_id": "D08731",
+                "canonical": "莘谭中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "莘建分中心",
+            "tab_index": 14,
+            "depts": [
+              {
+                "raw": "莘建全科",
+                "dept_id": "D08727",
+                "canonical": "莘建全科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "莘建中医科",
+                "dept_id": "D08725",
+                "canonical": "莘建中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "莘建妇产科",
+                "dept_id": "D08728",
+                "canonical": "莘建妇产科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "莘建妇科",
+                "dept_id": "D08729",
+                "canonical": "莘建妇科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "莘建早孕门诊",
+                "dept_id": "D08730",
+                "canonical": "莘建早孕门诊",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "莘建伤口护理门诊",
+                "dept_id": "D08726",
+                "canonical": "莘建伤口护理门诊",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "总院",
+            "tab_index": 15,
+            "depts": [
+              {
+                "raw": "中医专家",
+                "dept_id": "D01115",
+                "canonical": "中医",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "早孕门诊",
+                "dept_id": "D05401",
+                "canonical": "早孕",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "全科门诊",
+                "dept_id": "D02450",
+                "canonical": "全科医疗科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "全科6（妇科）",
+                "dept_id": "D02395",
+                "canonical": "全科6",
+                "kind": "site",
+                "visit_type": "普通",
+                "qualifiers": "其他:妇科"
+              },
+              {
+                "raw": "导管维护护理门诊",
+                "dept_id": "D04251",
+                "canonical": "导管维护护理门诊",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "中医科",
+                "dept_id": "D01316",
+                "canonical": "中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "儿科",
+                "dept_id": "D02013",
+                "canonical": "儿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "妇产科",
+                "dept_id": "D03965",
+                "canonical": "妇产科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "总部伤口护理门诊",
+                "dept_id": "D04897",
+                "canonical": "总部伤口护理门诊",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "中医针灸科",
+                "dept_id": "D01455",
+                "canonical": "中医针灸科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "安宁疗护门诊",
+                "dept_id": "D04186",
+                "canonical": "安宁疗护门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 16,
+          "entry_count": 48,
+          "unique_count": 48,
+          "canonical_count": 48
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-29T00:43:15Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 16,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-29T00:43:15Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 48,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-29T00:43:15Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

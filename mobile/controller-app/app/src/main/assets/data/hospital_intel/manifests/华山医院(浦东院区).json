@@ -1,0 +1,548 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-023",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:39",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=23; geo=amap(name_in_poi); dept=suishenban#yuyue_guahao(2026-09-26, l1=12/l2u=34)"
+  },
+  "institution": {
+    "name": "华山医院(浦东院区)",
+    "aliases": [],
+    "level": "三级甲等",
+    "type": "综合医院",
+    "ownership": "公立",
+    "affiliation": "复旦大学",
+    "official_site": "http://www.huashan.org.cn",
+    "tel": "021-52889999;021-9699176"
+  },
+  "campuses": [
+    {
+      "id": "SH-023-M",
+      "name": "本部",
+      "district": "浦东新区",
+      "address": "红枫路525号复旦大学附属华山医院浦东院区3楼",
+      "geo": {
+        "lng": 121.596618,
+        "lat": 31.240139,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:name_in_poi"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "三级甲等",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "云顺路(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 492,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 2,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": 12.5,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 3,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 160,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "明月路红枫路(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "computed",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html",
+        "basis": "parent_institution",
+        "parent": "华山医院",
+        "note": "推定：母院为医保定点，该院区未在名单单列（母院=华山医院）"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-26T15:36:27Z",
+        "l1": [
+          {
+            "name": "眼科",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "东院眼科",
+                "dept_id": "D01034",
+                "canonical": "东院眼科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "中西医结合科",
+            "tab_index": 1,
+            "depts": [
+              {
+                "raw": "东院中西医结合科",
+                "dept_id": "D00986",
+                "canonical": "东院中西医结合科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "外科",
+            "tab_index": 2,
+            "depts": [
+              {
+                "raw": "东院胸外科",
+                "dept_id": "D01048",
+                "canonical": "东院胸外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "东院普外科",
+                "dept_id": "D01022",
+                "canonical": "东院普外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "东院皮肤科外科B",
+                "dept_id": "D01032",
+                "canonical": "东院皮肤科外科B",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "东院整形外科",
+                "dept_id": "D01011",
+                "canonical": "东院整形外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "东院神经外科",
+                "dept_id": "D01038",
+                "canonical": "东院神经外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "东院皮肤科外科A",
+                "dept_id": "D01031",
+                "canonical": "东院皮肤科外科A",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "东院胰腺外科",
+                "dept_id": "D01046",
+                "canonical": "东院胰腺外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "东院肥胖疝外科",
+                "dept_id": "D01042",
+                "canonical": "东院肥胖疝外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "东院泌尿科",
+                "dept_id": "D01024",
+                "canonical": "东院泌尿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "东院血管外科",
+                "dept_id": "D01052",
+                "canonical": "东院血管外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "传染科",
+            "tab_index": 3,
+            "depts": [
+              {
+                "raw": "东院感染科",
+                "dept_id": "D01005",
+                "canonical": "东院感染科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "东院感染门诊(抗生素研究所)",
+                "dept_id": "D01008",
+                "canonical": "东院感染门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:抗生素研究所"
+              }
+            ]
+          },
+          {
+            "name": "其他",
+            "tab_index": 4,
+            "depts": [
+              {
+                "raw": "东院风湿免疫科",
+                "dept_id": "D01061",
+                "canonical": "东院风湿免疫科",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "东院运动医学科",
+                "dept_id": "D01055",
+                "canonical": "东院运动医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "东院射波刀",
+                "dept_id": "D00992",
+                "canonical": "东院射波刀",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "东院放射科",
+                "dept_id": "D01010",
+                "canonical": "东院放射科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "东院静脉导管护理",
+                "dept_id": "D01060",
+                "canonical": "东院静脉导管护理",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "肿瘤科",
+            "tab_index": 5,
+            "depts": [
+              {
+                "raw": "东院肿瘤科",
+                "dept_id": "D01045",
+                "canonical": "东院肿瘤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "皮肤科",
+            "tab_index": 6,
+            "depts": [
+              {
+                "raw": "东院皮肤科",
+                "dept_id": "D01030",
+                "canonical": "东院皮肤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "东院皮肤激光",
+                "dept_id": "D01029",
+                "canonical": "东院皮肤激光",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "内科",
+            "tab_index": 7,
+            "depts": [
+              {
+                "raw": "东院消化科",
+                "dept_id": "D01027",
+                "canonical": "东院消化科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "东院血液科",
+                "dept_id": "D01051",
+                "canonical": "东院血液科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "东院呼吸与危重症医学科",
+                "dept_id": "D00991",
+                "canonical": "东院呼吸与危重症医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "东院神经内科",
+                "dept_id": "D01037",
+                "canonical": "东院神经内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "东院肾病科",
+                "dept_id": "D01044",
+                "canonical": "东院肾病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "东院普内科",
+                "dept_id": "D01021",
+                "canonical": "东院普内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "东院内分泌科",
+                "dept_id": "D00988",
+                "canonical": "东院内分泌科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "东院心内科",
+                "dept_id": "D01001",
+                "canonical": "东院心内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "康复医学科",
+            "tab_index": 8,
+            "depts": [
+              {
+                "raw": "东院康复医学科",
+                "dept_id": "D00993",
+                "canonical": "东院康复医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "精神科",
+            "tab_index": 9,
+            "depts": [
+              {
+                "raw": "东院心理咨询",
+                "dept_id": "D01002",
+                "canonical": "东院心理咨询",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "口腔科",
+            "tab_index": 10,
+            "depts": [
+              {
+                "raw": "东院口腔科(齿科)",
+                "dept_id": "D00990",
+                "canonical": "东院口腔科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:齿科"
+              }
+            ]
+          },
+          {
+            "name": "耳鼻咽喉科",
+            "tab_index": 11,
+            "depts": [
+              {
+                "raw": "东院耳鼻喉科",
+                "dept_id": "D01041",
+                "canonical": "东院耳鼻喉科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 12,
+          "entry_count": 34,
+          "unique_count": 34,
+          "canonical_count": 34
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T15:36:27Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 12,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T15:36:27Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 34,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T15:36:27Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

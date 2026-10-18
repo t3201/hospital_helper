@@ -1,0 +1,498 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-026",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:39",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=26; geo=amap(name_in_poi); dept=suishenban#yuyue_guahao(2026-09-26, l1=1/l2u=35)"
+  },
+  "institution": {
+    "name": "儿童医院北京西路院区",
+    "aliases": [],
+    "level": "三级甲等",
+    "type": "专科疾病防治院",
+    "ownership": "公立",
+    "affiliation": "",
+    "official_site": "",
+    "tel": ""
+  },
+  "campuses": [
+    {
+      "id": "SH-026-M",
+      "name": "本部",
+      "district": "静安区",
+      "address": "北京西路1400弄24号上海市儿童医院(北京西路院区)",
+      "geo": {
+        "lng": 121.447809,
+        "lat": 31.229987,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:name_in_poi"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "三级甲等",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "昌平路(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 647,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 2,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": 10.2,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 5,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 36,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "新闸路西康路(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "computed",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html",
+        "basis": "parent_institution",
+        "parent": "上海市儿童医院",
+        "note": "推定：母院为医保定点，该院区未在名单单列（母院=上海市儿童医院）"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-26T13:45:58Z",
+        "l1": [
+          {
+            "name": "儿科",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "皮肤科（北京西路）",
+                "dept_id": "D06702",
+                "canonical": "皮肤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "骨科（北京西路）",
+                "dept_id": "D10069",
+                "canonical": "骨科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "发热门诊（北京西路）",
+                "dept_id": "D03121",
+                "canonical": "发热",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路;形态:门诊"
+              },
+              {
+                "raw": "麻醉科(北京西路)",
+                "dept_id": "D10244",
+                "canonical": "麻醉科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "筛查(北京西路)",
+                "dept_id": "D07133",
+                "canonical": "筛查",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "消化科（北京西路）",
+                "dept_id": "D05920",
+                "canonical": "消化内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "新生儿科（北京西路）",
+                "dept_id": "D05325",
+                "canonical": "新生儿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "肠道门诊（北京西路）",
+                "dept_id": "D07728",
+                "canonical": "肠道",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路;形态:门诊"
+              },
+              {
+                "raw": "普外科（北京西路）",
+                "dept_id": "D05441",
+                "canonical": "普外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "呼吸科（北京西路）",
+                "dept_id": "D03443",
+                "canonical": "呼吸内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "急诊（北京西路）",
+                "dept_id": "D04868",
+                "canonical": "急诊科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "影像科（临床）",
+                "dept_id": "D04584",
+                "canonical": "影像科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": "医师:临床"
+              },
+              {
+                "raw": "神经内科（北京西路）",
+                "dept_id": "D06976",
+                "canonical": "神经内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "泌尿外科（北京西路）",
+                "dept_id": "D05785",
+                "canonical": "泌尿外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "儿保科（北京西路）",
+                "dept_id": "D02076",
+                "canonical": "儿童保健科",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "遗传（北京西路）",
+                "dept_id": "D09375",
+                "canonical": "遗传",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "推拿(北京西路)",
+                "dept_id": "D05155",
+                "canonical": "推拿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "医学遗传科（北京西路)",
+                "dept_id": "D02964",
+                "canonical": "医学遗传科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "中医科（北京西路）",
+                "dept_id": "D01316",
+                "canonical": "中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "特需门诊（北京西路）",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "特需",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "普内科（北京西路）",
+                "dept_id": "D02633",
+                "canonical": "内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "筛查(北京西路)",
+                "dept_id": "D07133",
+                "canonical": "筛查",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "康复科（北京西路）",
+                "dept_id": "D04496",
+                "canonical": "康复医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "内分泌科（北京西路）",
+                "dept_id": "D02588",
+                "canonical": "内分泌科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "隔离门诊（北京西路）",
+                "dept_id": "D09686",
+                "canonical": "隔离门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "心内科（北京西路）",
+                "dept_id": "D04780",
+                "canonical": "心血管内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "血液科（北京西路）",
+                "dept_id": "D08806",
+                "canonical": "血液内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "肾脏风湿免疫科（北京西路）",
+                "dept_id": "D08003",
+                "canonical": "肾脏风湿免疫科",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "神经外科（北京西路）",
+                "dept_id": "D07035",
+                "canonical": "神经外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "预防保健科(北京西路)",
+                "dept_id": "D09800",
+                "canonical": "预防保健科",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "口腔科（北京西路）",
+                "dept_id": "D03244",
+                "canonical": "口腔科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "心胸外科（北京西路）",
+                "dept_id": "D04735",
+                "canonical": "心胸外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "眼科（北京西路）",
+                "dept_id": "D06839",
+                "canonical": "眼科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "重症医学科（北京西路）",
+                "dept_id": "D09420",
+                "canonical": "重症医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "特诊部(北京西路)",
+                "dept_id": "D06184",
+                "canonical": "特诊部",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              },
+              {
+                "raw": "耳鼻咽喉头颈外科（北京西路）",
+                "dept_id": "D07506",
+                "canonical": "耳鼻咽喉头颈外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:北京西路"
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 1,
+          "entry_count": 36,
+          "unique_count": 35,
+          "canonical_count": 35
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T13:45:58Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 1,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T13:45:58Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 35,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T13:45:58Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

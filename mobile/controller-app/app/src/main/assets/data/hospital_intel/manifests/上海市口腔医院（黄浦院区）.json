@@ -1,0 +1,938 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-006",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:39",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=6; geo=amap(relevance,review=wrong); !低置信待核; dept=suishenban#yuyue_guahao(2026-09-26, l1=1/l2u=81)"
+  },
+  "institution": {
+    "name": "上海市口腔医院（黄浦院区）",
+    "aliases": [],
+    "level": "三级甲等",
+    "type": "专科疾病防治院",
+    "ownership": "公立",
+    "affiliation": "",
+    "official_site": "",
+    "tel": "15692101187"
+  },
+  "campuses": [
+    {
+      "id": "SH-006-M",
+      "name": "本部",
+      "district": "黄浦区",
+      "address": "中山东二路600号BFC外滩金融中心S1栋裙楼6层",
+      "geo": {
+        "lng": 121.498847,
+        "lat": 31.225715,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:relevance"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "三级甲等",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "小南门(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 985,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 1,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": 15.0,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 8,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 163,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "小东门(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "computed",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html",
+        "basis": "parent_institution",
+        "parent": "上海市口腔医院",
+        "note": "推定：母院为医保定点，该院区未在名单单列（母院=上海市口腔医院）"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-26T10:30:18Z",
+        "l1": [
+          {
+            "name": "口腔科",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "数字化颌面矫正门诊",
+                "dept_id": "D05210",
+                "canonical": "数字化颌面矫正门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "口腔综合科(口外)(合川路)",
+                "dept_id": "D03285",
+                "canonical": "口腔综合科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:口外;院区:合川路"
+              },
+              {
+                "raw": "牙龈退缩专病门诊",
+                "dept_id": "D06105",
+                "canonical": "牙龈退缩门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "舒适化无牙颌种植专病门诊",
+                "dept_id": "D08657",
+                "canonical": "舒适化无牙颌种植门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "牙敏感多学科门诊",
+                "dept_id": "D06092",
+                "canonical": "牙敏感多学科门诊",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "儿童口腔科(合川路)",
+                "dept_id": "D02100",
+                "canonical": "儿童口腔科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:合川路"
+              },
+              {
+                "raw": "活髓保存与再生性牙髓治疗",
+                "dept_id": "D05889",
+                "canonical": "活髓保存与再生性牙髓治疗",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "牙体牙髓病二科(合川路)",
+                "dept_id": "D06071",
+                "canonical": "牙体牙髓病二科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:合川路"
+              },
+              {
+                "raw": "牙体牙髓科",
+                "dept_id": "D06073",
+                "canonical": "牙体牙髓科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "睡眠呼吸障碍专病门诊",
+                "dept_id": "D06915",
+                "canonical": "睡眠呼吸障碍",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "疼痛门诊(合川路)",
+                "dept_id": "D06514",
+                "canonical": "疼痛",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:合川路;形态:门诊"
+              },
+              {
+                "raw": "特需特诊科",
+                "dept_id": "D06163",
+                "canonical": "特诊科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": ""
+              },
+              {
+                "raw": "专家专病中心(牙体)",
+                "dept_id": "D00275",
+                "canonical": "专病中心",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "其他:牙体"
+              },
+              {
+                "raw": "专家专病中心(正畸)",
+                "dept_id": "D00275",
+                "canonical": "专病中心",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "其他:正畸"
+              },
+              {
+                "raw": "牙周病科(合川路)",
+                "dept_id": "D06086",
+                "canonical": "牙周病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:合川路"
+              },
+              {
+                "raw": "无痛舒适化(合川路)",
+                "dept_id": "D05383",
+                "canonical": "无痛舒适化",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:合川路"
+              },
+              {
+                "raw": "口腔综合科(儿童)(合川路)",
+                "dept_id": "D03285",
+                "canonical": "口腔综合科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:儿童;院区:合川路"
+              },
+              {
+                "raw": "预防儿童口腔科(合川路)",
+                "dept_id": "D09801",
+                "canonical": "预防儿童口腔科",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": "院区:合川路"
+              },
+              {
+                "raw": "显微根尖手术专病门诊",
+                "dept_id": "D05424",
+                "canonical": "显微根尖手术",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "口呼吸正畸专病门诊",
+                "dept_id": "D03164",
+                "canonical": "口呼吸正畸门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "预防口腔科",
+                "dept_id": "D09802",
+                "canonical": "预防口腔科",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "口腔综合科(正畸)(合川路)",
+                "dept_id": "D03285",
+                "canonical": "口腔综合科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:正畸;院区:合川路"
+              },
+              {
+                "raw": "口腔黏膜病科/牙周病门诊",
+                "dept_id": "D03326",
+                "canonical": "口腔黏膜病科/牙周病门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "牙痛多学科门诊",
+                "dept_id": "D06095",
+                "canonical": "牙痛多学科门诊",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "残冠保存整合门诊",
+                "dept_id": "D05703",
+                "canonical": "残冠保存整合门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "舒适化无牙颌种植专病门诊",
+                "dept_id": "D08657",
+                "canonical": "舒适化无牙颌种植门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "口腔颌面外科(合川路)",
+                "dept_id": "D03308",
+                "canonical": "口腔颌面外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:合川路"
+              },
+              {
+                "raw": "专家专病中心(口外)",
+                "dept_id": "D00275",
+                "canonical": "专病中心",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "医师:口外"
+              },
+              {
+                "raw": "口呼吸早期矫治",
+                "dept_id": "D03163",
+                "canonical": "口呼吸早期矫治",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "口腔综合科(修复)(合川路)",
+                "dept_id": "D03285",
+                "canonical": "口腔综合科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:修复;院区:合川路"
+              },
+              {
+                "raw": "美学修复专病门诊",
+                "dept_id": "D07323",
+                "canonical": "美学修复门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "专家专病中心(修复)",
+                "dept_id": "D00275",
+                "canonical": "专病中心",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "其他:修复"
+              },
+              {
+                "raw": "口腔种植科",
+                "dept_id": "D03243",
+                "canonical": "口腔种植科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "口腔综合科(牙体)(合川路)",
+                "dept_id": "D03285",
+                "canonical": "口腔综合科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:牙体;院区:合川路"
+              },
+              {
+                "raw": "数字化微创种植专病门诊",
+                "dept_id": "D05206",
+                "canonical": "数字化微创种植",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "口腔综合科(牙周)(合川路)",
+                "dept_id": "D03285",
+                "canonical": "口腔综合科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:牙周;院区:合川路"
+              },
+              {
+                "raw": "数字化颌面矫正门诊",
+                "dept_id": "D05210",
+                "canonical": "数字化颌面矫正门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "显微根管外科专病门诊",
+                "dept_id": "D05426",
+                "canonical": "显微根管外科门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "专家专病中心(种植)",
+                "dept_id": "D00275",
+                "canonical": "专病中心",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "其他:种植"
+              },
+              {
+                "raw": "口腔正畸二科(合川路)",
+                "dept_id": "D03212",
+                "canonical": "口腔正畸二科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:合川路"
+              },
+              {
+                "raw": "美学修复专病门诊",
+                "dept_id": "D07323",
+                "canonical": "美学修复门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "数字化微创根尖手术门诊",
+                "dept_id": "D05205",
+                "canonical": "数字化微创根尖手术门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "儿童口腔科",
+                "dept_id": "D02100",
+                "canonical": "儿童口腔科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "精准微创种植专病门诊",
+                "dept_id": "D07147",
+                "canonical": "精准微创种植门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "颞下颌关节外科专病门诊",
+                "dept_id": "D09881",
+                "canonical": "颞下颌关节外科门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "口腔修复科",
+                "dept_id": "D03187",
+                "canonical": "口腔修复科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "牙周病科(2)",
+                "dept_id": "D06086",
+                "canonical": "牙周病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:2"
+              },
+              {
+                "raw": "即刻种植门诊",
+                "dept_id": "D03083",
+                "canonical": "即刻种植门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "精准微创种植专病门诊",
+                "dept_id": "D07147",
+                "canonical": "精准微创种植门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "王德芳修复工作室",
+                "dept_id": "D06216",
+                "canonical": "王德芳修复工作室",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "低龄儿童龋病舒适化治疗",
+                "dept_id": "D01862",
+                "canonical": "低龄儿童龋病舒适化治疗",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "睡眠呼吸障碍专病门诊",
+                "dept_id": "D06915",
+                "canonical": "睡眠呼吸障碍",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "口腔正畸科",
+                "dept_id": "D03215",
+                "canonical": "口腔正畸科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "专家专病中心(牙周)",
+                "dept_id": "D00275",
+                "canonical": "专病中心",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "其他:牙周"
+              },
+              {
+                "raw": "儿童早期矫治",
+                "dept_id": "D02176",
+                "canonical": "儿童早期矫治",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "活髓保存与再生性牙髓治疗",
+                "dept_id": "D05889",
+                "canonical": "活髓保存与再生性牙髓治疗",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "疑难显微根管及冠根一体化",
+                "dept_id": "D06432",
+                "canonical": "疑难显微根管及冠根一体化",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "牙龈退缩门诊",
+                "dept_id": "D06105",
+                "canonical": "牙龈退缩门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "牙周病科",
+                "dept_id": "D06086",
+                "canonical": "牙周病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "数字化舌侧隐形正畸门诊",
+                "dept_id": "D05209",
+                "canonical": "数字化舌侧隐形正畸门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "口腔综合科(黏膜)(合川路)",
+                "dept_id": "D03285",
+                "canonical": "口腔综合科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:黏膜;院区:合川路"
+              },
+              {
+                "raw": "唇腭裂序列治疗门诊",
+                "dept_id": "D03543",
+                "canonical": "唇腭裂序列治疗门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "牙周病正畸专病门诊",
+                "dept_id": "D06084",
+                "canonical": "牙周病正畸门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "儿童口腔舒适化门诊",
+                "dept_id": "D02103",
+                "canonical": "儿童口腔舒适化门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "牙周病科(洁牙门诊)(合川路)",
+                "dept_id": "D06086",
+                "canonical": "牙周病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:洁牙门诊;院区:合川路"
+              },
+              {
+                "raw": "口腔颌面部肿物专病门诊",
+                "dept_id": "D03320",
+                "canonical": "口腔颌面部肿物门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "洁牙门诊",
+                "dept_id": "D05886",
+                "canonical": "洁牙门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "早期矫治门诊",
+                "dept_id": "D05405",
+                "canonical": "早期矫治门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "冠根一体化门诊",
+                "dept_id": "D02695",
+                "canonical": "冠根一体化门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "牙齿美白美学治疗专病门诊",
+                "dept_id": "D06104",
+                "canonical": "牙齿美白美学治疗门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "牙周种植专病门诊",
+                "dept_id": "D06088",
+                "canonical": "牙周种植门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "专家专病中心(儿童)",
+                "dept_id": "D00275",
+                "canonical": "专病中心",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "其他:儿童"
+              },
+              {
+                "raw": "口腔正畸一科(合川路)",
+                "dept_id": "D03211",
+                "canonical": "口腔正畸一科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:合川路"
+              },
+              {
+                "raw": "口腔综合科(种植)(合川路)",
+                "dept_id": "D03285",
+                "canonical": "口腔综合科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:种植;院区:合川路"
+              },
+              {
+                "raw": "口腔种植科(合川路)",
+                "dept_id": "D03243",
+                "canonical": "口腔种植科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:合川路"
+              },
+              {
+                "raw": "口腔外科",
+                "dept_id": "D03200",
+                "canonical": "口腔外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "口腔修复科(合川路)",
+                "dept_id": "D03187",
+                "canonical": "口腔修复科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:合川路"
+              },
+              {
+                "raw": "突面畸形治疗特色专病门诊",
+                "dept_id": "D07123",
+                "canonical": "突面畸形治疗特色门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "儿童牙外伤专病门诊",
+                "dept_id": "D02188",
+                "canonical": "儿童牙外伤",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "颞颌关节专病",
+                "dept_id": "D09882",
+                "canonical": "颞颌关节",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "数字化微创种植专病门诊",
+                "dept_id": "D05206",
+                "canonical": "数字化微创种植",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "阻生齿专病门诊",
+                "dept_id": "D09650",
+                "canonical": "阻生齿门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "正颌正畸联合门诊",
+                "dept_id": "D05696",
+                "canonical": "正颌正畸联合门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "牙齿美白美学治疗专病门诊",
+                "dept_id": "D06104",
+                "canonical": "牙齿美白美学治疗门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "特需门诊",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "特需",
+                "qualifiers": ""
+              },
+              {
+                "raw": "牙体牙髓病一科(合川路)",
+                "dept_id": "D06069",
+                "canonical": "牙体牙髓病一科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:合川路"
+              },
+              {
+                "raw": "显微根管外科专病门诊",
+                "dept_id": "D05426",
+                "canonical": "显微根管外科门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "麻醉评估门诊(合川路)",
+                "dept_id": "D10257",
+                "canonical": "麻醉评估",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:合川路;形态:门诊"
+              },
+              {
+                "raw": "美学修复专病门诊",
+                "dept_id": "D07323",
+                "canonical": "美学修复门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "永嘉路门诊(自费)",
+                "dept_id": "D05738",
+                "canonical": "永嘉路门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:自费"
+              },
+              {
+                "raw": "儿童早期矫正",
+                "dept_id": "D02175",
+                "canonical": "儿童早期矫正",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 1,
+          "entry_count": 91,
+          "unique_count": 81,
+          "canonical_count": 61
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T10:30:18Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 1,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T10:30:18Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 81,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T10:30:18Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

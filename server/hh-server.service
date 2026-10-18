@@ -1,0 +1,32 @@
+# hh-server.service — 开机自启 + 掉了自动拉起(有 systemd 时用这个, 否则用 deploy_watchdog.sh 的 cron)
+#
+# 安装(需要 sudo; 机器上没有 root 就用下面的 cron 方案):
+#   sudo cp /home/zhanghua/hospital-helper/hh-server.service /etc/systemd/system/hh-server.service
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now hh-server
+#   systemctl status hh-server ; journalctl -u hh-server -n 50
+#
+# 注意: 用 systemd 之后就**不要**再手工 nohup 起(那正是 2026-10-14 "51120 上两个进程" 的成因);
+# 改完代码统一 `sh deploy.sh --restart` 或 `sudo systemctl restart hh-server`。
+
+[Unit]
+Description=hh-server (hospital_helper mobile backend: infer/location/apk)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=zhanghua
+WorkingDirectory=/home/zhanghua/hospital-helper
+Environment=HH_ENV_FILE=/home/zhanghua/hospital-helper/.env
+ExecStart=/usr/bin/env python3 /home/zhanghua/hospital-helper/server.py
+Restart=always
+RestartSec=3
+# 端口被占(重复实例)时不要疯狂重启
+StartLimitIntervalSec=60
+StartLimitBurst=5
+StandardOutput=append:/home/zhanghua/hospital-helper/logs/server.log
+StandardError=append:/home/zhanghua/hospital-helper/logs/server.log
+
+[Install]
+WantedBy=multi-user.target

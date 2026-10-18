@@ -1,0 +1,742 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-089",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:39",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=138; geo=amap(relevance,review=correct); !低置信待核; dept=suishenban#yuyue_guahao(2026-09-26, l1=3/l2u=64)"
+  },
+  "institution": {
+    "name": "上海市皮肤病医院武夷路院区",
+    "aliases": [],
+    "level": "三级甲等",
+    "type": "专科疾病防治院",
+    "ownership": "公立",
+    "affiliation": "",
+    "official_site": "",
+    "tel": "021-36803100"
+  },
+  "campuses": [
+    {
+      "id": "SH-089-M",
+      "name": "本部",
+      "district": "长宁区",
+      "address": "武夷路238号",
+      "geo": {
+        "lng": 121.426354,
+        "lat": 31.212842,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:relevance"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "三级甲等",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "江苏路(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 935,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 2,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": 19.0,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 1,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 81,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "武夷路定西路(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "computed",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html",
+        "basis": "parent_institution",
+        "parent": "上海市皮肤病医院",
+        "note": "推定：母院为医保定点，该院区未在名单单列（母院=上海市皮肤病医院）"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-26T10:39:23Z",
+        "l1": [
+          {
+            "name": "感染科",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "W专病门诊(分枝杆菌感染)",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;其他:分枝杆菌感染"
+              }
+            ]
+          },
+          {
+            "name": "性病科",
+            "tab_index": 1,
+            "depts": [
+              {
+                "raw": "W专病门诊(阴道镜)",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;其他:阴道镜"
+              },
+              {
+                "raw": "W性病科",
+                "dept_id": "D04893",
+                "canonical": "性病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "代号:W"
+              },
+              {
+                "raw": "W特需正主任(性病科)",
+                "dept_id": "D05686",
+                "canonical": "正主任",
+                "kind": "specialty_clinic",
+                "visit_type": "特需",
+                "qualifiers": "代号:W;其他:性病科"
+              },
+              {
+                "raw": "W专病门诊(外阴及肛周疾病)",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;其他:外阴及肛周疾病"
+              }
+            ]
+          },
+          {
+            "name": "皮肤科",
+            "tab_index": 2,
+            "depts": [
+              {
+                "raw": "W专病门诊（白癜风）",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;其他:白癜风"
+              },
+              {
+                "raw": "W正主任专家(皮肤科)",
+                "dept_id": "D05686",
+                "canonical": "正主任",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "代号:W;其他:皮肤科"
+              },
+              {
+                "raw": "W副主任专家(特应性皮炎)",
+                "dept_id": "D02813",
+                "canonical": "副主任",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "代号:W;其他:特应性皮炎"
+              },
+              {
+                "raw": "W专病门诊(HIV暴露前后预防咨询)",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;其他:HIV暴露前后预防咨询"
+              },
+              {
+                "raw": "W专病门诊（黄褐斑）",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;医师:黄褐斑"
+              },
+              {
+                "raw": "W中医皮肤科",
+                "dept_id": "D01303",
+                "canonical": "中医皮肤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "代号:W"
+              },
+              {
+                "raw": "W副主任(皮肤膏方)",
+                "dept_id": "D02813",
+                "canonical": "副主任",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "代号:W;其他:皮肤膏方"
+              },
+              {
+                "raw": "W自身免疫性大疱病专病门诊",
+                "dept_id": "D08643",
+                "canonical": "自身免疫性大疱病门诊",
+                "kind": "screening",
+                "visit_type": "专病",
+                "qualifiers": "代号:W"
+              },
+              {
+                "raw": "W专病门诊（色素性）",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;医师:色素性"
+              },
+              {
+                "raw": "W专病门诊(带状疱疹)",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;其他:带状疱疹"
+              },
+              {
+                "raw": "W专病门诊（手足皮肤病）",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;其他:手足皮肤病"
+              },
+              {
+                "raw": "W正主任专家(荨麻疹)",
+                "dept_id": "D05686",
+                "canonical": "正主任",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "代号:W;其他:荨麻疹"
+              },
+              {
+                "raw": "W特需正主任(商保)",
+                "dept_id": "D05686",
+                "canonical": "正主任",
+                "kind": "specialty_clinic",
+                "visit_type": "特需",
+                "qualifiers": "代号:W;院区:商保"
+              },
+              {
+                "raw": "W便民门诊",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "便民",
+                "qualifiers": "代号:W"
+              },
+              {
+                "raw": "W专病门诊(硬皮病)",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;医师:硬皮病"
+              },
+              {
+                "raw": "W正主任专家(脱发)",
+                "dept_id": "D05686",
+                "canonical": "正主任",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "代号:W;其他:脱发"
+              },
+              {
+                "raw": "W副主任专家(皮肤科)",
+                "dept_id": "D02813",
+                "canonical": "副主任",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "代号:W;其他:皮肤科"
+              },
+              {
+                "raw": "W正主任专家(特应性皮炎)",
+                "dept_id": "D05686",
+                "canonical": "正主任",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "代号:W;其他:特应性皮炎"
+              },
+              {
+                "raw": "W专病门诊(湿疹)",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;其他:湿疹"
+              },
+              {
+                "raw": "W专病门诊(黑色素痣)",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;医师:黑色素痣"
+              },
+              {
+                "raw": "W专病门诊(光老化老年斑)",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;其他:光老化老年斑"
+              },
+              {
+                "raw": "W专病门诊(疣病)",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;医师:疣病"
+              },
+              {
+                "raw": "W皮肤外科专科门诊",
+                "dept_id": "D06672",
+                "canonical": "皮肤外科",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "代号:W;形态:门诊"
+              },
+              {
+                "raw": "W特需副主任(皮肤科)",
+                "dept_id": "D02813",
+                "canonical": "副主任",
+                "kind": "specialty_clinic",
+                "visit_type": "特需",
+                "qualifiers": "代号:W;其他:皮肤科"
+              },
+              {
+                "raw": "W副主任专家(皮肤科)",
+                "dept_id": "D02813",
+                "canonical": "副主任",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "代号:W;其他:皮肤科"
+              },
+              {
+                "raw": "W专病门诊（瘢痕）",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;医师:瘢痕"
+              },
+              {
+                "raw": "W毛发专病门诊",
+                "dept_id": "D05720",
+                "canonical": "毛发",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;形态:门诊"
+              },
+              {
+                "raw": "W专病门诊(斑秃)",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;医师:斑秃"
+              },
+              {
+                "raw": "W特需副主任(皮肤外科)",
+                "dept_id": "D02813",
+                "canonical": "副主任",
+                "kind": "specialty_clinic",
+                "visit_type": "特需",
+                "qualifiers": "代号:W;其他:皮肤外科"
+              },
+              {
+                "raw": "W专病门诊（腋臭）",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;医师:腋臭"
+              },
+              {
+                "raw": "W专病门诊(甲癣甲沟炎)",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;其他:甲癣甲沟炎"
+              },
+              {
+                "raw": "W特需副主任(膏方门诊)",
+                "dept_id": "D02813",
+                "canonical": "副主任",
+                "kind": "specialty_clinic",
+                "visit_type": "特需",
+                "qualifiers": "代号:W;其他:膏方门诊"
+              },
+              {
+                "raw": "W副主任专家(大疱性皮肤病)",
+                "dept_id": "D02813",
+                "canonical": "副主任",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "代号:W;其他:大疱性皮肤病"
+              },
+              {
+                "raw": "W正主任专家(1号楼5楼)",
+                "dept_id": "D05686",
+                "canonical": "正主任",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "代号:W;院区:1号楼5楼"
+              },
+              {
+                "raw": "W拆线门诊",
+                "dept_id": "D05126",
+                "canonical": "拆线门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "代号:W"
+              },
+              {
+                "raw": "W专病门诊(尖锐湿疣)",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;医师:尖锐湿疣"
+              },
+              {
+                "raw": "W专病门诊（银屑病）",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;其他:银屑病"
+              },
+              {
+                "raw": "W专病门诊(宫颈HPV感染)",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;其他:宫颈HPV感染"
+              },
+              {
+                "raw": "W皮肤科",
+                "dept_id": "D06702",
+                "canonical": "皮肤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "代号:W"
+              },
+              {
+                "raw": "W副主任专家(光老化老年斑5楼)",
+                "dept_id": "D02813",
+                "canonical": "副主任",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "代号:W;院区:光老化老年斑5楼"
+              },
+              {
+                "raw": "W专病门诊（皮肤肿瘤）",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;其他:皮肤肿瘤"
+              },
+              {
+                "raw": "W副主任专家(荨麻疹)",
+                "dept_id": "D02813",
+                "canonical": "副主任",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "代号:W;其他:荨麻疹"
+              },
+              {
+                "raw": "W专病门诊（血管瘤）",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;其他:血管瘤"
+              },
+              {
+                "raw": "W正主任(皮肤膏方)",
+                "dept_id": "D05686",
+                "canonical": "正主任",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "代号:W;其他:皮肤膏方"
+              },
+              {
+                "raw": "W专病门诊(脱发与植发)",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;其他:脱发与植发"
+              },
+              {
+                "raw": "W专病门诊（特应性皮炎/湿疹)",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;其他:特应性皮炎/湿疹"
+              },
+              {
+                "raw": "W特需正主任(皮肤科)",
+                "dept_id": "D05686",
+                "canonical": "正主任",
+                "kind": "specialty_clinic",
+                "visit_type": "特需",
+                "qualifiers": "代号:W;其他:皮肤科"
+              },
+              {
+                "raw": "W专病门诊(血管炎)",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;其他:血管炎"
+              },
+              {
+                "raw": "W专病门诊(荨麻疹)",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;其他:荨麻疹"
+              },
+              {
+                "raw": "W医学美容专科门诊",
+                "dept_id": "D02959",
+                "canonical": "医学美容",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "代号:W;形态:门诊"
+              },
+              {
+                "raw": "W特需正主任(膏方门诊)",
+                "dept_id": "D05686",
+                "canonical": "正主任",
+                "kind": "specialty_clinic",
+                "visit_type": "特需",
+                "qualifiers": "代号:W;其他:膏方门诊"
+              },
+              {
+                "raw": "W外科手术专科门诊",
+                "dept_id": "D03784",
+                "canonical": "外科手术",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "代号:W;形态:门诊"
+              },
+              {
+                "raw": "W过敏性皮肤病专病门诊",
+                "dept_id": "D09265",
+                "canonical": "过敏性皮肤病",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;形态:门诊"
+              },
+              {
+                "raw": "W副主任专家(疑难罕见病)",
+                "dept_id": "D02813",
+                "canonical": "副主任",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "代号:W;其他:疑难罕见病"
+              },
+              {
+                "raw": "W专病门诊（痤疮）",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;医师:痤疮"
+              },
+              {
+                "raw": "W特需副主任(商保)",
+                "dept_id": "D02813",
+                "canonical": "副主任",
+                "kind": "specialty_clinic",
+                "visit_type": "特需",
+                "qualifiers": "代号:W;院区:商保"
+              },
+              {
+                "raw": "W专病门诊（瘙痒性皮肤病）",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;其他:瘙痒性皮肤病"
+              },
+              {
+                "raw": "W膏方门诊",
+                "dept_id": "D08619",
+                "canonical": "膏方",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "代号:W;形态:门诊"
+              },
+              {
+                "raw": "W专病门诊(梅毒)",
+                "dept_id": "D09592",
+                "canonical": "门诊",
+                "kind": "other",
+                "visit_type": "专病",
+                "qualifiers": "代号:W;其他:梅毒"
+              },
+              {
+                "raw": "W副主任专家(皮肤外科)",
+                "dept_id": "D02813",
+                "canonical": "副主任",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "代号:W;其他:皮肤外科"
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 3,
+          "entry_count": 65,
+          "unique_count": 64,
+          "canonical_count": 14
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T10:39:23Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 3,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T10:39:23Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 64,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T10:39:23Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

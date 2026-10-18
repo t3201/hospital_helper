@@ -1,0 +1,1396 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-056",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:39",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=73; geo=amap(exact); dept=suishenban#yuyue_guahao(2026-09-26, l1=16/l2u=137)"
+  },
+  "institution": {
+    "name": "上海市中医医院（嘉定院区）",
+    "aliases": [],
+    "level": "三级甲等",
+    "type": "专科医院",
+    "ownership": "公立",
+    "affiliation": "",
+    "official_site": "http://szy.sh.cn",
+    "tel": "021-59095205"
+  },
+  "campuses": [
+    {
+      "id": "SH-056-M",
+      "name": "本部",
+      "district": "嘉定区",
+      "address": "荣联路68号",
+      "geo": {
+        "lng": 121.283533,
+        "lat": 31.365458,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:exact"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "三级甲等",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "叶城路(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 1146,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 0,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": null,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 2,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 116,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "上海市中医医院嘉定院区(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "computed",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html",
+        "basis": "parent_institution",
+        "parent": "上海市中医医院",
+        "note": "推定：母院为医保定点，该院区未在名单单列（母院=上海市中医医院）"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-26T10:19:07Z",
+        "l1": [
+          {
+            "name": "综合及其它",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "伤口护理专科(嘉)",
+                "dept_id": "D01835",
+                "canonical": "伤口护理",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "放射诊断科(嘉)",
+                "dept_id": "D05193",
+                "canonical": "放射诊断科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "PICC护理门诊(嘉)",
+                "dept_id": "D00100",
+                "canonical": "PICC护理",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉;形态:门诊"
+              },
+              {
+                "raw": "营养科(嘉)",
+                "dept_id": "D08749",
+                "canonical": "营养科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "中医治疗室(嘉)",
+                "dept_id": "D01276",
+                "canonical": "中医治疗室",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "麻醉门诊(嘉)",
+                "dept_id": "D10230",
+                "canonical": "麻醉",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉;形态:门诊"
+              },
+              {
+                "raw": "简易门诊科(嘉)",
+                "dept_id": "D07141",
+                "canonical": "简易门诊科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "名专推拿科(嘉)",
+                "dept_id": "D03351",
+                "canonical": "名专推拿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "名专(嘉)",
+                "dept_id": "D03341",
+                "canonical": "名专",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "膏方门诊(嘉)",
+                "dept_id": "D08619",
+                "canonical": "膏方",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉;形态:门诊"
+              },
+              {
+                "raw": "介入诊疗专科(嘉)",
+                "dept_id": "D01784",
+                "canonical": "介入诊疗",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "儿科小膏方(嘉)",
+                "dept_id": "D02036",
+                "canonical": "儿科小膏方",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "麻醉科(嘉)",
+                "dept_id": "D10244",
+                "canonical": "麻醉科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "名专内分泌科(嘉)",
+                "dept_id": "D03344",
+                "canonical": "名专内分泌科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "中医护理门诊(嘉)",
+                "dept_id": "D01258",
+                "canonical": "中医护理",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉;形态:门诊"
+              },
+              {
+                "raw": "体检中心(嘉)",
+                "dept_id": "D01869",
+                "canonical": "体检科",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "医学影像(超声)科(嘉)",
+                "dept_id": "D02953",
+                "canonical": "医学影像科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": "其他:超声;院区:嘉"
+              },
+              {
+                "raw": "药食同源膏方门诊(嘉)",
+                "dept_id": "D08718",
+                "canonical": "药食同源膏方门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              }
+            ]
+          },
+          {
+            "name": "中医科",
+            "tab_index": 1,
+            "depts": [
+              {
+                "raw": "名专儿科(嘉)",
+                "dept_id": "D03343",
+                "canonical": "名专儿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "小儿反复呼吸道感染专科(嘉)",
+                "dept_id": "D04271",
+                "canonical": "小儿反复呼吸道感染",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "卒中中心(嘉)",
+                "dept_id": "D02984",
+                "canonical": "卒中中心",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "名专血液病科(嘉)",
+                "dept_id": "D03366",
+                "canonical": "名专血液病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "失眠科(嘉)",
+                "dept_id": "D03868",
+                "canonical": "失眠科",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "妇科(嘉)",
+                "dept_id": "D03984",
+                "canonical": "妇科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "名专耳鼻喉科(嘉)",
+                "dept_id": "D03358",
+                "canonical": "名专耳鼻喉科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "名专泌尿科(嘉)",
+                "dept_id": "D03352",
+                "canonical": "名专泌尿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "辅助生殖中医门诊(嘉)",
+                "dept_id": "D09237",
+                "canonical": "辅助生殖中医门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "推拿科(嘉)",
+                "dept_id": "D05155",
+                "canonical": "推拿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "名专眼科(嘉)",
+                "dept_id": "D03357",
+                "canonical": "名专眼科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "眼科(嘉)",
+                "dept_id": "D06839",
+                "canonical": "眼科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "名专骨伤科(嘉)",
+                "dept_id": "D03369",
+                "canonical": "名专骨伤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "名专肛肠科(嘉)",
+                "dept_id": "D03359",
+                "canonical": "名专肛肠科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "名专失眠科(嘉)",
+                "dept_id": "D03347",
+                "canonical": "名专失眠科",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "尿毒症透析(异地门慢特)(嘉)",
+                "dept_id": "D04356",
+                "canonical": "尿毒症透析",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:异地门慢特;院区:嘉"
+              },
+              {
+                "raw": "中医妇科外治门诊(嘉)",
+                "dept_id": "D01226",
+                "canonical": "中医妇科外治门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "骨伤科(嘉)",
+                "dept_id": "D10069",
+                "canonical": "骨科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "名专肾病科(嘉)",
+                "dept_id": "D03362",
+                "canonical": "名专肾病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "名专皮肤科(嘉)",
+                "dept_id": "D03356",
+                "canonical": "名专皮肤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "恶性肿瘤门诊化疗(异地门慢特)(嘉)",
+                "dept_id": "D04903",
+                "canonical": "恶性肿瘤门诊化疗",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:异地门慢特;院区:嘉"
+              },
+              {
+                "raw": "耳鼻喉科(嘉)",
+                "dept_id": "D07533",
+                "canonical": "耳鼻喉科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "小儿哮喘专科(嘉)",
+                "dept_id": "D04279",
+                "canonical": "小儿哮喘",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "针灸科(嘉)",
+                "dept_id": "D09528",
+                "canonical": "针灸科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "名专妇科(嘉)",
+                "dept_id": "D03348",
+                "canonical": "名专妇科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "脑病科(嘉)",
+                "dept_id": "D08468",
+                "canonical": "脑病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "名专脾胃病科(嘉)",
+                "dept_id": "D03365",
+                "canonical": "名专脾胃病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "糖尿病(异地门慢特)(嘉)",
+                "dept_id": "D07170",
+                "canonical": "糖尿病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:异地门慢特;院区:嘉"
+              },
+              {
+                "raw": "名专内科(嘉)",
+                "dept_id": "D03345",
+                "canonical": "名专内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "名专肺病科(嘉)",
+                "dept_id": "D03361",
+                "canonical": "名专肺病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "名专针灸科(嘉)",
+                "dept_id": "D03367",
+                "canonical": "名专针灸科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "名专脑病科(嘉)",
+                "dept_id": "D03364",
+                "canonical": "名专脑病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "名专心病科(嘉)",
+                "dept_id": "D03350",
+                "canonical": "名专心病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "外八科(皮肤与疮疡科)(嘉)",
+                "dept_id": "D03755",
+                "canonical": "外八科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:皮肤与疮疡科;院区:嘉"
+              },
+              {
+                "raw": "高血压(异地门慢特)(嘉)",
+                "dept_id": "D10206",
+                "canonical": "高血压",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:异地门慢特;院区:嘉"
+              },
+              {
+                "raw": "名专风湿病科(嘉)",
+                "dept_id": "D03368",
+                "canonical": "名专风湿病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "儿科(嘉)",
+                "dept_id": "D02013",
+                "canonical": "儿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "老年病科(嘉)",
+                "dept_id": "D07399",
+                "canonical": "老年病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "中医康复科(嘉)",
+                "dept_id": "D01241",
+                "canonical": "中医康复科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "名专肿瘤科(嘉)",
+                "dept_id": "D03363",
+                "canonical": "名专肿瘤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "退休专家(嘉)",
+                "dept_id": "D09332",
+                "canonical": "退休",
+                "kind": "other",
+                "visit_type": "专家",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "名专肝病科(嘉)",
+                "dept_id": "D03360",
+                "canonical": "名专肝病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              }
+            ]
+          },
+          {
+            "name": "风湿科",
+            "tab_index": 2,
+            "depts": [
+              {
+                "raw": "激素相关性骨质疏松症专科(嘉)",
+                "dept_id": "D06029",
+                "canonical": "激素相关性骨质疏松症",
+                "kind": "specialty_clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "类风关专科(嘉)",
+                "dept_id": "D07143",
+                "canonical": "类风关",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "风湿病科(嘉)",
+                "dept_id": "D09915",
+                "canonical": "风湿病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              }
+            ]
+          },
+          {
+            "name": "儿科",
+            "tab_index": 3,
+            "depts": [
+              {
+                "raw": "急救儿科(嘉)",
+                "dept_id": "D04831",
+                "canonical": "急救儿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "急诊儿科(嘉)",
+                "dept_id": "D04838",
+                "canonical": "急诊儿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              }
+            ]
+          },
+          {
+            "name": "妇科",
+            "tab_index": 4,
+            "depts": [
+              {
+                "raw": "不孕不育专科(嘉)",
+                "dept_id": "D00246",
+                "canonical": "不孕不育",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "急诊妇科(嘉)",
+                "dept_id": "D04849",
+                "canonical": "急诊妇科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "急救妇科(嘉)",
+                "dept_id": "D04834",
+                "canonical": "急救妇科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              }
+            ]
+          },
+          {
+            "name": "疼痛科",
+            "tab_index": 5,
+            "depts": [
+              {
+                "raw": "疼痛科(嘉)",
+                "dept_id": "D06526",
+                "canonical": "疼痛科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "名专疼痛科(嘉)",
+                "dept_id": "D03355",
+                "canonical": "名专疼痛科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              }
+            ]
+          },
+          {
+            "name": "针灸科",
+            "tab_index": 6,
+            "depts": [
+              {
+                "raw": "伏灸专科(嘉)",
+                "dept_id": "D01812",
+                "canonical": "伏灸",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              }
+            ]
+          },
+          {
+            "name": "急诊科",
+            "tab_index": 7,
+            "depts": [
+              {
+                "raw": "ICU（嘉）",
+                "dept_id": "D00068",
+                "canonical": "ICU",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "急诊内科(嘉)",
+                "dept_id": "D04840",
+                "canonical": "急诊内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "肠道门诊(嘉)",
+                "dept_id": "D07728",
+                "canonical": "肠道",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉;形态:门诊"
+              },
+              {
+                "raw": "急救内科(嘉)",
+                "dept_id": "D04832",
+                "canonical": "急救内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "发热门诊(嘉)",
+                "dept_id": "D03121",
+                "canonical": "发热",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "口腔科",
+            "tab_index": 8,
+            "depts": [
+              {
+                "raw": "口腔科(嘉)",
+                "dept_id": "D03244",
+                "canonical": "口腔科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "口腔正畸专科(嘉)",
+                "dept_id": "D03209",
+                "canonical": "口腔正畸",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "口腔修复专科(嘉)",
+                "dept_id": "D03183",
+                "canonical": "口腔修复",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              }
+            ]
+          },
+          {
+            "name": "内科",
+            "tab_index": 9,
+            "depts": [
+              {
+                "raw": "痰湿体质专科(嘉)",
+                "dept_id": "D06608",
+                "canonical": "痰湿体质",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "淋巴瘤专科(嘉)",
+                "dept_id": "D05993",
+                "canonical": "淋巴瘤",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "脂肪肝代谢综合症(嘉)",
+                "dept_id": "D08357",
+                "canonical": "脂肪肝代谢综合症",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "血液免疫专科(嘉)",
+                "dept_id": "D08805",
+                "canonical": "血液免疫",
+                "kind": "screening",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "心力衰竭专科(嘉)",
+                "dept_id": "D04667",
+                "canonical": "心力衰竭",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "心律失常专科(嘉)",
+                "dept_id": "D04682",
+                "canonical": "心律失常",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "肾病科(嘉)",
+                "dept_id": "D07936",
+                "canonical": "肾内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "体质辨识专科(嘉)",
+                "dept_id": "D01884",
+                "canonical": "体质辨识",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "糖尿病专科(嘉)",
+                "dept_id": "D07170",
+                "canonical": "糖尿病",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "内科(测试)(嘉)",
+                "dept_id": "D02633",
+                "canonical": "内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:测试;院区:嘉"
+              },
+              {
+                "raw": "偏头痛专科(嘉)",
+                "dept_id": "D01944",
+                "canonical": "偏头痛",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "血透门诊(嘉)",
+                "dept_id": "D08887",
+                "canonical": "血透门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "消化内镜诊疗门诊(嘉)",
+                "dept_id": "D05942",
+                "canonical": "消化内镜诊疗门诊",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "血液病科(嘉)",
+                "dept_id": "D08815",
+                "canonical": "血液病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "郁证专科(嘉)",
+                "dept_id": "D09408",
+                "canonical": "郁证",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "肾小球肾炎专科(嘉)",
+                "dept_id": "D07963",
+                "canonical": "肾小球肾炎",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "治未病科(嘉)",
+                "dept_id": "D05773",
+                "canonical": "治未病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "脾胃病科(嘉)",
+                "dept_id": "D08531",
+                "canonical": "脾胃病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "神经内科(嘉)",
+                "dept_id": "D06976",
+                "canonical": "神经内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "心血管内科(CCU、心电图室)(嘉)",
+                "dept_id": "D04780",
+                "canonical": "心血管内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:CCU、心电图室;院区:嘉"
+              },
+              {
+                "raw": "肝病科(嘉)",
+                "dept_id": "D07644",
+                "canonical": "肝病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "酒精性肝病专科(嘉)",
+                "dept_id": "D09416",
+                "canonical": "酒精性肝病",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "非遗陈氏外科预防糖尿病足专科(嘉)",
+                "dept_id": "D09763",
+                "canonical": "非遗陈氏外科预防糖尿病足",
+                "kind": "specialty_clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "消化内科(嘉)",
+                "dept_id": "D05920",
+                "canonical": "消化内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "内科(嘉)",
+                "dept_id": "D02633",
+                "canonical": "内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "陈氏外科(嘉)",
+                "dept_id": "D09666",
+                "canonical": "陈氏外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "心病科(嘉)",
+                "dept_id": "D04721",
+                "canonical": "心病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "肺病科(嘉)",
+                "dept_id": "D07843",
+                "canonical": "肺病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "内分泌科(嘉)",
+                "dept_id": "D02588",
+                "canonical": "内分泌科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              }
+            ]
+          },
+          {
+            "name": "骨科",
+            "tab_index": 10,
+            "depts": [
+              {
+                "raw": "骨折病专科(嘉)",
+                "dept_id": "D10061",
+                "canonical": "骨折病",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "急救骨伤科(嘉)",
+                "dept_id": "D04835",
+                "canonical": "急救骨伤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "脑卒中康复专科(嘉)",
+                "dept_id": "D08438",
+                "canonical": "脑卒中康复",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "康复医学科(嘉)",
+                "dept_id": "D04496",
+                "canonical": "康复医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "急诊骨伤科(嘉)",
+                "dept_id": "D04882",
+                "canonical": "急诊骨伤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              }
+            ]
+          },
+          {
+            "name": "耳鼻喉科",
+            "tab_index": 11,
+            "depts": [
+              {
+                "raw": "过敏性鼻炎(嘉)",
+                "dept_id": "D09268",
+                "canonical": "过敏性鼻炎",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "慢性咽炎专科(嘉)",
+                "dept_id": "D04957",
+                "canonical": "慢性咽炎",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              }
+            ]
+          },
+          {
+            "name": "肿瘤科",
+            "tab_index": 12,
+            "depts": [
+              {
+                "raw": "肿瘤热疗专科(嘉)",
+                "dept_id": "D08104",
+                "canonical": "肿瘤热疗",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "朱氏非遗专科(嘉)",
+                "dept_id": "D05574",
+                "canonical": "朱氏非遗",
+                "kind": "other",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "肿瘤一科(呼吸道肿瘤)(嘉)",
+                "dept_id": "D08013",
+                "canonical": "肿瘤一科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:呼吸道肿瘤;院区:嘉"
+              },
+              {
+                "raw": "肿瘤二科(上消化道和消化腺)(嘉)",
+                "dept_id": "D08034",
+                "canonical": "肿瘤二科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:上消化道和消化腺;院区:嘉"
+              },
+              {
+                "raw": "肿瘤五科(甲乳生殖肿瘤)(嘉)",
+                "dept_id": "D08040",
+                "canonical": "肿瘤五科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:甲乳生殖肿瘤;院区:嘉"
+              },
+              {
+                "raw": "肿瘤三科(下消化道肿瘤)(嘉)",
+                "dept_id": "D08020",
+                "canonical": "肿瘤三科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:下消化道肿瘤;院区:嘉"
+              },
+              {
+                "raw": "肿瘤六科(介入)(嘉)",
+                "dept_id": "D08049",
+                "canonical": "肿瘤六科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:介入;院区:嘉"
+              },
+              {
+                "raw": "日间科室(嘉)",
+                "dept_id": "D05390",
+                "canonical": "日间科室",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              }
+            ]
+          },
+          {
+            "name": "痔科",
+            "tab_index": 13,
+            "depts": [
+              {
+                "raw": "肛肠科(嘉)",
+                "dept_id": "D07615",
+                "canonical": "肛肠科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              }
+            ]
+          },
+          {
+            "name": "外科",
+            "tab_index": 14,
+            "depts": [
+              {
+                "raw": "急救外科(嘉)",
+                "dept_id": "D04833",
+                "canonical": "急救外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "疝专科(嘉)",
+                "dept_id": "D06462",
+                "canonical": "疝",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "急诊外科(嘉)",
+                "dept_id": "D04847",
+                "canonical": "急诊外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "外一科(胃肠外科)(嘉)",
+                "dept_id": "D03748",
+                "canonical": "外一科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:胃肠外科;院区:嘉"
+              },
+              {
+                "raw": "胃肠道肿瘤专科(嘉)",
+                "dept_id": "D08212",
+                "canonical": "胃肠道肿瘤",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "神经调控专科(嘉)",
+                "dept_id": "D07085",
+                "canonical": "神经调控",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "外二科（肝胆外科）(嘉)",
+                "dept_id": "D03750",
+                "canonical": "外二科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:肝胆外科;院区:嘉"
+              },
+              {
+                "raw": "外六科(神经外科)(嘉)",
+                "dept_id": "D03757",
+                "canonical": "外六科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:神经外科;院区:嘉"
+              },
+              {
+                "raw": "外三科(甲乳血管外科)(嘉)",
+                "dept_id": "D03749",
+                "canonical": "外三科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:甲乳血管外科;院区:嘉"
+              },
+              {
+                "raw": "腹膜癌腹膜后肿瘤专科(嘉)",
+                "dept_id": "D08593",
+                "canonical": "腹膜癌腹膜后肿瘤",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              }
+            ]
+          },
+          {
+            "name": "泌尿科",
+            "tab_index": 15,
+            "depts": [
+              {
+                "raw": "外四科(泌尿外科)(嘉)",
+                "dept_id": "D03762",
+                "canonical": "外四科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:泌尿外科;院区:嘉"
+              },
+              {
+                "raw": "急诊泌尿外科(嘉)",
+                "dept_id": "D04859",
+                "canonical": "急诊泌尿外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:嘉"
+              },
+              {
+                "raw": "泌尿系结石专科(嘉)",
+                "dept_id": "D05831",
+                "canonical": "泌尿系结石",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:嘉"
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 16,
+          "entry_count": 137,
+          "unique_count": 137,
+          "canonical_count": 135
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T10:19:07Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 16,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T10:19:07Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 137,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T10:19:07Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

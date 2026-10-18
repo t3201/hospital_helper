@@ -1,0 +1,1314 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-034",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:39",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=51; geo=amap(name_in_poi); dept=suishenban#yuyue_guahao(2026-09-26, l1=45/l2u=105)"
+  },
+  "institution": {
+    "name": "第九人民医院(东部院区)",
+    "aliases": [],
+    "level": "三级甲等",
+    "type": "综合医院",
+    "ownership": "公立",
+    "affiliation": "上海交通大学",
+    "official_site": "",
+    "tel": "021-56691101"
+  },
+  "campuses": [
+    {
+      "id": "SH-034-M",
+      "name": "本部",
+      "district": "浦东新区",
+      "address": "云亭路99号",
+      "geo": {
+        "lng": 121.771363,
+        "lat": 31.097297,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:name_in_poi"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "三级甲等",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "上海东站(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 1903,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 0,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": null,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 1,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 287,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "川南奉公路申嘉湖高速(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "computed",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html",
+        "basis": "parent_institution",
+        "parent": "上海交通大学医学院附属第九人民医院",
+        "note": "推定：母院为医保定点，该院区未在名单单列（母院=上海交通大学医学院附属第九人民医院）"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-26T22:25:54Z",
+        "l1": [
+          {
+            "name": "营养科",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "营养科门诊(东部)",
+                "dept_id": "D08749",
+                "canonical": "营养科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "耳鼻咽喉头颈外科",
+            "tab_index": 1,
+            "depts": [
+              {
+                "raw": "耳鼻咽喉头颈外科门诊(东部)",
+                "dept_id": "D07506",
+                "canonical": "耳鼻咽喉头颈外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "耳鼻咽喉科特需门诊(东部)",
+                "dept_id": "D07513",
+                "canonical": "耳鼻咽喉科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "耳科、听力及眩晕门诊(东部)",
+                "dept_id": "D07488",
+                "canonical": "耳科、听力及眩晕门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部"
+              }
+            ]
+          },
+          {
+            "name": "口腔修复科",
+            "tab_index": 2,
+            "depts": [
+              {
+                "raw": "口腔修复科门诊(东部)",
+                "dept_id": "D03187",
+                "canonical": "口腔修复科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "内分泌科",
+            "tab_index": 3,
+            "depts": [
+              {
+                "raw": "内分泌科轮值副主任专家门诊(东部)",
+                "dept_id": "D02610",
+                "canonical": "内分泌科轮值副主任门诊",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "院区:东部"
+              },
+              {
+                "raw": "内分泌科门诊(东部)",
+                "dept_id": "D02588",
+                "canonical": "内分泌科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "内分泌科轮值主任专家门诊(东部)",
+                "dept_id": "D02609",
+                "canonical": "内分泌科轮值主任门诊",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "院区:东部"
+              }
+            ]
+          },
+          {
+            "name": "牙周病科",
+            "tab_index": 4,
+            "depts": [
+              {
+                "raw": "牙周病科门诊(东部)",
+                "dept_id": "D06086",
+                "canonical": "牙周病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "激光美容科",
+            "tab_index": 5,
+            "depts": [
+              {
+                "raw": "激光美容科门诊(东部)",
+                "dept_id": "D06023",
+                "canonical": "激光美容科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "神经外科",
+            "tab_index": 6,
+            "depts": [
+              {
+                "raw": "神经外科门诊(东部)",
+                "dept_id": "D07035",
+                "canonical": "神经外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "全科医学科",
+            "tab_index": 7,
+            "depts": [
+              {
+                "raw": "全科医学科门诊(东部)",
+                "dept_id": "D02450",
+                "canonical": "全科医疗科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "疼痛科",
+            "tab_index": 8,
+            "depts": [
+              {
+                "raw": "疼痛科门诊(东部)",
+                "dept_id": "D06526",
+                "canonical": "疼痛科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "口腔首诊中心",
+            "tab_index": 9,
+            "depts": [
+              {
+                "raw": "口腔首诊中心(东部)",
+                "dept_id": "D03321",
+                "canonical": "口腔首诊中心",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部"
+              }
+            ]
+          },
+          {
+            "name": "整复外科",
+            "tab_index": 10,
+            "depts": [
+              {
+                "raw": "鼻整形专科门诊(东部)",
+                "dept_id": "D10280",
+                "canonical": "鼻整形",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "性别医学专科门诊(东部)",
+                "dept_id": "D04885",
+                "canonical": "性别医学门诊",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:东部"
+              },
+              {
+                "raw": "创面与瘢痕修复专科门诊(东部)",
+                "dept_id": "D02786",
+                "canonical": "创面与瘢痕修复门诊",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:东部"
+              },
+              {
+                "raw": "面瘫后遗症及面部提升专科门诊(东部)",
+                "dept_id": "D09770",
+                "canonical": "面瘫后遗症及面部提升门诊",
+                "kind": "specialty_clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:东部"
+              },
+              {
+                "raw": "乳房整形专科门诊(东部)",
+                "dept_id": "D01622",
+                "canonical": "乳房整形",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "面部提升专科门诊(东部)",
+                "dept_id": "D09781",
+                "canonical": "面部提升门诊",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:东部"
+              },
+              {
+                "raw": "唇部整形专科门诊(东部)",
+                "dept_id": "D03547",
+                "canonical": "唇部整形",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "整复外科门诊(东部)",
+                "dept_id": "D05213",
+                "canonical": "整复外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "淋巴水肿与体表肿物专病门诊(东部)",
+                "dept_id": "D05986",
+                "canonical": "淋巴水肿与体表肿物门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "院区:东部"
+              },
+              {
+                "raw": "整外耳再造专科门诊(东部)",
+                "dept_id": "D05221",
+                "canonical": "整外耳再造",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "林晓曦教授血管瘤与脉管畸形专家团队门诊(东部)",
+                "dept_id": "D05623",
+                "canonical": "林晓曦教授血管瘤与脉管畸形团队门诊",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "院区:东部"
+              },
+              {
+                "raw": "整外手外专科门诊(东部)",
+                "dept_id": "D05220",
+                "canonical": "整外手外",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "唇畸形修复专科门诊(东部)",
+                "dept_id": "D03541",
+                "canonical": "唇畸形修复门诊",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:东部"
+              },
+              {
+                "raw": "体表肿物专科门诊(东部)",
+                "dept_id": "D01879",
+                "canonical": "体表肿物门诊",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:东部"
+              },
+              {
+                "raw": "烧伤与创面修复专科门诊(东部)",
+                "dept_id": "D06042",
+                "canonical": "烧伤与创面修复门诊",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:东部"
+              },
+              {
+                "raw": "面部轮廓整形专科门诊(东部)",
+                "dept_id": "D09786",
+                "canonical": "面部轮廓整形",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "眼周整形专科门诊(东部)",
+                "dept_id": "D06816",
+                "canonical": "眼周整形",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "瘢痕专科门诊(东部)",
+                "dept_id": "D06617",
+                "canonical": "瘢痕门诊",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:东部"
+              },
+              {
+                "raw": "面颈部松弛专科门诊(东部)",
+                "dept_id": "D09789",
+                "canonical": "面颈部松弛门诊",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:东部"
+              },
+              {
+                "raw": "整外上睑下垂专病门诊(东部)",
+                "dept_id": "D05217",
+                "canonical": "整外上睑下垂门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "院区:东部"
+              },
+              {
+                "raw": "注射整形并发症专科门诊(东部)",
+                "dept_id": "D05864",
+                "canonical": "注射整形并发症门诊",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:东部"
+              }
+            ]
+          },
+          {
+            "name": "肾脏内科",
+            "tab_index": 11,
+            "depts": [
+              {
+                "raw": "肾脏内科门诊(东部)",
+                "dept_id": "D07989",
+                "canonical": "肾脏内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "腹膜透析门诊(东部)",
+                "dept_id": "D08595",
+                "canonical": "腹膜透析",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "感染科",
+            "tab_index": 12,
+            "depts": [
+              {
+                "raw": "肝病门诊(东部)",
+                "dept_id": "D07644",
+                "canonical": "肝病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "普外二科",
+            "tab_index": 13,
+            "depts": [
+              {
+                "raw": "普外二科门诊(东部)",
+                "dept_id": "D05433",
+                "canonical": "普外二科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "甲状腺乳腺专科门诊(东部)",
+                "dept_id": "D06332",
+                "canonical": "甲状腺乳腺",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "儿科",
+            "tab_index": 14,
+            "depts": [
+              {
+                "raw": "儿科门诊(东部)",
+                "dept_id": "D02013",
+                "canonical": "儿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "口腔黏膜病科",
+            "tab_index": 15,
+            "depts": [
+              {
+                "raw": "口腔黏膜病科门诊(东部)",
+                "dept_id": "D03325",
+                "canonical": "口腔黏膜病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "血管外科",
+            "tab_index": 16,
+            "depts": [
+              {
+                "raw": "血管外科门诊(东部)",
+                "dept_id": "D08846",
+                "canonical": "血管外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "静脉曲张专病门诊(东部)",
+                "dept_id": "D09748",
+                "canonical": "静脉曲张",
+                "kind": "specialty_clinic",
+                "visit_type": "专病",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "介入科",
+            "tab_index": 17,
+            "depts": [
+              {
+                "raw": "介入科门诊(东部)",
+                "dept_id": "D01779",
+                "canonical": "介入科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "介入科特需门诊(东部)",
+                "dept_id": "D01779",
+                "canonical": "介入科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "牙体牙髓科",
+            "tab_index": 18,
+            "depts": [
+              {
+                "raw": "黄正蔚教授牙体牙髓专家团队门诊(东部)",
+                "dept_id": "D10269",
+                "canonical": "黄正蔚教授牙体牙髓团队门诊",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "院区:东部"
+              },
+              {
+                "raw": "牙体牙髓科门诊(东部)",
+                "dept_id": "D06073",
+                "canonical": "牙体牙髓科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "胸外科",
+            "tab_index": 19,
+            "depts": [
+              {
+                "raw": "胸外科门诊(东部)",
+                "dept_id": "D08309",
+                "canonical": "胸外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "泌尿外科",
+            "tab_index": 20,
+            "depts": [
+              {
+                "raw": "泌尿外科门诊(东部)",
+                "dept_id": "D05785",
+                "canonical": "泌尿外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "前列腺疾病专病门诊(东部)",
+                "dept_id": "D02803",
+                "canonical": "前列腺疾病",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "男科及小儿泌尿专病门诊(东部)",
+                "dept_id": "D06421",
+                "canonical": "男科及小儿泌尿",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "尿路修复专科门诊(东部)",
+                "dept_id": "D04359",
+                "canonical": "尿路修复门诊",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:东部"
+              },
+              {
+                "raw": "后腹膜肿瘤专科门诊(东部)",
+                "dept_id": "D03376",
+                "canonical": "后腹膜肿瘤门诊",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:东部"
+              },
+              {
+                "raw": "泌尿肿瘤微创专科门诊(东部)",
+                "dept_id": "D05846",
+                "canonical": "泌尿肿瘤微创门诊",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:东部"
+              },
+              {
+                "raw": "泌尿结石专病门诊(东部)",
+                "dept_id": "D05838",
+                "canonical": "泌尿结石",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "尿控及盆底疾病专病门诊(东部)",
+                "dept_id": "D04347",
+                "canonical": "尿控及盆底疾病门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "院区:东部"
+              },
+              {
+                "raw": "泌尿外科特需门诊(东部)",
+                "dept_id": "D05785",
+                "canonical": "泌尿外科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "口腔外科",
+            "tab_index": 21,
+            "depts": [
+              {
+                "raw": "关节及牙槽外科专病门诊(东部)",
+                "dept_id": "D02529",
+                "canonical": "关节及牙槽外科门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "院区:东部"
+              },
+              {
+                "raw": "牙槽及颌面神经专病门诊(东部)",
+                "dept_id": "D06093",
+                "canonical": "牙槽及颌面神经门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "院区:东部"
+              },
+              {
+                "raw": "口腔外科门诊(东部)",
+                "dept_id": "D03200",
+                "canonical": "口腔外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "口外牙种植专科门诊(东部)",
+                "dept_id": "D03171",
+                "canonical": "口外牙种植",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "关节、牙槽及骨髓炎专病门诊(东部)",
+                "dept_id": "D02519",
+                "canonical": "关节、牙槽及骨髓炎门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "院区:东部"
+              }
+            ]
+          },
+          {
+            "name": "风湿免疫科",
+            "tab_index": 22,
+            "depts": [
+              {
+                "raw": "风湿免疫科门诊(东部)",
+                "dept_id": "D09894",
+                "canonical": "风湿免疫科",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "中医科",
+            "tab_index": 23,
+            "depts": [
+              {
+                "raw": "中医科门诊(东部)",
+                "dept_id": "D01316",
+                "canonical": "中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "中医外科(长皮膏专科)门诊(东部)",
+                "dept_id": "D01215",
+                "canonical": "中医外科",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "针灸科门诊(东部)",
+                "dept_id": "D09528",
+                "canonical": "针灸科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "中医伤外科门诊(东部)",
+                "dept_id": "D01144",
+                "canonical": "中医伤外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "放射科",
+            "tab_index": 24,
+            "depts": [
+              {
+                "raw": "放射科门诊(东部)",
+                "dept_id": "D05186",
+                "canonical": "放射科",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "口腔预防科",
+            "tab_index": 25,
+            "depts": [
+              {
+                "raw": "口腔预防科门诊(东部)",
+                "dept_id": "D03304",
+                "canonical": "口腔预防科",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "消化内科",
+            "tab_index": 26,
+            "depts": [
+              {
+                "raw": "消化内科门诊(东部)",
+                "dept_id": "D05920",
+                "canonical": "消化内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "脂肪肝专病门诊(东部)",
+                "dept_id": "D08354",
+                "canonical": "脂肪肝",
+                "kind": "specialty_clinic",
+                "visit_type": "专病",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "骨科",
+            "tab_index": 27,
+            "depts": [
+              {
+                "raw": "骨科门诊(东部)",
+                "dept_id": "D10069",
+                "canonical": "骨科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "血液内科",
+            "tab_index": 28,
+            "depts": [
+              {
+                "raw": "血液内科门诊(东部)",
+                "dept_id": "D08806",
+                "canonical": "血液内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "血液内科轮值副主任专家门诊(东部)",
+                "dept_id": "D08808",
+                "canonical": "血液内科轮值副主任门诊",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "院区:东部"
+              }
+            ]
+          },
+          {
+            "name": "口腔综合科",
+            "tab_index": 29,
+            "depts": [
+              {
+                "raw": "口腔综合科门诊(东部)",
+                "dept_id": "D03285",
+                "canonical": "口腔综合科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "皮肤科",
+            "tab_index": 30,
+            "depts": [
+              {
+                "raw": "皮肤科特需门诊(东部)",
+                "dept_id": "D06702",
+                "canonical": "皮肤科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "皮肤科门诊(东部)",
+                "dept_id": "D06702",
+                "canonical": "皮肤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "超声医学科",
+            "tab_index": 31,
+            "depts": [
+              {
+                "raw": "介入超声门诊(东部)",
+                "dept_id": "D01786",
+                "canonical": "介入超声门诊",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部"
+              }
+            ]
+          },
+          {
+            "name": "口腔种植科",
+            "tab_index": 32,
+            "depts": [
+              {
+                "raw": "口腔种植科门诊(东部)",
+                "dept_id": "D03243",
+                "canonical": "口腔种植科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "赖红昌教授口腔种植专家团队门诊(东部)",
+                "dept_id": "D09149",
+                "canonical": "赖红昌教授口腔种植团队门诊",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "院区:东部"
+              }
+            ]
+          },
+          {
+            "name": "眼科",
+            "tab_index": 33,
+            "depts": [
+              {
+                "raw": "眼科特需门诊(东部)",
+                "dept_id": "D06839",
+                "canonical": "眼科",
+                "kind": "clinic",
+                "visit_type": "特需",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "眼科门诊(东部)",
+                "dept_id": "D06839",
+                "canonical": "眼科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "神经眼科门诊(东部)",
+                "dept_id": "D07072",
+                "canonical": "神经眼科门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部"
+              }
+            ]
+          },
+          {
+            "name": "放疗门诊",
+            "tab_index": 34,
+            "depts": [
+              {
+                "raw": "放疗科门诊(东部)",
+                "dept_id": "D05197",
+                "canonical": "放疗科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "老年病科",
+            "tab_index": 35,
+            "depts": [
+              {
+                "raw": "老年病科门诊(东部)",
+                "dept_id": "D07399",
+                "canonical": "老年病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "麻醉科门诊",
+            "tab_index": 36,
+            "depts": [
+              {
+                "raw": "麻醉科评估门诊(东部)",
+                "dept_id": "D10252",
+                "canonical": "麻醉科评估门诊",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部"
+              },
+              {
+                "raw": "麻醉科镇痛与治疗门诊(东部)",
+                "dept_id": "D10253",
+                "canonical": "麻醉科镇痛与治疗门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部"
+              }
+            ]
+          },
+          {
+            "name": "口腔颅颌面科",
+            "tab_index": 37,
+            "depts": [
+              {
+                "raw": "江凌勇教授正颌正畸专家团队门诊(东部)",
+                "dept_id": "D05744",
+                "canonical": "江凌勇教授正颌正畸团队门诊",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "院区:东部"
+              },
+              {
+                "raw": "正颌正畸门诊(东部)",
+                "dept_id": "D05695",
+                "canonical": "正颌正畸",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "口腔颅颌面科门诊(东部)",
+                "dept_id": "D03305",
+                "canonical": "口腔颅颌面科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "病理科",
+            "tab_index": 38,
+            "depts": [
+              {
+                "raw": "大体病理科门诊(东部)",
+                "dept_id": "D03841",
+                "canonical": "大体病理科门诊",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部"
+              }
+            ]
+          },
+          {
+            "name": "口腔正畸科",
+            "tab_index": 39,
+            "depts": [
+              {
+                "raw": "口腔正畸科门诊(东部)",
+                "dept_id": "D03215",
+                "canonical": "口腔正畸科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "房兵教授口腔正畸专家团队门诊(东部)",
+                "dept_id": "D05051",
+                "canonical": "房兵教授口腔正畸团队门诊",
+                "kind": "specialty_clinic",
+                "visit_type": "专家",
+                "qualifiers": "院区:东部"
+              }
+            ]
+          },
+          {
+            "name": "呼吸与危重症医学科",
+            "tab_index": 40,
+            "depts": [
+              {
+                "raw": "呼吸与危重症医学科门诊(东部)",
+                "dept_id": "D03432",
+                "canonical": "呼吸与危重症医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "口腔颌面头颈肿瘤科",
+            "tab_index": 41,
+            "depts": [
+              {
+                "raw": "头颈部血管瘤及血管畸形专病门诊(东部)",
+                "dept_id": "D03918",
+                "canonical": "头颈部血管瘤及血管畸形",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "口腔颌面头颈肿瘤科门诊(东部)",
+                "dept_id": "D03314",
+                "canonical": "口腔颌面头颈肿瘤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "腮腺肿瘤及面神经专病门诊(东部)",
+                "dept_id": "D08554",
+                "canonical": "腮腺肿瘤及面神经门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "院区:东部"
+              }
+            ]
+          },
+          {
+            "name": "神经内科",
+            "tab_index": 42,
+            "depts": [
+              {
+                "raw": "神经内科门诊(东部)",
+                "dept_id": "D06976",
+                "canonical": "神经内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "头痛和三叉神经痛专病门诊(东部)",
+                "dept_id": "D03899",
+                "canonical": "头痛和三叉神经痛门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "院区:东部"
+              },
+              {
+                "raw": "帕金森病和运动障碍专病门诊(东部)",
+                "dept_id": "D04423",
+                "canonical": "帕金森病和运动障碍门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "院区:东部"
+              }
+            ]
+          },
+          {
+            "name": "儿童口腔科",
+            "tab_index": 43,
+            "depts": [
+              {
+                "raw": "儿童咬合诱导专科门诊(东部)",
+                "dept_id": "D02113",
+                "canonical": "儿童咬合诱导门诊",
+                "kind": "clinic",
+                "visit_type": "专科",
+                "qualifiers": "院区:东部"
+              },
+              {
+                "raw": "儿童口腔科门诊(东部)",
+                "dept_id": "D02100",
+                "canonical": "儿童口腔科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "心血管内科",
+            "tab_index": 44,
+            "depts": [
+              {
+                "raw": "心血管内科门诊(东部)",
+                "dept_id": "D04780",
+                "canonical": "心血管内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:东部;形态:门诊"
+              },
+              {
+                "raw": "冠心病专病门诊(东部)",
+                "dept_id": "D02683",
+                "canonical": "冠心病",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "院区:东部;形态:门诊"
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 45,
+          "entry_count": 105,
+          "unique_count": 105,
+          "canonical_count": 101
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T22:25:54Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 45,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T22:25:54Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 105,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T22:25:54Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

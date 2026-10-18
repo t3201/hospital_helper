@@ -1,0 +1,1840 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-011",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:39",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=11; geo=amap(name_in_poi); dept=suishenban#yuyue_guahao(2026-09-26, l1=16/l2u=189)"
+  },
+  "institution": {
+    "name": "仁济医院南院",
+    "aliases": [],
+    "level": "三级甲等",
+    "type": "综合医院",
+    "ownership": "公立",
+    "affiliation": "上海交通大学",
+    "official_site": "",
+    "tel": ""
+  },
+  "campuses": [
+    {
+      "id": "SH-011-M",
+      "name": "本部",
+      "district": "闵行区",
+      "address": "南江洲路与浦驰路交叉口西南140米",
+      "geo": {
+        "lng": 121.498525,
+        "lat": 31.082325,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:name_in_poi"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "三级甲等",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [
+        "南消化科",
+        "南泌尿科",
+        "南风湿病科"
+      ],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "mid",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "江月路(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 984,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 1,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": 17.9,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 5,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 43,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "南江洲路浦驰路(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "computed",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html",
+        "basis": "parent_institution",
+        "parent": "上海交通大学医学院附属仁济医院",
+        "note": "推定：母院为医保定点，该院区未在名单单列（母院=上海交通大学医学院附属仁济医院）"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-26T13:19:20Z",
+        "l1": [
+          {
+            "name": "重点科室",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "南泌尿科",
+                "dept_id": "D03023",
+                "canonical": "南泌尿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南消化科",
+                "dept_id": "D03024",
+                "canonical": "南消化科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "肿瘤科",
+            "tab_index": 1,
+            "depts": [
+              {
+                "raw": "肿瘤纳米刀微创消融（王凯峰团队)门诊",
+                "dept_id": "D08134",
+                "canonical": "肿瘤纳米刀微创消融门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:王凯峰团队"
+              },
+              {
+                "raw": "南肿瘤科",
+                "dept_id": "D03053",
+                "canonical": "南肿瘤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "传染科",
+            "tab_index": 2,
+            "depts": [
+              {
+                "raw": "南感染科",
+                "dept_id": "D03014",
+                "canonical": "南感染科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "医学影像科",
+            "tab_index": 3,
+            "depts": [
+              {
+                "raw": "南超声介入",
+                "dept_id": "D03070",
+                "canonical": "南超声介入",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "小儿超声专病门诊",
+                "dept_id": "D04317",
+                "canonical": "小儿超声门诊",
+                "kind": "ancillary",
+                "visit_type": "专病",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "眼科",
+            "tab_index": 4,
+            "depts": [
+              {
+                "raw": "南眼科",
+                "dept_id": "D03036",
+                "canonical": "南眼科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "妇产科",
+            "tab_index": 5,
+            "depts": [
+              {
+                "raw": "异常子宫出血",
+                "dept_id": "D04548",
+                "canonical": "异常子宫出血",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "男性备育",
+                "dept_id": "D06406",
+                "canonical": "男性备育",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "宫腔内膜疾病(宫颈内膜)",
+                "dept_id": "D04198",
+                "canonical": "宫腔内膜疾病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:宫颈内膜"
+              },
+              {
+                "raw": "南盆底功能障碍",
+                "dept_id": "D03035",
+                "canonical": "南盆底功能障碍",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "多囊卵巢综合征",
+                "dept_id": "D03815",
+                "canonical": "多囊卵巢综合征",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "IVF手术",
+                "dept_id": "D00072",
+                "canonical": "IVF手术",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "试管促排",
+                "dept_id": "D09121",
+                "canonical": "试管促排",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "流产保胎",
+                "dept_id": "D05892",
+                "canonical": "流产保胎",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "备孕助孕",
+                "dept_id": "D03719",
+                "canonical": "备孕助孕",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "生育力保存",
+                "dept_id": "D06283",
+                "canonical": "生育力保存",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "妊娠合并免疫系统疾病",
+                "dept_id": "D04063",
+                "canonical": "妊娠合并免疫系统疾病",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南痛经及子宫内膜异位症",
+                "dept_id": "D03031",
+                "canonical": "南痛经及子宫内膜异位症",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "男科",
+                "dept_id": "D06418",
+                "canonical": "男科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "生殖护理",
+                "dept_id": "D06266",
+                "canonical": "生殖护理",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南宫颈疾病",
+                "dept_id": "D03010",
+                "canonical": "南宫颈疾病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南生殖医学科",
+                "dept_id": "D03025",
+                "canonical": "南生殖医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "保胎专病门诊",
+                "dept_id": "D01934",
+                "canonical": "保胎门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "优生与遗传咨询",
+                "dept_id": "D01814",
+                "canonical": "优生与遗传咨询",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "张楠（妇科肿瘤）",
+                "dept_id": "D04561",
+                "canonical": "张楠",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "其他:妇科肿瘤"
+              },
+              {
+                "raw": "南妇科",
+                "dept_id": "D03008",
+                "canonical": "南妇科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南产科初诊",
+                "dept_id": "D02996",
+                "canonical": "南产科初诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "妇产科康复诊疗",
+                "dept_id": "D03967",
+                "canonical": "妇产科康复诊疗",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南产科",
+                "dept_id": "D02995",
+                "canonical": "南产科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "罕见病生育咨询",
+                "dept_id": "D07313",
+                "canonical": "罕见病生育咨询",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南早孕及孕前门诊",
+                "dept_id": "D03021",
+                "canonical": "南早孕及孕前门诊",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南助产士咨询",
+                "dept_id": "D03004",
+                "canonical": "南助产士咨询",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南计划生育",
+                "dept_id": "D03068",
+                "canonical": "南计划生育",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "卵巢囊肿（卵巢肿瘤)",
+                "dept_id": "D03092",
+                "canonical": "卵巢囊肿",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:卵巢肿瘤"
+              },
+              {
+                "raw": "妇科肿瘤超声诊断",
+                "dept_id": "D04050",
+                "canonical": "妇科肿瘤超声诊断",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "产科儿保-陈雪莲",
+                "dept_id": "D01743",
+                "canonical": "产科儿保陈雪莲",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "男性性功能",
+                "dept_id": "D06407",
+                "canonical": "男性性功能",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "不孕不育诊治",
+                "dept_id": "D00250",
+                "canonical": "不孕不育诊治",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "精索静脉曲张",
+                "dept_id": "D07166",
+                "canonical": "精索静脉曲张",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南妊娠合并心血管疾病",
+                "dept_id": "D03009",
+                "canonical": "南妊娠合并心血管疾病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "中医科",
+            "tab_index": 6,
+            "depts": [
+              {
+                "raw": "多囊卵巢综合征",
+                "dept_id": "D03815",
+                "canonical": "多囊卵巢综合征",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南针灸科",
+                "dept_id": "D03072",
+                "canonical": "南针灸科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南中医科",
+                "dept_id": "D02993",
+                "canonical": "南中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "中医儿童冬病夏治融合门诊",
+                "dept_id": "D01160",
+                "canonical": "中医儿童冬病夏治融合门诊",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "儿科",
+            "tab_index": 7,
+            "depts": [
+              {
+                "raw": "儿童脱敏门诊（集群免疫）",
+                "dept_id": "D02253",
+                "canonical": "儿童脱敏门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:集群免疫"
+              },
+              {
+                "raw": "南儿科",
+                "dept_id": "D02998",
+                "canonical": "南儿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "小儿内分泌（矮小肥胖早发育）",
+                "dept_id": "D04262",
+                "canonical": "小儿内分泌",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:矮小肥胖早发育"
+              },
+              {
+                "raw": "南儿童风湿免疫专病门诊",
+                "dept_id": "D02999",
+                "canonical": "南儿童风湿免疫门诊",
+                "kind": "screening",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "儿童矮小与早发育",
+                "dept_id": "D02207",
+                "canonical": "儿童矮小与早发育",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "小儿鼻炎哮喘与脱敏",
+                "dept_id": "D04326",
+                "canonical": "小儿鼻炎哮喘与脱敏",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "儿童肥胖、矮小和性早熟门诊",
+                "dept_id": "D02227",
+                "canonical": "儿童肥胖、矮小和性早熟门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南生长发育",
+                "dept_id": "D03026",
+                "canonical": "南生长发育",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "内科",
+            "tab_index": 8,
+            "depts": [
+              {
+                "raw": "PCOS代谢紊乱综合诊疗门诊",
+                "dept_id": "D00093",
+                "canonical": "PCOS代谢紊乱综合诊疗门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "脑机接口多学科联合门诊（BCI）",
+                "dept_id": "D08459",
+                "canonical": "脑机接口多学科联合门诊",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:BCI"
+              },
+              {
+                "raw": "南睡眠呼吸暂停筛查",
+                "dept_id": "D03037",
+                "canonical": "南睡眠呼吸暂停筛查",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南糖尿病",
+                "dept_id": "D03040",
+                "canonical": "南糖尿病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "肝病专病",
+                "dept_id": "D07644",
+                "canonical": "肝病科",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南肺动脉高压及肺栓塞",
+                "dept_id": "D03048",
+                "canonical": "南肺动脉高压及肺栓塞",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "老年科—慢性阻塞性肺疾病异地慢病",
+                "dept_id": "D07424",
+                "canonical": "老年科慢性阻塞性肺疾病异地慢病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "风湿科—强直性脊柱炎异地慢病",
+                "dept_id": "D09936",
+                "canonical": "风湿科强直性脊柱炎异地慢病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "胃肠肿瘤手术及综合治疗",
+                "dept_id": "D08200",
+                "canonical": "胃肠肿瘤手术及综合治疗",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南高血压高血脂",
+                "dept_id": "D03077",
+                "canonical": "南高血压高血脂",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "内分泌科—糖尿病异地慢病",
+                "dept_id": "D02606",
+                "canonical": "内分泌科糖尿病异地慢病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "健康体重管理门诊",
+                "dept_id": "D01955",
+                "canonical": "健康体重管理门诊",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "呼吸科—慢性阻塞性肺疾病异地慢病",
+                "dept_id": "D03494",
+                "canonical": "呼吸科慢性阻塞性肺疾病异地慢病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "风湿科—类风湿性关节炎异地慢病",
+                "dept_id": "D09938",
+                "canonical": "风湿科类风湿性关节炎异地慢病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "脑卒中筛查与预防",
+                "dept_id": "D08445",
+                "canonical": "脑卒中筛查与预防",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "心脏康复门诊",
+                "dept_id": "D04749",
+                "canonical": "心脏康复",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "南神经内科",
+                "dept_id": "D03038",
+                "canonical": "南神经内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南系统性红斑狼疮",
+                "dept_id": "D03041",
+                "canonical": "南系统性红斑狼疮",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南冠心病高血压高血脂",
+                "dept_id": "D03003",
+                "canonical": "南冠心病高血压高血脂",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南冠心病介入后随访",
+                "dept_id": "D03002",
+                "canonical": "南冠心病介入后随访",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "神经内科—高血压异地慢病",
+                "dept_id": "D07029",
+                "canonical": "神经内科高血压异地慢病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "痛风及高尿酸血症",
+                "dept_id": "D06580",
+                "canonical": "痛风及高尿酸血症",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "炎症与成人Still病",
+                "dept_id": "D06034",
+                "canonical": "炎症与成人Still病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南心房颤动和心律失常",
+                "dept_id": "D03013",
+                "canonical": "南心房颤动和心律失常",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "肾内科—肾移植抗排异治疗异地慢特",
+                "dept_id": "D07952",
+                "canonical": "肾内科肾移植抗排异治疗异地慢特",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南老年科",
+                "dept_id": "D03042",
+                "canonical": "南老年科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "肾内科—高血压异地慢病",
+                "dept_id": "D07957",
+                "canonical": "肾内科高血压异地慢病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南过敏科",
+                "dept_id": "D03071",
+                "canonical": "南过敏科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南慢性咳嗽与哮喘",
+                "dept_id": "D03015",
+                "canonical": "南慢性咳嗽与哮喘",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南皮肌炎",
+                "dept_id": "D03032",
+                "canonical": "南皮肌炎",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "心内科—高血压异地慢病",
+                "dept_id": "D04666",
+                "canonical": "心内科高血压异地慢病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南血液科",
+                "dept_id": "D03064",
+                "canonical": "南血液科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "心内科—冠心病异地慢病",
+                "dept_id": "D04645",
+                "canonical": "心内科冠心病异地慢病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南血细胞异常",
+                "dept_id": "D03067",
+                "canonical": "南血细胞异常",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "老年科—冠心病异地慢病",
+                "dept_id": "D07422",
+                "canonical": "老年科冠心病异地慢病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南内分泌科",
+                "dept_id": "D03001",
+                "canonical": "南内分泌科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "老年科—高血压异地慢病",
+                "dept_id": "D07430",
+                "canonical": "老年科高血压异地慢病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "风湿性疾病全周期健康管理护理门诊",
+                "dept_id": "D09909",
+                "canonical": "风湿性疾病全周期健康管理护理门诊",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南风湿科",
+                "dept_id": "D03075",
+                "canonical": "南风湿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南代谢中心(MMC)专病",
+                "dept_id": "D02997",
+                "canonical": "南代谢中心",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "其他:MMC"
+              },
+              {
+                "raw": "南老慢支和肺气肿",
+                "dept_id": "D03043",
+                "canonical": "南老慢支和肺气肿",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南血管炎与狼疮",
+                "dept_id": "D03066",
+                "canonical": "南血管炎与狼疮",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南肾内科",
+                "dept_id": "D03051",
+                "canonical": "南肾内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南肺结节与肺癌诊治",
+                "dept_id": "D03050",
+                "canonical": "南肺结节与肺癌诊治",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南呼吸科",
+                "dept_id": "D03006",
+                "canonical": "南呼吸科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "孙舒慧（免疫性间肺）",
+                "dept_id": "D04152",
+                "canonical": "孙舒慧",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "其他:免疫性间肺"
+              },
+              {
+                "raw": "南消化科",
+                "dept_id": "D03024",
+                "canonical": "南消化科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "老年科—糖尿病异地慢病",
+                "dept_id": "D07427",
+                "canonical": "老年科糖尿病异地慢病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南心内科",
+                "dept_id": "D03012",
+                "canonical": "南心内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南关节炎门诊",
+                "dept_id": "D03000",
+                "canonical": "南关节炎门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "风湿罕见病",
+                "dept_id": "D09940",
+                "canonical": "风湿罕见病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "免疫功能和疫苗评估",
+                "dept_id": "D02349",
+                "canonical": "免疫功能和疫苗评估",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "神经免疫疾病与周围神经病",
+                "dept_id": "D06971",
+                "canonical": "神经免疫疾病与周围神经病",
+                "kind": "screening",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南慢性气道疾病（戒烟）",
+                "dept_id": "D03016",
+                "canonical": "南慢性气道疾病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:戒烟"
+              },
+              {
+                "raw": "南甲状腺疾病-内分泌",
+                "dept_id": "D03029",
+                "canonical": "南甲状腺疾病内分泌",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "头痛门诊",
+                "dept_id": "D03894",
+                "canonical": "头痛",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "急诊医学科",
+            "tab_index": 9,
+            "depts": [
+              {
+                "raw": "张星宇（专家诊区)",
+                "dept_id": "D04560",
+                "canonical": "张星宇",
+                "kind": "other",
+                "visit_type": "专家",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "其他",
+            "tab_index": 10,
+            "depts": [
+              {
+                "raw": "南记忆障碍专病门诊",
+                "dept_id": "D03069",
+                "canonical": "南记忆障碍门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南乳腺外科门诊",
+                "dept_id": "D02994",
+                "canonical": "南乳腺外科门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南胃肠外科门诊",
+                "dept_id": "D03055",
+                "canonical": "南胃肠外科门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "甲状腺乳腺结节微创消融",
+                "dept_id": "D06343",
+                "canonical": "甲状腺乳腺结节微创消融",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "乳腺专病门诊",
+                "dept_id": "D01637",
+                "canonical": "乳腺外科",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "南营养科",
+                "dept_id": "D03063",
+                "canonical": "南营养科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南血管外科",
+                "dept_id": "D03065",
+                "canonical": "南血管外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南胃肠肿瘤腹壁疝",
+                "dept_id": "D03057",
+                "canonical": "南胃肠肿瘤腹壁疝",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南肝脏外科",
+                "dept_id": "D03046",
+                "canonical": "南肝脏外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南胃肠腹壁疝",
+                "dept_id": "D03058",
+                "canonical": "南胃肠腹壁疝",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南胃肠、结直肠及肛门专病",
+                "dept_id": "D03054",
+                "canonical": "南胃肠、结直肠及肛门",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南肿瘤介入科",
+                "dept_id": "D03052",
+                "canonical": "南肿瘤介入科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "慢病营养管理",
+                "dept_id": "D05013",
+                "canonical": "慢病营养管理",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "耳鼻咽喉科",
+            "tab_index": 11,
+            "depts": [
+              {
+                "raw": "咽喉综合门诊",
+                "dept_id": "D03524",
+                "canonical": "咽喉综合门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "咽喉头颈综合门诊-赵辉",
+                "dept_id": "D03523",
+                "canonical": "咽喉头颈综合门诊赵辉",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "头晕耳聋耳鸣综合门诊",
+                "dept_id": "D03892",
+                "canonical": "头晕耳聋耳鸣综合门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "鼾症专病门诊",
+                "dept_id": "D10325",
+                "canonical": "鼾症门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "鼻病生物制剂治疗",
+                "dept_id": "D10299",
+                "canonical": "鼻病生物制剂治疗",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "鼻科综合门诊",
+                "dept_id": "D10305",
+                "canonical": "鼻科综合门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南耳鼻咽喉科头颈外科",
+                "dept_id": "D03044",
+                "canonical": "南耳鼻咽喉科头颈外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "外科",
+            "tab_index": 12,
+            "depts": [
+              {
+                "raw": "食管裂孔疝",
+                "dept_id": "D09953",
+                "canonical": "食管裂孔疝",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "整复与神经痛（周至宜）",
+                "dept_id": "D05212",
+                "canonical": "整复与神经痛",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:周至宜"
+              },
+              {
+                "raw": "南骨科",
+                "dept_id": "D03076",
+                "canonical": "南骨科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "骨关节病.朱乃锋",
+                "dept_id": "D10036",
+                "canonical": "骨关节病朱乃锋",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "脑缺血微创介入",
+                "dept_id": "D08481",
+                "canonical": "脑缺血微创介入",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "女性尿失禁、膀胱脱垂",
+                "dept_id": "D03922",
+                "canonical": "女性尿失禁、膀胱脱垂",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南肛肠外科-疝微创",
+                "dept_id": "D03045",
+                "canonical": "南肛肠外科疝微创",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "泌尿系术后随访护理门诊",
+                "dept_id": "D05830",
+                "canonical": "泌尿系术后随访护理门诊",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南肩、膝关节痛.傅晓东",
+                "dept_id": "D03047",
+                "canonical": "南肩、膝关节痛傅晓东",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "肾、肾上腺肿瘤专病门诊",
+                "dept_id": "D07928",
+                "canonical": "肾、肾上腺肿瘤门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "甲状腺乳腺微创",
+                "dept_id": "D06338",
+                "canonical": "甲状腺乳腺微创",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "陈渊文（胆囊、疝气疾病）",
+                "dept_id": "D09667",
+                "canonical": "陈渊文",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "其他:胆囊、疝气疾病"
+              },
+              {
+                "raw": "南普外科",
+                "dept_id": "D03022",
+                "canonical": "南普外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "关节损伤.贾博",
+                "dept_id": "D02537",
+                "canonical": "关节损伤贾博",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南泌尿科",
+                "dept_id": "D03023",
+                "canonical": "南泌尿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南胃肠肿瘤、肛肠、疝气",
+                "dept_id": "D03056",
+                "canonical": "南胃肠肿瘤、肛肠、疝气",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "运动损伤",
+                "dept_id": "D09297",
+                "canonical": "运动损伤",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "脑神经肿瘤诊疗门诊",
+                "dept_id": "D08477",
+                "canonical": "脑神经肿瘤诊疗门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南脑血管病介入",
+                "dept_id": "D03061",
+                "canonical": "南脑血管病介入",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "骨关节疼痛",
+                "dept_id": "D10030",
+                "canonical": "骨关节疼痛",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南肺结节、食管纵隔",
+                "dept_id": "D03049",
+                "canonical": "南肺结节、食管纵隔",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南膝肩疾病.高英健",
+                "dept_id": "D03062",
+                "canonical": "南膝肩疾病高英健",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "垂体及颅神经疾病神经内镜诊疗",
+                "dept_id": "D03692",
+                "canonical": "垂体及颅神经疾病神经内镜诊疗",
+                "kind": "ancillary",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "泌尿科—肾移植抗排异治疗异地慢特",
+                "dept_id": "D05822",
+                "canonical": "泌尿科肾移植抗排异治疗异地慢特",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南整形外科",
+                "dept_id": "D03017",
+                "canonical": "南整形外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "男科.黄燕平",
+                "dept_id": "D06426",
+                "canonical": "男科黄燕平",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "脊柱关节微创",
+                "dept_id": "D08383",
+                "canonical": "脊柱关节微创",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "肝胆胰脾、疝",
+                "dept_id": "D07705",
+                "canonical": "肝胆胰脾、疝",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南甲状腺与甲状旁腺",
+                "dept_id": "D03027",
+                "canonical": "南甲状腺与甲状旁腺",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南胸外科",
+                "dept_id": "D03060",
+                "canonical": "南胸外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "颈椎腰椎疾病-李浩",
+                "dept_id": "D09831",
+                "canonical": "颈椎腰椎疾病李浩",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "前列腺癌专病",
+                "dept_id": "D02806",
+                "canonical": "前列腺癌",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "胆胰、疝微创治疗",
+                "dept_id": "D08253",
+                "canonical": "胆胰、疝微创治疗",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "老年骨关节痛",
+                "dept_id": "D07467",
+                "canonical": "老年骨关节痛",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南甲状腺乳腺疾病",
+                "dept_id": "D03028",
+                "canonical": "南甲状腺乳腺疾病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "膀胱肿瘤（陈海戈团队）",
+                "dept_id": "D08616",
+                "canonical": "膀胱肿瘤",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:陈海戈团队"
+              },
+              {
+                "raw": "南头颈外科",
+                "dept_id": "D03007",
+                "canonical": "南头颈外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "烟雾病专病门诊",
+                "dept_id": "D06040",
+                "canonical": "烟雾病门诊",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "乳腺及甲状腺肿瘤",
+                "dept_id": "D01635",
+                "canonical": "乳腺及甲状腺肿瘤",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "骨关节损伤与疾病",
+                "dept_id": "D10025",
+                "canonical": "骨关节损伤与疾病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "胆胰疝与腹膜后肿瘤",
+                "dept_id": "D08259",
+                "canonical": "胆胰疝与腹膜后肿瘤",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "尿控.顾寅珺",
+                "dept_id": "D04349",
+                "canonical": "尿控顾寅珺",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "三叉神经痛、面肌痉挛",
+                "dept_id": "D00222",
+                "canonical": "三叉神经痛、面肌痉挛",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南胆结石、疝",
+                "dept_id": "D03059",
+                "canonical": "南胆结石、疝",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "肩膝踝关节疼痛",
+                "dept_id": "D07813",
+                "canonical": "肩膝踝关节疼痛",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "前列腺疾病.樊连城",
+                "dept_id": "D02804",
+                "canonical": "前列腺疾病樊连城",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南神经外科",
+                "dept_id": "D03039",
+                "canonical": "南神经外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "泌尿系结石.李震东",
+                "dept_id": "D05832",
+                "canonical": "泌尿系结石李震东",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "男科疾病",
+                "dept_id": "D06423",
+                "canonical": "男科疾病",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "颈背腰腿痛",
+                "dept_id": "D09850",
+                "canonical": "颈背腰腿痛",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "口腔科",
+            "tab_index": 13,
+            "depts": [
+              {
+                "raw": "牙槽外科专病门诊",
+                "dept_id": "D06094",
+                "canonical": "牙槽外科",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "形态:门诊"
+              },
+              {
+                "raw": "南口腔科",
+                "dept_id": "D03005",
+                "canonical": "南口腔科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "儿童口腔专病",
+                "dept_id": "D02092",
+                "canonical": "儿童口腔",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "口腔正畸专病门诊",
+                "dept_id": "D03209",
+                "canonical": "口腔正畸",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": "形态:门诊"
+              }
+            ]
+          },
+          {
+            "name": "皮肤科",
+            "tab_index": 14,
+            "depts": [
+              {
+                "raw": "南皮肤科",
+                "dept_id": "D03034",
+                "canonical": "南皮肤科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "美容激光门诊",
+                "dept_id": "D07329",
+                "canonical": "美容激光门诊",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南皮肤外科治疗",
+                "dept_id": "D03033",
+                "canonical": "南皮肤外科治疗",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "麻醉科",
+            "tab_index": 15,
+            "depts": [
+              {
+                "raw": "南麻醉科",
+                "dept_id": "D03078",
+                "canonical": "南麻醉科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "方洪伟（颈肩腰腿痛）",
+                "dept_id": "D05372",
+                "canonical": "方洪伟",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": "其他:颈肩腰腿痛"
+              },
+              {
+                "raw": "三叉神经痛、头面痛、神经痛",
+                "dept_id": "D00221",
+                "canonical": "三叉神经痛、头面痛、神经痛",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "南疼痛科",
+                "dept_id": "D03030",
+                "canonical": "南疼痛科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 16,
+          "entry_count": 192,
+          "unique_count": 189,
+          "canonical_count": 189
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T13:19:20Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 16,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T13:19:20Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 189,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-26T13:19:20Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}

@@ -1,0 +1,845 @@
+{
+  "manifest_version": "0.1",
+  "id": "SH-146",
+  "meta": {
+    "updated_at": "2026-09-30T00:01:39",
+    "owner": "hospital_intel",
+    "notes": "src=suishenban#444 idx=109; geo=amap(exact); dept=suishenban#yuyue_guahao(2026-09-26, l1=10/l2u=72)"
+  },
+  "institution": {
+    "name": "安亭镇社区卫生服务中心",
+    "aliases": [],
+    "level": "一级甲等",
+    "type": "综合医院",
+    "ownership": "公立",
+    "affiliation": "",
+    "official_site": "",
+    "tel": "021-60554803"
+  },
+  "campuses": [
+    {
+      "id": "SH-146-M",
+      "name": "本部",
+      "district": "嘉定区",
+      "address": "民丰路1200号",
+      "geo": {
+        "lng": 121.147862,
+        "lat": 31.306458,
+        "crs": "GCJ-02"
+      },
+      "is_main": true,
+      "geo_source": "amap:exact"
+    }
+  ],
+  "connector": {
+    "preferred_mode": "none",
+    "entries": [
+      {
+        "type": "aggregator",
+        "name": "随申办-预约挂号",
+        "has_booking": true,
+        "verified": true,
+        "confidence": "high",
+        "discovered_by": "session:l1-dept-collection",
+        "discovered_at": "2026-09-26",
+        "notes": "可直达医院选科室页(L1)；本次仅采科室层"
+      }
+    ],
+    "capabilities": {
+      "query_departments": true,
+      "query_schedule": false,
+      "query_slots": false,
+      "book": false,
+      "cancel": false,
+      "pay": false,
+      "need_realname": true,
+      "need_sms_otp": true,
+      "need_insurance_auth": false
+    },
+    "auth": {
+      "session_type": "none"
+    },
+    "exec_memory": {
+      "skills": []
+    }
+  },
+  "features": {
+    "hospital_level": {
+      "value": "一级甲等",
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "key_specialties": {
+      "value": [],
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "low",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_station": {
+      "value": "安亭(地铁站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_nearest_dist_m": {
+      "value": 2409,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_stations_1km": {
+      "value": 0,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "metro_walk_min": {
+      "value": null,
+      "provenance": {
+        "source": "amap_route",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_stops_300m": {
+      "value": 0,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_dist_m": {
+      "value": 416,
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "bus_nearest_stop_name": {
+      "value": "沁富佳苑(公交站)",
+      "provenance": {
+        "source": "amap_around",
+        "method": "api",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:15"
+      }
+    },
+    "medical_insurance": {
+      "value": "yes",
+      "provenance": {
+        "source": "ybj_list",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-25T22:45:17",
+        "evidence_url": "https://ybj.sh.gov.cn/gsgg/20260807/a2116384759a4ecc97589d9ef321db00.html"
+      }
+    },
+    "bookable_departments": {
+      "value": {
+        "source": "suishenban#yuyue_guahao",
+        "collected_at": "2026-09-26",
+        "parsed_at": "2026-09-28T10:06:31Z",
+        "l1": [
+          {
+            "name": "精神科",
+            "tab_index": 0,
+            "depts": [
+              {
+                "raw": "安亭精神科",
+                "dept_id": "D04179",
+                "canonical": "安亭精神科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "方泰精神科",
+                "dept_id": "D05365",
+                "canonical": "方泰精神科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "全科医疗科",
+            "tab_index": 1,
+            "depts": [
+              {
+                "raw": "全科（安驰）",
+                "dept_id": "D02450",
+                "canonical": "全科医疗科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:安驰"
+              },
+              {
+                "raw": "安亭老年病科（左君丽）",
+                "dept_id": "D04180",
+                "canonical": "安亭老年病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:左君丽"
+              },
+              {
+                "raw": "全科（吴胜）",
+                "dept_id": "D02450",
+                "canonical": "全科医疗科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:吴胜"
+              },
+              {
+                "raw": "安亭全科专家",
+                "dept_id": "D04173",
+                "canonical": "安亭全科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "方泰呼吸内科专家（杨莉）",
+                "dept_id": "D05358",
+                "canonical": "方泰呼吸内科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": "医师:杨莉"
+              },
+              {
+                "raw": "方泰首席门诊",
+                "dept_id": "D05370",
+                "canonical": "方泰首席门诊",
+                "kind": "specialty_clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "安亭神经内科（康文岩）",
+                "dept_id": "D04178",
+                "canonical": "安亭神经内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:康文岩"
+              },
+              {
+                "raw": "安亭全科",
+                "dept_id": "D04173",
+                "canonical": "安亭全科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "方泰五官科专家（钱越）",
+                "dept_id": "D05354",
+                "canonical": "方泰五官科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": "医师:钱越"
+              },
+              {
+                "raw": "全科（梅园）",
+                "dept_id": "D02450",
+                "canonical": "全科医疗科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:梅园"
+              },
+              {
+                "raw": "方泰神经内科（康文岩）",
+                "dept_id": "D05364",
+                "canonical": "方泰神经内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:康文岩"
+              },
+              {
+                "raw": "安亭全科（儿科）",
+                "dept_id": "D04173",
+                "canonical": "安亭全科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:儿科"
+              },
+              {
+                "raw": "方泰糖尿病小屋",
+                "dept_id": "D05366",
+                "canonical": "方泰糖尿病小屋",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "全科（桂园）",
+                "dept_id": "D02450",
+                "canonical": "全科医疗科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:桂园"
+              },
+              {
+                "raw": "糖尿病小屋",
+                "dept_id": "D07192",
+                "canonical": "糖尿病小屋",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "方泰消化内科专家（陈晓敏）",
+                "dept_id": "D05363",
+                "canonical": "方泰消化内科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": "医师:陈晓敏"
+              },
+              {
+                "raw": "全科（桃园）",
+                "dept_id": "D02450",
+                "canonical": "全科医疗科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:桃园"
+              },
+              {
+                "raw": "方泰全科专家",
+                "dept_id": "D05355",
+                "canonical": "方泰全科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "全科（新镇）",
+                "dept_id": "D02450",
+                "canonical": "全科医疗科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:新镇"
+              },
+              {
+                "raw": "方泰老年病科（左君丽）",
+                "dept_id": "D05367",
+                "canonical": "方泰老年病科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:左君丽"
+              },
+              {
+                "raw": "方泰高血压专家",
+                "dept_id": "D05371",
+                "canonical": "方泰高血压",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "安亭妇科专家（张弋）",
+                "dept_id": "D04175",
+                "canonical": "安亭妇科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": "医师:张弋"
+              },
+              {
+                "raw": "全科（向阳）",
+                "dept_id": "D02450",
+                "canonical": "全科医疗科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:向阳"
+              },
+              {
+                "raw": "方泰全科",
+                "dept_id": "D05355",
+                "canonical": "方泰全科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "方泰外科专家（李东）",
+                "dept_id": "D05359",
+                "canonical": "方泰外科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": "医师:李东"
+              }
+            ]
+          },
+          {
+            "name": "妇产科",
+            "tab_index": 2,
+            "depts": [
+              {
+                "raw": "方泰妇产科专家",
+                "dept_id": "D05360",
+                "canonical": "方泰妇产科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "康复医学科",
+            "tab_index": 3,
+            "depts": [
+              {
+                "raw": "安亭康复科专家",
+                "dept_id": "D04176",
+                "canonical": "安亭康复科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "康复科（中心）",
+                "dept_id": "D04496",
+                "canonical": "康复医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:中心"
+              },
+              {
+                "raw": "方泰康复科专家",
+                "dept_id": "D05361",
+                "canonical": "方泰康复科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "康复科（分中心）",
+                "dept_id": "D04496",
+                "canonical": "康复医学科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:分中心"
+              }
+            ]
+          },
+          {
+            "name": "中医科",
+            "tab_index": 4,
+            "depts": [
+              {
+                "raw": "方泰推拿科",
+                "dept_id": "D05362",
+                "canonical": "方泰推拿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "安亭中医儿科专家(薛征)",
+                "dept_id": "D04171",
+                "canonical": "安亭中医儿科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": "医师:薛征"
+              },
+              {
+                "raw": "方泰中医皮肤科专家",
+                "dept_id": "D05351",
+                "canonical": "方泰中医皮肤科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "中医科（红梅）",
+                "dept_id": "D01316",
+                "canonical": "中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:红梅"
+              },
+              {
+                "raw": "安亭推拿科专家",
+                "dept_id": "D04177",
+                "canonical": "安亭推拿科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "安驰中医专家",
+                "dept_id": "D04188",
+                "canonical": "安驰中医",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "中医妇科专家",
+                "dept_id": "D01225",
+                "canonical": "中医妇科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "方泰中医呼吸专家",
+                "dept_id": "D05348",
+                "canonical": "方泰中医呼吸",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "安亭推拿科专家（刘广）",
+                "dept_id": "D04177",
+                "canonical": "安亭推拿科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": "医师:刘广"
+              },
+              {
+                "raw": "方泰中医耳鼻咽喉科专家",
+                "dept_id": "D05353",
+                "canonical": "方泰中医耳鼻咽喉科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "中医科（吴胜）",
+                "dept_id": "D01316",
+                "canonical": "中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:吴胜"
+              },
+              {
+                "raw": "中医科（梅园）",
+                "dept_id": "D01316",
+                "canonical": "中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:梅园"
+              },
+              {
+                "raw": "方泰中医儿科专家（吴杰）",
+                "dept_id": "D05347",
+                "canonical": "方泰中医儿科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": "医师:吴杰"
+              },
+              {
+                "raw": "中医科（新镇）",
+                "dept_id": "D01316",
+                "canonical": "中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "院区:新镇"
+              },
+              {
+                "raw": "方泰中医推拿专家",
+                "dept_id": "D05350",
+                "canonical": "方泰中医推拿",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "方泰中医科",
+                "dept_id": "D05352",
+                "canonical": "方泰中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "方泰中医儿科专家",
+                "dept_id": "D05347",
+                "canonical": "方泰中医儿科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "安亭中医科",
+                "dept_id": "D04172",
+                "canonical": "安亭中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "安亭中医专家",
+                "dept_id": "D04170",
+                "canonical": "安亭中医",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "中医科（安驰）",
+                "dept_id": "D01316",
+                "canonical": "中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:安驰"
+              },
+              {
+                "raw": "中医科（向阳）",
+                "dept_id": "D01316",
+                "canonical": "中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:向阳"
+              },
+              {
+                "raw": "安亭中医儿科专家（吴杰）",
+                "dept_id": "D04171",
+                "canonical": "安亭中医儿科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": "医师:吴杰"
+              },
+              {
+                "raw": "方泰中医妇科专家",
+                "dept_id": "D05349",
+                "canonical": "方泰中医妇科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "安驰中医颈椎病专病",
+                "dept_id": "D04189",
+                "canonical": "安驰中医颈椎病",
+                "kind": "clinic",
+                "visit_type": "专病",
+                "qualifiers": ""
+              },
+              {
+                "raw": "安亭中医科（皮肤科）",
+                "dept_id": "D04172",
+                "canonical": "安亭中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:皮肤科"
+              },
+              {
+                "raw": "中医科（桃园）",
+                "dept_id": "D01316",
+                "canonical": "中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:桃园"
+              },
+              {
+                "raw": "方泰中医儿科专家（薛征）",
+                "dept_id": "D05347",
+                "canonical": "方泰中医儿科",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": "医师:薛征"
+              },
+              {
+                "raw": "中医科（桂园）",
+                "dept_id": "D01316",
+                "canonical": "中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "医师:桂园"
+              },
+              {
+                "raw": "中医科（儿科）",
+                "dept_id": "D01316",
+                "canonical": "中医科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": "其他:儿科"
+              },
+              {
+                "raw": "方泰中医专家",
+                "dept_id": "D05346",
+                "canonical": "方泰中医",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              },
+              {
+                "raw": "安亭推拿科",
+                "dept_id": "D04177",
+                "canonical": "安亭推拿科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "方泰全科",
+            "tab_index": 5,
+            "depts": [
+              {
+                "raw": "方泰全科",
+                "dept_id": "D05355",
+                "canonical": "方泰全科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "内科",
+            "tab_index": 6,
+            "depts": [
+              {
+                "raw": "方泰呼吸内科",
+                "dept_id": "D05358",
+                "canonical": "方泰呼吸内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "方泰消化内科",
+                "dept_id": "D05363",
+                "canonical": "方泰消化内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "方泰内科",
+                "dept_id": "D05356",
+                "canonical": "方泰内科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "外科",
+            "tab_index": 7,
+            "depts": [
+              {
+                "raw": "方泰外科",
+                "dept_id": "D05359",
+                "canonical": "方泰外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "安亭静脉维护导管护理",
+                "dept_id": "D04181",
+                "canonical": "安亭静脉维护导管护理",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "安亭外科",
+                "dept_id": "D04174",
+                "canonical": "安亭外科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              },
+              {
+                "raw": "方泰静脉维护导管护理",
+                "dept_id": "D05369",
+                "canonical": "方泰静脉维护导管护理",
+                "kind": "other",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "口腔科",
+            "tab_index": 8,
+            "depts": [
+              {
+                "raw": "方泰口腔专家",
+                "dept_id": "D05357",
+                "canonical": "方泰口腔",
+                "kind": "clinic",
+                "visit_type": "专家",
+                "qualifiers": ""
+              }
+            ]
+          },
+          {
+            "name": "耳鼻咽喉科",
+            "tab_index": 9,
+            "depts": [
+              {
+                "raw": "方泰耳鼻咽喉科",
+                "dept_id": "D05368",
+                "canonical": "方泰耳鼻咽喉科",
+                "kind": "clinic",
+                "visit_type": "普通",
+                "qualifiers": ""
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "l1_count": 10,
+          "entry_count": 73,
+          "unique_count": 72,
+          "canonical_count": 45
+        }
+      },
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-28T10:06:31Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l1_count": {
+      "value": 10,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-28T10:06:31Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    },
+    "bookable_dept_l2_count": {
+      "value": 72,
+      "provenance": {
+        "source": "suishenban",
+        "method": "scrape",
+        "confidence": "high",
+        "updated_at": "2026-09-28T10:06:31Z",
+        "note": "预约挂号→医院选科室页(左侧分类+右侧二级科室)；本次未下探医生/号源/排班"
+      }
+    }
+  }
+}
